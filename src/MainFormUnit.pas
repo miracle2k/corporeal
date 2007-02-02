@@ -51,6 +51,8 @@ type
     EditPropertiesAction: TAction;
     SpTBXItem3: TSpTBXItem;
     SpTBXItem4: TSpTBXItem;
+    procedure FormShow(Sender: TObject);
+    procedure AboutItemClick(Sender: TObject);
     procedure EditPropertiesActionUpdate(Sender: TObject);
     procedure PasswordListDblClick(Sender: TObject);
     procedure EditPropertiesActionExecute(Sender: TObject);
@@ -87,10 +89,17 @@ implementation
 
 uses
   TaskDialog,
+  AboutFormUnit,
   ItemPropertiesFormUnit,
   CSVParser;
 
 {$R *.dfm}
+
+procedure TMainForm.AboutItemClick(Sender: TObject);
+begin
+  with TAboutForm.Create(Self) do
+    ShowModal;
+end;
 
 procedure TMainForm.AddFromCSVItemClick(Sender: TObject);
 var
@@ -144,6 +153,7 @@ procedure TMainForm.ApplyFilter;
 var
   LookFor: string;
   CurNode: PVirtualNode;
+  NodeData: PPasswordListNode;
 begin
   LookFor := WideLowerCase(QuickSearchEdit.Text);
   PasswordList.BeginUpdate;
@@ -151,7 +161,8 @@ begin
     CurNode:= PasswordList.RootNode.FirstChild;
     while (CurNode <> nil) do
     begin
-      with PWItemStore.Items[CurNode.Index] do
+      NodeData := PasswordList.GetNodeData(CurNode);
+      with NodeData.PWItem do
         PasswordList.IsVisible[CurNode] :=
           (LookFor = '') or  // no filter, show everything
           (Pos(LookFor, WideLowerCase(Title))>0) or
@@ -163,7 +174,7 @@ begin
     end;
   finally
     PasswordList.EndUpdate;
-    GUIUpdatePasswordList;
+    GUIUpdateStatusbar;
   end;
 end;
 
@@ -229,6 +240,11 @@ end;
 procedure TMainForm.FormDestroy(Sender: TObject);
 begin
   PWItemStore.Free;
+end;
+
+procedure TMainForm.FormShow(Sender: TObject);
+begin
+  AboutItem.Click;
 end;
 
 procedure TMainForm.GUIUpdatePasswordList;

@@ -16,6 +16,7 @@ object MainForm: TMainForm
   Position = poScreenCenter
   OnCreate = FormCreate
   OnDestroy = FormDestroy
+  OnShow = FormShow
   PixelsPerInch = 96
   TextHeight = 13
   object TopDock: TSpTBXDock
@@ -50,13 +51,13 @@ object MainForm: TMainForm
         Action = DeleteItemAction
       end
       object MainToolbarRightAlignSpacerItem: TSpTBXRightAlignSpacerItem
-        CustomWidth = 115
+        CustomWidth = 65
       end
       object SearchLabelItem: TSpTBXLabelItem
         Caption = 'Search:'
       end
       object QuickSearchEdit: TSpTBXEditItem
-        EditWidth = 150
+        EditWidth = 200
         OnChange = QuickSearchEditChange
       end
       object SeparaterItem: TSpTBXSeparatorItem
@@ -98,6 +99,7 @@ object MainForm: TMainForm
         object AboutItem: TSpTBXItem
           Caption = 'About'
           ImageIndex = 9
+          OnClick = AboutItemClick
         end
       end
     end
@@ -125,7 +127,6 @@ object MainForm: TMainForm
     OnDblClick = PasswordListDblClick
     OnGetText = PasswordListGetText
     OnHeaderClick = PasswordListHeaderClick
-    ExplicitTop = 51
     Columns = <
       item
         Position = 0

@@ -12,7 +12,8 @@ uses
   CSVParser in 'CSVParser.pas',
   ItemPropertiesFormUnit in 'ItemPropertiesFormUnit.pas' {ItemPropertiesForm},
   FormValidation in 'FormValidation.pas',
-  Core in 'Core.pas';
+  Core in 'Core.pas',
+  AboutFormUnit in 'AboutFormUnit.pas' {AboutForm};
 
 {$R *.res}
 
