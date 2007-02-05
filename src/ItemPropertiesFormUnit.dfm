@@ -130,6 +130,7 @@ object ItemPropertiesForm: TItemPropertiesForm
     Width = 23
     Height = 22
     Hint = 'Generate Password'
+    OnClick = TntSpeedButton2Click
     PngImage.Data = {
       89504E470D0A1A0A0000000D49484452000000100000001008060000001FF3FF
       610000000774494D45000000000000000973942E0000001774455874536F6674
@@ -165,17 +166,6 @@ object ItemPropertiesForm: TItemPropertiesForm
       B3C94C6A0F66D3284A804454F917D22D7C249BA0256409AE084222EDFF030B70
       802D4FCBAB810000000049454E44AE426082}
   end
-  object QualityIndicatorBar: TJvGradientProgressBar
-    Left = 90
-    Top = 168
-    Width = 215
-    Height = 19
-    BarColorFrom = clRed
-    BarColorTo = clLime
-    Position = 45
-    Smooth = True
-    ParentColor = True
-  end
   object Label8: TLabel
     Left = 46
     Top = 169
@@ -183,6 +173,13 @@ object ItemPropertiesForm: TItemPropertiesForm
     Height = 13
     Alignment = taRightJustify
     Caption = 'Quality:'
+  end
+  object QualityLabel: TLabel
+    Left = 327
+    Top = 175
+    Width = 3
+    Height = 13
+    Alignment = taRightJustify
   end
   object TitleEdit: TTntEdit
     Left = 90

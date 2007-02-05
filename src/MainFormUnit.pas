@@ -51,7 +51,9 @@ type
     EditPropertiesAction: TAction;
     SpTBXItem3: TSpTBXItem;
     SpTBXItem4: TSpTBXItem;
-    procedure FormShow(Sender: TObject);
+    procedure PasswordListCompareNodes(Sender: TBaseVirtualTree; Node1,
+      Node2: PVirtualNode; Column: TColumnIndex; var Result: Integer);
+    procedure ConfigurationItemClick(Sender: TObject);
     procedure AboutItemClick(Sender: TObject);
     procedure EditPropertiesActionUpdate(Sender: TObject);
     procedure PasswordListDblClick(Sender: TObject);
@@ -88,9 +90,9 @@ const
 implementation
 
 uses
+  Utilities,
   TaskDialog,
-  AboutFormUnit,
-  ItemPropertiesFormUnit,
+  AboutFormUnit, ConfigFormUnit, ItemPropertiesFormUnit,
   CSVParser;
 
 {$R *.dfm}
@@ -178,6 +180,15 @@ begin
   end;
 end;
 
+procedure TMainForm.ConfigurationItemClick(Sender: TObject);
+begin
+  with TConfigForm.Create(Self) do
+    if ShowModal = mrOk then
+    begin
+    
+    end;
+end;
+
 procedure TMainForm.DeleteItemActionExecute(Sender: TObject);
 var
   TaskDialog: TTaskDialog;
@@ -208,19 +219,20 @@ begin
 end;
 
 procedure TMainForm.EditPropertiesActionExecute(Sender: TObject);
+var
+  PWItemToEdit: TPWItem;
 begin
   with TItemPropertiesForm.Create(Self) do
   begin
     EditMode := True;
+    with PasswordList do
+      PWItemToEdit := PPasswordListNode(GetNodeData(FocusedNode)).PWItem;
+    ApplyFromItem(PWItemToEdit);
     if ShowModal = mrOk then
-      with PWItemStore.Add do begin
-        Title := TitleEdit.Text;
-        Username := UsernameEdit.Text;
-        Password := PasswordEdit.Text;
-        Notes := NotesMemo.Text;
-        URL := URLEdit.Text;
-        GUIUpdatePasswordList;
-      end;
+    begin
+      ApplyToItem(PWItemToEdit);
+      GUIUpdatePasswordList;
+    end;
     Free;
   end;  
 end;
@@ -240,11 +252,6 @@ end;
 procedure TMainForm.FormDestroy(Sender: TObject);
 begin
   PWItemStore.Free;
-end;
-
-procedure TMainForm.FormShow(Sender: TObject);
-begin
-  AboutItem.Click;
 end;
 
 procedure TMainForm.GUIUpdatePasswordList;
@@ -287,6 +294,16 @@ begin
   Result := (coVisible in PasswordList.Header.Columns[PasswordColumnIndex].Options);
 end;
 
+procedure TMainForm.PasswordListCompareNodes(Sender: TBaseVirtualTree; Node1,
+  Node2: PVirtualNode; Column: TColumnIndex; var Result: Integer);
+var
+  Data1, Data2: PPasswordListNode;
+begin
+  Data1 := Sender.GetNodeData(Node1);
+  Data2 := Sender.GetNodeData(Node2);
+  Result := CompareText(Data1.PWItem.Title, Data2.PWItem.Title);
+end;
+
 procedure TMainForm.PasswordListDblClick(Sender: TObject);
 begin
   if PasswordList.SelectedCount > 0 then
@@ -321,6 +338,9 @@ begin
   begin
     with Sender do
     begin
+      // Never sort the password column
+      if Column = PasswordColumnIndex then Exit;
+      
       if SortColumn <> Column then
       begin
         SortColumn := Column;
@@ -331,7 +351,7 @@ begin
         sdAscending:
           SortDirection := sdDescending;
         sdDescending:
-          SortColumn := NoColumn;
+          SortDirection := sdAscending;
       end;
     end;
   end;

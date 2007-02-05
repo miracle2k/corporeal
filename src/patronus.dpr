@@ -2,8 +2,10 @@ program patronus;
 
 // gettext localizations
 // store config / window positions etc
-// about window
 // config window
+// vista ready
+// pw generation wizard
+// pw security quality indicator
 
 uses
   Forms,
@@ -13,7 +15,11 @@ uses
   ItemPropertiesFormUnit in 'ItemPropertiesFormUnit.pas' {ItemPropertiesForm},
   FormValidation in 'FormValidation.pas',
   Core in 'Core.pas',
-  AboutFormUnit in 'AboutFormUnit.pas' {AboutForm};
+  AboutFormUnit in 'AboutFormUnit.pas' {AboutForm},
+  ConfigFormUnit in 'ConfigFormUnit.pas' {ConfigForm},
+  PasswordGeneratorFormUnit in 'PasswordGeneratorFormUnit.pas' {PasswordGeneratorForm},
+  Utilities in 'Utilities.pas',
+  JvGradientProgressBarEx in 'JvGradientProgressBarEx.pas';
 
 {$R *.res}
 

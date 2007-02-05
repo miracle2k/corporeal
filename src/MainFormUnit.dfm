@@ -16,7 +16,6 @@ object MainForm: TMainForm
   Position = poScreenCenter
   OnCreate = FormCreate
   OnDestroy = FormDestroy
-  OnShow = FormShow
   PixelsPerInch = 96
   TextHeight = 13
   object TopDock: TSpTBXDock
@@ -95,6 +94,7 @@ object MainForm: TMainForm
         object ConfigurationItem: TSpTBXItem
           Caption = 'Configuration'
           ImageIndex = 7
+          OnClick = ConfigurationItemClick
         end
         object AboutItem: TSpTBXItem
           Caption = 'About'
@@ -124,6 +124,7 @@ object MainForm: TMainForm
     TreeOptions.AutoOptions = [toAutoDropExpand, toAutoScrollOnExpand, toAutoSort, toAutoTristateTracking, toAutoDeleteMovedNodes]
     TreeOptions.PaintOptions = [toShowButtons, toShowDropmark, toThemeAware, toUseBlendedImages]
     TreeOptions.SelectionOptions = [toFullRowSelect, toMultiSelect, toRightClickSelect, toSimpleDrawSelection]
+    OnCompareNodes = PasswordListCompareNodes
     OnDblClick = PasswordListDblClick
     OnGetText = PasswordListGetText
     OnHeaderClick = PasswordListHeaderClick

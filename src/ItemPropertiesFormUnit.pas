@@ -3,12 +3,12 @@ unit ItemPropertiesFormUnit;
 interface
 
 uses
-  FormValidation,
-  
+  FormValidation, PWStoreModel,
+
   Windows, Messages, SysUtils, Variants, Classes, Graphics, Controls, Forms,
   Dialogs, StdCtrls, TntStdCtrls, ExtCtrls, pngimage, Buttons, TntButtons,
-  PngSpeedButton, JvExControls, JvGradient, JvProgressBar, JvComponentBase,
-  JvBalloonHint;
+  PngSpeedButton, JvExControls, JvGradientProgressBarEx, JvComponentBase,
+  JvBalloonHint, JvProgressBar;
 
 type
   TItemPropertiesForm = class(TForm)
@@ -33,15 +33,17 @@ type
     URLEdit: TTntEdit;
     TogglePasswordCharButton: TPngSpeedButton;
     TntSpeedButton2: TPngSpeedButton;
-    QualityIndicatorBar: TJvGradientProgressBar;
     Label8: TLabel;
     BalloonHint: TJvBalloonHint;
+    QualityLabel: TLabel;
+    procedure TntSpeedButton2Click(Sender: TObject);
     procedure Button1Click(Sender: TObject);
     procedure FormDestroy(Sender: TObject);
     procedure FormCreate(Sender: TObject);
     procedure PasswordEditChange(Sender: TObject);
     procedure TogglePasswordCharButtonClick(Sender: TObject);
   private
+    QualityIndicatorBar: TJvGradientProgressBarEx;
     FormValidator: TFormValidator;
     FEditMode: Boolean;
     procedure SetEditMode(const Value: Boolean);
@@ -49,12 +51,38 @@ type
   private
     procedure UpdateQualityIndicator;
   public
+    procedure ApplyFromItem(AItem: TPWItem);
+    procedure ApplyToItem(AItem: TPWItem);
+  public
     property EditMode: Boolean read FEditMode write SetEditMode;
   end;
 
 implementation
 
+uses
+  Utilities, PasswordGeneratorFormUnit;
+
 {$R *.dfm}
+
+procedure TItemPropertiesForm.ApplyFromItem(AItem: TPWItem);
+begin
+  TitleEdit.Text := AItem.Title;
+  UsernameEdit.Text := AItem.Username;
+  PasswordEdit.Text := AItem.Password;
+  PasswordRepeatEdit.Text := AItem.Password;
+  URLEdit.Text := AItem.URL;
+  NotesMemo.Text := AItem.Notes;
+end;
+
+procedure TItemPropertiesForm.ApplyToItem(AItem: TPWItem);
+begin
+  AItem.Title := TitleEdit.Text;
+  AItem.Username := UsernameEdit.Text;
+  AItem.Password := PasswordEdit.Text;
+  AItem.Password := PasswordRepeatEdit.Text;
+  AItem.URL := URLEdit.Text;
+  AItem.Notes := NotesMemo.Text;
+end;
 
 procedure TItemPropertiesForm.Button1Click(Sender: TObject);
 begin
@@ -62,11 +90,20 @@ begin
     ModalResult := mrOk
   else
     with FormValidator.FirstFailedRule do
-      BalloonHint.ActivateHint(Control, Message+'.', 'Error');
+      BalloonHint.ActivateHint(Control, Message+'.', ikError, 'Error');
 end;
 
 procedure TItemPropertiesForm.FormCreate(Sender: TObject);
 begin
+  // create quality indicater control
+  QualityIndicatorBar := TJvGradientProgressBarEx.Create(Self);
+  QualityIndicatorBar.BarColorFrom := $000080FF;  // orange
+  QualityIndicatorBar.BarColorTo := clLime;
+  QualityIndicatorBar.SetBounds(90, 168, 196, 19);
+  QualityIndicatorBar.Parent := Self;
+
+  // initialize everything
+  TogglePasswordCharButtonClick(nil);
   UpdateQualityIndicator;
   EditMode := False;
 
@@ -99,9 +136,26 @@ begin
   end;
 end;
 
+procedure TItemPropertiesForm.TntSpeedButton2Click(Sender: TObject);
+var
+  NewPassword: string;
+begin
+  with TPasswordGeneratorForm.Create(Self) do
+  begin
+    if ShowModal = mrOk then
+    begin
+      NewPassword := GenerateRandomPassword(Drawset, RequestedLength);
+      PasswordEdit.Text := NewPassword;
+      PasswordRepeatEdit.Text := NewPassword;
+    end;
+    Free;
+  end;
+end;
+
 procedure TItemPropertiesForm.TogglePasswordCharButtonClick(Sender: TObject);
 begin
   if TogglePasswordCharButton.Down then begin
+    // TODO: use 149 for dot?
     PasswordEdit.PasswordChar := '*';
     PasswordRepeatEdit.PasswordChar := '*';
   end else begin
@@ -113,11 +167,15 @@ end;
 procedure TItemPropertiesForm.UpdateQualityIndicator;
 const
   QualityMaxBits = 132;
+var
+  EstimatedBits: Integer;
 begin
+  EstimatedBits := EstimatePasswordBits(PasswordEdit.Text);
   with QualityIndicatorBar do begin
     Max := QualityMaxBits;
-    //Position := Pow(26,Length(PasswordEdit.Text));
+    Position := EstimatedBits;
   end;
+  QualityLabel.Caption := IntToStr(EstimatedBits)+' bits';  
 end;
 
 function TItemPropertiesForm.ValidatePasswordMatchCallback(
