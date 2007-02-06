@@ -305,7 +305,7 @@ object AboutForm: TAboutForm
     ShowBorder = True
   end
   object OKButton: TButton
-    Left = 201
+    Left = 197
     Top = 287
     Width = 75
     Height = 25

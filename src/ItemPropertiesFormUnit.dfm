@@ -221,7 +221,7 @@ object ItemPropertiesForm: TItemPropertiesForm
     Top = 221
     Width = 240
     Height = 139
-    TabOrder = 4
+    TabOrder = 5
   end
   object Button1: TButton
     Left = 255
@@ -231,7 +231,7 @@ object ItemPropertiesForm: TItemPropertiesForm
     Anchors = [akRight, akBottom]
     Caption = 'OK'
     Default = True
-    TabOrder = 5
+    TabOrder = 6
     OnClick = Button1Click
   end
   object Button2: TButton
@@ -243,7 +243,7 @@ object ItemPropertiesForm: TItemPropertiesForm
     Cancel = True
     Caption = 'Cancel'
     ModalResult = 2
-    TabOrder = 6
+    TabOrder = 7
   end
   object Panel1: TPanel
     Left = 0
@@ -255,7 +255,7 @@ object ItemPropertiesForm: TItemPropertiesForm
     BevelOuter = bvNone
     Color = clWhite
     ParentBackground = False
-    TabOrder = 7
+    TabOrder = 8
     object Image1: TImage
       Left = 6
       Top = 4
@@ -357,7 +357,7 @@ object ItemPropertiesForm: TItemPropertiesForm
     Width = 240
     Height = 21
     Anchors = [akLeft, akTop, akRight]
-    TabOrder = 8
+    TabOrder = 4
   end
   object BalloonHint: TJvBalloonHint
     Left = 8
