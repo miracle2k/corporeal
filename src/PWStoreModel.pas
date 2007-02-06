@@ -3,7 +3,7 @@ unit PWStoreModel;
 interface
 
 uses
-  Classes,
+  SysUtils, Classes,
 
   DCPrijndael, DCPsha512;
 
@@ -73,12 +73,18 @@ type
     procedure Clear;
     function Add: TPWItem;
     procedure SaveToFile(AFilename, APassword: string);
+    procedure LoadFromFile(AFilename, APassword: string);
   public
     property Count: Integer read GetCount;
     property Items[Index: Integer]: TPWItem read GetItems write SetItems;
   end;
 
 implementation
+
+const
+  PWDB_HEADER = 'PWDB';
+var
+  PWDB_VERSION: Integer = 1;
 
 { TPWItem }
 
@@ -168,6 +174,72 @@ begin
   Result := FItems[Index];
 end;
 
+procedure TPWItemStore.LoadFromFile(AFilename, APassword: string);
+var
+  MemoryStream: TMemoryStream;
+  FileStream: TFileStream;
+  AESCipher: TDCP_rijndael;
+  I, NumItems: Integer;
+
+  function ReadString(const Length: Integer = 0): string;
+  var
+    Lng: Integer;
+  begin
+    // no length specified, read from stream
+    if Length = 0 then
+      MemoryStream.ReadBuffer(Lng, SizeOf(Lng))
+    else
+      Lng := Length;
+    // read string
+    SetLength(Result, Lng);
+    MemoryStream.ReadBuffer(Result[1], Lng);
+  end;
+
+  function ReadInteger: Integer;
+  begin
+    MemoryStream.ReadBuffer(Result, SizeOf(Result));
+  end;
+
+begin
+  // clear all the current items
+  Clear;
+  
+  // open the file and decrypt to memory stream
+  FileStream := TFileStream.Create(AFilename, fmOpenRead);
+  MemoryStream := TMemoryStream.Create;
+  AESCipher := TDCP_rijndael.Create(nil);
+  try
+    AESCipher.InitStr(APassword, TDCP_sha512);
+    AESCipher.DecryptStream(FileStream, MemoryStream, FileStream.Size);
+
+    MemoryStream.Position := 0;
+
+    // read header
+    if ReadString(Length(PWDB_HEADER)) <> PWDB_HEADER then
+      raise Exception.Create('Invalid header');
+    if ReadInteger <> PWDB_VERSION then
+      raise Exception.Create('Invalid file version');
+
+    // read all the items
+    NumItems := ReadInteger;
+    for I := 0 to NumItems - 1 do
+      with Add do
+      begin
+        Title := ReadString;
+        Username := ReadString;
+        Password := ReadString;
+        URL := ReadString;
+        Notes := ReadString;
+      end;
+
+    // read binlog
+  finally
+    MemoryStream.Free;
+    FileStream.Free;
+    AESCipher.Free;  
+  end;
+end;
+
 function TPWItemStore.NextID: Cardinal;
 begin
   Inc(FLastAutoID);
@@ -179,13 +251,40 @@ var
   MemoryStream: TMemoryStream;
   FileStream: TFileStream;
   AESCipher: TDCP_rijndael;
+  I: Integer;
+
+  procedure WriteString(AStr: string);
+  var
+    Lng: Integer;
+  begin
+    Lng := Length(Astr);
+    MemoryStream.WriteBuffer(Lng, SizeOf(Lng));
+    MemoryStream.WriteBuffer(AStr[1], Length(AStr));
+  end;
+
+  procedure WriteInteger(AInt: Integer);
+  begin
+    MemoryStream.WriteBuffer(AInt, SizeOf(AInt));
+  end;
+
 begin
   // put together everything in memory first
   MemoryStream := TMemoryStream.Create;
   try
     // write header
+    MemoryStream.WriteBuffer(PWDB_HEADER[1], Length(PWDB_HEADER));
+    MemoryStream.WriteBuffer(PWDB_VERSION, SizeOf(PWDB_VERSION));
 
     // write all the items
+    WriteInteger(Count);
+    for I := 0 to Count - 1 do
+    begin
+      WriteString(Items[I].Title);
+      WriteString(Items[I].Username);
+      WriteString(Items[I].Password);
+      WriteString(Items[I].URL);
+      WriteString(Items[I].Notes);
+    end;
 
     // write binlog
 

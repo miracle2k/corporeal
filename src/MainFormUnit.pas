@@ -78,6 +78,8 @@ type
     procedure GUIUpdatePasswordList;
     procedure GUIUpdateStatusbar;
     procedure ApplyFilter;
+    procedure Save;
+    procedure Load(Password: string);    
   end;
 
 var
@@ -146,6 +148,7 @@ begin
         Notes := NotesMemo.Text;
         URL := URLEdit.Text;
         GUIUpdatePasswordList;
+        Save;
       end;
     Free;
   end;
@@ -246,6 +249,7 @@ procedure TMainForm.FormCreate(Sender: TObject);
 begin
   PasswordList.NodeDataSize := SizeOf(TPasswordListNode);
   PWItemStore := TPWItemStore.Create;
+  Load('test');
   GUIUpdatePasswordList;
 end;
 
@@ -292,6 +296,11 @@ end;
 function TMainForm.IsPasswordColumnVisible: Boolean;
 begin
   Result := (coVisible in PasswordList.Header.Columns[PasswordColumnIndex].Options);
+end;
+
+procedure TMainForm.Load(Password: string);
+begin
+  PWItemStore.LoadFromFile('myfile', Password);
 end;
 
 procedure TMainForm.PasswordListCompareNodes(Sender: TBaseVirtualTree; Node1,
@@ -365,6 +374,11 @@ begin
   QuickSearchEdit.Text := Text;
   // Filter nodes in tree
   ApplyFilter;
+end;
+
+procedure TMainForm.Save;
+begin
+  PWItemStore.SaveToFile('myfile', 'test');
 end;
 
 procedure TMainForm.ShowPasswordsToggleActionExecute(Sender: TObject);

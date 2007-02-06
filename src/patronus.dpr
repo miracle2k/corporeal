@@ -4,8 +4,6 @@ program patronus;
 // store config / window positions etc
 // config window
 // vista ready
-// pw generation wizard
-// pw security quality indicator
 
 uses
   Forms,
