@@ -28,7 +28,7 @@ object MainForm: TMainForm
       Top = 0
       Caption = 'MainToolbar'
       DockMode = dmCannotFloatOrChangeDocks
-      DockPos = 0
+      DockPos = 3
       DragHandleStyle = dhNone
       FullSize = True
       Images = LargeImages
@@ -82,11 +82,11 @@ object MainForm: TMainForm
         object SpTBXSubmenuItem1: TSpTBXSubmenuItem
           Caption = 'KeePass Exchange'
           object AddFromCSVItem: TSpTBXItem
-            Caption = 'Add from KeePass CSV'
+            Caption = 'Add from KeePass XML'
             OnClick = AddFromCSVItemClick
           end
           object SpTBXItem2: TSpTBXItem
-            Caption = 'Export to KeePass CSV'
+            Caption = 'Export to KeePass XML'
           end
         end
         object SeparaterItem2: TSpTBXSeparatorItem

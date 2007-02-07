@@ -285,6 +285,7 @@ object AboutForm: TAboutForm
       'PngDelphi'
       'ScrollingCredits'
       'JVCL && JCL'
+      'Open XML'
       ''
       '&bApplication & Toolbar Icons'
       'http://www.iconaholic.com/'

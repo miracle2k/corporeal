@@ -92,10 +92,10 @@ const
 implementation
 
 uses
+  Xdom_4_1,
   Utilities,
   TaskDialog,
-  AboutFormUnit, ConfigFormUnit, ItemPropertiesFormUnit,
-  CSVParser;
+  AboutFormUnit, ConfigFormUnit, ItemPropertiesFormUnit;
 
 {$R *.dfm}
 
@@ -107,31 +107,76 @@ end;
 
 procedure TMainForm.AddFromCSVItemClick(Sender: TObject);
 var
-  CSVFile: TCSVParser;
+  XMLParser: TXmlToDomParser;
+  DomImplementation: TDomImplementation;
+  DomDocument: TDomDocument;
   I: Integer;
+
+  function ReadString(Nodes: TDomNodeList; Name: string): string;
+  var
+    I: Integer;
+  begin
+    Result := '';
+    try
+      for I := 0 to Nodes.Length - 1 do
+        if Nodes.Item(I).ExpandedName = Name then
+        begin
+          Result := Nodes.Item(I).ChildNodes.Item(0).NodeValue;
+          Exit;
+        end;
+    except
+      // ignore all errors
+    end;
+  end;
+
+const
+  RootNodeName = 'pwlist';
+  ItemNodeName = 'pwentry';
 begin
   if OpenCSVDialog.Execute then
     try
-      CSVFile := TCSVParser.Create;
-      CSVFile.RequireFields := 5;
+      XMLParser := TXmlToDomParser.Create(nil);
+      XMLParser.KeepEntityRefs := False;
+      DomImplementation := TDomImplementation.Create(nil);
+      XMLParser.DOMImpl := DomImplementation;
       try
         // open csv file
-        CSVFile.LoadAndParseFile(OpenCSVDialog.FileName);
+        DomDocument := XMLParser.ParseFile(OpenCSVDialog.FileName, False);
         // loop through lines
-        for I := 0 to CSVFile.ItemCount - 1 do
-          with PWItemStore.Add do
-          begin
-            Title := CSVFile.Items[I].Fields[0];
-            Username := CSVFile.Items[I].Fields[1];
-            Password := CSVFile.Items[I].Fields[2];
-            URL := CSVFile.Items[I].Fields[3];
-            Notes := CSVFile.Items[I].Fields[4];
-          end;
+        with DomDocument.ChildNodes.Item(0) do
+        begin
+          // check root node
+          if (ExpandedName <> RootNodeName) then
+            raise Exception.Create('Doesn''t seem to be a valid KeePass XML export.');
+          // foreach entry
+          for I := 0 to ChildNodes.Length - 1 do
+            with ChildNodes.Item(I) do begin
+              // check node name
+              if (ExpandedName <> ItemNodeName) then Continue;
+              // add item and read data
+              with PWItemStore.Add do
+              begin
+                Title := ReadString(ChildNodes, 'title');
+                Username := ReadString(ChildNodes, 'username');
+                Password := ReadString(ChildNodes, 'password');
+                URL := ReadString(ChildNodes, 'url');
+                Notes := ReadString(ChildNodes, 'notes');
+              end;
+            end;
+        end;
       finally
-        CSVFile.Free;
+        DomImplementation.Free;
+        XMLParser.Free;
         GUIUpdatePasswordList;
+        Save;
       end;
     except
+      on E: Exception do
+      begin
+        // TODO: show how many very actually imported
+        ShowMessage(E.Message);
+      end;
+
     end;
 end;
 
@@ -195,6 +240,9 @@ end;
 procedure TMainForm.DeleteItemActionExecute(Sender: TObject);
 var
   TaskDialog: TTaskDialog;
+  I: Integer;
+  SelectedNodes: TNodeArray;
+  NodeData: PPasswordListNode;
 begin
   TaskDialog := TTaskDialog.Create(Self);
   try
@@ -208,8 +256,22 @@ begin
       TaskDialog.FooterIcon := tfiWarning;
     end;
     TaskDialog.CommonButtons := [cbYes, cbNo];
-    if TaskDialog.Execute = 6 then begin
-      PasswordList.DeleteSelectedNodes;
+    if TaskDialog.Execute = ID_YES then
+    begin
+      PasswordList.BeginUpdate;
+      try
+        SelectedNodes := PasswordList.GetSortedSelection(True);
+        for I := 0 to High(SelectedNodes) do
+        begin
+          NodeData := PasswordList.GetNodeData(SelectedNodes[I]);
+          PWItemStore.Remove(NodeData^.PWItem);
+          PasswordList.DeleteNode(SelectedNodes[I]);
+        end;
+      finally
+        PasswordList.EndUpdate;
+        GUIUpdateStatusbar;      
+        Save;
+      end;
     end;
   finally
     TaskDialog.Free;
@@ -224,17 +286,26 @@ end;
 procedure TMainForm.EditPropertiesActionExecute(Sender: TObject);
 var
   PWItemToEdit: TPWItem;
+  SelectedNodes: TNodeArray;
+  NodeToEdit: PVirtualNode;
 begin
   with TItemPropertiesForm.Create(Self) do
   begin
-    EditMode := True;
-    with PasswordList do
-      PWItemToEdit := PPasswordListNode(GetNodeData(FocusedNode)).PWItem;
+    EditMode := True;   
+    with PasswordList do begin
+      if (FocusedNode <> nil) and (IsVisible[FocusedNode]) then NodeToEdit := FocusedNode
+      else begin
+        SelectedNodes := GetSortedSelection(True);
+        NodeToEdit := SelectedNodes[0];
+      end;
+      if NodeToEdit = nil then Exit;      
+      PWItemToEdit := PPasswordListNode(GetNodeData(NodeToEdit)).PWItem;
+    end;
     ApplyFromItem(PWItemToEdit);
     if ShowModal = mrOk then
     begin
       ApplyToItem(PWItemToEdit);
-      GUIUpdatePasswordList;
+      Save;
     end;
     Free;
   end;  
@@ -242,7 +313,8 @@ end;
 
 procedure TMainForm.EditPropertiesActionUpdate(Sender: TObject);
 begin
-  EditPropertiesAction.Enabled := PasswordList.SelectedCount > 0;
+  EditPropertiesAction.Enabled := (PasswordList.FocusedNode <> nil) or
+    (PasswordList.SelectedCount > 0);
 end;
 
 procedure TMainForm.FormCreate(Sender: TObject);

@@ -72,6 +72,7 @@ type
   public
     procedure Clear;
     function Add: TPWItem;
+    function Remove(Item: TPWItem): Integer;
     procedure SaveToFile(AFilename, APassword: string);
     procedure LoadFromFile(AFilename, APassword: string);
   public
@@ -244,6 +245,12 @@ function TPWItemStore.NextID: Cardinal;
 begin
   Inc(FLastAutoID);
   Result := FLastAutoID;
+end;
+
+function TPWItemStore.Remove(Item: TPWItem): Integer;
+begin
+  Result := FItems.Remove(Item);
+  if Result >= 0 then Item.Free;
 end;
 
 procedure TPWItemStore.SaveToFile(AFilename, APassword: string);

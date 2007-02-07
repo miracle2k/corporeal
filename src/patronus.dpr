@@ -9,7 +9,6 @@ uses
   Forms,
   MainFormUnit in 'MainFormUnit.pas' {MainForm},
   PWStoreModel in 'PWStoreModel.pas',
-  CSVParser in 'CSVParser.pas',
   ItemPropertiesFormUnit in 'ItemPropertiesFormUnit.pas' {ItemPropertiesForm},
   FormValidation in 'FormValidation.pas',
   Core in 'Core.pas',
