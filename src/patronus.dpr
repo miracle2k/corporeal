@@ -16,13 +16,15 @@ uses
   ConfigFormUnit in 'ConfigFormUnit.pas' {ConfigForm},
   PasswordGeneratorFormUnit in 'PasswordGeneratorFormUnit.pas' {PasswordGeneratorForm},
   Utilities in 'Utilities.pas',
-  JvGradientProgressBarEx in 'JvGradientProgressBarEx.pas';
+  JvGradientProgressBarEx in 'JvGradientProgressBarEx.pas',
+  OpenStoreFormUnit in 'OpenStoreFormUnit.pas' {OpenStoreForm};
 
 {$R *.res}
 
 begin
   Application.Initialize;
   Application.Title := AppShortName;
+  Application.ShowMainForm := False;
   Application.CreateForm(TMainForm, MainForm);
   Application.Run;
 end.

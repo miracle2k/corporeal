@@ -217,7 +217,7 @@ begin
 
     // read header
     if ReadString(Length(PWDB_HEADER)) <> PWDB_HEADER then
-      raise Exception.Create('Invalid header');
+      raise Exception.Create('Invalid header (might be wrong key)');
     if ReadInteger <> PWDB_VERSION then
       raise Exception.Create('Invalid file version');
 

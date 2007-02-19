@@ -75,6 +75,8 @@ object ItemPropertiesForm: TItemPropertiesForm
     Height = 11
     Align = alTop
     Shape = bsTopLine
+    ExplicitLeft = -224
+    ExplicitTop = 18
   end
   object Label7: TLabel
     Left = 61

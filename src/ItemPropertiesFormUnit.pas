@@ -173,7 +173,7 @@ begin
   EstimatedBits := EstimatePasswordBits(PasswordEdit.Text);
   with QualityIndicatorBar do begin
     Max := QualityMaxBits;
-    Position := EstimatedBits;
+    Position := EstimatedBits+1;
   end;
   QualityLabel.Caption := IntToStr(EstimatedBits)+' bits';  
 end;

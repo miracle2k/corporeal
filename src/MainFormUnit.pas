@@ -8,7 +8,7 @@ uses
   Windows, Messages, SysUtils, Variants, Classes, Graphics, Controls, Forms,
   Dialogs, TB2Dock, TB2Toolbar, TBX, SpTBXItem, TB2ExtItems, SpTBXEditors,
   TB2Item, VirtualTrees, ImgList, PngImageList, XPMan, ActnList, TntDialogs,
-  Menus;
+  Menus, ExtCtrls, Clipbrd;
 
 type
   TPasswordListNode = record
@@ -51,6 +51,9 @@ type
     EditPropertiesAction: TAction;
     SpTBXItem3: TSpTBXItem;
     SpTBXItem4: TSpTBXItem;
+    SpTBXSeparatorItem2: TSpTBXSeparatorItem;
+    SpTBXItem5: TSpTBXItem;
+    ClipboardClearTimer: TTimer;
     procedure PasswordListCompareNodes(Sender: TBaseVirtualTree; Node1,
       Node2: PVirtualNode; Column: TColumnIndex; var Result: Integer);
     procedure ConfigurationItemClick(Sender: TObject);
@@ -71,15 +74,19 @@ type
       Column: TColumnIndex; TextType: TVSTTextType; var CellText: WideString);
     procedure FormDestroy(Sender: TObject);
     procedure FormCreate(Sender: TObject);
+    procedure ClipboardClearTimerTimer(Sender: TObject);
+    procedure SpTBXItem5Click(Sender: TObject);
   private
     PWItemStore: TPWItemStore;
+    LastLoadErrorMsg: string;
   protected
     function IsPasswordColumnVisible: Boolean;
     procedure GUIUpdatePasswordList;
     procedure GUIUpdateStatusbar;
+    procedure ResetClipboardClearTimer;
     procedure ApplyFilter;
     procedure Save;
-    procedure Load(Password: string);    
+    function Load(Filename, Password: string): Boolean;    
   end;
 
 var
@@ -95,7 +102,7 @@ uses
   Xdom_4_1,
   Utilities,
   TaskDialog,
-  AboutFormUnit, ConfigFormUnit, ItemPropertiesFormUnit;
+  AboutFormUnit, ConfigFormUnit, ItemPropertiesFormUnit, OpenStoreFormUnit;
 
 {$R *.dfm}
 
@@ -176,7 +183,6 @@ begin
         // TODO: show how many very actually imported
         ShowMessage(E.Message);
       end;
-
     end;
 end;
 
@@ -226,6 +232,12 @@ begin
     PasswordList.EndUpdate;
     GUIUpdateStatusbar;
   end;
+end;
+
+procedure TMainForm.ClipboardClearTimerTimer(Sender: TObject);
+begin
+  Clipboard.Clear;
+  ClipboardClearTimer.Enabled := False;
 end;
 
 procedure TMainForm.ConfigurationItemClick(Sender: TObject);
@@ -318,11 +330,76 @@ begin
 end;
 
 procedure TMainForm.FormCreate(Sender: TObject);
+var
+  CanBreak: Boolean;
+  FailedCount: Integer;
+const
+  MaxFailures = 3;
 begin
+  // init Password list
   PasswordList.NodeDataSize := SizeOf(TPasswordListNode);
+
+  // create Password Store Object
   PWItemStore := TPWItemStore.Create;
-  Load('test');
-  GUIUpdatePasswordList;
+
+  // ask the user to open a store file
+  with TOpenStoreForm.Create(Self) do
+  begin
+    FailedCount := 0;
+    repeat
+      Key := '';
+      // Áfter three failures, user has to choose a new databaes file
+      if FailedCount >= MaxFailures then
+      begin
+        Reset;
+        FailedCount := 0;
+      end;
+
+      if ShowModal = mrOk then
+      begin
+        if Mode = osmLoad then
+        begin
+          CanBreak := Load(SelectedStoreFile, Key);
+          if not CanBreak then
+          begin
+            Inc(FailedCount);
+            with TTaskDialog.Create(Self) do begin
+              Title := 'Failed';
+              Instruction := 'Failed to open database. Most likely, the key '+
+                'you entered was incorrect.';
+              Content := 'It is also possible, however, that '+
+                'the file you tried to open is not a correct Patronus Store '+
+                'file, or the choosen store is damaged.';
+              ExpandedText := 'Error message was: "'+LastLoadErrorMsg+'"';
+              Icon := tiError;
+              Execute;
+            end;
+          end;
+        end
+        else begin
+          PWItemStore.Clear;
+          CanBreak := True;
+        end;
+
+        if CanBreak then
+        begin
+          // Update GUI
+          GUIUpdatePasswordList;
+
+          // Show Form and leave loop
+          Self.Show;
+          Break;
+        end;
+      end
+      // User clicked exit/cancel
+      else begin
+        Application.Terminate;
+        Break;
+      end;
+    until False;
+    // Free form
+    Free;
+  end;
 end;
 
 procedure TMainForm.FormDestroy(Sender: TObject);
@@ -370,9 +447,17 @@ begin
   Result := (coVisible in PasswordList.Header.Columns[PasswordColumnIndex].Options);
 end;
 
-procedure TMainForm.Load(Password: string);
+function TMainForm.Load(Filename, Password: string): Boolean;
 begin
-  PWItemStore.LoadFromFile('myfile', Password);
+  Result := True;
+  try
+    PWItemStore.LoadFromFile(Filename, Password);
+  except
+    on E: Exception do begin
+      Result := False;
+      LastLoadErrorMsg := E.Message;
+    end;
+  end;
 end;
 
 procedure TMainForm.PasswordListCompareNodes(Sender: TBaseVirtualTree; Node1,
@@ -382,7 +467,14 @@ var
 begin
   Data1 := Sender.GetNodeData(Node1);
   Data2 := Sender.GetNodeData(Node2);
-  Result := CompareText(Data1.PWItem.Title, Data2.PWItem.Title);
+  case Column of
+    0: Result := CompareText(Data1.PWItem.Title, Data2.PWItem.Title);
+    1: Result := CompareText(Data1.PWItem.Username, Data2.PWItem.Username);
+    2: Result := 0;
+    3: Result := CompareText(Data1.PWItem.URL, Data2.PWItem.URL);
+  else
+    Result := 0;
+  end;
 end;
 
 procedure TMainForm.PasswordListDblClick(Sender: TObject);
@@ -448,6 +540,12 @@ begin
   ApplyFilter;
 end;
 
+procedure TMainForm.ResetClipboardClearTimer;
+begin
+  ClipboardClearTimer.Enabled := False;
+  ClipboardClearTimer.Enabled := True;  
+end;
+
 procedure TMainForm.Save;
 begin
   PWItemStore.SaveToFile('myfile', 'test');
@@ -466,6 +564,19 @@ end;
 procedure TMainForm.ShowPasswordsToggleActionUpdate(Sender: TObject);
 begin
   ShowPasswordsToggleAction.Checked := IsPasswordColumnVisible;
+end;
+
+procedure TMainForm.SpTBXItem5Click(Sender: TObject);
+var
+  NodeData: PPasswordListNode;
+begin
+  with PasswordList do
+  begin
+    if FocusedNode = nil then Exit;
+    NodeData := GetNodeData(FocusedNode);
+    Clipboard.AsText := NodeData.PWItem.Password;
+    ResetClipboardClearTimer;
+  end;
 end;
 
 end.
