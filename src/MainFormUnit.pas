@@ -78,8 +78,16 @@ type
     procedure ClipboardClearTimerTimer(Sender: TObject);
     procedure SpTBXItem5Click(Sender: TObject);
   private
+    FCurrentKey: string;
+    FCurrentStoreFile: string;    
+    procedure SetCurrentKey(const Value: string);
+    procedure SetCurrentStoreFile(const Value: string);    
+  private
     PWItemStore: TPWItemStore;
     LastLoadErrorMsg: string;
+  private
+    // TODO: encrypt this in memory
+    property CurrentKey: string read FCurrentKey write SetCurrentKey;  
   protected
     function IsPasswordColumnVisible: Boolean;
     procedure GUIUpdatePasswordList;
@@ -87,7 +95,9 @@ type
     procedure ResetClipboardClearTimer;
     procedure ApplyFilter;
     procedure Save;
-    function Load(Filename, Password: string): Boolean;    
+    function Load(Filename, Password: string): Boolean;
+  public
+    property CurrentStoreFile: string read FCurrentStoreFile write SetCurrentStoreFile;
   end;
 
 var
@@ -349,7 +359,7 @@ begin
     FailedCount := 0;
     repeat
       Key := '';
-      // Áfter three failures, user has to choose a new databaes file
+      // After three failures, user has to choose a new databaes file
       if FailedCount >= MaxFailures then
       begin
         Reset;
@@ -384,6 +394,10 @@ begin
 
         if CanBreak then
         begin
+          // Store choosen store settings
+          CurrentKey := Key;
+          CurrentStoreFile := SelectedStoreFile;
+
           // Update GUI
           GUIUpdatePasswordList;
 
@@ -549,7 +563,18 @@ end;
 
 procedure TMainForm.Save;
 begin
-  PWItemStore.SaveToFile('myfile', 'test');
+  PWItemStore.SaveToFile(CurrentStoreFile, CurrentKey);
+  // TODO: handle error
+end;
+
+procedure TMainForm.SetCurrentKey(const Value: string);
+begin
+  FCurrentKey := Value;
+end;
+
+procedure TMainForm.SetCurrentStoreFile(const Value: string);
+begin
+  FCurrentStoreFile := Value;
 end;
 
 procedure TMainForm.ShowPasswordsToggleActionExecute(Sender: TObject);
