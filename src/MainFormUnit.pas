@@ -8,7 +8,8 @@ uses
   Windows, Messages, SysUtils, Variants, Classes, Graphics, Controls, Forms,
   Dialogs, TB2Dock, TB2Toolbar, TBX, SpTBXItem, TB2ExtItems, SpTBXEditors,
   TB2Item, VirtualTrees, ImgList, PngImageList, XPMan, ActnList, TntDialogs,
-  Menus, ExtCtrls, Clipbrd, JvComponentBase, JvTrayIcon;
+  Menus, ExtCtrls, Clipbrd, JvComponentBase, JvTrayIcon, JvAppStorage,
+  JvAppRegistryStorage, ApplicationSettings;
 
 type
   TPasswordListNode = record
@@ -55,6 +56,7 @@ type
     SpTBXItem5: TSpTBXItem;
     ClipboardClearTimer: TTimer;
     TrayIcon: TJvTrayIcon;
+    AppStorage: TJvAppRegistryStorage;
     procedure PasswordListCompareNodes(Sender: TBaseVirtualTree; Node1,
       Node2: PVirtualNode; Column: TColumnIndex; var Result: Integer);
     procedure ConfigurationItemClick(Sender: TObject);
@@ -84,6 +86,7 @@ type
     procedure SetCurrentStoreFile(const Value: string);    
   private
     PWItemStore: TPWItemStore;
+    Settings: TPatronusSettings;
     LastLoadErrorMsg: string;
   private
     // TODO: encrypt this in memory
@@ -96,6 +99,9 @@ type
     procedure ApplyFilter;
     procedure Save;
     function Load(Filename, Password: string): Boolean;
+  public
+    procedure LoadAppSettings;
+    procedure SaveAppSettings;
   public
     property CurrentStoreFile: string read FCurrentStoreFile write SetCurrentStoreFile;
   end;
@@ -350,12 +356,19 @@ begin
   // init Password list
   PasswordList.NodeDataSize := SizeOf(TPasswordListNode);
 
-  // create Password Store Object
+  // init application settings
+  Settings := TPatronusSettings.Create;
+  LoadAppSettings;
+
+  // create Password Store object
   PWItemStore := TPWItemStore.Create;
 
   // ask the user to open a store file
   with TOpenStoreForm.Create(Self) do
   begin
+    // if there is a default store, use it
+    CurrentDefaultFile := Settings.DefaultStore;
+
     FailedCount := 0;
     repeat
       Key := '';
@@ -398,6 +411,12 @@ begin
           CurrentKey := Key;
           CurrentStoreFile := SelectedStoreFile;
 
+          // If "make default" was checked, do so
+          if MakeDefault then begin
+            Settings.DefaultStore := SelectedStoreFile;
+            SaveAppSettings;
+          end;
+
           // Update GUI
           GUIUpdatePasswordList;
 
@@ -420,6 +439,7 @@ end;
 procedure TMainForm.FormDestroy(Sender: TObject);
 begin
   PWItemStore.Free;
+  Settings.Free;
 end;
 
 procedure TMainForm.GUIUpdatePasswordList;
@@ -473,6 +493,11 @@ begin
       LastLoadErrorMsg := E.Message;
     end;
   end;
+end;
+
+procedure TMainForm.LoadAppSettings;
+begin
+  AppStorage.ReadPersistent('', Settings, False);
 end;
 
 procedure TMainForm.PasswordListCompareNodes(Sender: TBaseVirtualTree; Node1,
@@ -565,6 +590,11 @@ procedure TMainForm.Save;
 begin
   PWItemStore.SaveToFile(CurrentStoreFile, CurrentKey);
   // TODO: handle error
+end;
+
+procedure TMainForm.SaveAppSettings;
+begin
+  AppStorage.WritePersistent('', Settings, False);  
 end;
 
 procedure TMainForm.SetCurrentKey(const Value: string);

@@ -1859,4 +1859,12 @@ object MainForm: TMainForm
     Left = 48
     Top = 192
   end
+  object AppStorage: TJvAppRegistryStorage
+    StorageOptions.BooleanStringTrueValues = 'TRUE, YES, Y'
+    StorageOptions.BooleanStringFalseValues = 'FALSE, NO, N'
+    Root = 'Software\Patronus'
+    SubStorages = <>
+    Left = 48
+    Top = 224
+  end
 end

@@ -17,7 +17,8 @@ uses
   PasswordGeneratorFormUnit in 'PasswordGeneratorFormUnit.pas' {PasswordGeneratorForm},
   Utilities in 'Utilities.pas',
   JvGradientProgressBarEx in 'JvGradientProgressBarEx.pas',
-  OpenStoreFormUnit in 'OpenStoreFormUnit.pas' {OpenStoreForm};
+  OpenStoreFormUnit in 'OpenStoreFormUnit.pas' {OpenStoreForm},
+  ApplicationSettings in 'ApplicationSettings.pas';
 
 {$R *.res}
 

@@ -13,6 +13,7 @@ object ItemPropertiesForm: TItemPropertiesForm
   Font.Style = []
   OldCreateOrder = False
   Position = poOwnerFormCenter
+  ShowHint = True
   OnCreate = FormCreate
   OnDestroy = FormDestroy
   DesignSize = (

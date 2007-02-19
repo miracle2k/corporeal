@@ -5,7 +5,7 @@ interface
 uses
   Windows, Messages, SysUtils, Variants, Classes, Graphics, Controls, Forms,
   Dialogs, StdCtrls, pngimage, ExtCtrls, JvExControls, JvLabel,
-  JvGradientProgressBarEx;
+  JvGradientProgressBarEx, JvExStdCtrls, JvCheckBox;
 
 type
   TOpenStoreMode = (osmLoad, osmCreate);
@@ -26,6 +26,7 @@ type
     CreateStoreDialog: TSaveDialog;
     QualityLabel: TLabel;
     Image1: TImage;
+    MakeDefaultCheckBox: TJvCheckBox;
     procedure Button3Click(Sender: TObject);
     procedure FormCreate(Sender: TObject);
     procedure Button2Click(Sender: TObject);
@@ -39,7 +40,11 @@ type
     procedure SetMode(const Value: TOpenStoreMode);
   private
     QualityIndicatorBar: TJvGradientProgressBarEx;
+    FCurrentDefaultFile: string;
     procedure SetKey(const Value: string);
+    procedure SetCurrentDefaultFile(const Value: string);
+    function GetMakeDefault: Boolean;
+    procedure SetMakeDefault(const Value: Boolean);
   protected
     procedure UpdateInterface;
     procedure UpdateQualityIndicator;
@@ -47,8 +52,10 @@ type
     procedure Reset;
   public
     property SelectedStoreFile: string read FSelectedStoreFile write SetSelectedStoreFile;
+    property CurrentDefaultFile: string read FCurrentDefaultFile write SetCurrentDefaultFile;
     property Key: string read GetKey write SetKey;
     property Mode: TOpenStoreMode read FMode write SetMode;
+    property MakeDefault: Boolean read GetMakeDefault write SetMakeDefault;
   end;
 
 var
@@ -110,6 +117,11 @@ begin
   Result := KeyEdit.Text;
 end;
 
+function TOpenStoreForm.GetMakeDefault: Boolean;
+begin
+  Result := MakeDefaultCheckBox.Checked;
+end;
+
 procedure TOpenStoreForm.KeyEditChange(Sender: TObject);
 begin
   UpdateQualityIndicator;
@@ -119,13 +131,27 @@ procedure TOpenStoreForm.Reset;
 begin
   // Default values
   SelectedStoreFile := '';
+  CurrentDefaultFile := '';
   Mode := osmLoad;
   Key := '';
+end;
+
+procedure TOpenStoreForm.SetCurrentDefaultFile(const Value: string);
+begin
+  FCurrentDefaultFile := Value;
+  // if no store is selected yet, auto use the default
+  if SelectedStoreFile = '' then
+    SelectedStoreFile := Value;
 end;
 
 procedure TOpenStoreForm.SetKey(const Value: string);
 begin
   KeyEdit.Text := Value;
+end;
+
+procedure TOpenStoreForm.SetMakeDefault(const Value: Boolean);
+begin
+  MakeDefaultCheckBox.Checked := Value;
 end;
 
 procedure TOpenStoreForm.SetMode(const Value: TOpenStoreMode);
@@ -138,6 +164,7 @@ procedure TOpenStoreForm.SetSelectedStoreFile(const Value: string);
 begin
   FSelectedStoreFile := Value;
   UpdateInterface;
+  MakeDefaultCheckBox.Checked := Value = CurrentDefaultFile;
 end;
 
 procedure TOpenStoreForm.UpdateInterface;
@@ -165,6 +192,7 @@ begin
     KeyLabel.Visible := True;
     KeyEdit.Visible := True;
     LoadButton.Enabled := True;
+    MakeDefaultCheckBox.Enabled := True;
   end else
   begin
     StoreFilenameLabel.Caption := '(none)';
@@ -174,6 +202,7 @@ begin
     KeyLabel.Visible := False;
     KeyEdit.Visible := False;
     LoadButton.Enabled := False;
+    MakeDefaultCheckBox.Enabled := False;    
   end;
 end;
 

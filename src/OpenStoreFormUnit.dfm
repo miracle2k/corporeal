@@ -78,9 +78,9 @@ object OpenStoreForm: TOpenStoreForm
     Caption = 'Enter Key:'
   end
   object QualityLabel: TLabel
-    Left = 351
+    Left = 366
     Top = 120
-    Width = 18
+    Width = 3
     Height = 13
     Alignment = taRightJustify
   end
@@ -194,7 +194,6 @@ object OpenStoreForm: TOpenStoreForm
     Default = True
     ModalResult = 1
     TabOrder = 1
-    ExplicitTop = 137
   end
   object Button2: TButton
     Left = 8
@@ -205,7 +204,6 @@ object OpenStoreForm: TOpenStoreForm
     Caption = 'Create New'
     TabOrder = 2
     OnClick = Button2Click
-    ExplicitTop = 137
   end
   object Button3: TButton
     Left = 351
@@ -225,6 +223,27 @@ object OpenStoreForm: TOpenStoreForm
     PasswordChar = '*'
     TabOrder = 4
     OnChange = KeyEditChange
+  end
+  object MakeDefaultCheckBox: TJvCheckBox
+    Left = 136
+    Top = 157
+    Width = 199
+    Height = 17
+    Alignment = taRightJustify
+    Anchors = [akRight, akBottom]
+    BiDiMode = bdLeftToRight
+    Caption = 'Make this store the default'
+    ParentBiDiMode = False
+    TabOrder = 5
+    LinkedControls = <>
+    AutoSize = False
+    HotTrackFont.Charset = DEFAULT_CHARSET
+    HotTrackFont.Color = clWindowText
+    HotTrackFont.Height = -11
+    HotTrackFont.Name = 'Tahoma'
+    HotTrackFont.Style = []
+    Layout = tlTop
+    LeftText = True
   end
   object SelectStoreDialog: TOpenDialog
     DefaultExt = 'patronus'
