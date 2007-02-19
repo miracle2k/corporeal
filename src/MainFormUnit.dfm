@@ -14,6 +14,7 @@ object MainForm: TMainForm
   Font.Style = []
   OldCreateOrder = False
   Position = poScreenCenter
+  OnClose = FormClose
   OnCreate = FormCreate
   OnDestroy = FormDestroy
   PixelsPerInch = 96
@@ -1990,6 +1991,15 @@ object MainForm: TMainForm
     Root = 'Software\Patronus'
     SubStorages = <>
     Left = 48
+    Top = 224
+  end
+  object FormStorage: TJvFormStorage
+    Active = False
+    AppStorage = AppStorage
+    AppStoragePath = 'MainForm\'
+    VersionCheck = fpvcNocheck
+    StoredValues = <>
+    Left = 16
     Top = 224
   end
 end

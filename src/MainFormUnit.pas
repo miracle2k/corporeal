@@ -9,7 +9,7 @@ uses
   Dialogs, TB2Dock, TB2Toolbar, TBX, SpTBXItem, TB2ExtItems, SpTBXEditors,
   TB2Item, VirtualTrees, ImgList, PngImageList, XPMan, ActnList, TntDialogs,
   Menus, ExtCtrls, Clipbrd, JvComponentBase, JvTrayIcon, JvAppStorage,
-  JvAppRegistryStorage, ApplicationSettings, AppEvnts;
+  JvAppRegistryStorage, ApplicationSettings, AppEvnts, JvFormPlacement;
 
 type
   TPasswordListNode = record
@@ -59,6 +59,7 @@ type
     AppStorage: TJvAppRegistryStorage;
     SpTBXSeparatorItem3: TSpTBXSeparatorItem;
     SpTBXItem6: TSpTBXItem;
+    FormStorage: TJvFormStorage;
     procedure PasswordListCompareNodes(Sender: TBaseVirtualTree; Node1,
       Node2: PVirtualNode; Column: TColumnIndex; var Result: Integer);
     procedure ConfigurationItemClick(Sender: TObject);
@@ -84,6 +85,7 @@ type
     procedure SpTBXItem6Click(Sender: TObject);
     procedure TrayIconClick(Sender: TObject; Button: TMouseButton;
       Shift: TShiftState; X, Y: Integer);
+    procedure FormClose(Sender: TObject; var Action: TCloseAction);
   private
     FCurrentKey: string;
     FCurrentStoreFile: string;    
@@ -101,6 +103,7 @@ type
     procedure WMSyscommand(var Message: TWmSysCommand); message WM_SYSCOMMAND;
   protected
     function IsPasswordColumnVisible: Boolean;
+    procedure SetPasswordColumnVisibility(Show: Boolean);
     procedure GUIUpdatePasswordList;
     procedure GUIUpdateStatusbar;
     procedure ResetClipboardClearTimer;
@@ -373,6 +376,11 @@ begin
     (PasswordList.SelectedCount > 0);
 end;
 
+procedure TMainForm.FormClose(Sender: TObject; var Action: TCloseAction);
+begin
+ SaveAppSettings;
+end;
+
 procedure TMainForm.FormCreate(Sender: TObject);
 begin
   // Vista "Secret window" fixes
@@ -384,6 +392,10 @@ begin
 
   // init Password list
   PasswordList.NodeDataSize := SizeOf(TPasswordListNode);
+
+  // hide password column by default
+  with PasswordList.Header.Columns[PasswordColumnIndex] do
+    Options := Options - [coVisible];
 
   // init application settings
   Settings := TPatronusSettings.Create;
@@ -453,8 +465,20 @@ begin
 end;
 
 procedure TMainForm.LoadAppSettings;
+var
+  I: Integer;
 begin
   AppStorage.ReadPersistent('', Settings, False);
+  // passwords column visible?
+  SetPasswordColumnVisibility(
+    AppStorage.ReadBoolean('PasswordsVisible', IsPasswordColumnVisible));
+  // column widths
+  with PasswordList.Header do
+  for I := 0 to Columns.Count - 1 do
+  begin
+    Columns[I].Position := AppStorage.ReadInteger('MainForm\Columns\Position'+IntToStr(I), Columns[I].Position);
+    Columns[I].Width := AppStorage.ReadInteger('MainForm\Columns\Width'+IntToStr(I), Columns[I].Width);
+  end;
 end;
 
 procedure TMainForm.PasswordListCompareNodes(Sender: TBaseVirtualTree; Node1,
@@ -634,8 +658,19 @@ begin
 end;
 
 procedure TMainForm.SaveAppSettings;
+var
+  I: Integer;
 begin
-  AppStorage.WritePersistent('', Settings, False);  
+  AppStorage.WritePersistent('', Settings, False);
+  // passwords column visible?
+  AppStorage.WriteBoolean('PasswordsVisible', IsPasswordColumnVisible);
+  // column widths
+  with PasswordList.Header do
+  for I := 0 to Columns.Count - 1 do
+  begin
+    AppStorage.WriteInteger('MainForm\Columns\Width'+IntToStr(I), Columns[I].Width);
+    AppStorage.WriteInteger('MainForm\Columns\Position'+IntToStr(I), Columns[I].Position);    
+  end;
 end;
 
 procedure TMainForm.SetCurrentKey(const Value: string);
@@ -648,13 +683,19 @@ begin
   FCurrentStoreFile := Value;
 end;
 
-procedure TMainForm.ShowPasswordsToggleActionExecute(Sender: TObject);
+procedure TMainForm.SetPasswordColumnVisibility(Show: Boolean);
 begin
   with PasswordList.Header.Columns[PasswordColumnIndex] do
-    if ShowPasswordsToggleAction.Checked then
+    if not Show then
       Options := Options - [coVisible]
     else
       Options := Options + [coVisible];
+end;
+
+procedure TMainForm.ShowPasswordsToggleActionExecute(Sender: TObject);
+begin
+  SetPasswordColumnVisibility(not ShowPasswordsToggleAction.Checked);
+  // filter searches passwords, so update
   ApplyFilter;
 end;
 
@@ -680,7 +721,7 @@ procedure TMainForm.SpTBXItem6Click(Sender: TObject);
 begin
   CloseStore;
   Hide;
-  Show;
+  TryToShow;
 end;
 
 procedure TMainForm.TrayIconClick(Sender: TObject; Button: TMouseButton;
@@ -697,6 +738,9 @@ begin
       Application.Terminate
     else begin
       Show;
+      // only activate form storage the first time we successfully show the
+      // form, or in some cases null values will be written.
+      FormStorage.Active := True;
     end;
 end;
 

@@ -2,7 +2,7 @@ object OpenStoreForm: TOpenStoreForm
   Left = 0
   Top = 0
   BorderStyle = bsDialog
-  Caption = 'Open or Create Password Store'
+  Caption = 'Choose / Create Password Store'
   ClientHeight = 184
   ClientWidth = 434
   Color = clBtnFace
@@ -98,9 +98,9 @@ object OpenStoreForm: TOpenStoreForm
     object FormHeaderLabel: TLabel
       Left = 45
       Top = 11
-      Width = 176
+      Width = 161
       Height = 18
-      Caption = 'Choose Password Store'
+      Caption = 'Open Password Store'
       Font.Charset = DEFAULT_CHARSET
       Font.Color = clWindowText
       Font.Height = -15
