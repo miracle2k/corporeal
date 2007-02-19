@@ -9,7 +9,7 @@ uses
   Dialogs, TB2Dock, TB2Toolbar, TBX, SpTBXItem, TB2ExtItems, SpTBXEditors,
   TB2Item, VirtualTrees, ImgList, PngImageList, XPMan, ActnList, TntDialogs,
   Menus, ExtCtrls, Clipbrd, JvComponentBase, JvTrayIcon, JvAppStorage,
-  JvAppRegistryStorage, ApplicationSettings;
+  JvAppRegistryStorage, ApplicationSettings, AppEvnts;
 
 type
   TPasswordListNode = record
@@ -57,6 +57,8 @@ type
     ClipboardClearTimer: TTimer;
     TrayIcon: TJvTrayIcon;
     AppStorage: TJvAppRegistryStorage;
+    SpTBXSeparatorItem3: TSpTBXSeparatorItem;
+    SpTBXItem6: TSpTBXItem;
     procedure PasswordListCompareNodes(Sender: TBaseVirtualTree; Node1,
       Node2: PVirtualNode; Column: TColumnIndex; var Result: Integer);
     procedure ConfigurationItemClick(Sender: TObject);
@@ -79,6 +81,9 @@ type
     procedure FormCreate(Sender: TObject);
     procedure ClipboardClearTimerTimer(Sender: TObject);
     procedure SpTBXItem5Click(Sender: TObject);
+    procedure SpTBXItem6Click(Sender: TObject);
+    procedure TrayIconClick(Sender: TObject; Button: TMouseButton;
+      Shift: TShiftState; X, Y: Integer);
   private
     FCurrentKey: string;
     FCurrentStoreFile: string;    
@@ -90,7 +95,10 @@ type
     LastLoadErrorMsg: string;
   private
     // TODO: encrypt this in memory
-    property CurrentKey: string read FCurrentKey write SetCurrentKey;  
+    property CurrentKey: string read FCurrentKey write SetCurrentKey;
+  protected
+    procedure CreateParams(var Params: TCreateParams); override;
+    procedure WMSyscommand(var Message: TWmSysCommand); message WM_SYSCOMMAND;
   protected
     function IsPasswordColumnVisible: Boolean;
     procedure GUIUpdatePasswordList;
@@ -102,6 +110,9 @@ type
   public
     procedure LoadAppSettings;
     procedure SaveAppSettings;
+    function RequestKey: Boolean;
+    procedure TryToShow;
+    procedure CloseStore;
   public
     property CurrentStoreFile: string read FCurrentStoreFile write SetCurrentStoreFile;
   end;
@@ -257,6 +268,14 @@ begin
   ClipboardClearTimer.Enabled := False;
 end;
 
+procedure TMainForm.CloseStore;
+begin
+  PWItemStore.Clear;
+  CurrentKey := '';
+  CurrentStoreFile := '';
+  GUIUpdatePasswordList;
+end;
+
 procedure TMainForm.ConfigurationItemClick(Sender: TObject);
 begin
   with TConfigForm.Create(Self) do
@@ -264,6 +283,14 @@ begin
     begin
     
     end;
+end;
+
+procedure TMainForm.CreateParams(var Params: TCreateParams);
+begin
+  inherited CreateParams(Params);
+  // Vista "secret window" fixes  
+  Params.ExStyle := Params.ExStyle and not WS_EX_TOOLWINDOW or
+    WS_EX_APPWINDOW;
 end;
 
 procedure TMainForm.DeleteItemActionExecute(Sender: TObject);
@@ -347,12 +374,14 @@ begin
 end;
 
 procedure TMainForm.FormCreate(Sender: TObject);
-var
-  CanBreak: Boolean;
-  FailedCount: Integer;
-const
-  MaxFailures = 3;
 begin
+  // Vista "Secret window" fixes
+  ShowWindow(Application.Handle, SW_HIDE);
+  SetWindowLong(Application.Handle, GWL_EXSTYLE,
+    GetWindowLong(Application.Handle, GWL_EXSTYLE) and not WS_EX_APPWINDOW
+      or WS_EX_TOOLWINDOW);
+  ShowWindow(Application.Handle, SW_SHOW);
+
   // init Password list
   PasswordList.NodeDataSize := SizeOf(TPasswordListNode);
 
@@ -362,78 +391,6 @@ begin
 
   // create Password Store object
   PWItemStore := TPWItemStore.Create;
-
-  // ask the user to open a store file
-  with TOpenStoreForm.Create(Self) do
-  begin
-    // if there is a default store, use it
-    CurrentDefaultFile := Settings.DefaultStore;
-
-    FailedCount := 0;
-    repeat
-      Key := '';
-      // After three failures, user has to choose a new databaes file
-      if FailedCount >= MaxFailures then
-      begin
-        Reset;
-        FailedCount := 0;
-      end;
-
-      if ShowModal = mrOk then
-      begin
-        if Mode = osmLoad then
-        begin
-          CanBreak := Load(SelectedStoreFile, Key);
-          if not CanBreak then
-          begin
-            Inc(FailedCount);
-            with TTaskDialog.Create(Self) do begin
-              Title := 'Failed';
-              Instruction := 'Failed to open database. Most likely, the key '+
-                'you entered was incorrect.';
-              Content := 'It is also possible, however, that '+
-                'the file you tried to open is not a correct Patronus Store '+
-                'file, or the choosen store is damaged.';
-              ExpandedText := 'Error message was: "'+LastLoadErrorMsg+'"';
-              Icon := tiError;
-              Execute;
-            end;
-          end;
-        end
-        else begin
-          PWItemStore.Clear;
-          CanBreak := True;
-        end;
-
-        if CanBreak then
-        begin
-          // Store choosen store settings
-          CurrentKey := Key;
-          CurrentStoreFile := SelectedStoreFile;
-
-          // If "make default" was checked, do so
-          if MakeDefault then begin
-            Settings.DefaultStore := SelectedStoreFile;
-            SaveAppSettings;
-          end;
-
-          // Update GUI
-          GUIUpdatePasswordList;
-
-          // Show Form and leave loop
-          Self.Show;
-          Break;
-        end;
-      end
-      // User clicked exit/cancel
-      else begin
-        Application.Terminate;
-        Break;
-      end;
-    until False;
-    // Free form
-    Free;
-  end;
 end;
 
 procedure TMainForm.FormDestroy(Sender: TObject);
@@ -580,6 +537,90 @@ begin
   ApplyFilter;
 end;
 
+function TMainForm.RequestKey: Boolean;
+var
+  CanBreak: Boolean;
+  FailedCount: Integer;
+const
+  MaxFailures = 3;
+begin
+  Result := False;
+
+  // ask the user to open a store file / enter a key
+  with TOpenStoreForm.Create(Self) do
+  begin
+    // if there is a default store, use it
+    CurrentDefaultFile := Settings.DefaultStore;
+
+    FailedCount := 0;
+    repeat
+      Key := '';
+      // After three failures, user has to choose a new databaes file
+      if FailedCount >= MaxFailures then
+      begin
+        Reset;
+        FailedCount := 0;
+      end;
+
+      SetForegroundWindow(Application.Handle);
+      if ShowModal = mrOk then
+      begin
+        if Mode = osmLoad then
+        begin
+          CanBreak := Load(SelectedStoreFile, Key);
+          if not CanBreak then
+          begin
+            Inc(FailedCount);
+            with TTaskDialog.Create(Self) do begin
+              Title := 'Failed';
+              Instruction := 'Failed to open database. Most likely, the key '+
+                'you entered was incorrect.';
+              Content := 'It is also possible, however, that '+
+                'the file you tried to open is not a correct Patronus Store '+
+                'file, or the choosen store is damaged.';
+              ExpandedText := 'Error message was: "'+LastLoadErrorMsg+'"';
+              Icon := tiError;
+              Execute;
+            end;
+          end;
+        end
+        else begin
+          PWItemStore.Clear;
+          CanBreak := True;
+        end;
+
+        if CanBreak then
+        begin
+          // Store choosen store settings
+          CurrentKey := Key;
+          CurrentStoreFile := SelectedStoreFile;
+
+          // If "make default" was checked, do so
+          if MakeDefault then begin
+            Settings.DefaultStore := SelectedStoreFile;
+            SaveAppSettings;
+          end;
+
+          // Update GUI
+          GUIUpdatePasswordList;
+
+          // Show Form and leave loop
+          Result := True;
+          Break;
+        end;
+      end
+      // User clicked exit/cancel
+      else begin
+        Result := False;
+        Application.Terminate;  // force exit, just to make sure
+        Break;
+      end;
+    until False;
+    // Free form
+    Free;
+  end;
+end;
+
 procedure TMainForm.ResetClipboardClearTimer;
 begin
   ClipboardClearTimer.Enabled := False;
@@ -632,6 +673,50 @@ begin
     NodeData := GetNodeData(FocusedNode);
     Clipboard.AsText := NodeData.PWItem.Password;
     ResetClipboardClearTimer;
+  end;
+end;
+
+procedure TMainForm.SpTBXItem6Click(Sender: TObject);
+begin
+  CloseStore;
+  Hide;
+  Show;
+end;
+
+procedure TMainForm.TrayIconClick(Sender: TObject; Button: TMouseButton;
+  Shift: TShiftState; X, Y: Integer);
+begin
+  TrayIcon.Active := False;
+  TryToShow;
+end;
+
+procedure TMainForm.TryToShow;
+begin
+  if CurrentStoreFile = '' then
+    if not RequestKey then
+      Application.Terminate
+    else begin
+      Show;
+    end;
+end;
+
+procedure TMainForm.WMSyscommand(var Message: TWmSysCommand);
+begin
+  case (Message.CmdType and $FFF0) of
+    SC_MINIMIZE:
+    begin
+      Hide; 
+      CloseStore;
+      TrayIcon.Active := True;
+      Message.Result := 0;
+    end;
+    SC_RESTORE:
+    begin
+      ShowWindow(Handle, SW_RESTORE);
+      Message.Result := 0;
+    end;
+  else
+    inherited;
   end;
 end;
 

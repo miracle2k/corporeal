@@ -1,9 +1,9 @@
 program patronus;
 
-// gettext localizations
-// store config / window positions etc
-// config window
-// vista ready
+// TODO: gettext localizations
+// TODO: store config / window positions etc
+// TODO: config window
+// TODO: vista ready
 
 uses
   Forms,
@@ -25,7 +25,11 @@ uses
 begin
   Application.Initialize;
   Application.Title := AppShortName;
-  Application.ShowMainForm := False;
   Application.CreateForm(TMainForm, MainForm);
+
+  // Don't just show the form, intercept with custom logic
+  Application.ShowMainForm := False;
+  MainForm.TryToShow;
+
   Application.Run;
 end.

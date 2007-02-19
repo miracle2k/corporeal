@@ -138,10 +138,13 @@ end;
 
 procedure TOpenStoreForm.SetCurrentDefaultFile(const Value: string);
 begin
-  FCurrentDefaultFile := Value;
-  // if no store is selected yet, auto use the default
-  if SelectedStoreFile = '' then
-    SelectedStoreFile := Value;
+  if FileExists(Value) then
+  begin
+    FCurrentDefaultFile := Value;
+    // if no store is selected yet, auto use the default
+    if SelectedStoreFile = '' then
+      SelectedStoreFile := Value;
+  end;
 end;
 
 procedure TOpenStoreForm.SetKey(const Value: string);
