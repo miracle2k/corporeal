@@ -178,6 +178,7 @@ begin
       DomImplementation := TDomImplementation.Create(nil);
       XMLParser.DOMImpl := DomImplementation;
       try
+        Screen.Cursor := crHourGlass;
         // open csv file
         DomDocument := XMLParser.ParseFile(OpenCSVDialog.FileName, False);
         // loop through lines
@@ -203,6 +204,7 @@ begin
             end;
         end;
       finally
+        Screen.Cursor := crDefault;
         DomImplementation.Free;
         XMLParser.Free;
         GUIUpdatePasswordList;
