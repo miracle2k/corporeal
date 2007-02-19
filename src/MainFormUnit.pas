@@ -8,7 +8,7 @@ uses
   Windows, Messages, SysUtils, Variants, Classes, Graphics, Controls, Forms,
   Dialogs, TB2Dock, TB2Toolbar, TBX, SpTBXItem, TB2ExtItems, SpTBXEditors,
   TB2Item, VirtualTrees, ImgList, PngImageList, XPMan, ActnList, TntDialogs,
-  Menus, ExtCtrls, Clipbrd;
+  Menus, ExtCtrls, Clipbrd, JvComponentBase, JvTrayIcon;
 
 type
   TPasswordListNode = record
@@ -54,6 +54,7 @@ type
     SpTBXSeparatorItem2: TSpTBXSeparatorItem;
     SpTBXItem5: TSpTBXItem;
     ClipboardClearTimer: TTimer;
+    TrayIcon: TJvTrayIcon;
     procedure PasswordListCompareNodes(Sender: TBaseVirtualTree; Node1,
       Node2: PVirtualNode; Column: TColumnIndex; var Result: Integer);
     procedure ConfigurationItemClick(Sender: TObject);

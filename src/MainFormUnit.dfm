@@ -1852,4 +1852,11 @@ object MainForm: TMainForm
     Left = 16
     Top = 192
   end
+  object TrayIcon: TJvTrayIcon
+    Active = True
+    IconIndex = 0
+    Visibility = [tvVisibleTaskBar, tvVisibleTaskList, tvAutoHide, tvRestoreClick, tvMinimizeClick]
+    Left = 48
+    Top = 192
+  end
 end
