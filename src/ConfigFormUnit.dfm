@@ -13,6 +13,7 @@ object ConfigForm: TConfigForm
   Font.Style = []
   OldCreateOrder = False
   Position = poOwnerFormCenter
+  OnCreate = FormCreate
   PixelsPerInch = 96
   TextHeight = 13
   object JvGroupBox1: TJvGroupBox
@@ -149,7 +150,6 @@ object ConfigForm: TConfigForm
       Anchors = [akLeft, akTop, akRight]
       TabOrder = 1
       Text = 'http://michael.elsdoerfer.name/patronus/pwstore'
-      ExplicitWidth = 289
     end
   end
 end

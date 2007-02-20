@@ -5,6 +5,8 @@ interface
 uses
   FormValidation, PWStoreModel,
 
+  gnugettext,
+
   Windows, Messages, SysUtils, Variants, Classes, Graphics, Controls, Forms,
   Dialogs, StdCtrls, TntStdCtrls, ExtCtrls, pngimage, Buttons, TntButtons,
   PngSpeedButton, JvExControls, JvGradientProgressBarEx, JvComponentBase,
@@ -90,11 +92,14 @@ begin
     ModalResult := mrOk
   else
     with FormValidator.FirstFailedRule do
-      BalloonHint.ActivateHint(Control, Message+'.', ikError, 'Error');
+      BalloonHint.ActivateHint(Control, Message+'.', ikError, _('Error'));
 end;
 
 procedure TItemPropertiesForm.FormCreate(Sender: TObject);
 begin
+  // Localize
+  TranslateComponent(Self);
+
   // create quality indicater control
   QualityIndicatorBar := TJvGradientProgressBarEx.Create(Self);
   QualityIndicatorBar.BarColorFrom := $000080FF;  // orange
@@ -109,9 +114,9 @@ begin
 
   // initialize the form validator
   FormValidator := TFormValidator.Create;
-  FormValidator.AddRule(TitleEdit, dvrNotEmptyTrim, 'Please specify a title for this entry');
-  FormValidator.AddRule(PasswordEdit, ValidatePasswordMatchCallback, 'The passwords do not match');
-  FormValidator.AddRule(PasswordRepeatEdit, ValidatePasswordMatchCallback, 'The passwords do not match');  
+  FormValidator.AddRule(TitleEdit, dvrNotEmptyTrim, _('Please specify a title for this entry'));
+  FormValidator.AddRule(PasswordEdit, ValidatePasswordMatchCallback, _('The passwords do not match'));
+  FormValidator.AddRule(PasswordRepeatEdit, ValidatePasswordMatchCallback, _('The passwords do not match'));  
 end;
 
 procedure TItemPropertiesForm.FormDestroy(Sender: TObject);
@@ -129,10 +134,10 @@ begin
   FEditMode := Value;
   if not EditMode then
   begin
-    FormHeaderLabel.Caption := 'Add New Item';
+    FormHeaderLabel.Caption := _('Add New Item');
   end else
   begin
-    FormHeaderLabel.Caption := 'Edit Item Properties';  
+    FormHeaderLabel.Caption := _('Edit Item Properties');  
   end;
 end;
 
@@ -175,7 +180,7 @@ begin
     Max := QualityMaxBits;
     Position := EstimatedBits+1;
   end;
-  QualityLabel.Caption := IntToStr(EstimatedBits)+' bits';  
+  QualityLabel.Caption := Format(_('%s bits'), [IntToStr(EstimatedBits)]);  
 end;
 
 function TItemPropertiesForm.ValidatePasswordMatchCallback(

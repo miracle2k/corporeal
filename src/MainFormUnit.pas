@@ -5,6 +5,8 @@ interface
 uses
   PWStoreModel,
 
+  gnugettext,
+
   Windows, Messages, SysUtils, Variants, Classes, Graphics, Controls, Forms,
   Dialogs, TB2Dock, TB2Toolbar, TBX, SpTBXItem, TB2ExtItems, SpTBXEditors,
   TB2Item, VirtualTrees, ImgList, PngImageList, XPMan, ActnList, TntDialogs,
@@ -186,7 +188,7 @@ begin
         begin
           // check root node
           if (ExpandedName <> RootNodeName) then
-            raise Exception.Create('Doesn''t seem to be a valid KeePass XML export.');
+            raise Exception.Create(_('Doesn''t seem to be a valid KeePass XML export.'));
           // foreach entry
           for I := 0 to ChildNodes.Length - 1 do
             with ChildNodes.Item(I) do begin
@@ -307,13 +309,13 @@ var
 begin
   TaskDialog := TTaskDialog.Create(Self);
   try
-    TaskDialog.Title := 'Confirmation required';
-    TaskDialog.Instruction := 'Are you sure you want to delete the selected items? '+
-      'This operation cannot be undone.';
+    TaskDialog.Title := _('Confirmation required');
+    TaskDialog.Instruction := _('Are you sure you want to delete the selected items? '+
+      'This operation cannot be undone.');
     TaskDialog.Icon := tiQuestion;
     if PasswordList.SelectedCount > 1 then
     begin
-      TaskDialog.Footer := IntToStr(PasswordList.SelectedCount)+' items will be deleted.';
+      TaskDialog.Footer := Format(_('%s items will be deleted.'), [IntToStr(PasswordList.SelectedCount)]);
       TaskDialog.FooterIcon := tfiWarning;
     end;
     TaskDialog.CommonButtons := [cbYes, cbNo];
@@ -392,6 +394,9 @@ begin
       or WS_EX_TOOLWINDOW);
   ShowWindow(Application.Handle, SW_SHOW);
 
+  // Localize
+  TranslateComponent(Self);
+
   // init Password list
   PasswordList.NodeDataSize := SizeOf(TPasswordListNode);
 
@@ -445,7 +450,7 @@ begin
   if (VisibleCount < TotalCount) then
     ItemCountLabel.Caption := 'Filter active: '+IntToStr(VisibleCount)+' of '+IntToStr(TotalCount)+' items in store visible'
   else
-    ItemCountLabel.Caption := IntToStr(TotalCount)+' items in store';
+    ItemCountLabel.Caption := Format(_('%s items in store'), [IntToStr(TotalCount)]);
 end;
 
 function TMainForm.IsPasswordColumnVisible: Boolean;
@@ -573,7 +578,8 @@ begin
   Result := False;
 
   // ask the user to open a store file / enter a key
-  with TOpenStoreForm.Create(Self) do
+  OpenStoreForm := TOpenStoreForm.Create(Self);
+  with OpenStoreForm do
   begin
     // if there is a default store, use it
     CurrentDefaultFile := Settings.DefaultStore;
@@ -597,14 +603,14 @@ begin
           if not CanBreak then
           begin
             Inc(FailedCount);
-            with TTaskDialog.Create(Self) do begin
+            with TTaskDialog.Create(OpenStoreForm) do begin
               Title := 'Failed';
-              Instruction := 'Failed to open database. Most likely, the key '+
-                'you entered was incorrect.';
-              Content := 'It is also possible, however, that '+
+              Instruction := _('Failed to open database. Most likely, the key '+
+                'you entered was incorrect.');
+              Content := _('It is also possible, however, that '+
                 'the file you tried to open is not a correct Patronus Store '+
-                'file, or the choosen store is damaged.';
-              ExpandedText := 'Error message was: "'+LastLoadErrorMsg+'"';
+                'file, or the chosen store is damaged.');
+              ExpandedText := Format(_('Error message was: "%s"'), [LastLoadErrorMsg]);
               Icon := tiError;
               Execute;
             end;

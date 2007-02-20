@@ -6,7 +6,9 @@ program patronus;
 // TODO: vista ready
 
 uses
+  gnugettext,
   Forms,
+  Graphics,
   MainFormUnit in 'MainFormUnit.pas' {MainForm},
   PWStoreModel in 'PWStoreModel.pas',
   ItemPropertiesFormUnit in 'ItemPropertiesFormUnit.pas' {ItemPropertiesForm},
@@ -23,6 +25,9 @@ uses
 {$R *.res}
 
 begin
+  // Exclude some stuff from translation
+  TP_GlobalIgnoreClass(TFont);
+
   Application.Initialize;
   Application.Title := AppShortName;
   Application.CreateForm(TMainForm, MainForm);

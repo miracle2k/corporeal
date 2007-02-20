@@ -5,7 +5,7 @@ interface
 uses
   Windows, Messages, SysUtils, Variants, Classes, Graphics, Controls, Forms,
   Dialogs, StdCtrls, pngimage, ExtCtrls, JvExControls, JvLabel,
-  JvGradientProgressBarEx, JvExStdCtrls, JvCheckBox;
+  JvGradientProgressBarEx, JvExStdCtrls, JvCheckBox, gnugettext;
 
 type
   TOpenStoreMode = (osmLoad, osmCreate);
@@ -90,6 +90,9 @@ end;
 
 procedure TOpenStoreForm.FormCreate(Sender: TObject);
 begin
+  // localize
+  TranslateComponent(Self);
+
   // create quality indicater control
   QualityIndicatorBar := TJvGradientProgressBarEx.Create(Self);
   QualityIndicatorBar.BarColorFrom := $000080FF;  // orange
@@ -180,14 +183,14 @@ begin
     // to change the label of the master key input edit.
     if Mode = osmLoad then
     begin
-      KeyLabel.Caption := 'Enter Key:';
-      LoadButton.Caption := 'Load';
+      KeyLabel.Caption := _('Enter Key:');
+      LoadButton.Caption := _('Load');
       QualityIndicatorBar.Visible := False;
       QualityLabel.Visible := False;
     end else
     begin
-      KeyLabel.Caption := 'Choose Key:';
-      LoadButton.Caption := 'Create';
+      KeyLabel.Caption := _('Choose Key:');
+      LoadButton.Caption := _('Create');
       QualityIndicatorBar.Visible := True;
       QualityLabel.Visible := True;
       UpdateQualityIndicator;
@@ -198,10 +201,10 @@ begin
     MakeDefaultCheckBox.Enabled := True;
   end else
   begin
-    StoreFilenameLabel.Caption := '(none)';
+    StoreFilenameLabel.Caption := _('(none)');
     QualityIndicatorBar.Visible := False;
     QualityLabel.Visible := False;
-    LoadButton.Caption := 'Load';
+    LoadButton.Caption := _('Load');
     KeyLabel.Visible := False;
     KeyEdit.Visible := False;
     LoadButton.Enabled := False;
@@ -220,7 +223,7 @@ begin
     Max := QualityMaxBits;
     Position := EstimatedBits+1;
   end;
-  QualityLabel.Caption := IntToStr(EstimatedBits)+' bits';
+  QualityLabel.Caption := Format(_('%s bits'), [IntToStr(EstimatedBits)]);
 end;
 
 end.

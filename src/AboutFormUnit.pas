@@ -4,7 +4,8 @@ interface
 
 uses
   Windows, Messages, SysUtils, Variants, Classes, Graphics, Controls, Forms,
-  Dialogs, StdCtrls, ExtCtrls, pngimage, JvExControls, ShellApi, Credits;
+  Dialogs, StdCtrls, ExtCtrls, pngimage, JvExControls, ShellApi, Credits,
+  gnugettext;
 
 type
   TAboutForm = class(TForm)
@@ -38,6 +39,9 @@ end;
 
 procedure TAboutForm.FormCreate(Sender: TObject);
 begin
+  // Localize
+  TranslateComponent(Self);
+
   AppNameLabel.Caption := AppShortName;
   VersionLabel.Caption := VersionStr;
   ScrollingCredits.Animate := True;
