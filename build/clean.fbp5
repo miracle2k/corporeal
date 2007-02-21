@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<VSXML>
+  <Object Class="TFBProject" XMLID="{15613830-5C2E-4832-8EE9-E4272780FF7B}"><Property MultiValue="0" name="EncryptedEditPassword" type="string"></Property>
+    <Property MultiValue="0" name="GlobalJScript" type="string"></Property>
+    <Property MultiValue="0" name="GlobalVBScript" type="string"></Property>
+    <Property MultiValue="0" name="Name" type="string"></Property>
+    <Property MultiValue="0" name="ProjectID" type="string"></Property>
+    <Property MultiValue="0" name="SCCAuxPath" type="string"></Property>
+    <Property name="SCCLocalPathHash" type="Cardinal">0</Property>
+    <Property MultiValue="0" name="SCCProjectName" type="string"></Property>
+    <Property MultiValue="0" name="SCCProviderBinding" type="string"></Property>
+    <Property MultiValue="0" name="SCCUserName" type="string"></Property>
+    <Object Class="TFBActionListCollection" XMLID="{58BCA318-24FD-4026-979F-0AD9693EED99}"><Object Class="TFBActionList" XMLID="{71DFB02E-7BBE-4E1B-9DEF-83D7F36B36A3}"><Property name="IsFailure" type="Boolean">False</Property>
+        <Property name="IsMain" type="Boolean">True</Property>
+        <Property MultiValue="0" name="Name" type="string">Main</Property>
+        <Property MultiValue="0" name="UniqueID" type="string">{57F6C117-F36C-449D-99D3-D34FD0B6D279}</Property>
+        <Object Class="TFBAction" XMLID="{BD7400CE-ECA2-40C4-BD06-453BB0834E7F}"><Property MultiValue="0" name="ActionComment" type="string"></Property>
+          <Property name="ActionTextColor" type="Cardinal">0</Property>
+          <Property MultiValue="0" name="ActionTypeID" type="string"></Property>
+          <Property name="Enabled" type="WordBool">True</Property>
+          <Property name="ExpandActionLogTitle" type="Boolean">True</Property>
+          <Property name="IgnoreFailure" type="WordBool">False</Property>
+          <Property name="IsAction" type="Boolean">True</Property>
+          <Property name="IsBreakPoint" type="WordBool">False</Property>
+          <Property MultiValue="0" name="LogToVariable" type="string"></Property>
+          <Property name="MaxRetryAttempts" type="Cardinal">0</Property>
+          <Property name="NodeCollapsed" type="Boolean">False</Property>
+          <Property name="PauseInterval" type="Cardinal">0</Property>
+          <Property name="RetryPauseInterval" type="Cardinal">1000</Property>
+          <Property name="SuppressStatusMessages" type="Boolean">False</Property>
+          <Object Class="TIncludeProjectAction" XMLID="{44E4E5E1-9FD0-4394-A904-E01A0ED214A0}"><Property MultiValue="0" name="ActionComment" type="string"></Property>
+            <Property name="ActionTextColor" type="Cardinal">0</Property>
+            <Property MultiValue="0" name="ActionTypeID" type="string"></Property>
+            <Property name="Enabled" type="WordBool">True</Property>
+            <Property name="ExpandActionLogTitle" type="Boolean">True</Property>
+            <Property name="FailIfUndefinedVars" type="Boolean">False</Property>
+            <Property name="IgnoreFailure" type="WordBool">False</Property>
+            <Property name="IsAction" type="Boolean">True</Property>
+            <Property name="IsBreakPoint" type="WordBool">False</Property>
+            <Property MultiValue="0" name="LogToVariable" type="string"></Property>
+            <Property name="MaxRetryAttempts" type="Cardinal">0</Property>
+            <Property name="NodeCollapsed" type="Boolean">False</Property>
+            <Property name="Parameters" type="TStrings"><![CDATA[RequestedAction=clean
+]]>
+              </Property>
+            <Property name="PauseInterval" type="Cardinal">0</Property>
+            <Property MultiValue="0" name="ProjectFile" type="string">%FBPROJECTDIR%\build.fbp5</Property>
+            <Property name="ReloadEnvironmentVars" type="Boolean">True</Property>
+            <Property name="RetryPauseInterval" type="Cardinal">1000</Property>
+            <Property MultiValue="0" name="RunActionList" type="string"></Property>
+            <Property name="ShareHostVariableNameSpace" type="Boolean">False</Property>
+            <Property name="SuppressStatusMessages" type="Boolean">False</Property>
+            </Object>
+          </Object>
+        <Object Class="TFBActionListParametersCollection" XMLID="{2FE426DA-DB67-44CC-869A-93BD76B2ABDE}"/>
+        </Object>
+      <Object Class="TFBActionList" XMLID="{5967ABEB-C49E-41F1-AF18-CE882EB17172}"><Property name="IsFailure" type="Boolean">True</Property>
+        <Property name="IsMain" type="Boolean">False</Property>
+        <Property MultiValue="0" name="Name" type="string">OnFailure</Property>
+        <Property MultiValue="0" name="UniqueID" type="string">{23D050B1-8369-4AE8-8F36-61935701F60A}</Property>
+        <Object Class="TFBAction" XMLID="{D76DCFC8-7C79-4408-B804-C753016AE561}"><Property MultiValue="0" name="ActionComment" type="string"></Property>
+          <Property name="ActionTextColor" type="Cardinal">0</Property>
+          <Property MultiValue="0" name="ActionTypeID" type="string"></Property>
+          <Property name="Enabled" type="WordBool">True</Property>
+          <Property name="ExpandActionLogTitle" type="Boolean">True</Property>
+          <Property name="IgnoreFailure" type="WordBool">False</Property>
+          <Property name="IsAction" type="Boolean">True</Property>
+          <Property name="IsBreakPoint" type="WordBool">False</Property>
+          <Property MultiValue="0" name="LogToVariable" type="string"></Property>
+          <Property name="MaxRetryAttempts" type="Cardinal">0</Property>
+          <Property name="NodeCollapsed" type="Boolean">False</Property>
+          <Property name="PauseInterval" type="Cardinal">0</Property>
+          <Property name="RetryPauseInterval" type="Cardinal">1000</Property>
+          <Property name="SuppressStatusMessages" type="Boolean">False</Property>
+          </Object>
+        <Object Class="TFBActionListParametersCollection" XMLID="{00B34C72-8583-428D-9AF5-AA62932A5AC4}"/>
+        </Object>
+      </Object>
+    <Object Class="TFBVariablesCollection" XMLID="{C28ACBFB-9E3D-4F8C-A397-B17117DA6DE4}"><Property MultiValue="0" name="Name" type="string">Project</Property>
+      </Object>
+    </Object>
+  </VSXML>
