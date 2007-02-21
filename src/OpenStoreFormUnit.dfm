@@ -55,7 +55,6 @@ object OpenStoreForm: TOpenStoreForm
     Width = 235
     Height = 13
     AutoSize = False
-    Caption = 'G:\Developing\Projects\patronus\trunk\bin'
     Font.Charset = DEFAULT_CHARSET
     Font.Color = clWindowText
     Font.Height = -11
@@ -246,8 +245,6 @@ object OpenStoreForm: TOpenStoreForm
     LeftText = True
   end
   object SelectStoreDialog: TOpenDialog
-    DefaultExt = 'patronus'
-    Filter = 'Patronus Store Files (*.patronus)|*.patronus|All Files (*.*)|*.*'
     Options = [ofHideReadOnly, ofPathMustExist, ofFileMustExist, ofEnableSizing]
     Left = 252
     Top = 3

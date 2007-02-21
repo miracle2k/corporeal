@@ -394,8 +394,14 @@ begin
       or WS_EX_TOOLWINDOW);
   ShowWindow(Application.Handle, SW_SHOW);
 
-  // Localize
+  // localize
+  TP_GlobalIgnoreClass(TJvAppStorage);
+  TP_GlobalIgnoreClass(TJvFormStorage);
   TranslateComponent(Self);
+
+  // initialize storage
+  AppStorage.Root := 'Software\Patronus';
+  FormStorage.AppStoragePath := 'MainForm';
 
   // init Password list
   PasswordList.NodeDataSize := SizeOf(TPasswordListNode);

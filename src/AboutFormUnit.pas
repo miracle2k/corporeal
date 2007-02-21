@@ -15,7 +15,6 @@ type
     WebsiteLink: TLabel;
     Image1: TImage;
     ScrollingCredits: TScrollingCredits;
-    procedure FormClick(Sender: TObject);
     procedure FormCreate(Sender: TObject);
     procedure WebsiteLinkClick(Sender: TObject);
     procedure WebsiteLinkMouseLeave(Sender: TObject);
@@ -30,20 +29,57 @@ implementation
 uses
   Core;
 
-{$R *.dfm}
+const
+  CreditsText =
+'&b&uPatronus Password Store'#13#10+
+'2006 by Michael Elsdörfer <elsdoerfer.info>'#13#10+
+''#13#10+
+''#13#10+
+''#13#10+
+'&bFor inspiration'#13#10+
+''#13#10+
+'KeePass Password Safe'#13#10+
+''#13#10+
+''#13#10+
+'&bBuilt in Delphi'#13#10+
+''#13#10+
+''#13#10+
+'&bComponents && Libraries'#13#10+
+''#13#10+
+'Toolbar 2000, TBX && SpTBX'#13#10+
+'VirtualTreeView'#13#10+
+'Indy'#13#10+
+'DCPCiphers'#13#10+
+'Tntware Unicode Controls'#13#10+
+'PngDelphi'#13#10+
+'ScrollingCredits'#13#10+
+'JVCL && JCL'#13#10+
+'Open XML'#13#10+
+''#13#10+
+''#13#10+
+'&bApplication & Toolbar Icons'#13#10+
+''#13#10+
+'iconaholic.com'#13#10+
+''#13#10+
+''#13#10+
+''#13#10+
+''#13#10+
+''#13#10+
+''#13#10+
+'"&iI saved Latin. What did you ever do?"';
 
-procedure TAboutForm.FormClick(Sender: TObject);
-begin
-//JvScrollText1.Active := ;
-end;
+{$R *.dfm}
 
 procedure TAboutForm.FormCreate(Sender: TObject);
 begin
   // Localize
+  TP_GlobalIgnoreClass(TScrollingCredits);  
   TranslateComponent(Self);
 
   AppNameLabel.Caption := AppShortName;
   VersionLabel.Caption := VersionStr;
+  WebsiteLink.Caption := 'elsdoerfer.info/patronus';
+  ScrollingCredits.Credits.Text := CreditsText;
   ScrollingCredits.Animate := True;
 end;
 

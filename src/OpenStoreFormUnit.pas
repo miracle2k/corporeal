@@ -89,6 +89,9 @@ begin
 end;
 
 procedure TOpenStoreForm.FormCreate(Sender: TObject);
+resourcestring
+   PatronusFilter = 'Patronus Store Files (*.patronus)';
+   AllFilesFilter = 'All Files (*.*)';
 begin
   // localize
   TranslateComponent(Self);
@@ -101,6 +104,8 @@ begin
   QualityIndicatorBar.Parent := Self;
 
   // Init dialogs
+  SelectStoreDialog.Filter := PatronusFilter+'|*.patronus|'+AllFilesFilter+'|*.*';
+  SelectStoreDialog.DefaultExt := 'patronus';
   CreateStoreDialog.Filter := SelectStoreDialog.Filter;
   CreateStoreDialog.DefaultExt := SelectStoreDialog.DefaultExt;
 

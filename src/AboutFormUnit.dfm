@@ -13,7 +13,6 @@ object AboutForm: TAboutForm
   Font.Style = []
   OldCreateOrder = False
   Position = poOwnerFormCenter
-  OnClick = FormClick
   OnCreate = FormCreate
   DesignSize = (
     284
@@ -36,9 +35,9 @@ object AboutForm: TAboutForm
   object VersionLabel: TLabel
     Left = 88
     Top = 25
-    Width = 65
+    Width = 43
     Height = 16
-    Caption = 'Version 1.0'
+    Caption = 'Version'
     Font.Charset = DEFAULT_CHARSET
     Font.Color = clWindowText
     Font.Height = -13
@@ -49,10 +48,10 @@ object AboutForm: TAboutForm
   object WebsiteLink: TLabel
     Left = 88
     Top = 59
-    Width = 139
+    Width = 22
     Height = 13
     Cursor = crHandPoint
-    Caption = 'elsdoerfer.info/patronus'
+    Caption = 'URL'
     Font.Charset = DEFAULT_CHARSET
     Font.Color = clBlue
     Font.Height = -11
@@ -264,45 +263,6 @@ object AboutForm: TAboutForm
     Top = 88
     Width = 260
     Height = 193
-    Credits.Strings = (
-      '&b&uPatronus Password Store'
-      '2006 by Michael Elsd'#246'rfer <elsdoerfer.info>'
-      ''
-      ''
-      ''
-      '&bFor inspiration'
-      ''
-      'KeePass Password Safe'
-      ''
-      ''
-      ''
-      '&bBuilt in Delphi'
-      ''
-      ''
-      ''
-      '&bComponents && Libraries'
-      ''
-      'Toolbar 2000, TBX && SpTBX'
-      'VirtualTreeView'
-      'Indy'
-      'DCPCiphers'
-      'Tntware Unicode Controls'
-      'PngDelphi'
-      'ScrollingCredits'
-      'JVCL && JCL'
-      'Open XML'
-      ''
-      ''
-      '&bApplication & Toolbar Icons'
-      ''
-      'iconaholic.com'
-      ''
-      ''
-      ''
-      ''
-      ''
-      ''
-      '"&iI saved Latin. What did you ever do?"')
     CreditsFont.Charset = DEFAULT_CHARSET
     CreditsFont.Color = clBlack
     CreditsFont.Height = -11

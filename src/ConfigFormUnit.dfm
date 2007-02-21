@@ -137,9 +137,6 @@ object ConfigForm: TConfigForm
       Width = 313
       Height = 63
       AutoSize = False
-      Caption = 
-        'sdfsdf sdf a asdjfk halsdjfahsdl fkjshadflkashdflkajshdflka sdal' +
-        'kshdf alskhfalskf alsfhkasdf'
       WordWrap = True
     end
     object Edit1: TEdit
@@ -149,7 +146,6 @@ object ConfigForm: TConfigForm
       Height = 21
       Anchors = [akLeft, akTop, akRight]
       TabOrder = 1
-      Text = 'http://michael.elsdoerfer.name/patronus/pwstore'
     end
   end
 end
