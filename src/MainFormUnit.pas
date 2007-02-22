@@ -3,6 +3,7 @@ unit MainFormUnit;
 interface
 
 uses
+  Core,
   PWStoreModel,
 
   gnugettext,
@@ -133,6 +134,7 @@ implementation
 
 uses
   Xdom_4_1,
+  JclFileUtils,
   Utilities,
   TaskDialog,
   AboutFormUnit, ConfigFormUnit, ItemPropertiesFormUnit, OpenStoreFormUnit;
@@ -698,8 +700,18 @@ begin
 end;
 
 procedure TMainForm.SetCurrentStoreFile(const Value: string);
+var
+  CaptionFilename: string;
+const
+  DefaultExt = '.patronus';
 begin
   FCurrentStoreFile := Value;
+  // Update form caption;  show filename of current store, and
+  // exclude the file extension if it's the default one.
+  CaptionFilename := ExtractFileName(Value);
+  if ExtractFileExt(CaptionFilename) = DefaultExt then
+    CaptionFilename := PathRemoveExtension(CaptionFilename);
+  Caption := AppShortName + ' ['+CaptionFilename+']';
 end;
 
 procedure TMainForm.SetPasswordColumnVisibility(Show: Boolean);
