@@ -47,7 +47,7 @@ type
     SpTBXSeparatorItem1: TSpTBXSeparatorItem;
     AddFromCSVItem: TSpTBXItem;
     SpTBXItem2: TSpTBXItem;
-    OpenCSVDialog: TTntOpenDialog;
+    OpenXMLDialog: TTntOpenDialog;
     SpTBXSubmenuItem1: TSpTBXSubmenuItem;
     PasswordListPopup: TSpTBXPopupMenu;
     SpTBXItem1: TSpTBXItem;
@@ -173,7 +173,7 @@ const
   RootNodeName = 'pwlist';
   ItemNodeName = 'pwentry';
 begin
-  if OpenCSVDialog.Execute then
+  if OpenXmlDialog.Execute then
     try
       XMLParser := TXmlToDomParser.Create(nil);
       XMLParser.KeepEntityRefs := False;
@@ -182,7 +182,7 @@ begin
       try
         Screen.Cursor := crHourGlass;
         // open csv file
-        DomDocument := XMLParser.ParseFile(OpenCSVDialog.FileName, False);
+        DomDocument := XMLParser.ParseFile(OpenXmlDialog.FileName, False);
         // loop through lines
         with DomDocument.ChildNodes.Item(0) do
         begin

@@ -27,6 +27,7 @@ uses
 begin
   // Exclude some stuff from translation
   TP_GlobalIgnoreClass(TFont);
+  UseLanguage('de');
 
   Application.Initialize;
   Application.Title := AppShortName;
