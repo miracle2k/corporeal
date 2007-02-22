@@ -140,7 +140,6 @@ object MainForm: TMainForm
     OnDblClick = PasswordListDblClick
     OnGetText = PasswordListGetText
     OnHeaderClick = PasswordListHeaderClick
-    ExplicitHeight = 384
     Columns = <
       item
         Position = 0
@@ -1949,7 +1948,6 @@ object MainForm: TMainForm
     end
   end
   object OpenXMLDialog: TTntOpenDialog
-    DefaultExt = 'xml'
     Title = 'Select XML file to import'
     Left = 16
     Top = 160
@@ -1999,6 +1997,7 @@ object MainForm: TMainForm
   object FormStorage: TJvFormStorage
     Active = False
     AppStorage = AppStorage
+    AppStoragePath = 'MainForm'
     VersionCheck = fpvcNocheck
     StoredValues = <>
     Left = 16

@@ -58,6 +58,7 @@ object ItemPropertiesForm: TItemPropertiesForm
     Top = 221
     Width = 32
     Height = 13
+    Alignment = taRightJustify
     Caption = 'Notes:'
   end
   object Bevel1: TBevel

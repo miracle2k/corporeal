@@ -6,8 +6,8 @@
 #, fuzzy
 msgid ""
 msgstr "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2007-02-21 23:06\n"
-"PO-Revision-Date: 2007-02-21 23:06\n"
+"POT-Creation-Date: 2007-02-22 21:14\n"
+"PO-Revision-Date: 2007-02-22 21:14\n"
 "Last-Translator: Somebody <your.email@address.com>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -29,16 +29,16 @@ msgstr ""
 #. AboutForm..WebsiteLink..Caption
 #: AboutFormUnit.dfm:54
 #. MainForm..PasswordList......WideText
-#: MainFormUnit.dfm:163
+#: MainFormUnit.dfm:162
 msgid "URL"
 msgstr ""
 
 #. AboutForm..OKButton..Caption
 #: AboutFormUnit.dfm:283
 #. ItemPropertiesForm..Button1..Caption
-#: ItemPropertiesFormUnit.dfm:235
+#: ItemPropertiesFormUnit.dfm:236
 #. PasswordGeneratorForm..Button1..Caption
-#: PasswordGeneratorFormUnit.dfm:92
+#: PasswordGeneratorFormUnit.dfm:91
 msgid "OK"
 msgstr ""
 
@@ -85,39 +85,39 @@ msgid "Repeat:"
 msgstr ""
 
 #. ItemPropertiesForm..Label3..Caption
-#: ItemPropertiesFormUnit.dfm:61
+#: ItemPropertiesFormUnit.dfm:62
 msgid "Notes:"
 msgstr ""
 
 #. ItemPropertiesForm..Label7..Caption
-#: ItemPropertiesFormUnit.dfm:88
+#: ItemPropertiesFormUnit.dfm:89
 msgid "URL:"
 msgstr ""
 
 #. ItemPropertiesForm..TogglePasswordCharButton..Hint
-#: ItemPropertiesFormUnit.dfm:95
+#: ItemPropertiesFormUnit.dfm:96
 msgid "Toggle Hide/Show Passwords"
 msgstr ""
 
 #. ItemPropertiesForm..TntSpeedButton2..Hint
-#: ItemPropertiesFormUnit.dfm:135
+#: ItemPropertiesFormUnit.dfm:136
 msgid "Generate Password"
 msgstr ""
 
 #. ItemPropertiesForm..Label8..Caption
-#: ItemPropertiesFormUnit.dfm:178
+#: ItemPropertiesFormUnit.dfm:179
 msgid "Quality:"
 msgstr ""
 
 #. ItemPropertiesForm..Button2..Caption
-#: ItemPropertiesFormUnit.dfm:247
+#: ItemPropertiesFormUnit.dfm:248
 #. PasswordGeneratorForm..Button2..Caption
 #: PasswordGeneratorFormUnit.dfm:81
 msgid "Cancel"
 msgstr ""
 
 #. ItemPropertiesForm..Panel1..FormHeaderLabel..Caption
-#: ItemPropertiesFormUnit.dfm:348
+#: ItemPropertiesFormUnit.dfm:349
 #: ItemPropertiesFormUnit.pas:137
 msgid "Add New Item"
 msgstr ""
@@ -135,9 +135,9 @@ msgstr ""
 #. MainForm..TopDock..MainToolbar..DeleteItem..Caption
 #: MainFormUnit.dfm:50
 #. MainForm..ActionList..DeleteItemAction..Caption
-#: MainFormUnit.dfm:1937
+#: MainFormUnit.dfm:1936
 #. MainForm..PasswordListPopup..SpTBXItem3..Caption
-#: MainFormUnit.dfm:1974
+#: MainFormUnit.dfm:1972
 msgid "Delete"
 msgstr ""
 
@@ -164,7 +164,7 @@ msgstr ""
 #. MainForm..TopDock..MainToolbar..ControlSubmenuItem..ShowPasswordsItem..Caption
 #: MainFormUnit.dfm:87
 #. MainForm..ActionList..ShowPasswordsToggleAction..Caption
-#: MainFormUnit.dfm:1932
+#: MainFormUnit.dfm:1931
 msgid "Show Passwords"
 msgstr ""
 
@@ -184,39 +184,34 @@ msgid "Export to KeePass XML"
 msgstr ""
 
 #. MainForm..PasswordList......WideText
-#: MainFormUnit.dfm:148
+#: MainFormUnit.dfm:147
 msgid "Title"
 msgstr ""
 
 #. MainForm..PasswordList......WideText
-#: MainFormUnit.dfm:153
+#: MainFormUnit.dfm:152
 msgid "Username"
 msgstr ""
 
 #. MainForm..PasswordList......WideText
-#: MainFormUnit.dfm:158
+#: MainFormUnit.dfm:157
 msgid "Password"
 msgstr ""
 
 #. MainForm..ActionList..EditPropertiesAction..Caption
-#: MainFormUnit.dfm:1944
+#: MainFormUnit.dfm:1943
 #. MainForm..PasswordListPopup..SpTBXItem1..Caption
-#: MainFormUnit.dfm:1970
+#: MainFormUnit.dfm:1968
 msgid "Edit Properties"
 msgstr ""
 
-#. MainForm..OpenXMLDialog..DefaultExt
-#: MainFormUnit.dfm:1952
-msgid "xml"
-msgstr ""
-
 #. MainForm..OpenXMLDialog..Title
-#: MainFormUnit.dfm:1953
+#: MainFormUnit.dfm:1951
 msgid "Select XML file to import"
 msgstr ""
 
 #. MainForm..PasswordListPopup..SpTBXItem5..Caption
-#: MainFormUnit.dfm:1962
+#: MainFormUnit.dfm:1960
 msgid "Copy Password"
 msgstr ""
 
@@ -226,41 +221,41 @@ msgid "Choose / Create Password Store"
 msgstr ""
 
 #. OpenStoreForm..Label1..Caption
-#: OpenStoreFormUnit.dfm:50
+#: OpenStoreFormUnit.dfm:51
 msgid "Selected Store:"
 msgstr ""
 
 #. OpenStoreForm..KeyLabel..Caption
-#: OpenStoreFormUnit.dfm:77
+#: OpenStoreFormUnit.dfm:79
 #. to change the label of the master key input edit.
 #: OpenStoreFormUnit.pas:191
 msgid "Enter Key:"
 msgstr ""
 
 #. OpenStoreForm..Panel1..FormHeaderLabel..Caption
-#: OpenStoreFormUnit.dfm:102
+#: OpenStoreFormUnit.dfm:105
 msgid "Open Password Store"
 msgstr ""
 
 #. OpenStoreForm..LoadButton..Caption
-#: OpenStoreFormUnit.dfm:192
+#: OpenStoreFormUnit.dfm:195
 #: OpenStoreFormUnit.pas:192
 #: OpenStoreFormUnit.pas:212
 msgid "Load"
 msgstr ""
 
 #. OpenStoreForm..Button2..Caption
-#: OpenStoreFormUnit.dfm:203
+#: OpenStoreFormUnit.dfm:207
 msgid "Create New"
 msgstr ""
 
 #. OpenStoreForm..Button3..Caption
-#: OpenStoreFormUnit.dfm:213
+#: OpenStoreFormUnit.dfm:217
 msgid "Change"
 msgstr ""
 
 #. OpenStoreForm..MakeDefaultCheckBox..Caption
-#: OpenStoreFormUnit.dfm:234
+#: OpenStoreFormUnit.dfm:240
 msgid "Make this store the default"
 msgstr ""
 
@@ -357,22 +352,22 @@ msgid "%s items will be deleted."
 msgstr ""
 
 #. Update item count info
-#: MainFormUnit.pas:459
+#: MainFormUnit.pas:464
 msgid "%s items in store"
 msgstr ""
 
-#: MainFormUnit.pas:615
+#: MainFormUnit.pas:620
 msgid "Failed to open database. Most likely, the key you entered was "
 "incorrect."
 msgstr ""
 
-#: MainFormUnit.pas:618
+#: MainFormUnit.pas:623
 msgid "It is also possible, however, that the file you tried to open is not "
 "a correct Patronus Store file, or the chosen store is "
 "damaged."
 msgstr ""
 
-#: MainFormUnit.pas:619
+#: MainFormUnit.pas:624
 msgid "Error message was: \"%s\""
 msgstr ""
 

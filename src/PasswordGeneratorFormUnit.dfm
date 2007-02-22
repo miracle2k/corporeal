@@ -42,7 +42,7 @@ object PasswordGeneratorForm: TPasswordGeneratorForm
     Left = 8
     Top = 8
     Width = 260
-    Height = 121
+    Height = 116
     Anchors = [akLeft, akTop, akRight, akBottom]
     IntegralHeight = True
     ItemHeight = 14
@@ -81,7 +81,6 @@ object PasswordGeneratorForm: TPasswordGeneratorForm
     Caption = 'Cancel'
     ModalResult = 2
     TabOrder = 2
-    ExplicitTop = 264
   end
   object Button1: TButton
     Left = 193
@@ -93,7 +92,6 @@ object PasswordGeneratorForm: TPasswordGeneratorForm
     Default = True
     TabOrder = 3
     OnClick = Button1Click
-    ExplicitTop = 264
   end
   object JvBalloonHint: TJvBalloonHint
     DefaultBalloonPosition = bpRightUp

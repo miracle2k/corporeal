@@ -4,7 +4,7 @@ object OpenStoreForm: TOpenStoreForm
   BorderStyle = bsDialog
   Caption = 'Choose / Create Password Store'
   ClientHeight = 184
-  ClientWidth = 434
+  ClientWidth = 476
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
@@ -17,14 +17,14 @@ object OpenStoreForm: TOpenStoreForm
   OnCreate = FormCreate
   OnShow = FormShow
   DesignSize = (
-    434
+    476
     184)
   PixelsPerInch = 96
   TextHeight = 13
   object Bevel2: TBevel
     Left = 0
     Top = 41
-    Width = 434
+    Width = 476
     Height = 11
     Align = alTop
     Shape = bsTopLine
@@ -35,7 +35,7 @@ object OpenStoreForm: TOpenStoreForm
   object Bevel1: TBevel
     Left = 0
     Top = 142
-    Width = 434
+    Width = 476
     Height = 42
     Align = alBottom
     Shape = bsTopLine
@@ -43,16 +43,17 @@ object OpenStoreForm: TOpenStoreForm
     ExplicitWidth = 424
   end
   object Label1: TLabel
-    Left = 15
+    Left = 31
     Top = 58
     Width = 74
     Height = 13
+    Alignment = taRightJustify
     Caption = 'Selected Store:'
   end
   object StoreFilenameLabel: TJvLabel
-    Left = 100
+    Left = 120
     Top = 58
-    Width = 235
+    Width = 257
     Height = 13
     AutoSize = False
     Font.Charset = DEFAULT_CHARSET
@@ -70,10 +71,11 @@ object OpenStoreForm: TOpenStoreForm
     TextEllipsis = tePathEllipsis
   end
   object KeyLabel: TLabel
-    Left = 15
+    Left = 54
     Top = 93
     Width = 51
     Height = 13
+    Alignment = taRightJustify
     Caption = 'Enter Key:'
   end
   object QualityLabel: TLabel
@@ -86,7 +88,7 @@ object OpenStoreForm: TOpenStoreForm
   object Panel1: TPanel
     Left = 0
     Top = 0
-    Width = 434
+    Width = 476
     Height = 41
     Align = alTop
     BevelEdges = [beLeft, beTop, beBottom]
@@ -94,6 +96,7 @@ object OpenStoreForm: TOpenStoreForm
     Color = clWhite
     ParentBackground = False
     TabOrder = 0
+    ExplicitWidth = 434
     object FormHeaderLabel: TLabel
       Left = 45
       Top = 11
@@ -184,7 +187,7 @@ object OpenStoreForm: TOpenStoreForm
     end
   end
   object LoadButton: TButton
-    Left = 351
+    Left = 393
     Top = 151
     Width = 75
     Height = 25
@@ -193,6 +196,7 @@ object OpenStoreForm: TOpenStoreForm
     Default = True
     ModalResult = 1
     TabOrder = 1
+    ExplicitLeft = 351
   end
   object Button2: TButton
     Left = 8
@@ -205,7 +209,7 @@ object OpenStoreForm: TOpenStoreForm
     OnClick = Button2Click
   end
   object Button3: TButton
-    Left = 351
+    Left = 393
     Top = 52
     Width = 75
     Height = 25
@@ -213,18 +217,20 @@ object OpenStoreForm: TOpenStoreForm
     Caption = 'Change'
     TabOrder = 3
     OnClick = Button3Click
+    ExplicitLeft = 351
   end
   object KeyEdit: TEdit
-    Left = 100
+    Left = 120
     Top = 90
-    Width = 235
+    Width = 257
     Height = 21
+    Anchors = [akLeft, akTop, akRight]
     PasswordChar = '*'
     TabOrder = 4
     OnChange = KeyEditChange
   end
   object MakeDefaultCheckBox: TJvCheckBox
-    Left = 136
+    Left = 178
     Top = 157
     Width = 199
     Height = 17
@@ -243,6 +249,7 @@ object OpenStoreForm: TOpenStoreForm
     HotTrackFont.Style = []
     Layout = tlTop
     LeftText = True
+    ExplicitLeft = 136
   end
   object SelectStoreDialog: TOpenDialog
     Options = [ofHideReadOnly, ofPathMustExist, ofFileMustExist, ofEnableSizing]

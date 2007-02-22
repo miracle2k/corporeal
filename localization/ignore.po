@@ -13,3 +13,5 @@ msgstr ""
 msgid "FALSE, NO, N"
 msgstr ""
 
+msgid "MainForm"
+

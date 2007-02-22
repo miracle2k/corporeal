@@ -397,6 +397,7 @@ begin
   // localize
   TP_GlobalIgnoreClass(TJvAppStorage);
   TP_GlobalIgnoreClass(TJvFormStorage);
+  TP_Ignore(OpenXMLDialog, 'DefaultExt');
   TranslateComponent(Self);
 
   // initialize storage
@@ -413,6 +414,10 @@ begin
   // init application settings
   Settings := TPatronusSettings.Create;
   LoadAppSettings;
+
+  // init some other stuff
+  OpenXMLDialog.DefaultExt := 'xml';
+
 
   // create Password Store object
   PWItemStore := TPWItemStore.Create;

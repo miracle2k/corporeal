@@ -5,7 +5,7 @@ interface
 uses
   Windows, Messages, SysUtils, Variants, Classes, Graphics, Controls, Forms,
   Dialogs, StdCtrls, CheckLst, TntCheckLst, Mask, JvExMask, JvSpin, TntStdCtrls,
-  ExtCtrls, JvComponentBase, JvBalloonHint;
+  ExtCtrls, JvComponentBase, JvBalloonHint, gnugettext;
 
 type
   TPasswordGeneratorForm = class(TForm)
@@ -58,6 +58,9 @@ procedure TPasswordGeneratorForm.FormCreate(Sender: TObject);
 var
   I: Integer;
 begin
+  // Localize
+  TranslateComponent(Self);
+
   // per default, check the first three items
   for I := 0 to 2 do
     CharSpacesList.Checked[I] := True;

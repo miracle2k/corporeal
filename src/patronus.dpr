@@ -1,9 +1,11 @@
 program patronus;
 
-// TODO: gettext localizations
-// TODO: store config / window positions etc
-// TODO: config window
+// TODO: store sort order
 // TODO: vista ready
+// TODO: store name in mainform title
+// TODO: handle multipe instances
+// TODO: enable xml export
+// TODO: autoclose workspace
 
 uses
   gnugettext,
@@ -27,7 +29,6 @@ uses
 begin
   // Exclude some stuff from translation
   TP_GlobalIgnoreClass(TFont);
-  UseLanguage('de');
 
   Application.Initialize;
   Application.Title := AppShortName;
