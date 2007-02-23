@@ -12,11 +12,13 @@ object MainForm: TMainForm
   Font.Height = -11
   Font.Name = 'Tahoma'
   Font.Style = []
+  KeyPreview = True
   OldCreateOrder = False
   Position = poScreenCenter
   OnClose = FormClose
   OnCreate = FormCreate
   OnDestroy = FormDestroy
+  OnMouseDown = FormMouseDown
   OnMouseMove = FormMouseMove
   PixelsPerInch = 96
   TextHeight = 13
@@ -29,11 +31,12 @@ object MainForm: TMainForm
       Left = 0
       Top = 0
       DockMode = dmCannotFloatOrChangeDocks
-      DockPos = 3
+      DockPos = 0
       DragHandleStyle = dhNone
       FullSize = True
       Images = LargeImages
       Options = [tboImageAboveCaption]
+      ProcessShortCuts = True
       ShrinkMode = tbsmNone
       Stretch = True
       TabOrder = 0

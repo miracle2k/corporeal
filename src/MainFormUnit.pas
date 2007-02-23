@@ -99,6 +99,8 @@ type
     procedure MainToolbarMouseMove(Sender: TObject; Shift: TShiftState; X,
       Y: Integer);
     procedure FormMouseMove(Sender: TObject; Shift: TShiftState; X, Y: Integer);
+    procedure FormMouseDown(Sender: TObject; Button: TMouseButton;
+      Shift: TShiftState; X, Y: Integer);
   private
     FCurrentKey: string;
     FCurrentStoreFile: string;
@@ -468,6 +470,15 @@ procedure TMainForm.FormDestroy(Sender: TObject);
 begin
   PWItemStore.Free;
   Settings.Free;
+end;
+
+procedure TMainForm.FormMouseDown(Sender: TObject; Button: TMouseButton;
+  Shift: TShiftState; X, Y: Integer);
+begin
+  // Note: KeyPreview = True
+  
+  // We are active
+  ResetAutoLockTimer;
 end;
 
 procedure TMainForm.FormMouseMove(Sender: TObject; Shift: TShiftState; X,
