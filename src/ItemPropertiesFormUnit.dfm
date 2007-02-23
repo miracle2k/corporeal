@@ -228,7 +228,7 @@ object ItemPropertiesForm: TItemPropertiesForm
     TabOrder = 5
   end
   object Button1: TButton
-    Left = 255
+    Left = 174
     Top = 377
     Width = 75
     Height = 25
@@ -239,8 +239,8 @@ object ItemPropertiesForm: TItemPropertiesForm
     OnClick = Button1Click
   end
   object Button2: TButton
-    Left = 174
-    Top = 377
+    Left = 255
+    Top = 376
     Width = 75
     Height = 25
     Anchors = [akRight, akBottom]

@@ -72,7 +72,7 @@ object PasswordGeneratorForm: TPasswordGeneratorForm
     TabOrder = 1
   end
   object Button2: TButton
-    Left = 110
+    Left = 193
     Top = 179
     Width = 75
     Height = 25
@@ -83,7 +83,7 @@ object PasswordGeneratorForm: TPasswordGeneratorForm
     TabOrder = 2
   end
   object Button1: TButton
-    Left = 193
+    Left = 112
     Top = 179
     Width = 75
     Height = 25
