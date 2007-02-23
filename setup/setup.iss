@@ -8,7 +8,7 @@ AppSupportURL=http://www.elsdoerfer.info/patronus
 AppUpdatesURL=http://www.elsdoerfer.info/patronus
 DefaultDirName={pf}\Patronus
 DefaultGroupName=Patronus
-; We don't create a submenu
+; We don't create a submenu, only an icon
 DisableProgramGroupPage=yes
 AllowNoIcons=yes
 OutputBaseFilename=patronus-setup
@@ -28,6 +28,11 @@ Name: "desktopicon"; Description: "{cm:CreateDesktopIcon}"; GroupDescription: "{
 [Files]
 Source: "*"; DestDir: "{app}"; Flags: ignoreversion recursesubdirs
 
+[Registry]
+; create empty registry key, but do not write any values. we do this only so that
+; the uninstaller will the delete the key (and all it's values), as our app
+; stores some data in the registry.
+Root: HKCU; Subkey: "Software\Patronus"; Flags: uninsdeletekey
 
 [Icons]
 Name: "{commonprograms}\Patronus"; Filename: "{app}\Patronus.exe"
