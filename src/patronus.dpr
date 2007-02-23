@@ -6,7 +6,6 @@ program patronus;
 // TODO: on choose now key: either show in cleartext or require repeat
 // TODO: change task dialog appearance on non-vista ( plus position )
 // TODO: not all shortcuts are working
-// TODO: ok/cancel buttons in correct order
 
 uses
   gnugettext,
