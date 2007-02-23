@@ -1,11 +1,12 @@
 program patronus;
 
-// TODO: store sort order
-// TODO: vista ready
-// TODO: store name in mainform title
 // TODO: handle multipe instances
 // TODO: enable xml export
-// TODO: autoclose workspace
+// TODO: allow change of master password
+// TODO: on choose now key: either show in cleartext or require repeat
+// TODO: change task dialog appearance on non-vista ( plus position )
+// TODO: not all shortcuts are working
+// TODO: ok/cancel buttons in correct order
 
 uses
   gnugettext,
@@ -22,7 +23,8 @@ uses
   Utilities in 'Utilities.pas',
   JvGradientProgressBarEx in 'JvGradientProgressBarEx.pas',
   OpenStoreFormUnit in 'OpenStoreFormUnit.pas' {OpenStoreForm},
-  ApplicationSettings in 'ApplicationSettings.pas';
+  ApplicationSettings in 'ApplicationSettings.pas',
+  VistaCompat in 'VistaCompat.pas';
 
 {$R *.res}
 

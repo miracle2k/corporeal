@@ -17,6 +17,7 @@ object MainForm: TMainForm
   OnClose = FormClose
   OnCreate = FormCreate
   OnDestroy = FormDestroy
+  OnMouseMove = FormMouseMove
   PixelsPerInch = 96
   TextHeight = 13
   object TopDock: TSpTBXDock
@@ -36,6 +37,7 @@ object MainForm: TMainForm
       ShrinkMode = tbsmNone
       Stretch = True
       TabOrder = 0
+      OnMouseMove = MainToolbarMouseMove
       object AddItem: TSpTBXItem
         Caption = 'Add'
         ImageIndex = 4
@@ -51,14 +53,13 @@ object MainForm: TMainForm
         Action = DeleteItemAction
       end
       object MainToolbarRightAlignSpacerItem: TSpTBXRightAlignSpacerItem
-        CustomWidth = 65
+        CustomWidth = 47
       end
       object SearchLabelItem: TSpTBXLabelItem
         Caption = 'Search:'
       end
-      object QuickSearchEdit: TSpTBXEditItem
-        EditWidth = 200
-        OnChange = QuickSearchEditChange
+      object QuickSearchEditItem: TTBControlItem
+        Control = QuickSearchEdit
       end
       object SeparaterItem: TSpTBXSeparatorItem
         Blank = True
@@ -71,6 +72,7 @@ object MainForm: TMainForm
         object SpTBXItem6: TSpTBXItem
           Caption = 'Lock Workspace'
           ImageIndex = 12
+          ShortCut = 16460
           OnClick = SpTBXItem6Click
         end
         object SpTBXSeparatorItem3: TSpTBXSeparatorItem
@@ -114,6 +116,14 @@ object MainForm: TMainForm
           OnClick = AboutItemClick
         end
       end
+      object QuickSearchEdit: TSpTBXEdit
+        Left = 216
+        Top = 16
+        Width = 218
+        Height = 21
+        TabOrder = 0
+        OnChange = QuickSearchEditChange
+      end
     end
   end
   object PasswordList: TVirtualStringTree
@@ -140,6 +150,7 @@ object MainForm: TMainForm
     OnDblClick = PasswordListDblClick
     OnGetText = PasswordListGetText
     OnHeaderClick = PasswordListHeaderClick
+    OnMouseMove = PasswordListMouseMove
     Columns = <
       item
         Position = 0
@@ -167,6 +178,7 @@ object MainForm: TMainForm
     Top = 456
     Width = 494
     Height = 10
+    OnMouseMove = StatusBarMouseMove
     ThemeType = thtWindows
     object ItemCountLabel: TSpTBXLabelItem
     end
@@ -1997,10 +2009,17 @@ object MainForm: TMainForm
   object FormStorage: TJvFormStorage
     Active = False
     AppStorage = AppStorage
-    AppStoragePath = 'MainForm'
+    AppStoragePath = 'MainForm\'
     VersionCheck = fpvcNocheck
+    StoredProps.Strings = (
+      'PasswordList.Header.SortDirection')
     StoredValues = <>
     Left = 16
     Top = 224
+  end
+  object AutoLockTimer: TTimer
+    OnTimer = AutoLockTimerTimer
+    Left = 16
+    Top = 256
   end
 end

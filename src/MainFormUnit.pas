@@ -12,7 +12,7 @@ uses
   Dialogs, TB2Dock, TB2Toolbar, TBX, SpTBXItem, TB2ExtItems, SpTBXEditors,
   TB2Item, VirtualTrees, ImgList, PngImageList, XPMan, ActnList, TntDialogs,
   Menus, ExtCtrls, Clipbrd, JvComponentBase, JvTrayIcon, JvAppStorage,
-  JvAppRegistryStorage, ApplicationSettings, AppEvnts, JvFormPlacement;
+  JvAppRegistryStorage, ApplicationSettings, AppEvnts, JvFormPlacement, StdCtrls;
 
 type
   TPasswordListNode = record
@@ -31,7 +31,6 @@ type
     ShowPasswordsItem: TSpTBXItem;
     ActionList: TActionList;
     ShowPasswordsToggleAction: TAction;
-    QuickSearchEdit: TSpTBXEditItem;
     MainToolbarRightAlignSpacerItem: TSpTBXRightAlignSpacerItem;
     AddItem: TSpTBXItem;
     DeleteItem: TSpTBXItem;
@@ -63,6 +62,9 @@ type
     SpTBXSeparatorItem3: TSpTBXSeparatorItem;
     SpTBXItem6: TSpTBXItem;
     FormStorage: TJvFormStorage;
+    QuickSearchEdit: TSpTBXEdit;
+    QuickSearchEditItem: TTBControlItem;
+    AutoLockTimer: TTimer;
     procedure PasswordListCompareNodes(Sender: TBaseVirtualTree; Node1,
       Node2: PVirtualNode; Column: TColumnIndex; var Result: Integer);
     procedure ConfigurationItemClick(Sender: TObject);
@@ -76,7 +78,6 @@ type
     procedure AddFromCSVItemClick(Sender: TObject);
     procedure AddItemClick(Sender: TObject);
     procedure DeleteItemActionUpdate(Sender: TObject);
-    procedure QuickSearchEditChange(Sender: TObject; const Text: WideString);
     procedure ShowPasswordsToggleActionExecute(Sender: TObject);
     procedure ShowPasswordsToggleActionUpdate(Sender: TObject);
     procedure PasswordListGetText(Sender: TBaseVirtualTree; Node: PVirtualNode;
@@ -89,11 +90,20 @@ type
     procedure TrayIconClick(Sender: TObject; Button: TMouseButton;
       Shift: TShiftState; X, Y: Integer);
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
+    procedure QuickSearchEditChange(Sender: TObject);
+    procedure AutoLockTimerTimer(Sender: TObject);
+    procedure PasswordListMouseMove(Sender: TObject; Shift: TShiftState; X,
+      Y: Integer);
+    procedure StatusBarMouseMove(Sender: TObject; Shift: TShiftState; X,
+      Y: Integer);
+    procedure MainToolbarMouseMove(Sender: TObject; Shift: TShiftState; X,
+      Y: Integer);
+    procedure FormMouseMove(Sender: TObject; Shift: TShiftState; X, Y: Integer);
   private
     FCurrentKey: string;
-    FCurrentStoreFile: string;    
+    FCurrentStoreFile: string;
     procedure SetCurrentKey(const Value: string);
-    procedure SetCurrentStoreFile(const Value: string);    
+    procedure SetCurrentStoreFile(const Value: string);
   private
     PWItemStore: TPWItemStore;
     Settings: TPatronusSettings;
@@ -104,15 +114,18 @@ type
   protected
     procedure CreateParams(var Params: TCreateParams); override;
     procedure WMSyscommand(var Message: TWmSysCommand); message WM_SYSCOMMAND;
+    procedure WMActivate(var Message: TWMActivate); message WM_ACTIVATE;
   protected
     function IsPasswordColumnVisible: Boolean;
     procedure SetPasswordColumnVisibility(Show: Boolean);
     procedure GUIUpdatePasswordList;
     procedure GUIUpdateStatusbar;
     procedure ResetClipboardClearTimer;
+    procedure ResetAutoLockTimer;
     procedure ApplyFilter;
     procedure Save;
     function Load(Filename, Password: string): Boolean;
+    procedure Lock(RetryShow: Boolean);
   public
     procedure LoadAppSettings;
     procedure SaveAppSettings;
@@ -133,18 +146,21 @@ const
 implementation
 
 uses
-  Xdom_4_1,
-  JclFileUtils,
-  Utilities,
+  Xdom_4_1, JclFileUtils,
   TaskDialog,
-  AboutFormUnit, ConfigFormUnit, ItemPropertiesFormUnit, OpenStoreFormUnit;
+  AboutFormUnit, ConfigFormUnit, ItemPropertiesFormUnit, OpenStoreFormUnit,
+  VistaCompat, Utilities;
 
 {$R *.dfm}
 
 procedure TMainForm.AboutItemClick(Sender: TObject);
 begin
   with TAboutForm.Create(Self) do
+  begin
+    PopupParent := Self;
     ShowModal;
+    Free;
+  end;
 end;
 
 procedure TMainForm.AddFromCSVItemClick(Sender: TObject);
@@ -228,6 +244,7 @@ begin
   with TItemPropertiesForm.Create(Self) do
   begin
     EditMode := False;
+    PopupParent := Self;
     if ShowModal = mrOk then
       with PWItemStore.Add do begin
         Title := TitleEdit.Text;
@@ -271,6 +288,22 @@ begin
   end;
 end;
 
+procedure TMainForm.AutoLockTimerTimer(Sender: TObject);
+begin
+  // If the form currently is not visible, there is nothing for us to do
+  if not Visible then Exit;
+
+  // Tag property stores the number of seconds this has been running without
+  // being reset.
+  AutoLockTimer.Tag := AutoLockTimer.Tag + 1;
+
+  if AutoLockTimer.Tag >= Settings.AutoLockAfter then
+  begin
+    Lock(True);
+    AutoLockTimer.Tag := 0;
+  end;
+end;
+
 procedure TMainForm.ClipboardClearTimerTimer(Sender: TObject);
 begin
   Clipboard.Clear;
@@ -288,10 +321,13 @@ end;
 procedure TMainForm.ConfigurationItemClick(Sender: TObject);
 begin
   with TConfigForm.Create(Self) do
+  begin
+    PopupParent := Self;
     if ShowModal = mrOk then
     begin
-    
+
     end;
+  end;
 end;
 
 procedure TMainForm.CreateParams(var Params: TCreateParams);
@@ -367,6 +403,7 @@ begin
       PWItemToEdit := PPasswordListNode(GetNodeData(NodeToEdit)).PWItem;
     end;
     ApplyFromItem(PWItemToEdit);
+    PopupParent := Self;
     if ShowModal = mrOk then
     begin
       ApplyToItem(PWItemToEdit);
@@ -396,6 +433,9 @@ begin
       or WS_EX_TOOLWINDOW);
   ShowWindow(Application.Handle, SW_SHOW);
 
+  // use font setting of os (mainly intended for new vista font)
+  SetDesktopIconFonts(Self.Font);
+
   // localize
   TP_GlobalIgnoreClass(TJvAppStorage);
   TP_GlobalIgnoreClass(TJvFormStorage);
@@ -420,7 +460,6 @@ begin
   // init some other stuff
   OpenXMLDialog.DefaultExt := 'xml';
 
-
   // create Password Store object
   PWItemStore := TPWItemStore.Create;
 end;
@@ -429,6 +468,13 @@ procedure TMainForm.FormDestroy(Sender: TObject);
 begin
   PWItemStore.Free;
   Settings.Free;
+end;
+
+procedure TMainForm.FormMouseMove(Sender: TObject; Shift: TShiftState; X,
+  Y: Integer);
+begin
+  // We are active
+  ResetAutoLockTimer;
 end;
 
 procedure TMainForm.GUIUpdatePasswordList;
@@ -487,11 +533,17 @@ end;
 procedure TMainForm.LoadAppSettings;
 var
   I: Integer;
+  TempDirection: TSortDirection;
 begin
   AppStorage.ReadPersistent('', Settings, False);
   // passwords column visible?
   SetPasswordColumnVisibility(
     AppStorage.ReadBoolean('PasswordsVisible', IsPasswordColumnVisible));
+  // sort options
+  PasswordList.Header.SortColumn := AppStorage.ReadInteger('MainForm\ListSortColumn', -1);
+  TempDirection := sdAscending;
+  AppStorage.ReadEnumeration('MainForm\ListSortDirection', TypeInfo(TSortDirection), TempDirection, TempDirection);
+  PasswordList.Header.SortDirection := TempDirection;
   // column widths
   with PasswordList.Header do
   for I := 0 to Columns.Count - 1 do
@@ -499,6 +551,32 @@ begin
     Columns[I].Position := AppStorage.ReadInteger('MainForm\Columns\Position'+IntToStr(I), Columns[I].Position);
     Columns[I].Width := AppStorage.ReadInteger('MainForm\Columns\Width'+IntToStr(I), Columns[I].Width);
   end;
+end;
+
+procedure TMainForm.Lock(RetryShow: Boolean);
+begin
+  // Never lock if there is an active modal form; second condition handles
+  // windows dialogs as well.
+  if (fsModal in Screen.ActiveForm.FormState) or
+     (not IsWindowEnabled(Self.Handle)) then Exit;
+
+  // Hide
+  Hide;
+  // Close store, remove passwords etc. from memory
+  CloseStore;
+
+  // Determine what to do next - either query for key, or move to tray
+  if RetryShow then
+    TryToShow
+  else
+    TrayIcon.Active := True;
+end;
+
+procedure TMainForm.MainToolbarMouseMove(Sender: TObject; Shift: TShiftState; X,
+  Y: Integer);
+begin
+  // We are active
+  ResetAutoLockTimer;
 end;
 
 procedure TMainForm.PasswordListCompareNodes(Sender: TBaseVirtualTree; Node1,
@@ -554,7 +632,7 @@ begin
     begin
       // Never sort the password column
       if Column = PasswordColumnIndex then Exit;
-      
+
       if SortColumn <> Column then
       begin
         SortColumn := Column;
@@ -566,19 +644,27 @@ begin
           SortDirection := sdDescending;
         sdDescending:
           SortDirection := sdAscending;
+      else
+        SortDirection := sdAscending;
       end;
     end;
   end;
 end;
 
-procedure TMainForm.QuickSearchEditChange(Sender: TObject;
-  const Text: WideString);
+procedure TMainForm.PasswordListMouseMove(Sender: TObject; Shift: TShiftState;
+  X, Y: Integer);
 begin
-  // Update edit text, so that filter won't get lost if focus changes
-  // (which is the default behavious of the toolbar edit control)
-  QuickSearchEdit.Text := Text;
+  // We are active
+  ResetAutoLockTimer;
+end;
+
+procedure TMainForm.QuickSearchEditChange(Sender: TObject);
+begin
   // Filter nodes in tree
   ApplyFilter;
+
+  // We are active
+  ResetAutoLockTimer;
 end;
 
 function TMainForm.RequestKey: Boolean;
@@ -608,6 +694,7 @@ begin
       end;
 
       SetForegroundWindow(Application.Handle);
+      PopupParent := Self;
       if ShowModal = mrOk then
       begin
         if Mode = osmLoad then
@@ -666,6 +753,11 @@ begin
   end;
 end;
 
+procedure TMainForm.ResetAutoLockTimer;
+begin
+  AutoLockTimer.Tag := 0;
+end;
+
 procedure TMainForm.ResetClipboardClearTimer;
 begin
   ClipboardClearTimer.Enabled := False;
@@ -681,10 +773,15 @@ end;
 procedure TMainForm.SaveAppSettings;
 var
   I: Integer;
+  TempDirection: TSortDirection;
 begin
   AppStorage.WritePersistent('', Settings, False);
   // passwords column visible?
   AppStorage.WriteBoolean('PasswordsVisible', IsPasswordColumnVisible);
+  // sort options
+  AppStorage.WriteInteger('MainForm\ListSortColumn', PasswordList.Header.SortColumn);
+  TempDirection := PasswordList.Header.SortDirection;
+  AppStorage.WriteEnumeration('MainForm\ListSortDirection', TypeInfo(TSortDirection), TempDirection);
   // column widths
   with PasswordList.Header do
   for I := 0 to Columns.Count - 1 do
@@ -750,9 +847,14 @@ end;
 
 procedure TMainForm.SpTBXItem6Click(Sender: TObject);
 begin
-  CloseStore;
-  Hide;
-  TryToShow;
+  Lock(True);
+end;
+
+procedure TMainForm.StatusBarMouseMove(Sender: TObject; Shift: TShiftState; X,
+  Y: Integer);
+begin
+  // We are active
+  ResetAutoLockTimer;
 end;
 
 procedure TMainForm.TrayIconClick(Sender: TObject; Button: TMouseButton;
@@ -768,11 +870,23 @@ begin
     if not RequestKey then
       Application.Terminate
     else begin
-      Show;
       // only activate form storage the first time we successfully show the
       // form, or in some cases null values will be written.
       FormStorage.Active := True;
+      
+      Show;
     end;
+end;
+
+procedure TMainForm.WMActivate(var Message: TWMActivate);
+begin
+  // Vista secret window fix
+  if (Message.Active = WA_ACTIVE) and not IsWindowEnabled(Handle) then
+  begin
+    SetActiveWindow(Application.Handle);
+    Message.Result := 0;
+  end else
+    inherited;
 end;
 
 procedure TMainForm.WMSyscommand(var Message: TWmSysCommand);
@@ -780,9 +894,7 @@ begin
   case (Message.CmdType and $FFF0) of
     SC_MINIMIZE:
     begin
-      Hide; 
-      CloseStore;
-      TrayIcon.Active := True;
+      Lock(False);
       Message.Result := 0;
     end;
     SC_RESTORE:

@@ -32,7 +32,7 @@ var
 implementation
 
 uses
-  Utilities;
+  Utilities, VistaCompat;
 
 {$R *.dfm}
 
@@ -60,6 +60,9 @@ var
 begin
   // Localize
   TranslateComponent(Self);
+
+  // use font setting of os (mainly intended for new vista font)
+  SetDesktopIconFonts(Self.Font);  
 
   // per default, check the first three items
   for I := 0 to 2 do

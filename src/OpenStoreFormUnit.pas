@@ -64,7 +64,7 @@ var
 implementation
 
 uses
-  Utilities;
+  Utilities, VistaCompat;
 
 {$R *.dfm}
 
@@ -95,6 +95,9 @@ resourcestring
 begin
   // localize
   TranslateComponent(Self);
+
+  // use font setting of os (mainly intended for new vista font)
+  SetDesktopIconFonts(Self.Font);  
 
   // create quality indicater control
   QualityIndicatorBar := TJvGradientProgressBarEx.Create(Self);

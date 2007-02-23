@@ -62,7 +62,7 @@ type
 implementation
 
 uses
-  Utilities, PasswordGeneratorFormUnit;
+  Utilities, VistaCompat, PasswordGeneratorFormUnit;
 
 {$R *.dfm}
 
@@ -99,6 +99,9 @@ procedure TItemPropertiesForm.FormCreate(Sender: TObject);
 begin
   // Localize
   TranslateComponent(Self);
+
+  // use font setting of os (mainly intended for new vista font)
+  SetDesktopIconFonts(Self.Font);
 
   // create quality indicater control
   QualityIndicatorBar := TJvGradientProgressBarEx.Create(Self);

@@ -22,12 +22,18 @@ var
 
 implementation
 
+uses
+  VistaCompat;
+
 {$R *.dfm}
 
 procedure TConfigForm.FormCreate(Sender: TObject);
 begin
   // Localize
   TranslateComponent(Self);
+
+  // use font setting of os (mainly intended for new vista font)
+  SetDesktopIconFonts(Self.Font);    
 end;
 
 end.

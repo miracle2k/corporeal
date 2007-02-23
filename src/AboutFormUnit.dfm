@@ -263,6 +263,8 @@ object AboutForm: TAboutForm
     Top = 88
     Width = 260
     Height = 193
+    Credits.Strings = (
+      '')
     CreditsFont.Charset = DEFAULT_CHARSET
     CreditsFont.Color = clBlack
     CreditsFont.Height = -11

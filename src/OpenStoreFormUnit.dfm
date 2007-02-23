@@ -96,7 +96,6 @@ object OpenStoreForm: TOpenStoreForm
     Color = clWhite
     ParentBackground = False
     TabOrder = 0
-    ExplicitWidth = 434
     object FormHeaderLabel: TLabel
       Left = 45
       Top = 11
@@ -196,7 +195,6 @@ object OpenStoreForm: TOpenStoreForm
     Default = True
     ModalResult = 1
     TabOrder = 1
-    ExplicitLeft = 351
   end
   object Button2: TButton
     Left = 8
@@ -217,7 +215,6 @@ object OpenStoreForm: TOpenStoreForm
     Caption = 'Change'
     TabOrder = 3
     OnClick = Button3Click
-    ExplicitLeft = 351
   end
   object KeyEdit: TEdit
     Left = 120
@@ -249,7 +246,6 @@ object OpenStoreForm: TOpenStoreForm
     HotTrackFont.Style = []
     Layout = tlTop
     LeftText = True
-    ExplicitLeft = 136
   end
   object SelectStoreDialog: TOpenDialog
     Options = [ofHideReadOnly, ofPathMustExist, ofFileMustExist, ofEnableSizing]

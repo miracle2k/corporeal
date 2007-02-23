@@ -27,7 +27,7 @@ var
 implementation
 
 uses
-  Core;
+  Core, VistaCompat;
 
 const
   CreditsText =
@@ -76,6 +76,11 @@ begin
   TP_GlobalIgnoreClass(TScrollingCredits);  
   TranslateComponent(Self);
 
+  // use font setting of os (mainly intended for new vista font)
+  SetDesktopIconFonts(Self.Font);
+  ScrollingCredits.CreditsFont.Assign(Self.Font); 
+
+  // init gui
   AppNameLabel.Caption := AppShortName;
   VersionLabel.Caption := VersionStr;
   WebsiteLink.Caption := 'elsdoerfer.info/patronus';
