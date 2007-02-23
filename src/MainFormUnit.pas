@@ -314,7 +314,7 @@ end;
 
 procedure TMainForm.CloseStore;
 begin
-  PWItemStore.Clear;
+  PWItemStore.Close;
   CurrentKey := '';
   CurrentStoreFile := '';
   GUIUpdatePasswordList;
@@ -729,6 +729,7 @@ begin
         end
         else begin
           PWItemStore.Clear;
+          PWItemStore.SaveToFile(SelectedStoreFile, Key);  // create initial empty store
           CanBreak := True;
         end;
 

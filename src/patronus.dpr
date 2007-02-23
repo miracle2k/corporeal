@@ -1,6 +1,5 @@
 program patronus;
 
-// TODO: handle multipe instances
 // TODO: enable xml export
 // TODO: allow change of master password
 // TODO: on choose now key: either show in cleartext or require repeat

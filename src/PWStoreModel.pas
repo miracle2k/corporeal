@@ -64,13 +64,16 @@ type
   private
     FItems: TList;
     FLastAutoID: Cardinal;
+    FStoreFileStream: TFileStream;
   protected
     function NextID: Cardinal;
+    procedure CloseOpenFilestream;
   public
     constructor Create; virtual;
     destructor Destroy; override;
   public
     procedure Clear;
+    procedure Close;
     function Add: TPWItem;
     function Remove(Item: TPWItem): Integer;
     procedure SaveToFile(AFilename, APassword: string);
@@ -149,10 +152,29 @@ begin
   end;
 end;
 
+procedure TPWItemStore.Close;
+begin
+  try
+    Clear;
+  finally
+    CloseOpenFilestream;
+  end;
+end;
+
+procedure TPWItemStore.CloseOpenFilestream;
+begin
+  if FStoreFileStream <> nil then
+  begin
+    FreeAndNil(FStoreFileStream);
+    FStoreFileStream := nil;
+  end;
+end;
+
 constructor TPWItemStore.Create;
 begin
-   FItems := TList.Create;
-   FLastAutoID := 0;
+  FItems := TList.Create;
+  FLastAutoID := 0;
+  FStoreFileStream := nil;   
 end;
 
 destructor TPWItemStore.Destroy;
@@ -162,6 +184,7 @@ begin
   finally
     FItems.Free;
   end;
+  CloseOpenFilestream;
   inherited;
 end;
 
@@ -178,7 +201,6 @@ end;
 procedure TPWItemStore.LoadFromFile(AFilename, APassword: string);
 var
   MemoryStream: TMemoryStream;
-  FileStream: TFileStream;
   AESCipher: TDCP_rijndael;
   I, NumItems: Integer;
 
@@ -206,12 +228,13 @@ begin
   Clear;
   
   // open the file and decrypt to memory stream
-  FileStream := TFileStream.Create(AFilename, fmOpenRead);
+  CloseOpenFilestream;
+  FStoreFileStream := TFileStream.Create(AFilename, fmOpenReadWrite or fmShareExclusive);
   MemoryStream := TMemoryStream.Create;
   AESCipher := TDCP_rijndael.Create(nil);
   try
     AESCipher.InitStr(APassword, TDCP_sha512);
-    AESCipher.DecryptStream(FileStream, MemoryStream, FileStream.Size);
+    AESCipher.DecryptStream(FStoreFileStream, MemoryStream, FStoreFileStream.Size);
 
     MemoryStream.Position := 0;
 
@@ -236,8 +259,8 @@ begin
     // read binlog
   finally
     MemoryStream.Free;
-    FileStream.Free;
-    AESCipher.Free;  
+    AESCipher.Free;
+    // do not close FStoreFileStream, keep the file open
   end;
 end;
 
@@ -256,7 +279,6 @@ end;
 procedure TPWItemStore.SaveToFile(AFilename, APassword: string);
 var
   MemoryStream: TMemoryStream;
-  FileStream: TFileStream;
   AESCipher: TDCP_rijndael;
   I: Integer;
 
@@ -297,14 +319,21 @@ begin
 
     // now encrypt everything and output to file stream
     AESCipher := TDCP_rijndael.Create(nil);
-    FileStream := TFileStream.Create(AFilename, fmCreate);
+    // use existing file stream, or create a new one
+    if FStoreFileStream = nil then
+      FStoreFileStream := TFileStream.Create(AFilename, fmCreate or fmShareExclusive)
+    else begin
+      FStoreFileStream.Size := 0;
+      FStoreFileStream.Position := 0;
+    end;
+    
     try
       MemoryStream.Position := 0;
       AESCipher.InitStr(APassword, TDCP_sha512);
-      AESCipher.EncryptStream(MemoryStream, FileStream, MemoryStream.Size)
+      AESCipher.EncryptStream(MemoryStream, FStoreFileStream, MemoryStream.Size)
     finally
       AESCipher.Free;
-      FileStream.Free;
+      // keep filestream open
     end;
   finally
     MemoryStream.Free;

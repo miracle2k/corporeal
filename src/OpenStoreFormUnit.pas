@@ -103,7 +103,7 @@ begin
   QualityIndicatorBar := TJvGradientProgressBarEx.Create(Self);
   QualityIndicatorBar.BarColorFrom := $000080FF;  // orange
   QualityIndicatorBar.BarColorTo := clLime;
-  QualityIndicatorBar.SetBounds(100, 116, 235, 19);
+  QualityIndicatorBar.SetBounds(120, 116, 257, 19);
   QualityIndicatorBar.Parent := Self;
 
   // Init dialogs

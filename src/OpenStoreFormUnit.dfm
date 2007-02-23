@@ -79,9 +79,9 @@ object OpenStoreForm: TOpenStoreForm
     Caption = 'Enter Key:'
   end
   object QualityLabel: TLabel
-    Left = 366
-    Top = 120
-    Width = 3
+    Left = 393
+    Top = 123
+    Width = 48
     Height = 13
     Alignment = taRightJustify
   end
