@@ -1,17 +1,18 @@
 # Font
 msgid "Tahoma"
-msgstr ""
 
 # App Name
 msgid "Patronus"
-msgstr ""
 
 # JVCL AppStorage/FormStorage
 msgid "TRUE, YES, Y"
-msgstr ""
 
 msgid "FALSE, NO, N"
-msgstr ""
 
 msgid "MainForm"
 
+msgid "MainForm\"
+
+# Used for various labels / fields that have their 
+# caption determined at runtime.
+msgid "%DYMAMICTEXT%"
