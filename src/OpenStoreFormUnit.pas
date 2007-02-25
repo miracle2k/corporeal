@@ -5,10 +5,11 @@ interface
 uses
   Windows, Messages, SysUtils, Variants, Classes, Graphics, Controls, Forms,
   Dialogs, StdCtrls, pngimage, ExtCtrls, JvExControls, JvLabel,
-  JvGradientProgressBarEx, JvExStdCtrls, JvCheckBox, gnugettext;
+  JvGradientProgressBarEx, JvExStdCtrls, JvCheckBox, gnugettext, Buttons,
+  PngSpeedButton, JvEdit;
 
 type
-  TOpenStoreMode = (osmLoad, osmCreate);
+  TOpenStoreMode = (osmLoad, osmCreate, osmChangeKey);
 
   TOpenStoreForm = class(TForm)
     Bevel2: TBevel;
@@ -16,38 +17,48 @@ type
     FormHeaderLabel: TLabel;
     Bevel1: TBevel;
     LoadButton: TButton;
-    Label1: TLabel;
+    SelectedStoreLabel: TLabel;
     StoreFilenameLabel: TJvLabel;
     KeyLabel: TLabel;
-    Button2: TButton;
-    Button3: TButton;
-    KeyEdit: TEdit;
+    CreateNewButton: TButton;
+    ChangeButton: TButton;
+    KeyEdit: TJvEdit;
     SelectStoreDialog: TOpenDialog;
     CreateStoreDialog: TSaveDialog;
     QualityLabel: TLabel;
     Image1: TImage;
     MakeDefaultCheckBox: TJvCheckBox;
-    procedure Button3Click(Sender: TObject);
+    TogglePasswordCharButton: TPngSpeedButton;
+    CancelButton: TButton;
+    procedure ChangeButtonClick(Sender: TObject);
     procedure FormCreate(Sender: TObject);
-    procedure Button2Click(Sender: TObject);
+    procedure CreateNewButtonClick(Sender: TObject);
     procedure KeyEditChange(Sender: TObject);
     procedure FormShow(Sender: TObject);
-  private
-    FSelectedStoreFile: string;
-    FMode: TOpenStoreMode;
-    procedure SetSelectedStoreFile(const Value: string);
-    function GetKey: string;
-    procedure SetMode(const Value: TOpenStoreMode);
+    procedure LoadButtonClick(Sender: TObject);
+    procedure TogglePasswordCharButtonClick(Sender: TObject);
   private
     QualityIndicatorBar: TJvGradientProgressBarEx;
+    NewStoreKey: string; 
+  private
     FCurrentDefaultFile: string;
+    FSelectedStoreFile: string;
+    FMode: TOpenStoreMode;
+    FConfirmationMode: Boolean;
     procedure SetKey(const Value: string);
     procedure SetCurrentDefaultFile(const Value: string);
     function GetMakeDefault: Boolean;
     procedure SetMakeDefault(const Value: Boolean);
+    procedure SetSelectedStoreFile(const Value: string);
+    function GetKey: string;
+    procedure SetMode(const Value: TOpenStoreMode);
+    procedure SetConfirmationMode(const Value: Boolean);
   protected
     procedure UpdateInterface;
     procedure UpdateQualityIndicator;
+  protected
+    // Some modes, like osmCreate and osmChange, require a key to be confirmed
+    property ConfirmationMode: Boolean read FConfirmationMode write SetConfirmationMode;
   public
     procedure Reset;
   public
@@ -64,11 +75,12 @@ var
 implementation
 
 uses
-  Utilities, VistaCompat;
+  TaskDialog,
+  Core, Utilities, VistaCompat;
 
 {$R *.dfm}
 
-procedure TOpenStoreForm.Button2Click(Sender: TObject);
+procedure TOpenStoreForm.CreateNewButtonClick(Sender: TObject);
 begin
   if CreateStoreDialog.Execute then
   begin
@@ -78,7 +90,7 @@ begin
   end;
 end;
 
-procedure TOpenStoreForm.Button3Click(Sender: TObject);
+procedure TOpenStoreForm.ChangeButtonClick(Sender: TObject);
 begin
   if SelectStoreDialog.Execute then
   begin
@@ -89,9 +101,6 @@ begin
 end;
 
 procedure TOpenStoreForm.FormCreate(Sender: TObject);
-resourcestring
-   PatronusFilter = 'Patronus Store Files (*.patronus)';
-   AllFilesFilter = 'All Files (*.*)';
 begin
   // localize
   TranslateComponent(Self);
@@ -103,16 +112,20 @@ begin
   QualityIndicatorBar := TJvGradientProgressBarEx.Create(Self);
   QualityIndicatorBar.BarColorFrom := $000080FF;  // orange
   QualityIndicatorBar.BarColorTo := clLime;
-  QualityIndicatorBar.SetBounds(120, 116, 257, 19);
+  QualityIndicatorBar.SetBounds(126, 116, 257, 19);
   QualityIndicatorBar.Parent := Self;
 
-  // Init dialogs
-  SelectStoreDialog.Filter := PatronusFilter+'|*.patronus|'+AllFilesFilter+'|*.*';
+  // init dialogs
+  SelectStoreDialog.Filter := _(PatronusFilter)+'|*.patronus|'+_(AllFilesFilter)+'|*.*';
   SelectStoreDialog.DefaultExt := 'patronus';
   CreateStoreDialog.Filter := SelectStoreDialog.Filter;
   CreateStoreDialog.DefaultExt := SelectStoreDialog.DefaultExt;
 
-  // Default values
+  // init some other stuff
+  TogglePasswordCharButton.Hint := _(TogglePasswordCharHint);
+  CancelButton.Left := LoadButton.Left - CancelButton.Width - 5;
+
+  // default values
   Reset;
 end;
 
@@ -138,6 +151,46 @@ begin
   UpdateQualityIndicator;
 end;
 
+procedure TOpenStoreForm.LoadButtonClick(Sender: TObject);
+begin
+  // for some modes, we do need to confirm the entered key
+  if ((Mode = osmCreate) or (Mode = osmChangeKey)) and (not ConfirmationMode) then
+  begin
+    NewStoreKey := Key;
+    ConfirmationMode := True;
+  end
+  // otherwise, check if keys match, and if yes, return OK
+  else if ((Mode = osmCreate) or (Mode = osmChangeKey)) then
+  begin
+    if NewStoreKey = Key then
+      ModalResult := mrOk
+    else
+    begin
+      with TTaskDialog.Create(Self) do begin
+        DialogPosition := dpScreenCenter;
+        Title := _('Error');
+        Instruction := _('Keys do not match.');
+        if Mode = osmCreate then        
+          Content := _('You entered two different keys for the new store. Please '+
+            'try again, or click ''Create New'' to restart the procedure and choose '+
+            'a new key.')
+        else
+          Content := _('You entered two different keys. Please try again. Click cancel '+
+            'if you decide not to change the master key of this store.');
+        Icon := tiError;
+        Execute;
+      end;
+      Key := '';
+      KeyEdit.SetFocus;
+    end;
+  end
+  // if  mode = load, then go ahead and try with current key 
+  else if Mode = osmLoad then
+  begin
+    ModalResult := mrOk;
+  end;
+end;
+
 procedure TOpenStoreForm.Reset;
 begin
   // Default values
@@ -145,6 +198,18 @@ begin
   CurrentDefaultFile := '';
   Mode := osmLoad;
   Key := '';
+  NewStoreKey := '';
+  ConfirmationMode := False;
+end;
+
+procedure TOpenStoreForm.SetConfirmationMode(const Value: Boolean);
+begin
+  FConfirmationMode := Value;
+  // clear current key
+  Key := '';
+  // update the interface and focus the key edit automatically
+  UpdateInterface;
+  if KeyEdit.CanFocus then KeyEdit.SetFocus;
 end;
 
 procedure TOpenStoreForm.SetCurrentDefaultFile(const Value: string);
@@ -160,7 +225,12 @@ end;
 
 procedure TOpenStoreForm.SetKey(const Value: string);
 begin
+  // bug in JvEdit? if ProtectedPasswords=True, this doesn't function.
+  // try to work around it for now, but we need this fixed later
+  // TODO: our own ProtectPasswords/Secure Edit implementation?
+  KeyEdit.ProtectPassword := False;
   KeyEdit.Text := Value;
+  KeyEdit.ProtectPassword := True;  
 end;
 
 procedure TOpenStoreForm.SetMakeDefault(const Value: Boolean);
@@ -171,6 +241,14 @@ end;
 procedure TOpenStoreForm.SetMode(const Value: TOpenStoreMode);
 begin
   FMode := Value;
+  
+  // Reset entered key value
+  Key := '';
+  NewStoreKey := '';
+  // Reset Password Char setting
+  TogglePasswordCharButton.Down := True;
+  TogglePasswordCharButtonClick(nil);
+
   UpdateInterface;
 end;
 
@@ -181,42 +259,72 @@ begin
   MakeDefaultCheckBox.Checked := Value = CurrentDefaultFile;
 end;
 
+procedure TOpenStoreForm.TogglePasswordCharButtonClick(Sender: TObject);
+begin
+  KeyEdit.ThemedPassword := TogglePasswordCharButton.Down;
+end;
+
 procedure TOpenStoreForm.UpdateInterface;
 begin
+  // Depending on current mode, change visibility/enabled state of some controls
+  ChangeButton.Visible := Mode <> osmChangeKey;
+  CreateNewButton.Visible := Mode <> osmChangeKey;
+  MakeDefaultCheckBox.Visible := Mode <> osmChangeKey;
+  CancelButton.Visible := Mode = osmChangeKey;
+  TogglePasswordCharButton.Visible := (Mode = osmChangeKey) or (Mode = osmCreate);
+  QualityIndicatorBar.Visible := (Mode = osmChangeKey) or (Mode = osmCreate);
+  QualityLabel.Visible := (Mode = osmChangeKey) or (Mode = osmCreate);
+  UpdateQualityIndicator;
+
+  // Depending on wether a store is selected, show/hide/disable/enable stuff 
   if SelectedStoreFile <> '' then
   begin
     StoreFilenameLabel.Caption := SelectedStoreFile;
     StoreFilenameLabel.Hint := SelectedStoreFile;
-    // Check if store file exists - if not, this is a new file and we need
-    // to change the label of the master key input edit.
-    if Mode = osmLoad then
-    begin
-      KeyLabel.Caption := _('Enter Key:');
-      LoadButton.Caption := _('Load');
-      QualityIndicatorBar.Visible := False;
-      QualityLabel.Visible := False;
-    end else
-    begin
-      KeyLabel.Caption := _('Choose Key:');
-      LoadButton.Caption := _('Create');
-      QualityIndicatorBar.Visible := True;
-      QualityLabel.Visible := True;
-      UpdateQualityIndicator;
-    end;
     KeyLabel.Visible := True;
     KeyEdit.Visible := True;
     LoadButton.Enabled := True;
     MakeDefaultCheckBox.Enabled := True;
-  end else
-  begin
+  end
+  else begin
     StoreFilenameLabel.Caption := _('(none)');
-    QualityIndicatorBar.Visible := False;
     QualityLabel.Visible := False;
-    LoadButton.Caption := _('Load');
     KeyLabel.Visible := False;
     KeyEdit.Visible := False;
     LoadButton.Enabled := False;
-    MakeDefaultCheckBox.Enabled := False;    
+    MakeDefaultCheckBox.Enabled := False;
+  end;
+
+  // Set caption
+  if Mode = osmChangeKey then
+    Caption := _('Change Master Key')
+  else
+    Caption := _('Choose / Create Password Store');
+
+  // Depending on current mode, change captions
+  if (Mode = osmCreate) then
+  begin
+    LoadButton.Caption := _('Create');
+    FormHeaderLabel.Caption := _('Create New Password Store');
+    SelectedStoreLabel.Caption := _('Store To Create:');
+    if not ConfirmationMode then
+      KeyLabel.Caption := _('Choose Key:')
+    else
+      KeyLabel.Caption := _('Confirm Key:');
+  end
+  else if Mode = osmChangeKey then
+  begin
+    FormHeaderLabel.Caption := Caption;
+    LoadButton.Caption := _('Change');
+    SelectedStoreLabel.Caption := _('Current Store:');
+    KeyLabel.Caption := _('New Key:');
+  end else
+  // osmLoad
+  begin
+    KeyLabel.Caption := _('Enter Key:');
+    LoadButton.Caption := _('Load');
+    SelectedStoreLabel.Caption := _('Selected Store:');
+    FormHeaderLabel.Caption := _('Open Password Store');
   end;
 end;
 

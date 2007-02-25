@@ -10,7 +10,7 @@ uses
   Windows, Messages, SysUtils, Variants, Classes, Graphics, Controls, Forms,
   Dialogs, StdCtrls, TntStdCtrls, ExtCtrls, pngimage, Buttons, TntButtons,
   PngSpeedButton, JvExControls, JvGradientProgressBarEx, JvComponentBase,
-  JvBalloonHint, JvProgressBar;
+  JvBalloonHint, JvProgressBar, JvExStdCtrls, JvEdit;
 
 type
   TItemPropertiesForm = class(TForm)
@@ -19,9 +19,9 @@ type
     Label4: TLabel;
     TitleEdit: TTntEdit;
     UsernameEdit: TTntEdit;
-    PasswordEdit: TTntEdit;
+    PasswordEdit: TJvEdit;
     Label6: TLabel;
-    PasswordRepeatEdit: TTntEdit;
+    PasswordRepeatEdit: TJvEdit;
     Label3: TLabel;
     NotesMemo: TTntMemo;
     Button1: TButton;
@@ -62,7 +62,7 @@ type
 implementation
 
 uses
-  Utilities, VistaCompat, PasswordGeneratorFormUnit;
+  Core, Utilities, VistaCompat, PasswordGeneratorFormUnit;
 
 {$R *.dfm}
 
@@ -111,6 +111,7 @@ begin
   QualityIndicatorBar.Parent := Self;
 
   // initialize everything
+  TogglePasswordCharButton.Hint := _(TogglePasswordCharHint);  
   TogglePasswordCharButtonClick(nil);
   UpdateQualityIndicator;
   EditMode := False;
@@ -162,14 +163,8 @@ end;
 
 procedure TItemPropertiesForm.TogglePasswordCharButtonClick(Sender: TObject);
 begin
-  if TogglePasswordCharButton.Down then begin
-    // TODO: use 149 for dot?
-    PasswordEdit.PasswordChar := '*';
-    PasswordRepeatEdit.PasswordChar := '*';
-  end else begin
-    PasswordEdit.PasswordChar := #0;
-    PasswordRepeatEdit.PasswordChar := #0;
-  end  
+  PasswordEdit.ThemedPassword := TogglePasswordCharButton.Down;
+  PasswordRepeatEdit.ThemedPassword := TogglePasswordCharButton.Down;
 end;
 
 procedure TItemPropertiesForm.UpdateQualityIndicator;

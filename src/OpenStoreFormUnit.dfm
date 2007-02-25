@@ -2,7 +2,7 @@ object OpenStoreForm: TOpenStoreForm
   Left = 0
   Top = 0
   BorderStyle = bsDialog
-  Caption = 'Choose / Create Password Store'
+  Caption = '%DYMAMICTEXT%'
   ClientHeight = 184
   ClientWidth = 476
   Color = clBtnFace
@@ -42,20 +42,21 @@ object OpenStoreForm: TOpenStoreForm
     ExplicitTop = 140
     ExplicitWidth = 424
   end
-  object Label1: TLabel
-    Left = 31
+  object SelectedStoreLabel: TLabel
+    Left = 21
     Top = 58
-    Width = 74
+    Width = 93
     Height = 13
     Alignment = taRightJustify
-    Caption = 'Selected Store:'
+    Caption = '%DYMAMICTEXT%'
   end
   object StoreFilenameLabel: TJvLabel
-    Left = 120
+    Left = 126
     Top = 58
     Width = 257
     Height = 13
     AutoSize = False
+    Caption = '%DYMAMICTEXT%'
     Font.Charset = DEFAULT_CHARSET
     Font.Color = clWindowText
     Font.Height = -11
@@ -71,19 +72,58 @@ object OpenStoreForm: TOpenStoreForm
     TextEllipsis = tePathEllipsis
   end
   object KeyLabel: TLabel
-    Left = 54
+    Left = 21
     Top = 93
-    Width = 51
+    Width = 93
     Height = 13
     Alignment = taRightJustify
-    Caption = 'Enter Key:'
+    Caption = '%DYMAMICTEXT%'
   end
   object QualityLabel: TLabel
     Left = 393
     Top = 123
-    Width = 48
+    Width = 93
     Height = 13
-    Alignment = taRightJustify
+    Caption = '%DYMAMICTEXT%'
+  end
+  object TogglePasswordCharButton: TPngSpeedButton
+    Left = 393
+    Top = 90
+    Width = 23
+    Height = 22
+    AllowAllUp = True
+    GroupIndex = 1
+    Down = True
+    OnClick = TogglePasswordCharButtonClick
+    PngImage.Data = {
+      89504E470D0A1A0A0000000D49484452000000100000001008060000001FF3FF
+      610000000774494D45000000000000000973942E0000001774455874536F6674
+      7761726500474C44504E472076657220332E347185A4E10000000874704E4747
+      4C4433000000004A80291F000002E64944415478DA75935D4893611480CFF6CD
+      6D2A73D36D31982365A4BBD0320469118425821715F443505097B130AC46358A
+      416584374598232C86FD5CA81114D1922C57D394B9564BA74E71CE4D5DD34DDD
+      9CBA3FF7D3597EEAB4FAE0B978CF7BCEF39EEFFDA1C096AFA5A545C0E7F3E55C
+      2EB78A46A365F6F5F5BD52ABD50FB55AAD0BA7A34822359F923A686A6A129797
+      976B44B9B985A1580C964261882CF8E09D46F35126939DC3945F48F8BF02BD5E
+      DF51565676C0EE7245544AA58E32E7A356ABEA0F8E5A2C4B72B9BCA6BFBF5F83
+      69EED42ED605FAEE6E3A572070A4A7B305DA279746F5ED2F4C953B8BC4922B6D
+      A523665350A1B85667B1585E62AA95FC952D02458138F398DA1426382C21BD32
+      26C87311DEE81E98986885A1E1DE48E3E51A956ECAF50C538790954D829EFDBC
+      A305B5BEFA19FE7BA1C7CD8692A223C0664E83CF2601A3F339B8DD2690FCB83E
+      37D8E36D3E6388D762C9FC5A177F04F35FE83E463E853D60FB00D3013A487927
+      809FE384B81360F25B1E26514190EF00CB4F62ACE44EE42C960C22BE7581D798
+      E6CFDAB1C232EB6530EBE6C06E50418EC80F10C0492AC2C49E7D54F8DEC59892
+      DE0B5EC5888E3C11B2834E863F7B5F9805B338B023CB4808494708240D05612A
+      18B50CE7DE5B4125463E21931B82761494A22059A45D5D35C1C6253AB381424F
+      03C1290FC430D5F816058A7F08BC6F187E4E110AA264632C8C0D3061EC810878
+      D2188894363C78ECE035DD29AD0EFD2D987DCAF4738B43AB820C240B6071840E
+      56A508B2764541DCE880E03801BA0686BDEA7EE026D9E786E0F3214E83F4A4FF
+      3C4318A7400106B201FC7D0C703EE202EFF03250B72F461FDF250CCD1D0983D9
+      1F4D16F7923772FD22716F17665EB85813BCC13A9EA0C571D3421E4ADCDE452C
+      7D6EA359D5DA88C1341F1BC6BC316404994282A9022C015E6B45465DF1E95885
+      CD4C04BA8DB171E374D4F6D51AB704E30907793EC91D5A40226BEF21F531250F
+      6C1B224184E44D9B4366104F72AFC997B8E939FF06B5353B205D6151BB000000
+      0049454E44AE426082}
   end
   object Panel1: TPanel
     Left = 0
@@ -97,11 +137,11 @@ object OpenStoreForm: TOpenStoreForm
     ParentBackground = False
     TabOrder = 0
     object FormHeaderLabel: TLabel
-      Left = 45
+      Left = 44
       Top = 11
-      Width = 161
+      Width = 148
       Height = 18
-      Caption = 'Open Password Store'
+      Caption = '%DYMAMICTEXT%'
       Font.Charset = DEFAULT_CHARSET
       Font.Color = clWindowText
       Font.Height = -15
@@ -191,39 +231,41 @@ object OpenStoreForm: TOpenStoreForm
     Width = 75
     Height = 25
     Anchors = [akRight, akBottom]
-    Caption = 'Load'
+    Caption = '%DYMAMICTEXT%'
     Default = True
-    ModalResult = 1
-    TabOrder = 1
+    TabOrder = 3
+    OnClick = LoadButtonClick
   end
-  object Button2: TButton
+  object CreateNewButton: TButton
     Left = 8
     Top = 151
     Width = 113
     Height = 25
     Anchors = [akLeft, akBottom]
     Caption = 'Create New'
-    TabOrder = 2
-    OnClick = Button2Click
+    TabOrder = 6
+    OnClick = CreateNewButtonClick
   end
-  object Button3: TButton
+  object ChangeButton: TButton
     Left = 393
     Top = 52
     Width = 75
     Height = 25
     Anchors = [akTop, akRight]
     Caption = 'Change'
-    TabOrder = 3
-    OnClick = Button3Click
+    TabOrder = 1
+    OnClick = ChangeButtonClick
   end
-  object KeyEdit: TEdit
-    Left = 120
+  object KeyEdit: TJvEdit
+    Left = 126
     Top = 90
     Width = 257
     Height = 21
+    ProtectPassword = True
+    Modified = False
+    ThemedPassword = True
     Anchors = [akLeft, akTop, akRight]
-    PasswordChar = '*'
-    TabOrder = 4
+    TabOrder = 2
     OnChange = KeyEditChange
   end
   object MakeDefaultCheckBox: TJvCheckBox
@@ -246,6 +288,17 @@ object OpenStoreForm: TOpenStoreForm
     HotTrackFont.Style = []
     Layout = tlTop
     LeftText = True
+  end
+  object CancelButton: TButton
+    Left = 127
+    Top = 151
+    Width = 75
+    Height = 25
+    Cancel = True
+    Caption = 'Cancel'
+    ModalResult = 2
+    TabOrder = 4
+    Visible = False
   end
   object SelectStoreDialog: TOpenDialog
     Options = [ofHideReadOnly, ofPathMustExist, ofFileMustExist, ofEnableSizing]

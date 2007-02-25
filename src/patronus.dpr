@@ -1,9 +1,6 @@
 program patronus;
 
 // TODO: enable xml export
-// TODO: allow change of master password
-// TODO: on choose now key: either show in cleartext or require repeat
-// TODO: change task dialog appearance on non-vista ( plus position )
 
 uses
   gnugettext,

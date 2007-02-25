@@ -201,23 +201,27 @@ object ItemPropertiesForm: TItemPropertiesForm
     Anchors = [akLeft, akTop, akRight]
     TabOrder = 1
   end
-  object PasswordEdit: TTntEdit
+  object PasswordEdit: TJvEdit
     Left = 90
     Top = 112
     Width = 215
     Height = 21
+    ProtectPassword = True
+    Modified = False
+    ThemedPassword = True
     Anchors = [akLeft, akTop, akRight]
-    PasswordChar = '*'
     TabOrder = 2
     OnChange = PasswordEditChange
   end
-  object PasswordRepeatEdit: TTntEdit
+  object PasswordRepeatEdit: TJvEdit
     Left = 90
     Top = 139
     Width = 215
     Height = 21
+    ProtectPassword = True
+    Modified = False
+    ThemedPassword = True
     Anchors = [akLeft, akTop, akRight]
-    PasswordChar = '*'
     TabOrder = 3
   end
   object NotesMemo: TTntMemo

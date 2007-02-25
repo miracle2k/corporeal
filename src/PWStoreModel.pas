@@ -17,12 +17,14 @@ type
     FPassword: WideString;
     FURL: WideString;
     FUsername: WideString;
+    FCreationTime: TDateTime;
     function GetID: Cardinal;
     procedure SetNotes(const Value: WideString);
     procedure SetPassword(const Value: WideString);
     procedure SetTitle(const Value: WideString);
     procedure SetURL(const Value: WideString);
     procedure SetUsername(const Value: WideString);
+    procedure SetCreationTime(const Value: TDateTime);
   public
     constructor Create(ItemID: Cardinal); virtual;
     destructor Destroy; override;
@@ -33,6 +35,7 @@ type
     property Password: WideString read FPassword write SetPassword;
     property URL: WideString read FURL write SetURL;
     property Notes: WideString read FNotes write SetNotes;
+    property CreationTime: TDateTime read FCreationTime write SetCreationTime;
   end;
 
   // In order to synchronize between multiple computers, we log each and
@@ -95,6 +98,7 @@ var
 constructor TPWItem.Create(ItemID: Cardinal);
 begin
   FID := ItemID;
+  FCreationTime := 0;
 end;
 
 destructor TPWItem.Destroy;
@@ -105,6 +109,11 @@ end;
 function TPWItem.GetID: Cardinal;
 begin
   Result := FID;
+end;
+
+procedure TPWItem.SetCreationTime(const Value: TDateTime);
+begin
+  FCreationTime := Value;
 end;
 
 procedure TPWItem.SetNotes(const Value: WideString);
@@ -137,6 +146,7 @@ end;
 function TPWItemStore.Add: TPWItem;
 begin
   Result := TPWItem.Create(NextID);
+  Result.CreationTime := Now;
   FItems.Add(Result);
 end;
 
@@ -222,6 +232,10 @@ var
   begin
     MemoryStream.ReadBuffer(Result, SizeOf(Result));
   end;
+  function ReadFloat: Double;
+  begin
+    MemoryStream.ReadBuffer(Result, SizeOf(Result));
+  end;
 
 begin
   // clear all the current items
@@ -229,38 +243,49 @@ begin
   
   // open the file and decrypt to memory stream
   CloseOpenFilestream;
-  FStoreFileStream := TFileStream.Create(AFilename, fmOpenReadWrite or fmShareExclusive);
-  MemoryStream := TMemoryStream.Create;
-  AESCipher := TDCP_rijndael.Create(nil);
   try
-    AESCipher.InitStr(APassword, TDCP_sha512);
-    AESCipher.DecryptStream(FStoreFileStream, MemoryStream, FStoreFileStream.Size);
+    FStoreFileStream := TFileStream.Create(AFilename, fmOpenReadWrite or fmShareExclusive);
+    MemoryStream := TMemoryStream.Create;
+    AESCipher := TDCP_rijndael.Create(nil);
+    try
+      AESCipher.InitStr(APassword, TDCP_sha512);
+      AESCipher.DecryptStream(FStoreFileStream, MemoryStream, FStoreFileStream.Size);
 
-    MemoryStream.Position := 0;
+      MemoryStream.Position := 0;
 
-    // read header
-    if ReadString(Length(PWDB_HEADER)) <> PWDB_HEADER then
-      raise Exception.Create('Invalid header (might be wrong key)');
-    if ReadInteger <> PWDB_VERSION then
-      raise Exception.Create('Invalid file version');
+      // read header
+      if ReadString(Length(PWDB_HEADER)) <> PWDB_HEADER then
+        raise Exception.Create('Invalid header (might be wrong key)');
+      if ReadInteger <> PWDB_VERSION then
+        raise Exception.Create('Invalid file version');
 
-    // read all the items
-    NumItems := ReadInteger;
-    for I := 0 to NumItems - 1 do
-      with Add do
-      begin
-        Title := ReadString;
-        Username := ReadString;
-        Password := ReadString;
-        URL := ReadString;
-        Notes := ReadString;
-      end;
+      // read all the items
+      NumItems := ReadInteger;
+      for I := 0 to NumItems - 1 do
+        with Add do
+        begin
+          Title := ReadString;
+          Username := ReadString;
+          Password := ReadString;
+          URL := ReadString;
+          Notes := ReadString;
+          CreationTime := ReadFloat;
+        end;
 
-    // read binlog
-  finally
-    MemoryStream.Free;
-    AESCipher.Free;
-    // do not close FStoreFileStream, keep the file open
+      // read binlog
+    finally
+      MemoryStream.Free;
+      AESCipher.Free;
+      // do not close FStoreFileStream, keep the file open
+    end;
+  except
+    on E: Exception do
+    begin
+      // if there was an error, make sure we close the file
+      CloseOpenFilestream;
+      // re-raise the exception
+      raise;
+    end;
   end;
 end;
 
@@ -295,6 +320,10 @@ var
   begin
     MemoryStream.WriteBuffer(AInt, SizeOf(AInt));
   end;
+  procedure WriteFloat(AFloat: Double);
+  begin
+    MemoryStream.WriteBuffer(AFloat, SizeOf(AFloat));
+  end;
 
 begin
   // put together everything in memory first
@@ -313,6 +342,7 @@ begin
       WriteString(Items[I].Password);
       WriteString(Items[I].URL);
       WriteString(Items[I].Notes);
+      WriteFloat(Double(Items[I].CreationTime));
     end;
 
     // write binlog

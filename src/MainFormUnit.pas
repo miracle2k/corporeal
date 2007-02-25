@@ -11,8 +11,9 @@ uses
   Windows, Messages, SysUtils, Variants, Classes, Graphics, Controls, Forms,
   Dialogs, TB2Dock, TB2Toolbar, TBX, SpTBXItem, TB2ExtItems, SpTBXEditors,
   TB2Item, VirtualTrees, ImgList, PngImageList, XPMan, ActnList, TntDialogs,
-  Menus, ExtCtrls, Clipbrd, JvComponentBase, JvTrayIcon, JvAppStorage,
-  JvAppRegistryStorage, ApplicationSettings, AppEvnts, JvFormPlacement, StdCtrls;
+  Menus, ExtCtrls, Clipbrd, JvComponentBase, JvTrayIcon, JvAppStorage, ComObj,
+  JvAppRegistryStorage, ApplicationSettings, AppEvnts, JvFormPlacement,
+  StdCtrls;
 
 type
   TPasswordListNode = record
@@ -65,6 +66,8 @@ type
     QuickSearchEdit: TSpTBXEdit;
     QuickSearchEditItem: TTBControlItem;
     AutoLockTimer: TTimer;
+    SaveXMLDialog: TTntSaveDialog;
+    SpTBXItem7: TSpTBXItem;
     procedure PasswordListCompareNodes(Sender: TBaseVirtualTree; Node1,
       Node2: PVirtualNode; Column: TColumnIndex; var Result: Integer);
     procedure ConfigurationItemClick(Sender: TObject);
@@ -101,6 +104,8 @@ type
     procedure FormMouseMove(Sender: TObject; Shift: TShiftState; X, Y: Integer);
     procedure FormMouseDown(Sender: TObject; Button: TMouseButton;
       Shift: TShiftState; X, Y: Integer);
+    procedure SpTBXItem2Click(Sender: TObject);
+    procedure SpTBXItem7Click(Sender: TObject);
   private
     FCurrentKey: string;
     FCurrentStoreFile: string;
@@ -148,7 +153,7 @@ const
 implementation
 
 uses
-  Xdom_4_1, JclFileUtils,
+  Xdom_4_1, JclFileUtils, DateUtils,
   TaskDialog,
   AboutFormUnit, ConfigFormUnit, ItemPropertiesFormUnit, OpenStoreFormUnit,
   VistaCompat, Utilities;
@@ -171,6 +176,7 @@ var
   DomImplementation: TDomImplementation;
   DomDocument: TDomDocument;
   I: Integer;
+  Temp: string;
 
   function ReadString(Nodes: TDomNodeList; Name: string): string;
   var
@@ -201,7 +207,7 @@ begin
       XMLParser.DOMImpl := DomImplementation;
       try
         Screen.Cursor := crHourGlass;
-        // open csv file
+        // open xml file
         DomDocument := XMLParser.ParseFile(OpenXmlDialog.FileName, False);
         // loop through lines
         with DomDocument.ChildNodes.Item(0) do
@@ -221,6 +227,21 @@ begin
                 Username := ReadString(ChildNodes, 'username');
                 Password := ReadString(ChildNodes, 'password');
                 URL := ReadString(ChildNodes, 'url');
+                try
+                  Temp := ReadString(ChildNodes, 'creationtime');
+                  CreationTime := EncodeDateTime(
+                    // e.g. 2007-02-25T14:48:01
+                    StrToInt(Copy(Temp,1,4)),  
+                    StrToInt(Copy(Temp,6,2)),
+                    StrToInt(Copy(Temp,9,2)),
+                    StrToInt(Copy(Temp,12,2)),
+                    StrToInt(Copy(Temp,15,2)),
+                    StrToInt(Copy(Temp,18,2)),
+                    0
+                  );
+                except
+                  CreationTime := Now;
+                end;
                 Notes := ReadString(ChildNodes, 'notes');
               end;
             end;
@@ -292,13 +313,18 @@ end;
 
 procedure TMainForm.AutoLockTimerTimer(Sender: TObject);
 begin
-  // If the form currently is not visible, there is nothing for us to do
-  if not Visible then Exit;
+  // If the form currently is not visible, or not enabled,
+  // there is nothing for us to do; reset the timer, however.
+  if (not Visible) or (not IsWindowEnabled(Handle)) then begin
+    AutoLockTimer.Tag := 0;
+    Exit;
+  end;
 
   // Tag property stores the number of seconds this has been running without
   // being reset.
   AutoLockTimer.Tag := AutoLockTimer.Tag + 1;
 
+  // lock if we have not been used for a given amount of time
   if AutoLockTimer.Tag >= Settings.AutoLockAfter then
   begin
     Lock(True);
@@ -349,6 +375,7 @@ var
 begin
   TaskDialog := TTaskDialog.Create(Self);
   try
+    TaskDialog.DialogPosition := dpOwnerFormCenter;
     TaskDialog.Title := _('Confirmation required');
     TaskDialog.Instruction := _('Are you sure you want to delete the selected items? '+
       'This operation cannot be undone.');
@@ -442,6 +469,7 @@ begin
   TP_GlobalIgnoreClass(TJvAppStorage);
   TP_GlobalIgnoreClass(TJvFormStorage);
   TP_Ignore(OpenXMLDialog, 'DefaultExt');
+  TP_Ignore(SaveXMLDialog, 'DefaultExt');
   TranslateComponent(Self);
 
   // initialize storage
@@ -461,6 +489,9 @@ begin
 
   // init some other stuff
   OpenXMLDialog.DefaultExt := 'xml';
+  OpenXMLDialog.Filter := _(XMLFilter)+'|*.xml|'+_(AllFilesFilter)+'|*.*';
+  SaveXMLDialog.DefaultExt := OpenXMLDialog.DefaultExt;
+  SaveXMLDialog.Filter := OpenXMLDialog.Filter;
 
   // create Password Store object
   PWItemStore := TPWItemStore.Create;
@@ -715,7 +746,8 @@ begin
           begin
             Inc(FailedCount);
             with TTaskDialog.Create(OpenStoreForm) do begin
-              Title := 'Failed';
+              DialogPosition := dpScreenCenter;
+              Title := _('Failed');
               Instruction := _('Failed to open database. Most likely, the key '+
                 'you entered was incorrect.');
               Content := _('It is also possible, however, that '+
@@ -727,6 +759,7 @@ begin
             end;
           end;
         end
+        // Mode = osmCreate/osmCreateConfirm
         else begin
           PWItemStore.Clear;
           PWItemStore.SaveToFile(SelectedStoreFile, Key);  // create initial empty store
@@ -844,6 +877,76 @@ begin
   ShowPasswordsToggleAction.Checked := IsPasswordColumnVisible;
 end;
 
+procedure TMainForm.SpTBXItem2Click(Sender: TObject);
+var
+  OutStream: TFileStream;
+  Temp1, Temp2: string;
+  I: Integer;
+  XMLWriter: TDomToXmlParser;
+  DomImplementation: TDomImplementation;
+  Document: TDomDocument;
+  NewElem: TDomElement;
+
+  function GenerateUUID: string;
+  var
+    I: Integer;
+  begin
+    Result := Lowercase(CreateClassID);
+    for I := Length(Result) downto 1 do
+      if not (Result[I] in ['a'..'z','0'..'9']) then
+        Delete(Result, I, 1);
+  end;
+
+  function AddNode(Parent: TDomElement; TagName, Value: WideString): TDomElement;
+  begin
+    Result := TDomElement.Create(Document, TagName);
+    Parent.AppendChild(Result);
+    // add text node
+    Result.AppendChild(TDomText.Create(Document));
+    Result.ChildNodes.Item(0).NodeValue := Value;
+  end;
+
+begin
+  if SaveXMLDialog.Execute then
+  begin
+    OutStream := TFileStream.Create(SaveXMLDialog.FileName, fmCreate);
+    XMLWriter := TDomToXmlParser.Create(nil);
+    DomImplementation := TDomImplementation.Create(nil);
+    XMLWriter.DOMImpl := DomImplementation;
+    Document := TDomDocument.Create(DomImplementation);
+    Screen.Cursor := crHourGlass;
+    try
+      NewElem := TDomElement.Create(Document, 'pwlist');
+      Document.AppendChild(NewElem);
+      for I := 0 to PWItemStore.Count - 1 do
+      begin
+        NewElem := TDomElement.Create(Document, 'pwentry');
+        Document.FindFirstChildElement.AppendChild(NewElem);
+
+        AddNode(NewElem, 'group', 'Patronus');
+        AddNode(NewElem, 'title', PWItemStore.Items[I].Title);
+        AddNode(NewElem, 'username', PWItemStore.Items[I].Username);
+        AddNode(NewElem, 'password', PWItemStore.Items[I].Password);
+        AddNode(NewElem, 'url', PWItemStore.Items[I].URL);
+        AddNode(NewElem, 'notes', PWItemStore.Items[I].Notes);
+        DateTimeToString(Temp1, 'yyyy-mm-dd', PWItemStore.Items[I].CreationTime);
+        DateTimeToString(Temp2, 'hh:nn:ss', PWItemStore.Items[I].CreationTime);
+        AddNode(NewElem, 'creationtime', Temp1+'T'+Temp2);
+        AddNode(NewElem, 'uuid', GenerateUUID);
+      end;
+
+      // write
+      XMLWriter.WriteToStream(Document, 'UTF-8', OutStream);
+    finally
+      Screen.Cursor := crDefault;
+      OutStream.Free;
+      Document.Free;
+      XMLWriter.Free;
+      DomImplementation.Free;
+    end;
+  end;
+end;
+
 procedure TMainForm.SpTBXItem5Click(Sender: TObject);
 var
   NodeData: PPasswordListNode;
@@ -860,6 +963,28 @@ end;
 procedure TMainForm.SpTBXItem6Click(Sender: TObject);
 begin
   Lock(True);
+end;
+
+procedure TMainForm.SpTBXItem7Click(Sender: TObject);
+begin
+  // ask the user to open a store file / enter a key
+  OpenStoreForm := TOpenStoreForm.Create(Self);
+  with OpenStoreForm do
+  begin
+    try
+      // Init dialog
+      SelectedStoreFile := CurrentStoreFile;
+      Mode := osmChangeKey;
+
+      // show
+      if ShowModal = mrOk then begin
+        CurrentKey := Key;
+        Save;
+      end;
+    finally          
+      Free;
+    end;
+  end;
 end;
 
 procedure TMainForm.StatusBarMouseMove(Sender: TObject; Shift: TShiftState; X,

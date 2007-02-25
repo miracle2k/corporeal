@@ -88,6 +88,10 @@ object MainForm: TMainForm
         object SeparaterItem3: TSpTBXSeparatorItem
           Visible = False
         end
+        object SpTBXItem7: TSpTBXItem
+          Caption = 'Change Master Key'
+          OnClick = SpTBXItem7Click
+        end
         object ShowPasswordsItem: TSpTBXItem
           Caption = 'Show Passwords'
           Action = ShowPasswordsToggleAction
@@ -103,6 +107,7 @@ object MainForm: TMainForm
           end
           object SpTBXItem2: TSpTBXItem
             Caption = 'Export to KeePass XML'
+            OnClick = SpTBXItem2Click
           end
         end
         object SeparaterItem2: TSpTBXSeparatorItem
@@ -1932,16 +1937,16 @@ object MainForm: TMainForm
         Name = 'PngImage12'
         Background = clWindow
       end>
-    Left = 16
-    Top = 128
-  end
-  object XPManifest: TXPManifest
     Left = 48
     Top = 96
   end
+  object XPManifest: TXPManifest
+    Left = 48
+    Top = 256
+  end
   object ActionList: TActionList
     Left = 48
-    Top = 128
+    Top = 160
     object ShowPasswordsToggleAction: TAction
       Caption = 'Show Passwords'
       OnExecute = ShowPasswordsToggleActionExecute
@@ -1965,11 +1970,11 @@ object MainForm: TMainForm
   object OpenXMLDialog: TTntOpenDialog
     Title = 'Select XML file to import'
     Left = 16
-    Top = 160
+    Top = 128
   end
   object PasswordListPopup: TSpTBXPopupMenu
     Images = SmallImages
-    Left = 48
+    Left = 16
     Top = 160
     object SpTBXItem5: TSpTBXItem
       Caption = 'Copy Password'
@@ -1998,8 +2003,8 @@ object MainForm: TMainForm
   object TrayIcon: TJvTrayIcon
     IconIndex = 0
     OnClick = TrayIconClick
-    Left = 48
-    Top = 192
+    Left = 16
+    Top = 256
   end
   object AppStorage: TJvAppRegistryStorage
     StorageOptions.BooleanStringTrueValues = 'TRUE, YES, Y'
@@ -2014,15 +2019,18 @@ object MainForm: TMainForm
     AppStorage = AppStorage
     AppStoragePath = 'MainForm\'
     VersionCheck = fpvcNocheck
-    StoredProps.Strings = (
-      'PasswordList.Header.SortDirection')
     StoredValues = <>
     Left = 16
     Top = 224
   end
   object AutoLockTimer: TTimer
     OnTimer = AutoLockTimerTimer
-    Left = 16
-    Top = 256
+    Left = 48
+    Top = 192
+  end
+  object SaveXMLDialog: TTntSaveDialog
+    Title = 'Export to XML file'
+    Left = 48
+    Top = 128
   end
 end
