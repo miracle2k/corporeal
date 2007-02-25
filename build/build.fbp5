@@ -309,7 +309,7 @@
             <Object Class="TBuildScript" XMLID="{E5A682D5-55CB-413B-AB0F-D9C81A72FFC3}"><Property MultiValue="0" name="BreakPointsStore" type="string"></Property>
               <Property MultiValue="0" name="Name" type="string">Condition</Property>
               <Property MultiValue="0" name="Script" type="string">RequestedAction == 'publish'</Property>
-              <Property MultiValue="0" name="ScriptLanguage" type="string">VBScript</Property>
+              <Property MultiValue="0" name="ScriptLanguage" type="string">JavaScript</Property>
               </Object>
             </Object>
           <Object Class="TGroupAction" XMLID="{39289DA8-A876-49FC-AE5B-FA2BD98F169A}"><Property MultiValue="0" name="ActionComment" type="string"></Property>
