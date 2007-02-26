@@ -1,7 +1,5 @@
 program patronus;
 
-// TODO: enable xml export
-
 uses
   gnugettext,
   Forms,

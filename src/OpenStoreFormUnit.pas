@@ -45,6 +45,7 @@ type
     FSelectedStoreFile: string;
     FMode: TOpenStoreMode;
     FConfirmationMode: Boolean;
+    FDefaultMode: TOpenStoreMode;
     procedure SetKey(const Value: string);
     procedure SetCurrentDefaultFile(const Value: string);
     function GetMakeDefault: Boolean;
@@ -53,6 +54,9 @@ type
     function GetKey: string;
     procedure SetMode(const Value: TOpenStoreMode);
     procedure SetConfirmationMode(const Value: Boolean);
+    procedure SetDefaultMode(const Value: TOpenStoreMode);
+  protected
+    procedure CreateParams(var Params: TCreateParams); override;
   protected
     procedure UpdateInterface;
     procedure UpdateQualityIndicator;
@@ -60,12 +64,15 @@ type
     // Some modes, like osmCreate and osmChange, require a key to be confirmed
     property ConfirmationMode: Boolean read FConfirmationMode write SetConfirmationMode;
   public
+    constructor Create(AOwner: TComponent; ADefaultMode: TOpenStoreMode); reintroduce;
+  public
     procedure Reset;
   public
     property SelectedStoreFile: string read FSelectedStoreFile write SetSelectedStoreFile;
     property CurrentDefaultFile: string read FCurrentDefaultFile write SetCurrentDefaultFile;
     property Key: string read GetKey write SetKey;
     property Mode: TOpenStoreMode read FMode write SetMode;
+    property DefaultMode: TOpenStoreMode read FDefaultMode write SetDefaultMode;
     property MakeDefault: Boolean read GetMakeDefault write SetMakeDefault;
   end;
 
@@ -80,6 +87,15 @@ uses
 
 {$R *.dfm}
 
+constructor TOpenStoreForm.Create(AOwner: TComponent; ADefaultMode: TOpenStoreMode);
+begin
+  DefaultMode := ADefaultMode;
+  FMode := DefaultMode;
+
+  // calls FormCreate
+  inherited Create(AOwner);
+end;
+
 procedure TOpenStoreForm.CreateNewButtonClick(Sender: TObject);
 begin
   if CreateStoreDialog.Execute then
@@ -88,6 +104,14 @@ begin
     Mode := osmCreate;
     KeyEdit.SetFocus;
   end;
+end;
+
+procedure TOpenStoreForm.CreateParams(var Params: TCreateParams);
+begin
+  inherited CreateParams(Params);
+  // Show taskbar button, except when in "change key" mode
+  if Mode <> osmChangeKey then
+    Params.ExStyle := Params.ExStyle and not WS_EX_TOOLWINDOW or WS_EX_APPWINDOW;
 end;
 
 procedure TOpenStoreForm.ChangeButtonClick(Sender: TObject);
@@ -196,7 +220,7 @@ begin
   // Default values
   SelectedStoreFile := '';
   CurrentDefaultFile := '';
-  Mode := osmLoad;
+  Mode := DefaultMode;
   Key := '';
   NewStoreKey := '';
   ConfirmationMode := False;
@@ -221,6 +245,11 @@ begin
     if SelectedStoreFile = '' then
       SelectedStoreFile := Value;
   end;
+end;
+
+procedure TOpenStoreForm.SetDefaultMode(const Value: TOpenStoreMode);
+begin
+  FDefaultMode := Value;
 end;
 
 procedure TOpenStoreForm.SetKey(const Value: string);

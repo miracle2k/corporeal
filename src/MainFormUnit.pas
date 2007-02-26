@@ -116,6 +116,8 @@ type
     Settings: TPatronusSettings;
     LastLoadErrorMsg: string;
   private
+    FLastStoreFile: string;
+    procedure SetLastStoreFile(const Value: string);
     // TODO: encrypt this in memory
     property CurrentKey: string read FCurrentKey write SetCurrentKey;
   protected
@@ -141,6 +143,7 @@ type
     procedure CloseStore;
   public
     property CurrentStoreFile: string read FCurrentStoreFile write SetCurrentStoreFile;
+    property LastStoreFile: string read FLastStoreFile write SetLastStoreFile;
   end;
 
 var
@@ -175,7 +178,7 @@ var
   XMLParser: TXmlToDomParser;
   DomImplementation: TDomImplementation;
   DomDocument: TDomDocument;
-  I: Integer;
+  I, C: Integer;
   Temp: string;
 
   function ReadString(Nodes: TDomNodeList; Name: string): string;
@@ -199,6 +202,7 @@ const
   RootNodeName = 'pwlist';
   ItemNodeName = 'pwentry';
 begin
+  C := 0;
   if OpenXmlDialog.Execute then
     try
       XMLParser := TXmlToDomParser.Create(nil);
@@ -223,6 +227,11 @@ begin
               // add item and read data
               with PWItemStore.Add do
               begin
+                // at this point, we have added a new entry, so inc the counter
+                Inc(C);
+                // read the data of this entry
+                // TODO: maybe we should not add an item when data is not
+                // complete (like a title missing)
                 Title := ReadString(ChildNodes, 'title');
                 Username := ReadString(ChildNodes, 'username');
                 Password := ReadString(ChildNodes, 'password');
@@ -256,8 +265,18 @@ begin
     except
       on E: Exception do
       begin
-        // TODO: show how many very actually imported
-        ShowMessage(E.Message);
+        with TTaskDialog.Create(Self) do begin
+          DialogPosition := dpOwnerFormCenter;
+          Title := _('Failed');
+          Instruction := _('An error occured while trying to import the XML file.');
+          if C > 0 then
+            Content := Format(_('The error message was: "%s".'#13#10+
+              'However, %d items were still sucessfully imported.'), [E.Message, C])
+          else
+            Content := Format(_('The error message was: "%s". No new items were added.'), [E.Message]);
+          Icon := tiError;
+          Execute;
+        end;
       end;
     end;
 end;
@@ -719,11 +738,14 @@ begin
   Result := False;
 
   // ask the user to open a store file / enter a key
-  OpenStoreForm := TOpenStoreForm.Create(Self);
+  OpenStoreForm := TOpenStoreForm.Create(Self, osmLoad);
   with OpenStoreForm do
   begin
     // if there is a default store, use it
     CurrentDefaultFile := Settings.DefaultStore;
+    // we we already have a store open, pre-select that one instead of the default
+    if LastStoreFile <> '' then
+      SelectedStoreFile := LastStoreFile;
 
     FailedCount := 0;
     repeat
@@ -735,7 +757,7 @@ begin
         FailedCount := 0;
       end;
 
-      SetForegroundWindow(Application.Handle);
+      //SetForegroundWindow(Application.Handle);
       PopupParent := Self;
       if ShowModal = mrOk then
       begin
@@ -811,8 +833,22 @@ end;
 
 procedure TMainForm.Save;
 begin
-  PWItemStore.SaveToFile(CurrentStoreFile, CurrentKey);
-  // TODO: handle error
+  try
+    PWItemStore.SaveToFile(CurrentStoreFile, CurrentKey);
+  except
+    on E: Exception do
+      with TTaskDialog.Create(Self) do begin
+        DialogPosition := dpOwnerFormCenter;
+        Title := _('Error');
+        Instruction := _('An error occured while trying to save the password store.');
+          Content := _('This is not good at all. Your last change likely has not been '+
+          'written to disk.'#13#10#13#10'If you''re afraid of losing data, you probably should '+
+          'exit Patronus now and fix the problem before you continue using the current store.');
+        ExpandedText := Format(_('Error message was: "%s"'), [E.Message]);
+        Icon := tiError;
+        Execute;
+      end;
+  end;
 end;
 
 procedure TMainForm.SaveAppSettings;
@@ -847,13 +883,23 @@ var
 const
   DefaultExt = '.patronus';
 begin
-  FCurrentStoreFile := Value;
+  // Always remember the previous value
+  if Value <> FCurrentStoreFile then
+  begin
+    LastStoreFile := FCurrentStoreFile;
+    FCurrentStoreFile := Value;
+  end;
   // Update form caption;  show filename of current store, and
   // exclude the file extension if it's the default one.
   CaptionFilename := ExtractFileName(Value);
   if ExtractFileExt(CaptionFilename) = DefaultExt then
     CaptionFilename := PathRemoveExtension(CaptionFilename);
   Caption := AppShortName + ' ['+CaptionFilename+']';
+end;
+
+procedure TMainForm.SetLastStoreFile(const Value: string);
+begin
+  FLastStoreFile := Value;
 end;
 
 procedure TMainForm.SetPasswordColumnVisibility(Show: Boolean);
@@ -968,7 +1014,7 @@ end;
 procedure TMainForm.SpTBXItem7Click(Sender: TObject);
 begin
   // ask the user to open a store file / enter a key
-  OpenStoreForm := TOpenStoreForm.Create(Self);
+  OpenStoreForm := TOpenStoreForm.Create(Self, osmChangeKey);
   with OpenStoreForm do
   begin
     try
