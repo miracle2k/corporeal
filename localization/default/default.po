@@ -6,8 +6,8 @@
 #, fuzzy
 msgid ""
 msgstr "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2007-02-25 15:27\n"
-"PO-Revision-Date: 2007-02-25 15:27\n"
+"POT-Creation-Date: 2007-02-26 15:39\n"
+"PO-Revision-Date: 2007-02-26 15:39\n"
 "Last-Translator: Somebody <your.email@address.com>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -168,7 +168,7 @@ msgstr ""
 #. MainForm..TopDock..MainToolbar..ControlSubmenuItem..SpTBXItem7..Caption
 #: MainFormUnit.dfm:92
 #. Set caption
-#: OpenStoreFormUnit.pas:300
+#: OpenStoreFormUnit.pas:329
 msgid "Change Master Key"
 msgstr ""
 
@@ -238,7 +238,7 @@ msgstr ""
 
 #. OpenStoreForm..ChangeButton..Caption
 #: OpenStoreFormUnit.dfm:255
-#: OpenStoreFormUnit.pas:318
+#: OpenStoreFormUnit.pas:347
 msgid "Change"
 msgstr ""
 
@@ -314,8 +314,9 @@ msgid "Patronus Store Files (*.patronus)"
 msgstr ""
 
 #: ItemPropertiesFormUnit.pas:95
+#: MainFormUnit.pas:842
 #. otherwise, check if keys match, and if yes, return OK
-#: OpenStoreFormUnit.pas:171
+#: OpenStoreFormUnit.pas:195
 msgid "Error"
 msgstr ""
 
@@ -334,121 +335,155 @@ msgid "Edit Item Properties"
 msgstr ""
 
 #: ItemPropertiesFormUnit.pas:181
-#: OpenStoreFormUnit.pas:342
+#: OpenStoreFormUnit.pas:371
 msgid "%s bits"
 msgstr ""
 
 #. check root node
-#: MainFormUnit.pas:217
+#: MainFormUnit.pas:221
 msgid "Doesn't seem to be a valid KeePass XML "
 "export."
 msgstr ""
 
-#: MainFormUnit.pas:379
+#. e.g. 2007-02-25T14:48:01
+#: MainFormUnit.pas:270
+#. SetForegroundWindow(Application.Handle);
+#: MainFormUnit.pas:772
+msgid "Failed"
+msgstr ""
+
+#: MainFormUnit.pas:271
+msgid "An error occured while trying to import the XML "
+"file."
+msgstr ""
+
+#: MainFormUnit.pas:274
+msgid "The error message was: \"%s\".\n"
+"However, %d items were still sucessfully "
+"imported."
+msgstr ""
+
+#: MainFormUnit.pas:276
+msgid "The error message was: \"%s\". No new items were "
+"added."
+msgstr ""
+
+#: MainFormUnit.pas:398
 msgid "Confirmation required"
 msgstr ""
 
-#: MainFormUnit.pas:381
+#: MainFormUnit.pas:400
 msgid "Are you sure you want to delete the selected items? This operation "
 "cannot be undone."
 msgstr ""
 
-#: MainFormUnit.pas:385
+#: MainFormUnit.pas:404
 msgid "%s items will be deleted."
 msgstr ""
 
 #. Update item count info
-#: MainFormUnit.pas:554
+#: MainFormUnit.pas:573
 msgid "%s items in store"
 msgstr ""
 
-#: MainFormUnit.pas:750
-msgid "Failed"
-msgstr ""
-
-#: MainFormUnit.pas:752
+#: MainFormUnit.pas:774
 msgid "Failed to open database. Most likely, the key you entered was "
 "incorrect."
 msgstr ""
 
-#: MainFormUnit.pas:755
+#: MainFormUnit.pas:777
 msgid "It is also possible, however, that the file you tried to open is not "
 "a correct Patronus Store file, or the chosen store is "
 "damaged."
 msgstr ""
 
-#: MainFormUnit.pas:756
+#: MainFormUnit.pas:778
+#: MainFormUnit.pas:847
 msgid "Error message was: \"%s\""
 msgstr ""
 
-#: OpenStoreFormUnit.pas:172
+#: MainFormUnit.pas:843
+msgid "An error occured while trying to save the password "
+"store."
+msgstr ""
+
+#: MainFormUnit.pas:846
+msgid "This is not good at all. Your last change likely has not been written "
+"to disk.\n"
+"\n"
+"If you're afraid of losing data, you probably should exit Patronus "
+"now and fix the problem before you continue using the current "
+"store."
+msgstr ""
+
+#: OpenStoreFormUnit.pas:196
 msgid "Keys do not match."
 msgstr ""
 
-#: OpenStoreFormUnit.pas:176
+#: OpenStoreFormUnit.pas:200
 msgid "You entered two different keys for the new store. Please try again, "
 "or click 'Create New' to restart the procedure and choose a new "
 "key."
 msgstr ""
 
-#: OpenStoreFormUnit.pas:179
+#: OpenStoreFormUnit.pas:203
 msgid "You entered two different keys. Please try again. Click cancel if you "
 "decide not to change the master key of this "
 "store."
 msgstr ""
 
 #. Depending on wether a store is selected, show/hide/disable/enable stuff
-#: OpenStoreFormUnit.pas:290
+#: OpenStoreFormUnit.pas:319
 msgid "(none)"
 msgstr ""
 
-#: OpenStoreFormUnit.pas:302
+#: OpenStoreFormUnit.pas:331
 msgid "Choose / Create Password Store"
 msgstr ""
 
 #. Depending on current mode, change captions
-#: OpenStoreFormUnit.pas:307
+#: OpenStoreFormUnit.pas:336
 msgid "Create"
 msgstr ""
 
-#: OpenStoreFormUnit.pas:308
+#: OpenStoreFormUnit.pas:337
 msgid "Create New Password Store"
 msgstr ""
 
-#: OpenStoreFormUnit.pas:309
+#: OpenStoreFormUnit.pas:338
 msgid "Store To Create:"
 msgstr ""
 
-#: OpenStoreFormUnit.pas:311
+#: OpenStoreFormUnit.pas:340
 msgid "Choose Key:"
 msgstr ""
 
-#: OpenStoreFormUnit.pas:313
+#: OpenStoreFormUnit.pas:342
 msgid "Confirm Key:"
 msgstr ""
 
-#: OpenStoreFormUnit.pas:319
+#: OpenStoreFormUnit.pas:348
 msgid "Current Store:"
 msgstr ""
 
-#: OpenStoreFormUnit.pas:320
+#: OpenStoreFormUnit.pas:349
 msgid "New Key:"
 msgstr ""
 
 #. osmLoad
-#: OpenStoreFormUnit.pas:324
+#: OpenStoreFormUnit.pas:353
 msgid "Enter Key:"
 msgstr ""
 
-#: OpenStoreFormUnit.pas:325
+#: OpenStoreFormUnit.pas:354
 msgid "Load"
 msgstr ""
 
-#: OpenStoreFormUnit.pas:326
+#: OpenStoreFormUnit.pas:355
 msgid "Selected Store:"
 msgstr ""
 
-#: OpenStoreFormUnit.pas:327
+#: OpenStoreFormUnit.pas:356
 msgid "Open Password Store"
 msgstr ""
 

@@ -6,8 +6,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Patronus 1.0\n"
-"POT-Creation-Date: 2007-02-25 15:27\n"
-"PO-Revision-Date: 2007-02-25 13:12+0100\n"
+"POT-Creation-Date: 2007-02-26 15:39\n"
+"PO-Revision-Date: 2007-02-26 15:42+0100\n"
 "Last-Translator: Michael Elsdörfer <michael@elsdoerfer.info>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -17,432 +17,442 @@ msgstr ""
 
 #. AboutForm..Caption
 #. MainForm..TopDock..MainToolbar..ControlSubmenuItem..AboutItem..Caption
-#: AboutFormUnit.dfm:5  MainFormUnit.dfm:122
+#: AboutFormUnit.dfm:5
 msgid "About"
 msgstr "Über"
 
 #. AboutForm..VersionLabel..Caption
-#: AboutFormUnit.dfm:40 
+#: AboutFormUnit.dfm:40
 msgid "Version"
 msgstr "Version"
 
 #. AboutForm..WebsiteLink..Caption
 #. MainForm..PasswordList......WideText
-#: AboutFormUnit.dfm:54  MainFormUnit.dfm:181
+#: AboutFormUnit.dfm:54
 msgid "URL"
 msgstr "URL"
 
 #. AboutForm..OKButton..Caption
 #. ItemPropertiesForm..Button1..Caption
 #. PasswordGeneratorForm..Button1..Caption
-#: AboutFormUnit.dfm:285  ItemPropertiesFormUnit.dfm:240
+#: AboutFormUnit.dfm:285
 #: PasswordGeneratorFormUnit.dfm:91
 msgid "OK"
 msgstr "OK"
 
 #. ConfigForm..Caption
 #. MainForm..TopDock..MainToolbar..ControlSubmenuItem..ConfigurationItem..Caption
-#: ConfigFormUnit.dfm:5  MainFormUnit.dfm:116
+#: ConfigFormUnit.dfm:5
 msgid "Configuration"
 msgstr "Einstellungen"
 
 #. ConfigForm..JvGroupBox1..Caption
-#: ConfigFormUnit.dfm:24 
+#: ConfigFormUnit.dfm:24
 msgid "Enable Online Synchronization"
 msgstr "Online Synchronisation aktivieren"
 
 #. ConfigForm..JvGroupBox1..Label1..Caption
-#: ConfigFormUnit.dfm:37 
+#: ConfigFormUnit.dfm:37
 msgid "API Url:"
 msgstr "API Url:"
 
 #. ItemPropertiesForm..Caption
-#: ItemPropertiesFormUnit.dfm:5 
+#: ItemPropertiesFormUnit.dfm:5
 msgid "Item Properties"
 msgstr "Eintrag"
 
 #. ItemPropertiesForm..Label1..Caption
-#: ItemPropertiesFormUnit.dfm:30 
+#: ItemPropertiesFormUnit.dfm:30
 msgid "Title:"
 msgstr "Titel:"
 
 #. ItemPropertiesForm..Label2..Caption
-#: ItemPropertiesFormUnit.dfm:38 
+#: ItemPropertiesFormUnit.dfm:38
 msgid "Username:"
 msgstr "Username:"
 
 #. ItemPropertiesForm..Label4..Caption
-#: ItemPropertiesFormUnit.dfm:46 
+#: ItemPropertiesFormUnit.dfm:46
 msgid "Password:"
 msgstr "Passwort:"
 
 #. ItemPropertiesForm..Label6..Caption
-#: ItemPropertiesFormUnit.dfm:54 
+#: ItemPropertiesFormUnit.dfm:54
 msgid "Repeat:"
 msgstr "Wiederholen:"
 
 #. ItemPropertiesForm..Label3..Caption
-#: ItemPropertiesFormUnit.dfm:62 
+#: ItemPropertiesFormUnit.dfm:62
 msgid "Notes:"
 msgstr "Notizen:"
 
 #. ItemPropertiesForm..Label7..Caption
-#: ItemPropertiesFormUnit.dfm:89 
+#: ItemPropertiesFormUnit.dfm:89
 msgid "URL:"
 msgstr "URL:"
 
 #. ItemPropertiesForm..TogglePasswordCharButton..Hint
 #. Programmer's name for it: TogglePasswordCharHint
-#: ItemPropertiesFormUnit.dfm:96  Core.pas:17
+#: ItemPropertiesFormUnit.dfm:96
 msgid "Toggle Hide/Show Passwords"
 msgstr "Passwörter anzeigen/verstecken"
 
 #. ItemPropertiesForm..TntSpeedButton2..Hint
-#: ItemPropertiesFormUnit.dfm:136 
+#: ItemPropertiesFormUnit.dfm:136
 msgid "Generate Password"
 msgstr "Passwort generieren"
 
 #. ItemPropertiesForm..Label8..Caption
-#: ItemPropertiesFormUnit.dfm:179 
+#: ItemPropertiesFormUnit.dfm:179
 msgid "Quality:"
 msgstr "Qualität:"
 
 #. ItemPropertiesForm..Button2..Caption
 #. OpenStoreForm..CancelButton..Caption
 #. PasswordGeneratorForm..Button2..Caption
-#: ItemPropertiesFormUnit.dfm:252  OpenStoreFormUnit.dfm:298
+#: ItemPropertiesFormUnit.dfm:252
 #: PasswordGeneratorFormUnit.dfm:81
 msgid "Cancel"
 msgstr "Abbrechen"
 
 #. ItemPropertiesForm..Panel1..FormHeaderLabel..Caption
-#: ItemPropertiesFormUnit.dfm:353  ItemPropertiesFormUnit.pas:141
+#: ItemPropertiesFormUnit.dfm:353
 msgid "Add New Item"
 msgstr "Neuen Eintrag hinzufügen"
 
 #. MainForm..TopDock..MainToolbar..AddItem..Caption
-#: MainFormUnit.dfm:45 
+#: MainFormUnit.dfm:45
 msgid "Add"
 msgstr "Neu"
 
 #. MainForm..TopDock..MainToolbar..SpTBXItem4..Caption
-#: MainFormUnit.dfm:51 
+#: MainFormUnit.dfm:51
 msgid "Edit"
 msgstr "Bearbeiten"
 
 #. MainForm..TopDock..MainToolbar..DeleteItem..Caption
 #. MainForm..ActionList..DeleteItemAction..Caption
 #. MainForm..PasswordListPopup..SpTBXItem3..Caption
-#: MainFormUnit.dfm:55  MainFormUnit.dfm:1956 MainFormUnit.dfm:1992
+#: MainFormUnit.dfm:55
 msgid "Delete"
 msgstr "Löschen"
 
 #. MainForm..TopDock..MainToolbar..SearchLabelItem..Caption
-#: MainFormUnit.dfm:62 
+#: MainFormUnit.dfm:62
 msgid "Search:"
 msgstr "Suchen:"
 
 #. MainForm..TopDock..MainToolbar..ControlSubmenuItem..Caption
-#: MainFormUnit.dfm:71 
+#: MainFormUnit.dfm:71
 msgid "Control"
 msgstr "Aktionen"
 
 #. MainForm..TopDock..MainToolbar..ControlSubmenuItem..SpTBXItem6..Caption
-#: MainFormUnit.dfm:76 
+#: MainFormUnit.dfm:76
 msgid "Lock Workspace"
 msgstr "Arbeitsfläche sperren"
 
 #. MainForm..TopDock..MainToolbar..ControlSubmenuItem..SyncItem..Caption
-#: MainFormUnit.dfm:84 
+#: MainFormUnit.dfm:84
 msgid "Force Sync"
 msgstr "Sync erzwingen"
 
 #. MainForm..TopDock..MainToolbar..ControlSubmenuItem..SpTBXItem7..Caption
 #. Set caption
-#: MainFormUnit.dfm:92  OpenStoreFormUnit.pas:300
+#: MainFormUnit.dfm:92
 msgid "Change Master Key"
 msgstr "Hauptschlüssel ändern"
 
 #. MainForm..TopDock..MainToolbar..ControlSubmenuItem..ShowPasswordsItem..Caption
 #. MainForm..ActionList..ShowPasswordsToggleAction..Caption
-#: MainFormUnit.dfm:96  MainFormUnit.dfm:1951
+#: MainFormUnit.dfm:96
 msgid "Show Passwords"
 msgstr "Passwörter zeigen"
 
 #. MainForm..TopDock..MainToolbar..ControlSubmenuItem..SpTBXSubmenuItem1..Caption
-#: MainFormUnit.dfm:103 
+#: MainFormUnit.dfm:103
 msgid "KeePass Exchange"
 msgstr "KeePass Datenaustausch"
 
 #. MainForm..TopDock..MainToolbar..ControlSubmenuItem..SpTBXSubmenuItem1..AddFromCSVItem..Caption
-#: MainFormUnit.dfm:105 
+#: MainFormUnit.dfm:105
 msgid "Add from KeePass XML"
 msgstr "Aus KeePass XML importieren"
 
 #. MainForm..TopDock..MainToolbar..ControlSubmenuItem..SpTBXSubmenuItem1..SpTBXItem2..Caption
-#: MainFormUnit.dfm:109 
+#: MainFormUnit.dfm:109
 msgid "Export to KeePass XML"
 msgstr "Nach KeePass XML exportieren"
 
 #. MainForm..PasswordList......WideText
-#: MainFormUnit.dfm:166 
+#: MainFormUnit.dfm:166
 msgid "Title"
 msgstr "Titel"
 
 #. MainForm..PasswordList......WideText
-#: MainFormUnit.dfm:171 
+#: MainFormUnit.dfm:171
 msgid "Username"
 msgstr "Username"
 
 #. MainForm..PasswordList......WideText
-#: MainFormUnit.dfm:176 
+#: MainFormUnit.dfm:176
 msgid "Password"
 msgstr "Passwort"
 
 #. MainForm..ActionList..EditPropertiesAction..Caption
 #. MainForm..PasswordListPopup..SpTBXItem1..Caption
-#: MainFormUnit.dfm:1963  MainFormUnit.dfm:1988
+#: MainFormUnit.dfm:1963
 msgid "Edit Properties"
 msgstr "Eintrag bearbeiten"
 
 #. MainForm..OpenXMLDialog..Title
-#: MainFormUnit.dfm:1971 
+#: MainFormUnit.dfm:1971
 msgid "Select XML file to import"
 msgstr "XML Datei zum Import auswählen"
 
 #. MainForm..PasswordListPopup..SpTBXItem5..Caption
-#: MainFormUnit.dfm:1980 
+#: MainFormUnit.dfm:1980
 msgid "Copy Password"
 msgstr "Passwort  kopieren"
 
 #. MainForm..SaveXMLDialog..Title
-#: MainFormUnit.dfm:2032 
+#: MainFormUnit.dfm:2032
 msgid "Export to XML file"
 msgstr "Nach XML exportieren"
 
 #. OpenStoreForm..CreateNewButton..Caption
-#: OpenStoreFormUnit.dfm:245 
+#: OpenStoreFormUnit.dfm:245
 msgid "Create New"
 msgstr "Neu erstellen"
 
 #. OpenStoreForm..ChangeButton..Caption
-#: OpenStoreFormUnit.dfm:255  OpenStoreFormUnit.pas:318
+#: OpenStoreFormUnit.dfm:255
 msgid "Change"
 msgstr "Ändern"
 
 #. OpenStoreForm..MakeDefaultCheckBox..Caption
-#: OpenStoreFormUnit.dfm:279 
+#: OpenStoreFormUnit.dfm:279
 msgid "Make this store the default"
 msgstr "Als Standard verwenden"
 
 #. PasswordGeneratorForm..Caption
-#: PasswordGeneratorFormUnit.dfm:5 
+#: PasswordGeneratorFormUnit.dfm:5
 msgid "Password Wizard"
 msgstr "Passwort generieren"
 
 #. PasswordGeneratorForm..TntLabel1..Caption
-#: PasswordGeneratorFormUnit.dfm:28 
+#: PasswordGeneratorFormUnit.dfm:28
 msgid "Number of characters:"
 msgstr "Anzahl Zeichen:"
 
 #. PasswordGeneratorForm..CharSpacesList....Items.Strings
-#: PasswordGeneratorFormUnit.dfm:50 
+#: PasswordGeneratorFormUnit.dfm:50
 msgid "Uppercase alphabetic (A-Z)"
 msgstr "Großbuchstaben (A-Z)"
 
 #. PasswordGeneratorForm..CharSpacesList....Items.Strings
-#: PasswordGeneratorFormUnit.dfm:51 
+#: PasswordGeneratorFormUnit.dfm:51
 msgid "Lowercase alphabetic (a-z)"
 msgstr "Kleinbuchstaben (a-z)"
 
 #. PasswordGeneratorForm..CharSpacesList....Items.Strings
-#: PasswordGeneratorFormUnit.dfm:52 
+#: PasswordGeneratorFormUnit.dfm:52
 msgid "Numbers (0-9)"
 msgstr "Zahlen (0-9)"
 
 #. PasswordGeneratorForm..CharSpacesList....Items.Strings
-#: PasswordGeneratorFormUnit.dfm:53 
+#: PasswordGeneratorFormUnit.dfm:53
 msgid "Underline '_'"
 msgstr "Unterstrich '_'"
 
 #. PasswordGeneratorForm..CharSpacesList....Items.Strings
-#: PasswordGeneratorFormUnit.dfm:54 
+#: PasswordGeneratorFormUnit.dfm:54
 msgid "Minus '-'"
 msgstr "Minuszeichen '-'"
 
 #. PasswordGeneratorForm..CharSpacesList....Items.Strings
-#: PasswordGeneratorFormUnit.dfm:55 
+#: PasswordGeneratorFormUnit.dfm:55
 msgid "Space ' '"
 msgstr "Leerzeichen ' '"
 
 #. PasswordGeneratorForm..CharSpacesList....Items.Strings
-#: PasswordGeneratorFormUnit.dfm:56 
+#: PasswordGeneratorFormUnit.dfm:56
 msgid "Special characters (!, ?, $, %, ...)"
 msgstr "Spezielle Zeichen (!, ?, $, %, ...)"
 
 #. PasswordGeneratorForm..CharSpacesList....Items.Strings
-#: PasswordGeneratorFormUnit.dfm:57 
+#: PasswordGeneratorFormUnit.dfm:57
 msgid "Brackets '(', ')', '[', ']', '{', '}'"
 msgstr "Klammern  '(', ')', '[', ']', '{', '}'"
 
 #. Commonly used strings
 #. Programmer's name for it: XMLFilter
-#: Core.pas:13 
+#: Core.pas:13
 msgid "XML Files (*.xml)"
 msgstr "XML Dateien (*.*)"
 
 #. Programmer's name for it: AllFilesFilter
-#: Core.pas:14 
+#: Core.pas:14
 msgid "All Files (*.*)"
 msgstr "Alle Dateien (*.*)"
 
 #. Programmer's name for it: PatronusFilter
-#: Core.pas:15 
+#: Core.pas:15
 msgid "Patronus Store Files (*.patronus)"
 msgstr "Patronus Store Dateien (*.patronus)"
 
 #. otherwise, check if keys match, and if yes, return OK
-#: ItemPropertiesFormUnit.pas:95  OpenStoreFormUnit.pas:171
+#: ItemPropertiesFormUnit.pas:95
+#: OpenStoreFormUnit.pas:195
 msgid "Error"
 msgstr "Fehler"
 
 #. initialize the form validator
-#: ItemPropertiesFormUnit.pas:121 
+#: ItemPropertiesFormUnit.pas:121
 msgid "Please specify a title for this entry"
 msgstr "Es muss ein Titel angegeben werden"
 
-#: ItemPropertiesFormUnit.pas:122  ItemPropertiesFormUnit.pas:123
+#: ItemPropertiesFormUnit.pas:122
 msgid "The passwords do not match"
 msgstr "Die Passwörter stimmen nicht überein"
 
-#: ItemPropertiesFormUnit.pas:144 
+#: ItemPropertiesFormUnit.pas:144
 msgid "Edit Item Properties"
 msgstr "Eintrag bearbeiten"
 
-#: ItemPropertiesFormUnit.pas:181  OpenStoreFormUnit.pas:342
+#: ItemPropertiesFormUnit.pas:181
 msgid "%s bits"
 msgstr "%s Bits"
 
 #. check root node
-#: MainFormUnit.pas:217 
+#: MainFormUnit.pas:221
 msgid "Doesn't seem to be a valid KeePass XML export."
 msgstr "Scheint kein gültiger KeePass XML Export zu sein."
 
-#: MainFormUnit.pas:379 
+#. e.g. 2007-02-25T14:48:01
+#. SetForegroundWindow(Application.Handle);
+#: MainFormUnit.pas:270
+msgid "Failed"
+msgstr "Fehlgeschlagen"
+
+#: MainFormUnit.pas:271
+msgid "An error occured while trying to import the XML file."
+msgstr "Während des XML Imports ist ein Fehler aufgetreten."
+
+#: MainFormUnit.pas:274
+msgid ""
+"The error message was: \"%s\".\n"
+"However, %d items were still sucessfully imported."
+msgstr "Die Fehlermeldung war: \"%s\".%d Einträge wurden dennoch erfolgreich importiert."
+
+#: MainFormUnit.pas:276
+msgid "The error message was: \"%s\". No new items were added."
+msgstr "Die Fehlermeldung war: \"%s\". Es wurden keine neuen Einträge angelegt."
+
+#: MainFormUnit.pas:398
 msgid "Confirmation required"
 msgstr "Bestätigung notwendig"
 
-#: MainFormUnit.pas:381 
-msgid ""
-"Are you sure you want to delete the selected items? This operation cannot be "
-"undone."
-msgstr ""
-"Sollen die ausgewählten Einträge wirklich gelöscht werden? Diese Aktion kann "
-"nicht rückgängig gemacht werden."
+#: MainFormUnit.pas:400
+msgid "Are you sure you want to delete the selected items? This operation cannot be undone."
+msgstr "Sollen die ausgewählten Einträge wirklich gelöscht werden? Diese Aktion kann nicht rückgängig gemacht werden."
 
-#: MainFormUnit.pas:385 
+#: MainFormUnit.pas:404
 msgid "%s items will be deleted."
 msgstr "%s Einträge werden gelöscht."
 
 #. Update item count info
-#: MainFormUnit.pas:554 
+#: MainFormUnit.pas:573
 msgid "%s items in store"
 msgstr "%s Einträge in der Datenbank"
 
-#: MainFormUnit.pas:750 
-msgid "Failed"
-msgstr "Fehlgeschlagen"
+#: MainFormUnit.pas:774
+msgid "Failed to open database. Most likely, the key you entered was incorrect."
+msgstr "Fehler beim Öffnen der Datenbank. Vermutlich war der eingegebene Schlüssel nicht korrekt."
 
-#: MainFormUnit.pas:752 
-msgid ""
-"Failed to open database. Most likely, the key you entered was incorrect."
-msgstr ""
-"Fehler beim Öffnen der Datenbank. Vermutlich war der eingegebene Schlüssel "
-"nicht korrekt."
+#: MainFormUnit.pas:777
+msgid "It is also possible, however, that the file you tried to open is not a correct Patronus Store file, or the chosen store is damaged."
+msgstr "Es ist allerdings auch möglich dass die gewählte Datei kein gültiger Patronus Password-Speicher ist, oder der gewählte Speicher beschädigt ist."
 
-#: MainFormUnit.pas:755 
-msgid ""
-"It is also possible, however, that the file you tried to open is not a "
-"correct Patronus Store file, or the chosen store is damaged."
-msgstr ""
-"Es ist allerdings auch möglich dass die gewählte Datei kein gültiger "
-"Patronus Password-Speicher ist, oder der gewählte Speicher beschädigt ist."
-
-#: MainFormUnit.pas:756 
+#: MainFormUnit.pas:778
 msgid "Error message was: \"%s\""
 msgstr "Fehlermeldung war: \"%s\""
 
-#: OpenStoreFormUnit.pas:172 
+#: MainFormUnit.pas:843
+msgid "An error occured while trying to save the password store."
+msgstr "Während dem Abspeichern des Passwort-Speichers ist ein Fehler aufgetreten."
+
+#: MainFormUnit.pas:846
+msgid ""
+"This is not good at all. Your last change likely has not been written to disk.\n"
+"\n"
+"If you're afraid of losing data, you probably should exit Patronus now and fix the problem before you continue using the current store."
+msgstr "Nicht so toll - die letzte Änderung wurde mit großer Wahrscheinlichkeit nicht auf die Festplatte geschrieben.Falls keine Daten verloren gehen sollen, ist es möglicherweise das Beste Patronus nun zu beenden und das Problem zu beheben, bevor mit dem aktuellen Passwort-Speicher weiter gearbeitet wird."
+
+#: OpenStoreFormUnit.pas:196
 msgid "Keys do not match."
 msgstr "Die Schlüssel stimmen nicht überein."
 
-#: OpenStoreFormUnit.pas:176 
-msgid ""
-"You entered two different keys for the new store. Please try again, or click "
-"'Create New' to restart the procedure and choose a new key."
-msgstr ""
-"Zwei verschiedene Schlüssel wurden angegeben. Bitte erneut versuchen, oder "
-"den Vorgang über \"Neu erstellen\" erneut beginnen."
+#: OpenStoreFormUnit.pas:200
+msgid "You entered two different keys for the new store. Please try again, or click 'Create New' to restart the procedure and choose a new key."
+msgstr "Zwei verschiedene Schlüssel wurden angegeben. Bitte erneut versuchen, oder den Vorgang über \"Neu erstellen\" erneut beginnen."
 
-#: OpenStoreFormUnit.pas:179 
-msgid ""
-"You entered two different keys. Please try again. Click cancel if you decide "
-"not to change the master key of this store."
-msgstr ""
-"Zwei verschiedene Schlüssel wurden angegeben - bitte erneut versuchen. "
-"\"Abrechen\", wenn der Hauptschlüssel nicht geändert werden soll."
+#: OpenStoreFormUnit.pas:203
+msgid "You entered two different keys. Please try again. Click cancel if you decide not to change the master key of this store."
+msgstr "Zwei verschiedene Schlüssel wurden angegeben - bitte erneut versuchen. \"Abrechen\", wenn der Hauptschlüssel nicht geändert werden soll."
 
 #. Depending on wether a store is selected, show/hide/disable/enable stuff
-#: OpenStoreFormUnit.pas:290 
+#: OpenStoreFormUnit.pas:319
 msgid "(none)"
 msgstr "(keiner)"
 
-#: OpenStoreFormUnit.pas:302 
+#: OpenStoreFormUnit.pas:331
 msgid "Choose / Create Password Store"
 msgstr "Passwort-Speicher auswählen / erstellen"
 
 #. Depending on current mode, change captions
-#: OpenStoreFormUnit.pas:307 
+#: OpenStoreFormUnit.pas:336
 msgid "Create"
 msgstr "Erstellen"
 
-#: OpenStoreFormUnit.pas:308 
+#: OpenStoreFormUnit.pas:337
 msgid "Create New Password Store"
 msgstr "Neuen Passwort-Speicher erstellen"
 
-#: OpenStoreFormUnit.pas:309 
+#: OpenStoreFormUnit.pas:338
 msgid "Store To Create:"
 msgstr "Neuer Speicher:"
 
-#: OpenStoreFormUnit.pas:311 
+#: OpenStoreFormUnit.pas:340
 msgid "Choose Key:"
 msgstr "Schlüssel wählen:"
 
-#: OpenStoreFormUnit.pas:313 
+#: OpenStoreFormUnit.pas:342
 msgid "Confirm Key:"
 msgstr "Schlüssel bestätigen:"
 
-#: OpenStoreFormUnit.pas:319 
+#: OpenStoreFormUnit.pas:348
 msgid "Current Store:"
 msgstr "Aktueller Speicher:"
 
-#: OpenStoreFormUnit.pas:320 
+#: OpenStoreFormUnit.pas:349
 msgid "New Key:"
 msgstr "Neuer Schlüssel:"
 
 #. osmLoad
-#: OpenStoreFormUnit.pas:324 
+#: OpenStoreFormUnit.pas:353
 msgid "Enter Key:"
 msgstr "Schlüssel eingeben:"
 
-#: OpenStoreFormUnit.pas:325 
+#: OpenStoreFormUnit.pas:354
 msgid "Load"
 msgstr "Öffnen"
 
-#: OpenStoreFormUnit.pas:326 
+#: OpenStoreFormUnit.pas:355
 msgid "Selected Store:"
 msgstr "Gewählter Speicher:"
 
-#: OpenStoreFormUnit.pas:327 
+#: OpenStoreFormUnit.pas:356
 msgid "Open Password Store"
 msgstr "Speicher öffnen"
+
