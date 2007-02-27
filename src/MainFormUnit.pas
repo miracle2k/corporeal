@@ -362,6 +362,7 @@ begin
   PWItemStore.Close;
   CurrentKey := '';
   CurrentStoreFile := '';
+  QuickSearchEdit.Text := '';
   GUIUpdatePasswordList;
 end;
 
@@ -802,6 +803,7 @@ begin
 
           // Update GUI
           GUIUpdatePasswordList;
+          ApplyFilter;
 
           // Show Form and leave loop
           Result := True;
@@ -888,6 +890,7 @@ begin
   begin
     LastStoreFile := FCurrentStoreFile;
     FCurrentStoreFile := Value;
+    QuickSearchEdit.Text := '';
   end;
   // Update form caption;  show filename of current store, and
   // exclude the file extension if it's the default one.
