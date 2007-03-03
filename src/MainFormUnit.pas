@@ -758,7 +758,7 @@ begin
         FailedCount := 0;
       end;
 
-      //SetForegroundWindow(Application.Handle);
+      SetForegroundWindow(Application.Handle);
       PopupParent := Self;
       if ShowModal = mrOk then
       begin
