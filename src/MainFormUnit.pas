@@ -127,7 +127,7 @@ type
   protected
     function IsPasswordColumnVisible: Boolean;
     procedure SetPasswordColumnVisibility(Show: Boolean);
-    procedure GUIUpdatePasswordList;
+    procedure GUIUpdatePasswordList(SelectItem: TPWItem = nil);
     procedure GUIUpdateStatusbar;
     procedure ResetClipboardClearTimer;
     procedure ResetAutoLockTimer;
@@ -282,21 +282,26 @@ begin
 end;
 
 procedure TMainForm.AddItemClick(Sender: TObject);
+var
+  NewPWItem: TPWItem;
 begin
   with TItemPropertiesForm.Create(Self) do
   begin
     EditMode := False;
     PopupParent := Self;
     if ShowModal = mrOk then
-      with PWItemStore.Add do begin
+    begin
+      NewPWItem := PWItemStore.Add;
+      with NewPWItem do begin
         Title := TitleEdit.Text;
         Username := UsernameEdit.Text;
         Password := PasswordEdit.Text;
         Notes := NotesMemo.Text;
         URL := URLEdit.Text;
-        GUIUpdatePasswordList;
+        GUIUpdatePasswordList(NewPWItem);
         Save;
       end;
+    end;
     Free;
   end;
 end;
@@ -539,13 +544,14 @@ begin
   ResetAutoLockTimer;
 end;
 
-procedure TMainForm.GUIUpdatePasswordList;
+procedure TMainForm.GUIUpdatePasswordList(SelectItem: TPWItem = nil);
 var
   I: Integer;
-  NewNode: PVirtualNode;
+  NewNode, PreselectNode: PVirtualNode;
   NodeData: PPasswordListNode;
 begin
   PasswordList.BeginUpdate;
+  PreselectNode := nil;  
   try
     PasswordList.Clear;
     for I := 0 to PWItemStore.Count - 1 do
@@ -553,9 +559,15 @@ begin
       NewNode := PasswordList.AddChild(nil);
       NodeData := PasswordList.GetNodeData(NewNode);
       NodeData^.PWItem := PWItemStore.Items[I];
+      if NodeData^.PWItem = SelectItem then PreselectNode := NewNode;
     end;
   finally
     PasswordList.EndUpdate;
+    if PreselectNode <> nil then begin
+      PasswordList.Selected[PreselectNode] := True;
+      PasswordList.FocusedNode := PreselectNode;
+      PasswordList.SetFocus;
+    end;
   end;
   // most likely, we'll need to update the statusbar text too
   GUIUpdateStatusbar;
