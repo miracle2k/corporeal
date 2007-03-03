@@ -346,7 +346,7 @@ begin
   // lock if we have not been used for a given amount of time
   if AutoLockTimer.Tag >= Settings.AutoLockAfter then
   begin
-    Lock(True);
+    Lock(False);
     AutoLockTimer.Tag := 0;
   end;
 end;
