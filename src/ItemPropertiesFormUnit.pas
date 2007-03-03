@@ -165,6 +165,8 @@ procedure TItemPropertiesForm.TogglePasswordCharButtonClick(Sender: TObject);
 begin
   PasswordEdit.ThemedPassword := TogglePasswordCharButton.Down;
   PasswordRepeatEdit.ThemedPassword := TogglePasswordCharButton.Down;
+  PasswordEdit.ProtectPassword := TogglePasswordCharButton.Down;
+  PasswordRepeatEdit.ProtectPassword := TogglePasswordCharButton.Down;  
 end;
 
 procedure TItemPropertiesForm.UpdateQualityIndicator;

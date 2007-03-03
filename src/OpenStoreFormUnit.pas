@@ -291,6 +291,7 @@ end;
 procedure TOpenStoreForm.TogglePasswordCharButtonClick(Sender: TObject);
 begin
   KeyEdit.ThemedPassword := TogglePasswordCharButton.Down;
+  KeyEdit.ProtectPassword := TogglePasswordCharButton.Down;
 end;
 
 procedure TOpenStoreForm.UpdateInterface;
