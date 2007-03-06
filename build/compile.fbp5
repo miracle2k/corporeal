@@ -15,6 +15,7 @@
         <Property MultiValue="0" name="Name" type="string">Main</Property>
         <Property MultiValue="0" name="UniqueID" type="string">{57F6C117-F36C-449D-99D3-D34FD0B6D279}</Property>
         <Object Class="TFBAction" XMLID="{BD7400CE-ECA2-40C4-BD06-453BB0834E7F}"><Property MultiValue="0" name="ActionComment" type="string"></Property>
+          <Property MultiValue="0" name="ActionDescription" type="string">FinalBuilderAction</Property>
           <Property name="ActionTextColor" type="Cardinal">0</Property>
           <Property MultiValue="0" name="ActionTypeID" type="string"></Property>
           <Property name="Enabled" type="WordBool">True</Property>
@@ -29,6 +30,8 @@
           <Property name="RetryPauseInterval" type="Cardinal">1000</Property>
           <Property name="SuppressStatusMessages" type="Boolean">False</Property>
           <Object Class="TIncludeProjectAction" XMLID="{44E4E5E1-9FD0-4394-A904-E01A0ED214A0}"><Property MultiValue="0" name="ActionComment" type="string"></Property>
+            <Property MultiValue="1" name="ActionDescription" type="string"><![CDATA[Include Project - [ %FBPROJECTDIR%\build.fbp5 ]]]>
+              </Property>
             <Property name="ActionTextColor" type="Cardinal">0</Property>
             <Property MultiValue="0" name="ActionTypeID" type="string"></Property>
             <Property name="Enabled" type="WordBool">True</Property>
@@ -59,6 +62,7 @@
         <Property MultiValue="0" name="Name" type="string">OnFailure</Property>
         <Property MultiValue="0" name="UniqueID" type="string">{23D050B1-8369-4AE8-8F36-61935701F60A}</Property>
         <Object Class="TFBAction" XMLID="{D76DCFC8-7C79-4408-B804-C753016AE561}"><Property MultiValue="0" name="ActionComment" type="string"></Property>
+          <Property MultiValue="0" name="ActionDescription" type="string">FinalBuilderAction</Property>
           <Property name="ActionTextColor" type="Cardinal">0</Property>
           <Property MultiValue="0" name="ActionTypeID" type="string"></Property>
           <Property name="Enabled" type="WordBool">True</Property>

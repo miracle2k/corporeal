@@ -15,6 +15,7 @@
         <Property MultiValue="0" name="Name" type="string">Main</Property>
         <Property MultiValue="0" name="UniqueID" type="string">{3F0CF0CA-C521-4AAC-BD8A-81538F99B322}</Property>
         <Object Class="TFBAction" XMLID="{70A5D17A-E8FD-4D1B-8D01-41E800ED888C}"><Property MultiValue="0" name="ActionComment" type="string"></Property>
+          <Property MultiValue="0" name="ActionDescription" type="string">FinalBuilderAction</Property>
           <Property name="ActionTextColor" type="Cardinal">0</Property>
           <Property MultiValue="0" name="ActionTypeID" type="string"></Property>
           <Property name="Enabled" type="WordBool">True</Property>
@@ -29,9 +30,12 @@
           <Property name="RetryPauseInterval" type="Cardinal">1000</Property>
           <Property name="SuppressStatusMessages" type="Boolean">False</Property>
           <Object Class="TCommentAction" XMLID="{7D0E8BD5-CE86-4C81-B750-911C4B264D92}"><Property MultiValue="0" name="ActionComment" type="string"></Property>
+            <Property MultiValue="1" name="ActionDescription" type="string"><![CDATA[-- Each build action we offer is a different action group. What is run depends on the RequestedAction variable]]>
+              </Property>
             <Property name="ActionTextColor" type="Cardinal">16711680</Property>
             <Property MultiValue="0" name="ActionTypeID" type="string"></Property>
-            <Property MultiValue="0" name="Description" type="string">-- Each build action we offer is a different action group. What is run depends on the RequestedAction variable</Property>
+            <Property MultiValue="1" name="Description" type="string"><![CDATA[-- Each build action we offer is a different action group. What is run depends on the RequestedAction variable]]>
+              </Property>
             <Property name="Enabled" type="WordBool">True</Property>
             <Property name="ExpandActionLogTitle" type="Boolean">True</Property>
             <Property name="IgnoreFailure" type="WordBool">False</Property>
@@ -45,6 +49,7 @@
             <Property name="SuppressStatusMessages" type="Boolean">False</Property>
             </Object>
           <Object Class="TGroupAction" XMLID="{4770A851-EE21-4989-B743-1093EFD3A3EF}"><Property MultiValue="0" name="ActionComment" type="string"></Property>
+            <Property MultiValue="0" name="ActionDescription" type="string">Initialize</Property>
             <Property name="ActionTextColor" type="Cardinal">0</Property>
             <Property MultiValue="0" name="ActionTypeID" type="string"></Property>
             <Property MultiValue="0" name="Description" type="string">Initialize</Property>
@@ -60,9 +65,12 @@
             <Property name="RetryPauseInterval" type="Cardinal">1000</Property>
             <Property name="SuppressStatusMessages" type="Boolean">False</Property>
             <Object Class="TFBScriptAction" XMLID="{7DFEAF1A-26E5-4BAE-9308-3B79E42F9EE2}"><Property MultiValue="0" name="ActionComment" type="string"></Property>
+              <Property MultiValue="1" name="ActionDescription" type="string"><![CDATA[Determine dxgettext path]]>
+                </Property>
               <Property name="ActionTextColor" type="Cardinal">0</Property>
               <Property MultiValue="0" name="ActionTypeID" type="string"></Property>
-              <Property MultiValue="0" name="Description" type="string">Determine dxgettext path</Property>
+              <Property MultiValue="1" name="Description" type="string"><![CDATA[Determine dxgettext path]]>
+                </Property>
               <Property name="Enabled" type="WordBool">True</Property>
               <Property name="ExpandActionLogTitle" type="Boolean">True</Property>
               <Property name="IgnoreFailure" type="WordBool">False</Property>
@@ -100,6 +108,7 @@
               </Object>
             </Object>
           <Object Class="TGroupAction" XMLID="{AE62B988-1843-46D3-A687-971FA108D5EE}"><Property MultiValue="0" name="ActionComment" type="string"></Property>
+            <Property MultiValue="0" name="ActionDescription" type="string">Compile</Property>
             <Property name="ActionTextColor" type="Cardinal">0</Property>
             <Property MultiValue="0" name="ActionTypeID" type="string"></Property>
             <Property MultiValue="0" name="Description" type="string">Compile</Property>
@@ -115,6 +124,8 @@
             <Property name="RetryPauseInterval" type="Cardinal">1000</Property>
             <Property name="SuppressStatusMessages" type="Boolean">False</Property>
             <Object Class="TRunActionListAction" XMLID="{E95E675D-00DF-4834-B4E0-6CF8F36A1458}"><Property MultiValue="0" name="ActionComment" type="string"></Property>
+              <Property MultiValue="1" name="ActionDescription" type="string"><![CDATA[Run Action List [ Compile ]]]>
+                </Property>
               <Property MultiValue="0" name="ActionListID" type="string">{EF647386-2E7D-4EB8-B737-A6DE36E05205}</Property>
               <Property name="ActionTextColor" type="Cardinal">0</Property>
               <Property MultiValue="0" name="ActionTypeID" type="string"></Property>
@@ -134,11 +145,13 @@
               </Object>
             <Object Class="TBuildScript" XMLID="{FEC0BD37-ABD0-43DD-8592-2126DDB67840}"><Property MultiValue="0" name="BreakPointsStore" type="string"></Property>
               <Property MultiValue="0" name="Name" type="string">Condition</Property>
-              <Property MultiValue="0" name="Script" type="string">RequestedAction == 'compile'</Property>
+              <Property MultiValue="1" name="Script" type="string"><![CDATA[RequestedAction == 'compile']]>
+                </Property>
               <Property MultiValue="0" name="ScriptLanguage" type="string">JavaScript</Property>
               </Object>
             </Object>
           <Object Class="TGroupAction" XMLID="{F7781462-B26A-47DD-BCE6-2C661830B102}"><Property MultiValue="0" name="ActionComment" type="string"></Property>
+            <Property MultiValue="0" name="ActionDescription" type="string">Setup</Property>
             <Property name="ActionTextColor" type="Cardinal">0</Property>
             <Property MultiValue="0" name="ActionTypeID" type="string"></Property>
             <Property MultiValue="0" name="Description" type="string">Setup</Property>
@@ -154,6 +167,8 @@
             <Property name="RetryPauseInterval" type="Cardinal">1000</Property>
             <Property name="SuppressStatusMessages" type="Boolean">False</Property>
             <Object Class="TRunActionListAction" XMLID="{377CD525-02B6-47C7-B6E1-380BABC0DD0C}"><Property MultiValue="0" name="ActionComment" type="string"></Property>
+              <Property MultiValue="1" name="ActionDescription" type="string"><![CDATA[Run Action List [ Setup ]]]>
+                </Property>
               <Property MultiValue="0" name="ActionListID" type="string">{D68519BF-5F92-4BB6-92F2-FED6E3B06D2B}</Property>
               <Property name="ActionTextColor" type="Cardinal">0</Property>
               <Property MultiValue="0" name="ActionTypeID" type="string"></Property>
@@ -173,11 +188,13 @@
               </Object>
             <Object Class="TBuildScript" XMLID="{57A55877-B909-4352-B242-D05725870174}"><Property MultiValue="0" name="BreakPointsStore" type="string"></Property>
               <Property MultiValue="0" name="Name" type="string">Condition</Property>
-              <Property MultiValue="0" name="Script" type="string">RequestedAction == 'setup'</Property>
+              <Property MultiValue="1" name="Script" type="string"><![CDATA[RequestedAction == 'setup']]>
+                </Property>
               <Property MultiValue="0" name="ScriptLanguage" type="string">JavaScript</Property>
               </Object>
             </Object>
           <Object Class="TGroupAction" XMLID="{D506530B-72DE-4EF8-88C0-C58916E99871}"><Property MultiValue="0" name="ActionComment" type="string"></Property>
+            <Property MultiValue="0" name="ActionDescription" type="string">Clean</Property>
             <Property name="ActionTextColor" type="Cardinal">0</Property>
             <Property MultiValue="0" name="ActionTypeID" type="string"></Property>
             <Property MultiValue="0" name="Description" type="string">Clean</Property>
@@ -193,6 +210,8 @@
             <Property name="RetryPauseInterval" type="Cardinal">1000</Property>
             <Property name="SuppressStatusMessages" type="Boolean">False</Property>
             <Object Class="TRunActionListAction" XMLID="{1FB2C645-737A-4688-80E4-0E5F61E2CAE0}"><Property MultiValue="0" name="ActionComment" type="string"></Property>
+              <Property MultiValue="1" name="ActionDescription" type="string"><![CDATA[Run Action List [ Clean ]]]>
+                </Property>
               <Property MultiValue="0" name="ActionListID" type="string">{00175EDB-18D1-45FF-B6DF-20C5C8E7FDDE}</Property>
               <Property name="ActionTextColor" type="Cardinal">0</Property>
               <Property MultiValue="0" name="ActionTypeID" type="string"></Property>
@@ -212,11 +231,13 @@
               </Object>
             <Object Class="TBuildScript" XMLID="{1F74508B-12CB-495D-AF5F-06D1702E6FDD}"><Property MultiValue="0" name="BreakPointsStore" type="string"></Property>
               <Property MultiValue="0" name="Name" type="string">Condition</Property>
-              <Property MultiValue="0" name="Script" type="string">RequestedAction == 'clean'</Property>
+              <Property MultiValue="1" name="Script" type="string"><![CDATA[RequestedAction == 'clean']]>
+                </Property>
               <Property MultiValue="0" name="ScriptLanguage" type="string">JavaScript</Property>
               </Object>
             </Object>
           <Object Class="TGroupAction" XMLID="{9BB1833F-6BCF-4EBB-8B5A-A0F9A0494D5A}"><Property MultiValue="0" name="ActionComment" type="string"></Property>
+            <Property MultiValue="0" name="ActionDescription" type="string">SetupAndClean</Property>
             <Property name="ActionTextColor" type="Cardinal">0</Property>
             <Property MultiValue="0" name="ActionTypeID" type="string"></Property>
             <Property MultiValue="0" name="Description" type="string">SetupAndClean</Property>
@@ -232,6 +253,8 @@
             <Property name="RetryPauseInterval" type="Cardinal">1000</Property>
             <Property name="SuppressStatusMessages" type="Boolean">False</Property>
             <Object Class="TRunActionListAction" XMLID="{48D7923E-ECE2-4E81-A3AD-F9D5374A8058}"><Property MultiValue="0" name="ActionComment" type="string"></Property>
+              <Property MultiValue="1" name="ActionDescription" type="string"><![CDATA[Run Action List [ Setup ]]]>
+                </Property>
               <Property MultiValue="0" name="ActionListID" type="string">{D68519BF-5F92-4BB6-92F2-FED6E3B06D2B}</Property>
               <Property name="ActionTextColor" type="Cardinal">0</Property>
               <Property MultiValue="0" name="ActionTypeID" type="string"></Property>
@@ -250,6 +273,8 @@
               <Property name="SuppressStatusMessages" type="Boolean">False</Property>
               </Object>
             <Object Class="TRunActionListAction" XMLID="{37C03CF0-9CDD-4422-85B2-BA276C30F4BE}"><Property MultiValue="0" name="ActionComment" type="string"></Property>
+              <Property MultiValue="1" name="ActionDescription" type="string"><![CDATA[Run Action List [ Clean ]]]>
+                </Property>
               <Property MultiValue="0" name="ActionListID" type="string">{00175EDB-18D1-45FF-B6DF-20C5C8E7FDDE}</Property>
               <Property name="ActionTextColor" type="Cardinal">0</Property>
               <Property MultiValue="0" name="ActionTypeID" type="string"></Property>
@@ -269,11 +294,13 @@
               </Object>
             <Object Class="TBuildScript" XMLID="{7BCF5D86-2EF6-4E97-9470-5F8C54480021}"><Property MultiValue="0" name="BreakPointsStore" type="string"></Property>
               <Property MultiValue="0" name="Name" type="string">Condition</Property>
-              <Property MultiValue="0" name="Script" type="string">RequestedAction == 'setupandclean'</Property>
+              <Property MultiValue="1" name="Script" type="string"><![CDATA[RequestedAction == 'setupandclean']]>
+                </Property>
               <Property MultiValue="0" name="ScriptLanguage" type="string">JavaScript</Property>
               </Object>
             </Object>
           <Object Class="TGroupAction" XMLID="{1471AF79-6E9E-487E-811D-AD22CD9EE991}"><Property MultiValue="0" name="ActionComment" type="string"></Property>
+            <Property MultiValue="0" name="ActionDescription" type="string">Publish</Property>
             <Property name="ActionTextColor" type="Cardinal">0</Property>
             <Property MultiValue="0" name="ActionTypeID" type="string"></Property>
             <Property MultiValue="0" name="Description" type="string">Publish</Property>
@@ -289,6 +316,8 @@
             <Property name="RetryPauseInterval" type="Cardinal">1000</Property>
             <Property name="SuppressStatusMessages" type="Boolean">False</Property>
             <Object Class="TRunActionListAction" XMLID="{EEBE3720-DBC4-4BEF-AAA2-CFE6ED76757B}"><Property MultiValue="0" name="ActionComment" type="string"></Property>
+              <Property MultiValue="1" name="ActionDescription" type="string"><![CDATA[Run Action List [ Publish ]]]>
+                </Property>
               <Property MultiValue="0" name="ActionListID" type="string">{EEE33A59-8DF3-4C13-8E22-3CACB03660E7}</Property>
               <Property name="ActionTextColor" type="Cardinal">0</Property>
               <Property MultiValue="0" name="ActionTypeID" type="string"></Property>
@@ -308,14 +337,18 @@
               </Object>
             <Object Class="TBuildScript" XMLID="{E5A682D5-55CB-413B-AB0F-D9C81A72FFC3}"><Property MultiValue="0" name="BreakPointsStore" type="string"></Property>
               <Property MultiValue="0" name="Name" type="string">Condition</Property>
-              <Property MultiValue="0" name="Script" type="string">RequestedAction == 'publish'</Property>
+              <Property MultiValue="1" name="Script" type="string"><![CDATA[RequestedAction == 'publish']]>
+                </Property>
               <Property MultiValue="0" name="ScriptLanguage" type="string">JavaScript</Property>
               </Object>
             </Object>
           <Object Class="TGroupAction" XMLID="{39289DA8-A876-49FC-AE5B-FA2BD98F169A}"><Property MultiValue="0" name="ActionComment" type="string"></Property>
+            <Property MultiValue="1" name="ActionDescription" type="string"><![CDATA[Update Localization Templates]]>
+              </Property>
             <Property name="ActionTextColor" type="Cardinal">0</Property>
             <Property MultiValue="0" name="ActionTypeID" type="string"></Property>
-            <Property MultiValue="0" name="Description" type="string">Update Localization Templates</Property>
+            <Property MultiValue="1" name="Description" type="string"><![CDATA[Update Localization Templates]]>
+              </Property>
             <Property name="Enabled" type="WordBool">True</Property>
             <Property name="ExpandActionLogTitle" type="Boolean">True</Property>
             <Property name="IgnoreFailure" type="WordBool">False</Property>
@@ -328,9 +361,12 @@
             <Property name="RetryPauseInterval" type="Cardinal">1000</Property>
             <Property name="SuppressStatusMessages" type="Boolean">False</Property>
             <Object Class="TCommentAction" XMLID="{EAAC5AD6-8013-4404-B01B-DFB762C3621E}"><Property MultiValue="0" name="ActionComment" type="string"></Property>
+              <Property MultiValue="1" name="ActionDescription" type="string"><![CDATA[-- Separate from rest of build process (Update localization templates for all languages)]]>
+                </Property>
               <Property name="ActionTextColor" type="Cardinal">16711680</Property>
               <Property MultiValue="0" name="ActionTypeID" type="string"></Property>
-              <Property MultiValue="0" name="Description" type="string">-- Separate from rest of build process (Update localization templates for all languages)</Property>
+              <Property MultiValue="1" name="Description" type="string"><![CDATA[-- Separate from rest of build process (Update localization templates for all languages)]]>
+                </Property>
               <Property name="Enabled" type="WordBool">True</Property>
               <Property name="ExpandActionLogTitle" type="Boolean">True</Property>
               <Property name="IgnoreFailure" type="WordBool">False</Property>
@@ -344,6 +380,8 @@
               <Property name="SuppressStatusMessages" type="Boolean">False</Property>
               </Object>
             <Object Class="TRunActionListAction" XMLID="{F580CD4A-2FAD-461C-A234-CC0EE73957E7}"><Property MultiValue="0" name="ActionComment" type="string"></Property>
+              <Property MultiValue="1" name="ActionDescription" type="string"><![CDATA[Run Action List [ UpdateLocalizationTemplates ]]]>
+                </Property>
               <Property MultiValue="0" name="ActionListID" type="string">{03A1A7EE-38EC-4CD4-8EC1-B7D84497729F}</Property>
               <Property name="ActionTextColor" type="Cardinal">0</Property>
               <Property MultiValue="0" name="ActionTypeID" type="string"></Property>
@@ -363,7 +401,8 @@
               </Object>
             <Object Class="TBuildScript" XMLID="{383AE1AB-059F-4DAF-920D-C698EA5FBB9C}"><Property MultiValue="0" name="BreakPointsStore" type="string"></Property>
               <Property MultiValue="0" name="Name" type="string">Condition</Property>
-              <Property MultiValue="0" name="Script" type="string">RequestedAction == 'update-loc-templates'</Property>
+              <Property MultiValue="1" name="Script" type="string"><![CDATA[RequestedAction == 'update-loc-templates']]>
+                </Property>
               <Property MultiValue="0" name="ScriptLanguage" type="string">JavaScript</Property>
               </Object>
             </Object>
@@ -375,6 +414,7 @@
         <Property MultiValue="0" name="Name" type="string">OnFailure</Property>
         <Property MultiValue="0" name="UniqueID" type="string">{7A6DAA95-C9CA-4CDD-A48E-1CF87CABEA59}</Property>
         <Object Class="TFBAction" XMLID="{5CB34483-16CB-4A60-9DDF-B3C38E09E988}"><Property MultiValue="0" name="ActionComment" type="string"></Property>
+          <Property MultiValue="0" name="ActionDescription" type="string">FinalBuilderAction</Property>
           <Property name="ActionTextColor" type="Cardinal">0</Property>
           <Property MultiValue="0" name="ActionTypeID" type="string"></Property>
           <Property name="Enabled" type="WordBool">True</Property>
@@ -396,6 +436,7 @@
         <Property MultiValue="0" name="Name" type="string">Compile</Property>
         <Property MultiValue="0" name="UniqueID" type="string">{EF647386-2E7D-4EB8-B737-A6DE36E05205}</Property>
         <Object Class="TFBAction" XMLID="{8076DA14-E837-48FD-B368-68E580FAAA78}"><Property MultiValue="0" name="ActionComment" type="string"></Property>
+          <Property MultiValue="0" name="ActionDescription" type="string">FinalBuilderAction</Property>
           <Property name="ActionTextColor" type="Cardinal">0</Property>
           <Property MultiValue="0" name="ActionTypeID" type="string"></Property>
           <Property name="Enabled" type="WordBool">True</Property>
@@ -410,6 +451,8 @@
           <Property name="RetryPauseInterval" type="Cardinal">1000</Property>
           <Property name="SuppressStatusMessages" type="Boolean">False</Property>
           <Object Class="TRunActionListAction" XMLID="{47F4202D-51F8-4292-8774-0060B66A4507}"><Property MultiValue="0" name="ActionComment" type="string"></Property>
+            <Property MultiValue="1" name="ActionDescription" type="string"><![CDATA[Run Action List [ Clean ]]]>
+              </Property>
             <Property MultiValue="0" name="ActionListID" type="string">{00175EDB-18D1-45FF-B6DF-20C5C8E7FDDE}</Property>
             <Property name="ActionTextColor" type="Cardinal">0</Property>
             <Property MultiValue="0" name="ActionTypeID" type="string"></Property>
@@ -428,6 +471,8 @@
             <Property name="SuppressStatusMessages" type="Boolean">False</Property>
             </Object>
           <Object Class="TCreateDirectoryAction" XMLID="{938E8E68-76FD-4DC2-94B7-3EA329F5AA1B}"><Property MultiValue="0" name="ActionComment" type="string"></Property>
+            <Property MultiValue="1" name="ActionDescription" type="string"><![CDATA[Create Directory [ %OutputDir% ]]]>
+              </Property>
             <Property name="ActionTextColor" type="Cardinal">0</Property>
             <Property MultiValue="0" name="ActionTypeID" type="string"></Property>
             <Property name="Enabled" type="WordBool">True</Property>
@@ -445,6 +490,8 @@
             <Property name="SuppressStatusMessages" type="Boolean">False</Property>
             </Object>
           <Object Class="TDelphiCompilerAction" XMLID="{B493CC82-CAE5-498B-99E6-3A89EC221C02}"><Property MultiValue="0" name="ActionComment" type="string"></Property>
+            <Property MultiValue="1" name="ActionDescription" type="string"><![CDATA[Compile Delphi Win32 Project [ %FBPROJECTDIR%\..\src\patronus.dpr ]]]>
+              </Property>
             <Property name="ActionTextColor" type="Cardinal">0</Property>
             <Property MultiValue="0" name="ActionTypeID" type="string"></Property>
             <Property name="AllowImplicitImport" type="Boolean">True</Property>
@@ -539,7 +586,8 @@ Comments=
               <Property name="IncludeRemoteSymbols" type="WordBool">False</Property>
               <Property name="IncludeTD32" type="WordBool">False</Property>
               <Property name="IOChecking" type="WordBool">True</Property>
-              <Property MultiValue="0" name="LibraryPath" type="WideString">$(BDS)\lib;$(BDS)\Imports;$(BDS)\Lib\Indy10;G:\DEVELO~1\Library\Delphi\jcl\jcl\lib\d10;G:\DEVELO~1\Library\Delphi\jcl\jcl\source;G:\Developing\Library\Delphi\jvcl\lib\D10;G:\Developing\Library\Delphi\jvcl\common;G:\Developing\Library\Delphi\jvcl\Resources;G:\Developing\Library\Delphi\Virtual Treeview\Source;G:\developing\Library\Delphi\Mustangpeak\Common Library\Source;G:\developing\Library\Delphi\Mustangpeak\EasyListview\Source;G:\developing\Library\Delphi\Mustangpeak\EasyNSE\Source;G:\developing\Library\Delphi\Mustangpeak\EasyNSE\Include;G:\developing\Library\Delphi\Tnt Unicode Controls\Source;G:\developing\Library\Delphi\Mustangpeak\VirtualShellTools\Source;G:\developing\Library\Delphi\Toolbar2000\Source;G:\Developing\Library\Delphi\DragDrop\Components;c:\users\michael\documents\borland studio projects\bpl;G:\Developing\Library\Delphi\SpTBXLib\Source;G:\Developing\Library\Delphi\TBX;G:\Developing\Library\Delphi\PngComponents\Source;G:\Developing\Library\Delphi\TaskDialog;G:\Developing\Library\Delphi\xmlparser;G:\Developing\Library\Delphi\openxml\xdom4_1;G:\Developing\Library\Delphi\openxml\utils_2_0;G:\Developing\Library\Delphi\JCL\jcl\source\windows;G:\Developing\Library\Delphi\JCL\jcl\source\common;G:\developing\Library\Delphi\GraphicEx;G:\Developing\Library\Delphi\ScrollingCredits;G:\Developing\Library\Delphi\Dcpcrypt2\Ciphers;G:\Developing\Library\Delphi\Dcpcrypt2;G:\Developing\Library\Delphi\Dcpcrypt2\Hashes</Property>
+              <Property MultiValue="1" name="LibraryPath" type="WideString"><![CDATA[$(BDS)\lib;$(BDS)\Imports;$(BDS)\Lib\Indy10;G:\DEVELO~1\Library\Delphi\jcl\jcl\lib\d10;G:\DEVELO~1\Library\Delphi\jcl\jcl\source;G:\Developing\Library\Delphi\jvcl\lib\D10;G:\Developing\Library\Delphi\jvcl\common;G:\Developing\Library\Delphi\jvcl\Resources;G:\Developing\Library\Delphi\Virtual Treeview\Source;G:\developing\Library\Delphi\Mustangpeak\Common Library\Source;G:\developing\Library\Delphi\Mustangpeak\EasyListview\Source;G:\developing\Library\Delphi\Mustangpeak\EasyNSE\Source;G:\developing\Library\Delphi\Mustangpeak\EasyNSE\Include;G:\developing\Library\Delphi\Tnt Unicode Controls\Source;G:\developing\Library\Delphi\Mustangpeak\VirtualShellTools\Source;G:\developing\Library\Delphi\Toolbar2000\Source;G:\Developing\Library\Delphi\DragDrop\Components;c:\users\michael\documents\borland studio projects\bpl;G:\Developing\Library\Delphi\SpTBXLib\Source;G:\Developing\Library\Delphi\TBX;G:\Developing\Library\Delphi\PngComponents\Source;G:\Developing\Library\Delphi\TaskDialog;G:\Developing\Library\Delphi\xmlparser;G:\Developing\Library\Delphi\openxml\xdom4_1;G:\Developing\Library\Delphi\openxml\utils_2_0;G:\Developing\Library\Delphi\JCL\jcl\source\windows;G:\Developing\Library\Delphi\JCL\jcl\source\common;G:\developing\Library\Delphi\GraphicEx;G:\Developing\Library\Delphi\ScrollingCredits;G:\Developing\Library\Delphi\Dcpcrypt2\Ciphers;G:\Developing\Library\Delphi\Dcpcrypt2;G:\Developing\Library\Delphi\Dcpcrypt2\Hashes]]>
+                </Property>
               <Property name="LinkerOutput" type="Integer">0</Property>
               <Property name="LocalSymbols" type="WordBool">True</Property>
               <Property name="Mapfile" type="Integer">0</Property>
@@ -568,6 +616,8 @@ Comments=
               </Object>
             </Object>
           <Object Class="TRunActionListAction" XMLID="{CF7A81FA-7B5A-42ED-AA62-53DF69CD28FF}"><Property MultiValue="0" name="ActionComment" type="string"></Property>
+            <Property MultiValue="1" name="ActionDescription" type="string"><![CDATA[Run Action List [ CompileLocalizations ]]]>
+              </Property>
             <Property MultiValue="0" name="ActionListID" type="string">{72E3ED82-A841-4967-8A10-AB79C5CF785C}</Property>
             <Property name="ActionTextColor" type="Cardinal">0</Property>
             <Property MultiValue="0" name="ActionTypeID" type="string"></Property>
@@ -593,6 +643,7 @@ Comments=
         <Property MultiValue="0" name="Name" type="string">Setup</Property>
         <Property MultiValue="0" name="UniqueID" type="string">{D68519BF-5F92-4BB6-92F2-FED6E3B06D2B}</Property>
         <Object Class="TFBAction" XMLID="{63E855BF-2E8A-4FD5-9463-404815C38726}"><Property MultiValue="0" name="ActionComment" type="string"></Property>
+          <Property MultiValue="0" name="ActionDescription" type="string">FinalBuilderAction</Property>
           <Property name="ActionTextColor" type="Cardinal">0</Property>
           <Property MultiValue="0" name="ActionTypeID" type="string"></Property>
           <Property name="Enabled" type="WordBool">True</Property>
@@ -607,6 +658,8 @@ Comments=
           <Property name="RetryPauseInterval" type="Cardinal">1000</Property>
           <Property name="SuppressStatusMessages" type="Boolean">False</Property>
           <Object Class="TRunActionListAction" XMLID="{0BE1BCFB-F54F-4E6C-9BC8-D75521AB74AB}"><Property MultiValue="0" name="ActionComment" type="string"></Property>
+            <Property MultiValue="1" name="ActionDescription" type="string"><![CDATA[Run Action List [ Compile ]]]>
+              </Property>
             <Property MultiValue="0" name="ActionListID" type="string">{EF647386-2E7D-4EB8-B737-A6DE36E05205}</Property>
             <Property name="ActionTextColor" type="Cardinal">0</Property>
             <Property MultiValue="0" name="ActionTypeID" type="string"></Property>
@@ -625,6 +678,8 @@ Comments=
             <Property name="SuppressStatusMessages" type="Boolean">False</Property>
             </Object>
           <Object Class="TFBZipAction" XMLID="{E99C0FB0-54DA-4CE4-8BD1-646ABD8324E0}"><Property MultiValue="0" name="ActionComment" type="string"></Property>
+            <Property MultiValue="1" name="ActionDescription" type="string"><![CDATA[Create Zip File [ %FBPROJECTDIR%\patronus.zip ]]]>
+              </Property>
             <Property name="ActionTextColor" type="Cardinal">0</Property>
             <Property MultiValue="0" name="ActionTypeID" type="string"></Property>
             <Property name="AddDirEntriesOnRecurse" type="WordBool">True</Property>
@@ -664,6 +719,8 @@ Comments=
             <Property MultiValue="0" name="ZipComment" type="WideString"></Property>
             </Object>
           <Object Class="TInnoSetupAction" XMLID="{2625677D-8793-4C46-B412-BCA8D93D1B95}"><Property MultiValue="0" name="ActionComment" type="string"></Property>
+            <Property MultiValue="1" name="ActionDescription" type="string"><![CDATA[Build Inno Setup Script [ %FBPROJECTDIR%\..\setup\setup.iss ]]]>
+              </Property>
             <Property name="ActionTextColor" type="Cardinal">0</Property>
             <Property MultiValue="0" name="ActionTypeID" type="string"></Property>
             <Property name="Enabled" type="WordBool">True</Property>
@@ -689,6 +746,7 @@ Comments=
         <Property MultiValue="0" name="Name" type="string">Clean</Property>
         <Property MultiValue="0" name="UniqueID" type="string">{00175EDB-18D1-45FF-B6DF-20C5C8E7FDDE}</Property>
         <Object Class="TFBAction" XMLID="{9EF10B11-0BC0-416C-852A-32F60D0C0ED0}"><Property MultiValue="0" name="ActionComment" type="string"></Property>
+          <Property MultiValue="0" name="ActionDescription" type="string">FinalBuilderAction</Property>
           <Property name="ActionTextColor" type="Cardinal">0</Property>
           <Property MultiValue="0" name="ActionTypeID" type="string"></Property>
           <Property name="Enabled" type="WordBool">True</Property>
@@ -703,6 +761,8 @@ Comments=
           <Property name="RetryPauseInterval" type="Cardinal">1000</Property>
           <Property name="SuppressStatusMessages" type="Boolean">False</Property>
           <Object Class="TDeleteDirectoryAction" XMLID="{DA946AB8-15B1-4729-AC73-92AA8847B08F}"><Property MultiValue="0" name="ActionComment" type="string"></Property>
+            <Property MultiValue="1" name="ActionDescription" type="string"><![CDATA[Delete Directory [ %OutputDir% ]]]>
+              </Property>
             <Property name="ActionTextColor" type="Cardinal">0</Property>
             <Property MultiValue="0" name="ActionTypeID" type="string"></Property>
             <Property name="DeleteHidden" type="WordBool">True</Property>
@@ -731,6 +791,7 @@ Comments=
         <Property MultiValue="0" name="Name" type="string">Publish</Property>
         <Property MultiValue="0" name="UniqueID" type="string">{EEE33A59-8DF3-4C13-8E22-3CACB03660E7}</Property>
         <Object Class="TFBAction" XMLID="{2D6153AF-8723-45CC-8D8D-11FD25DD471D}"><Property MultiValue="0" name="ActionComment" type="string"></Property>
+          <Property MultiValue="0" name="ActionDescription" type="string">FinalBuilderAction</Property>
           <Property name="ActionTextColor" type="Cardinal">0</Property>
           <Property MultiValue="0" name="ActionTypeID" type="string"></Property>
           <Property name="Enabled" type="WordBool">True</Property>
@@ -745,9 +806,12 @@ Comments=
           <Property name="RetryPauseInterval" type="Cardinal">1000</Property>
           <Property name="SuppressStatusMessages" type="Boolean">False</Property>
           <Object Class="TCommentAction" XMLID="{1B7D4EB6-B89B-4F18-9DB0-F453ABF1E7DB}"><Property MultiValue="0" name="ActionComment" type="string"></Property>
+            <Property MultiValue="1" name="ActionDescription" type="string"><![CDATA[-- Dependencies]]>
+              </Property>
             <Property name="ActionTextColor" type="Cardinal">16711680</Property>
             <Property MultiValue="0" name="ActionTypeID" type="string"></Property>
-            <Property MultiValue="0" name="Description" type="string">-- Dependencies</Property>
+            <Property MultiValue="1" name="Description" type="string"><![CDATA[-- Dependencies]]>
+              </Property>
             <Property name="Enabled" type="WordBool">True</Property>
             <Property name="ExpandActionLogTitle" type="Boolean">True</Property>
             <Property name="IgnoreFailure" type="WordBool">False</Property>
@@ -761,6 +825,8 @@ Comments=
             <Property name="SuppressStatusMessages" type="Boolean">False</Property>
             </Object>
           <Object Class="TRunActionListAction" XMLID="{51563437-3332-4E17-B0F2-B11323F8D606}"><Property MultiValue="0" name="ActionComment" type="string"></Property>
+            <Property MultiValue="1" name="ActionDescription" type="string"><![CDATA[Run Action List [ Setup ]]]>
+              </Property>
             <Property MultiValue="0" name="ActionListID" type="string">{D68519BF-5F92-4BB6-92F2-FED6E3B06D2B}</Property>
             <Property name="ActionTextColor" type="Cardinal">0</Property>
             <Property MultiValue="0" name="ActionTypeID" type="string"></Property>
@@ -779,6 +845,8 @@ Comments=
             <Property name="SuppressStatusMessages" type="Boolean">False</Property>
             </Object>
           <Object Class="TRunActionListAction" XMLID="{02841F6F-AA7A-49C0-A527-EE9F88309EEB}"><Property MultiValue="0" name="ActionComment" type="string"></Property>
+            <Property MultiValue="1" name="ActionDescription" type="string"><![CDATA[Run Action List [ Clean ]]]>
+              </Property>
             <Property MultiValue="0" name="ActionListID" type="string">{00175EDB-18D1-45FF-B6DF-20C5C8E7FDDE}</Property>
             <Property name="ActionTextColor" type="Cardinal">0</Property>
             <Property MultiValue="0" name="ActionTypeID" type="string"></Property>
@@ -797,9 +865,12 @@ Comments=
             <Property name="SuppressStatusMessages" type="Boolean">False</Property>
             </Object>
           <Object Class="TCommentAction" XMLID="{D263249F-41DF-44C5-8FC3-D85F3D1B6DCE}"><Property MultiValue="0" name="ActionComment" type="string"></Property>
+            <Property MultiValue="1" name="ActionDescription" type="string"><![CDATA[-- Upload the zip and setup.exe targets to our servers]]>
+              </Property>
             <Property name="ActionTextColor" type="Cardinal">16711680</Property>
             <Property MultiValue="0" name="ActionTypeID" type="string"></Property>
-            <Property MultiValue="0" name="Description" type="string">-- Upload the zip and setup.exe targets to our servers</Property>
+            <Property MultiValue="1" name="Description" type="string"><![CDATA[-- Upload the zip and setup.exe targets to our servers]]>
+              </Property>
             <Property name="Enabled" type="WordBool">True</Property>
             <Property name="ExpandActionLogTitle" type="Boolean">True</Property>
             <Property name="IgnoreFailure" type="WordBool">False</Property>
@@ -820,6 +891,7 @@ Comments=
         <Property MultiValue="0" name="Name" type="string">CompileLocalizations</Property>
         <Property MultiValue="0" name="UniqueID" type="string">{72E3ED82-A841-4967-8A10-AB79C5CF785C}</Property>
         <Object Class="TFBAction" XMLID="{C0196419-DE7B-4FC3-A9B4-C017CC4AB9D7}"><Property MultiValue="0" name="ActionComment" type="string"></Property>
+          <Property MultiValue="0" name="ActionDescription" type="string">FinalBuilderAction</Property>
           <Property name="ActionTextColor" type="Cardinal">0</Property>
           <Property MultiValue="0" name="ActionTypeID" type="string"></Property>
           <Property name="Enabled" type="WordBool">True</Property>
@@ -834,9 +906,12 @@ Comments=
           <Property name="RetryPauseInterval" type="Cardinal">1000</Property>
           <Property name="SuppressStatusMessages" type="Boolean">False</Property>
           <Object Class="TFolderIterator" XMLID="{C31B2F32-69BC-4E1D-B366-FC6C0B4D28C7}"><Property MultiValue="0" name="ActionComment" type="string"></Property>
+            <Property MultiValue="1" name="ActionDescription" type="string"><![CDATA[Loop localization subdirectories]]>
+              </Property>
             <Property name="ActionTextColor" type="Cardinal">0</Property>
             <Property MultiValue="0" name="ActionTypeID" type="string"></Property>
-            <Property MultiValue="0" name="Description" type="string">Loop localization subdirectories</Property>
+            <Property MultiValue="1" name="Description" type="string"><![CDATA[Loop localization subdirectories]]>
+              </Property>
             <Property name="Enabled" type="WordBool">True</Property>
             <Property name="ExpandActionLogTitle" type="Boolean">True</Property>
             <Property name="FailIfNoIterations" type="Boolean">False</Property>
@@ -855,32 +930,41 @@ Comments=
             <Property name="SuppressStatusMessages" type="Boolean">False</Property>
             <Property MultiValue="0" name="VariableName" type="WideString">CurrentFolder</Property>
             <Object Class="TFBIfThenAction" XMLID="{7BBB5A66-741F-43F1-874F-328C1D1C5B71}"><Property MultiValue="0" name="ActionComment" type="string"></Property>
+              <Property MultiValue="1" name="ActionDescription" type="string"><![CDATA[Ignore "default" directory]]>
+                </Property>
               <Property name="ActionTextColor" type="Cardinal">0</Property>
               <Property MultiValue="0" name="ActionTypeID" type="string"></Property>
-              <Property MultiValue="0" name="Description" type="string">Ignore "default" directory</Property>
+              <Property MultiValue="1" name="Description" type="string"><![CDATA[Ignore "default" directory]]>
+                </Property>
               <Property name="Enabled" type="WordBool">True</Property>
               <Property name="ExpandActionLogTitle" type="Boolean">True</Property>
               <Property name="IgnoreFailure" type="WordBool">False</Property>
               <Property name="IsAction" type="Boolean">True</Property>
               <Property name="IsBreakPoint" type="WordBool">False</Property>
-              <Property MultiValue="0" name="LHSStorageString" type="string">%CurrentFolder%
-</Property>
+              <Property MultiValue="1" name="LHSStorageString" type="string"><![CDATA[%CurrentFolder%
+]]>
+                </Property>
               <Property MultiValue="0" name="LogToVariable" type="string"></Property>
               <Property name="MaxRetryAttempts" type="Cardinal">0</Property>
               <Property name="NodeCollapsed" type="Boolean">False</Property>
-              <Property MultiValue="0" name="OperatorsStorageString" type="string">&amp;lt;&amp;gt;
-</Property>
+              <Property MultiValue="1" name="OperatorsStorageString" type="string"><![CDATA[&lt;&gt;
+]]>
+                </Property>
               <Property name="PauseInterval" type="Cardinal">0</Property>
               <Property name="RetryPauseInterval" type="Cardinal">1000</Property>
-              <Property MultiValue="0" name="RHSStorageString" type="string">default
-</Property>
+              <Property MultiValue="1" name="RHSStorageString" type="string"><![CDATA[default
+]]>
+                </Property>
               <Property name="ShortCircuitEvaluation" type="Boolean">True</Property>
               <Property name="SuppressStatusMessages" type="Boolean">False</Property>
               <Property name="TermJoiner" type="TFBIfTermJoiner">jwOr</Property>
               <Object Class="TFileExistsAction" XMLID="{50F8C870-8D9E-437A-A348-2B05731D5B93}"><Property MultiValue="0" name="ActionComment" type="string"></Property>
+                <Property MultiValue="1" name="ActionDescription" type="string"><![CDATA[Make sure a .po file exists for this language]]>
+                  </Property>
                 <Property name="ActionTextColor" type="Cardinal">0</Property>
                 <Property MultiValue="0" name="ActionTypeID" type="string"></Property>
-                <Property MultiValue="0" name="Description" type="string">Make sure a .po file exists for this language</Property>
+                <Property MultiValue="1" name="Description" type="string"><![CDATA[Make sure a .po file exists for this language]]>
+                  </Property>
                 <Property name="Enabled" type="WordBool">True</Property>
                 <Property name="ExistsMode" type="TFileExistsMode">feIgnore</Property>
                 <Property name="ExpandActionLogTitle" type="Boolean">True</Property>
@@ -898,9 +982,12 @@ Comments=
                 <Property name="UseFileSpec" type="Boolean">True</Property>
                 <Property MultiValue="0" name="Variable" type="string"></Property>
                 <Object Class="TCreateDirectoryAction" XMLID="{8926F5B6-9A4B-469C-8F25-A600FC9A47E5}"><Property MultiValue="0" name="ActionComment" type="string"></Property>
+                  <Property MultiValue="1" name="ActionDescription" type="string"><![CDATA[Make "locale" directory for language in Output Dir]]>
+                    </Property>
                   <Property name="ActionTextColor" type="Cardinal">0</Property>
                   <Property MultiValue="0" name="ActionTypeID" type="string"></Property>
-                  <Property MultiValue="0" name="Description" type="string">Make "locale" directory for language in Output Dir</Property>
+                  <Property MultiValue="1" name="Description" type="string"><![CDATA[Make "locale" directory for language in Output Dir]]>
+                    </Property>
                   <Property name="Enabled" type="WordBool">True</Property>
                   <Property name="ExpandActionLogTitle" type="Boolean">True</Property>
                   <Property MultiValue="0" name="FileOrDirectory" type="WideString">%OutputDir%\locale\%CurrentFolder%\LC_MESSAGES</Property>
@@ -916,8 +1003,11 @@ Comments=
                   <Property name="SuppressStatusMessages" type="Boolean">False</Property>
                   </Object>
                 <Object Class="TRunProgramAction" XMLID="{4BBD052B-4625-4298-9776-AB602EC42088}"><Property MultiValue="0" name="ActionComment" type="string"></Property>
+                  <Property MultiValue="1" name="ActionDescription" type="string"><![CDATA[Execute Program [ %dxGetTextPath%\msgfmt.exe ]]]>
+                    </Property>
                   <Property name="ActionTextColor" type="Cardinal">0</Property>
                   <Property MultiValue="0" name="ActionTypeID" type="string"></Property>
+                  <Property name="CaptureOutput" type="Boolean">True</Property>
                   <Property name="Enabled" type="WordBool">True</Property>
                   <Property name="EnableLiveCapture" type="Boolean">True</Property>
                   <Property name="EnableReturnCodeCheck" type="Boolean">True</Property>
@@ -936,7 +1026,8 @@ Comments=
                   <Property MultiValue="0" name="LogToVariable" type="string"></Property>
                   <Property name="MaxRetryAttempts" type="Cardinal">0</Property>
                   <Property name="NodeCollapsed" type="Boolean">False</Property>
-                  <Property MultiValue="0" name="Params" type="WideString">%LocalizationDir%\%CurrentFolder%\default.po -o %OutputDir%\locale\%CurrentFolder%\LC_MESSAGES\default.mo</Property>
+                  <Property MultiValue="1" name="Params" type="WideString"><![CDATA[%LocalizationDir%\%CurrentFolder%\default.po -o %OutputDir%\locale\%CurrentFolder%\LC_MESSAGES\default.mo]]>
+                    </Property>
                   <Property name="PauseInterval" type="Cardinal">0</Property>
                   <Property name="ProcessorAffinity" type="Cardinal">0</Property>
                   <Property name="ProcessPriority" type="TFBExecuteThreadPriority">tpNormal</Property>
@@ -962,6 +1053,7 @@ Comments=
         <Property MultiValue="0" name="Name" type="string">UpdateLocalizationTemplates</Property>
         <Property MultiValue="0" name="UniqueID" type="string">{03A1A7EE-38EC-4CD4-8EC1-B7D84497729F}</Property>
         <Object Class="TFBAction" XMLID="{917AE1ED-D135-4237-9DB4-515F0F891BEB}"><Property MultiValue="0" name="ActionComment" type="string"></Property>
+          <Property MultiValue="0" name="ActionDescription" type="string">FinalBuilderAction</Property>
           <Property name="ActionTextColor" type="Cardinal">0</Property>
           <Property MultiValue="0" name="ActionTypeID" type="string"></Property>
           <Property name="Enabled" type="WordBool">True</Property>
@@ -976,9 +1068,13 @@ Comments=
           <Property name="RetryPauseInterval" type="Cardinal">1000</Property>
           <Property name="SuppressStatusMessages" type="Boolean">False</Property>
           <Object Class="TRunProgramAction" XMLID="{C5412162-5597-4651-8232-DFCD24424FE6}"><Property MultiValue="0" name="ActionComment" type="string"></Property>
+            <Property MultiValue="1" name="ActionDescription" type="string"><![CDATA[First, extract new strings from source code (=&gt; temp.po)]]>
+              </Property>
             <Property name="ActionTextColor" type="Cardinal">0</Property>
             <Property MultiValue="0" name="ActionTypeID" type="string"></Property>
-            <Property MultiValue="0" name="Description" type="string">First, extract new strings from source code (=&amp;gt; temp.po)</Property>
+            <Property name="CaptureOutput" type="Boolean">True</Property>
+            <Property MultiValue="1" name="Description" type="string"><![CDATA[First, extract new strings from source code (=&gt; temp.po)]]>
+              </Property>
             <Property name="Enabled" type="WordBool">True</Property>
             <Property name="EnableLiveCapture" type="Boolean">True</Property>
             <Property name="EnableReturnCodeCheck" type="Boolean">True</Property>
@@ -997,7 +1093,8 @@ Comments=
             <Property MultiValue="0" name="LogToVariable" type="string"></Property>
             <Property name="MaxRetryAttempts" type="Cardinal">0</Property>
             <Property name="NodeCollapsed" type="Boolean">False</Property>
-            <Property MultiValue="0" name="Params" type="WideString"> --delphi -b %FBPROJECTDIR%\..\src --so %LocalizationDir%\default\temp.po</Property>
+            <Property MultiValue="1" name="Params" type="WideString"><![CDATA[ --delphi -b %FBPROJECTDIR%\..\src --so %LocalizationDir%\default\temp.po]]>
+              </Property>
             <Property name="PauseInterval" type="Cardinal">0</Property>
             <Property name="ProcessorAffinity" type="Cardinal">0</Property>
             <Property name="ProcessPriority" type="TFBExecuteThreadPriority">tpNormal</Property>
@@ -1013,9 +1110,12 @@ Comments=
             <Property name="WaitForCompletion" type="Boolean">True</Property>
             </Object>
           <Object Class="TGroupAction" XMLID="{85A5BA32-DBCA-404D-81C6-FE249C19AB8C}"><Property MultiValue="0" name="ActionComment" type="string"></Property>
+            <Property MultiValue="1" name="ActionDescription" type="string"><![CDATA[Cleanup created po file by removing strings we want to ignore]]>
+              </Property>
             <Property name="ActionTextColor" type="Cardinal">0</Property>
             <Property MultiValue="0" name="ActionTypeID" type="string"></Property>
-            <Property MultiValue="0" name="Description" type="string">Cleanup created po file by removing strings we want to ignore</Property>
+            <Property MultiValue="1" name="Description" type="string"><![CDATA[Cleanup created po file by removing strings we want to ignore]]>
+              </Property>
             <Property name="Enabled" type="WordBool">True</Property>
             <Property name="ExpandActionLogTitle" type="Boolean">True</Property>
             <Property name="IgnoreFailure" type="WordBool">False</Property>
@@ -1028,9 +1128,12 @@ Comments=
             <Property name="RetryPauseInterval" type="Cardinal">1000</Property>
             <Property name="SuppressStatusMessages" type="Boolean">False</Property>
             <Object Class="TGroupAction" XMLID="{A2F3C2C3-781B-4AC4-A01D-F2A6CDF9CB2E}"><Property MultiValue="0" name="ActionComment" type="string"></Property>
+              <Property MultiValue="1" name="ActionDescription" type="string"><![CDATA[Remove autodetected ignores (temp.po =&gt; temp2.po)]]>
+                </Property>
               <Property name="ActionTextColor" type="Cardinal">0</Property>
               <Property MultiValue="0" name="ActionTypeID" type="string"></Property>
-              <Property MultiValue="0" name="Description" type="string">Remove autodetected ignores (temp.po =&amp;gt; temp2.po)</Property>
+              <Property MultiValue="1" name="Description" type="string"><![CDATA[Remove autodetected ignores (temp.po =&gt; temp2.po)]]>
+                </Property>
               <Property name="Enabled" type="WordBool">True</Property>
               <Property name="ExpandActionLogTitle" type="Boolean">True</Property>
               <Property name="IgnoreFailure" type="WordBool">False</Property>
@@ -1043,9 +1146,13 @@ Comments=
               <Property name="RetryPauseInterval" type="Cardinal">1000</Property>
               <Property name="SuppressStatusMessages" type="Boolean">False</Property>
               <Object Class="TRunProgramAction" XMLID="{67FE8ACC-9535-42C6-A932-B4C8D89CD875}"><Property MultiValue="0" name="ActionComment" type="string"></Property>
+                <Property MultiValue="1" name="ActionDescription" type="string"><![CDATA[Try to automatically detect some ingore strings (create "autoignore.po")]]>
+                  </Property>
                 <Property name="ActionTextColor" type="Cardinal">0</Property>
                 <Property MultiValue="0" name="ActionTypeID" type="string"></Property>
-                <Property MultiValue="0" name="Description" type="string">Try to automatically detect some ingore strings (create "autoignore.po")</Property>
+                <Property name="CaptureOutput" type="Boolean">True</Property>
+                <Property MultiValue="1" name="Description" type="string"><![CDATA[Try to automatically detect some ingore strings (create "autoignore.po")]]>
+                  </Property>
                 <Property name="Enabled" type="WordBool">True</Property>
                 <Property name="EnableLiveCapture" type="Boolean">True</Property>
                 <Property name="EnableReturnCodeCheck" type="Boolean">True</Property>
@@ -1064,7 +1171,8 @@ Comments=
                 <Property MultiValue="0" name="LogToVariable" type="string"></Property>
                 <Property name="MaxRetryAttempts" type="Cardinal">0</Property>
                 <Property name="NodeCollapsed" type="Boolean">False</Property>
-                <Property MultiValue="0" name="Params" type="WideString">%LocalizationDir%\default\temp.po -o %LocalizationDir%\default\autoignore.po</Property>
+                <Property MultiValue="1" name="Params" type="WideString"><![CDATA[%LocalizationDir%\default\temp.po -o %LocalizationDir%\default\autoignore.po]]>
+                  </Property>
                 <Property name="PauseInterval" type="Cardinal">0</Property>
                 <Property name="ProcessorAffinity" type="Cardinal">0</Property>
                 <Property name="ProcessPriority" type="TFBExecuteThreadPriority">tpNormal</Property>
@@ -1080,9 +1188,13 @@ Comments=
                 <Property name="WaitForCompletion" type="Boolean">True</Property>
                 </Object>
               <Object Class="TRunProgramAction" XMLID="{848C80B5-091A-446A-BF44-10154EC120AE}"><Property MultiValue="0" name="ActionComment" type="string"></Property>
+                <Property MultiValue="1" name="ActionDescription" type="string"><![CDATA[Remove auto-detected ignores]]>
+                  </Property>
                 <Property name="ActionTextColor" type="Cardinal">0</Property>
                 <Property MultiValue="0" name="ActionTypeID" type="string"></Property>
-                <Property MultiValue="0" name="Description" type="string">Remove auto-detected ignores</Property>
+                <Property name="CaptureOutput" type="Boolean">True</Property>
+                <Property MultiValue="1" name="Description" type="string"><![CDATA[Remove auto-detected ignores]]>
+                  </Property>
                 <Property name="Enabled" type="WordBool">True</Property>
                 <Property name="EnableLiveCapture" type="Boolean">True</Property>
                 <Property name="EnableReturnCodeCheck" type="Boolean">True</Property>
@@ -1101,7 +1213,8 @@ Comments=
                 <Property MultiValue="0" name="LogToVariable" type="string"></Property>
                 <Property name="MaxRetryAttempts" type="Cardinal">0</Property>
                 <Property name="NodeCollapsed" type="Boolean">False</Property>
-                <Property MultiValue="0" name="Params" type="WideString">%LocalizationDir%\default\temp.po -i %LocalizationDir%\default\autoignore.po -o %LocalizationDir%\default\temp2.po</Property>
+                <Property MultiValue="1" name="Params" type="WideString"><![CDATA[%LocalizationDir%\default\temp.po -i %LocalizationDir%\default\autoignore.po -o %LocalizationDir%\default\temp2.po]]>
+                  </Property>
                 <Property name="PauseInterval" type="Cardinal">0</Property>
                 <Property name="ProcessorAffinity" type="Cardinal">0</Property>
                 <Property name="ProcessPriority" type="TFBExecuteThreadPriority">tpNormal</Property>
@@ -1117,11 +1230,14 @@ Comments=
                 <Property name="WaitForCompletion" type="Boolean">True</Property>
                 </Object>
               <Object Class="TDeleteFilesAction" XMLID="{E2E068D0-3D41-4212-BE3F-FEDF6B4EEA30}"><Property MultiValue="0" name="ActionComment" type="string"></Property>
+                <Property MultiValue="1" name="ActionDescription" type="string"><![CDATA[Delete temporary "autoignore.po" file we just created]]>
+                  </Property>
                 <Property name="ActionTextColor" type="Cardinal">0</Property>
                 <Property MultiValue="0" name="ActionTypeID" type="string"></Property>
                 <Property name="DeleteHidden" type="WordBool">False</Property>
                 <Property name="DeleteReadOnly" type="WordBool">False</Property>
-                <Property MultiValue="0" name="Description" type="string">Delete temporary "autoignore.po" file we just created</Property>
+                <Property MultiValue="1" name="Description" type="string"><![CDATA[Delete temporary "autoignore.po" file we just created]]>
+                  </Property>
                 <Property name="Enabled" type="WordBool">True</Property>
                 <Property name="ExpandActionLogTitle" type="Boolean">True</Property>
                 <Property name="FailIfNoFile" type="WordBool">True</Property>
@@ -1138,9 +1254,13 @@ Comments=
                 </Object>
               </Object>
             <Object Class="TRunProgramAction" XMLID="{56FD7427-0F66-4AB1-AF1B-097FAA1A2F39}"><Property MultiValue="0" name="ActionComment" type="string"></Property>
+              <Property MultiValue="1" name="ActionDescription" type="string"><![CDATA[Remove predefined ignores (temp2.po =&gt; default.po)]]>
+                </Property>
               <Property name="ActionTextColor" type="Cardinal">0</Property>
               <Property MultiValue="0" name="ActionTypeID" type="string"></Property>
-              <Property MultiValue="0" name="Description" type="string">Remove predefined ignores (temp2.po =&amp;gt; default.po)</Property>
+              <Property name="CaptureOutput" type="Boolean">True</Property>
+              <Property MultiValue="1" name="Description" type="string"><![CDATA[Remove predefined ignores (temp2.po =&gt; default.po)]]>
+                </Property>
               <Property name="Enabled" type="WordBool">True</Property>
               <Property name="EnableLiveCapture" type="Boolean">True</Property>
               <Property name="EnableReturnCodeCheck" type="Boolean">False</Property>
@@ -1159,7 +1279,8 @@ Comments=
               <Property MultiValue="0" name="LogToVariable" type="string"></Property>
               <Property name="MaxRetryAttempts" type="Cardinal">0</Property>
               <Property name="NodeCollapsed" type="Boolean">False</Property>
-              <Property MultiValue="0" name="Params" type="WideString">%LocalizationDir%\default\temp2.po -i %LocalizationDir%\ignore.po -o %LocalizationDir%\default\default.po</Property>
+              <Property MultiValue="1" name="Params" type="WideString"><![CDATA[%LocalizationDir%\default\temp2.po -i %LocalizationDir%\ignore.po -o %LocalizationDir%\default\default.po]]>
+                </Property>
               <Property name="PauseInterval" type="Cardinal">0</Property>
               <Property name="ProcessorAffinity" type="Cardinal">0</Property>
               <Property name="ProcessPriority" type="TFBExecuteThreadPriority">tpNormal</Property>
@@ -1176,9 +1297,12 @@ Comments=
               </Object>
             </Object>
           <Object Class="TGroupAction" XMLID="{8DB90B25-75E1-4F1B-B7AD-EDA4D6B563DC}"><Property MultiValue="0" name="ActionComment" type="string"></Property>
+            <Property MultiValue="1" name="ActionDescription" type="string"><![CDATA[Delete temporary files created so far that we don't need anymore]]>
+              </Property>
             <Property name="ActionTextColor" type="Cardinal">0</Property>
             <Property MultiValue="0" name="ActionTypeID" type="string"></Property>
-            <Property MultiValue="0" name="Description" type="string">Delete temporary files created so far that we don't need anymore</Property>
+            <Property MultiValue="1" name="Description" type="string"><![CDATA[Delete temporary files created so far that we don't need anymore]]>
+              </Property>
             <Property name="Enabled" type="WordBool">True</Property>
             <Property name="ExpandActionLogTitle" type="Boolean">True</Property>
             <Property name="IgnoreFailure" type="WordBool">False</Property>
@@ -1191,6 +1315,8 @@ Comments=
             <Property name="RetryPauseInterval" type="Cardinal">1000</Property>
             <Property name="SuppressStatusMessages" type="Boolean">False</Property>
             <Object Class="TDeleteFilesAction" XMLID="{E48B6F59-73A5-4A41-BC1D-A9A26805930D}"><Property MultiValue="0" name="ActionComment" type="string"></Property>
+              <Property MultiValue="1" name="ActionDescription" type="string"><![CDATA[Delete File(s) [ %LocalizationDir%\default\temp.po ]]]>
+                </Property>
               <Property name="ActionTextColor" type="Cardinal">0</Property>
               <Property MultiValue="0" name="ActionTypeID" type="string"></Property>
               <Property name="DeleteHidden" type="WordBool">False</Property>
@@ -1210,6 +1336,8 @@ Comments=
               <Property name="SuppressStatusMessages" type="Boolean">False</Property>
               </Object>
             <Object Class="TDeleteFilesAction" XMLID="{5C3F4AA3-8356-430E-AF8B-007C1EE9F49E}"><Property MultiValue="0" name="ActionComment" type="string"></Property>
+              <Property MultiValue="1" name="ActionDescription" type="string"><![CDATA[Delete File(s) [ %LocalizationDir%\default\temp2.po ]]]>
+                </Property>
               <Property name="ActionTextColor" type="Cardinal">0</Property>
               <Property MultiValue="0" name="ActionTypeID" type="string"></Property>
               <Property name="DeleteHidden" type="WordBool">False</Property>
@@ -1230,9 +1358,12 @@ Comments=
               </Object>
             </Object>
           <Object Class="TFolderIterator" XMLID="{33E60EBA-DABD-472E-B3DE-CA71627850DA}"><Property MultiValue="0" name="ActionComment" type="string"></Property>
+            <Property MultiValue="1" name="ActionDescription" type="string"><![CDATA[Loop localization subdirectories]]>
+              </Property>
             <Property name="ActionTextColor" type="Cardinal">0</Property>
             <Property MultiValue="0" name="ActionTypeID" type="string"></Property>
-            <Property MultiValue="0" name="Description" type="string">Loop localization subdirectories</Property>
+            <Property MultiValue="1" name="Description" type="string"><![CDATA[Loop localization subdirectories]]>
+              </Property>
             <Property name="Enabled" type="WordBool">True</Property>
             <Property name="ExpandActionLogTitle" type="Boolean">True</Property>
             <Property name="FailIfNoIterations" type="Boolean">False</Property>
@@ -1251,32 +1382,41 @@ Comments=
             <Property name="SuppressStatusMessages" type="Boolean">False</Property>
             <Property MultiValue="0" name="VariableName" type="WideString">CurrentFolder</Property>
             <Object Class="TFBIfThenAction" XMLID="{37A45A93-EE62-4963-A819-6902C469554D}"><Property MultiValue="0" name="ActionComment" type="string"></Property>
+              <Property MultiValue="1" name="ActionDescription" type="string"><![CDATA[Ignore "default" directory]]>
+                </Property>
               <Property name="ActionTextColor" type="Cardinal">0</Property>
               <Property MultiValue="0" name="ActionTypeID" type="string"></Property>
-              <Property MultiValue="0" name="Description" type="string">Ignore "default" directory</Property>
+              <Property MultiValue="1" name="Description" type="string"><![CDATA[Ignore "default" directory]]>
+                </Property>
               <Property name="Enabled" type="WordBool">True</Property>
               <Property name="ExpandActionLogTitle" type="Boolean">True</Property>
               <Property name="IgnoreFailure" type="WordBool">False</Property>
               <Property name="IsAction" type="Boolean">True</Property>
               <Property name="IsBreakPoint" type="WordBool">False</Property>
-              <Property MultiValue="0" name="LHSStorageString" type="string">%CurrentFolder%
-</Property>
+              <Property MultiValue="1" name="LHSStorageString" type="string"><![CDATA[%CurrentFolder%
+]]>
+                </Property>
               <Property MultiValue="0" name="LogToVariable" type="string"></Property>
               <Property name="MaxRetryAttempts" type="Cardinal">0</Property>
               <Property name="NodeCollapsed" type="Boolean">False</Property>
-              <Property MultiValue="0" name="OperatorsStorageString" type="string">&amp;lt;&amp;gt;
-</Property>
+              <Property MultiValue="1" name="OperatorsStorageString" type="string"><![CDATA[&lt;&gt;
+]]>
+                </Property>
               <Property name="PauseInterval" type="Cardinal">0</Property>
               <Property name="RetryPauseInterval" type="Cardinal">1000</Property>
-              <Property MultiValue="0" name="RHSStorageString" type="string">default
-</Property>
+              <Property MultiValue="1" name="RHSStorageString" type="string"><![CDATA[default
+]]>
+                </Property>
               <Property name="ShortCircuitEvaluation" type="Boolean">True</Property>
               <Property name="SuppressStatusMessages" type="Boolean">False</Property>
               <Property name="TermJoiner" type="TFBIfTermJoiner">jwOr</Property>
               <Object Class="TFileExistsAction" XMLID="{33785531-185E-41AE-9280-02E207E2D216}"><Property MultiValue="0" name="ActionComment" type="string"></Property>
+                <Property MultiValue="1" name="ActionDescription" type="string"><![CDATA[Make sure a .po file exists for this language]]>
+                  </Property>
                 <Property name="ActionTextColor" type="Cardinal">0</Property>
                 <Property MultiValue="0" name="ActionTypeID" type="string"></Property>
-                <Property MultiValue="0" name="Description" type="string">Make sure a .po file exists for this language</Property>
+                <Property MultiValue="1" name="Description" type="string"><![CDATA[Make sure a .po file exists for this language]]>
+                  </Property>
                 <Property name="Enabled" type="WordBool">True</Property>
                 <Property name="ExistsMode" type="TFileExistsMode">feIgnore</Property>
                 <Property name="ExpandActionLogTitle" type="Boolean">True</Property>
@@ -1295,8 +1435,11 @@ Comments=
                 <Property MultiValue="0" name="Variable" type="string"></Property>
                 </Object>
               <Object Class="TRunProgramAction" XMLID="{F3E8C1D6-73B6-4F3F-868B-82949D83462D}"><Property MultiValue="0" name="ActionComment" type="string"></Property>
+                <Property MultiValue="1" name="ActionDescription" type="string"><![CDATA[Execute Program [ %dxGetTextPath%\msgmerge.exe ]]]>
+                  </Property>
                 <Property name="ActionTextColor" type="Cardinal">0</Property>
                 <Property MultiValue="0" name="ActionTypeID" type="string"></Property>
+                <Property name="CaptureOutput" type="Boolean">True</Property>
                 <Property name="Enabled" type="WordBool">True</Property>
                 <Property name="EnableLiveCapture" type="Boolean">True</Property>
                 <Property name="EnableReturnCodeCheck" type="Boolean">True</Property>
@@ -1315,7 +1458,8 @@ Comments=
                 <Property MultiValue="0" name="LogToVariable" type="string"></Property>
                 <Property name="MaxRetryAttempts" type="Cardinal">0</Property>
                 <Property name="NodeCollapsed" type="Boolean">False</Property>
-                <Property MultiValue="0" name="Params" type="WideString">%LocalizationDir%\%CurrentFolder%\default.po %LocalizationDir%\default\default.po -o %LocalizationDir%\%CurrentFolder%\default.po </Property>
+                <Property MultiValue="1" name="Params" type="WideString"><![CDATA[%LocalizationDir%\%CurrentFolder%\default.po %LocalizationDir%\default\default.po -o %LocalizationDir%\%CurrentFolder%\default.po ]]>
+                  </Property>
                 <Property name="PauseInterval" type="Cardinal">0</Property>
                 <Property name="ProcessorAffinity" type="Cardinal">0</Property>
                 <Property name="ProcessPriority" type="TFBExecuteThreadPriority">tpNormal</Property>
@@ -1337,7 +1481,8 @@ Comments=
         </Object>
       </Object>
     <Object Class="TFBVariablesCollection" XMLID="{C28ACBFB-9E3D-4F8C-A397-B17117DA6DE4}"><Property MultiValue="0" name="Name" type="string">Project</Property>
-      <Object Class="TFBVariable" XMLID="{6F5D056D-8964-48C2-9B57-2FE8884422FE}"><Property MultiValue="0" name="Comment" type="string">Temporary directory we use to put everything together</Property>
+      <Object Class="TFBVariable" XMLID="{6F5D056D-8964-48C2-9B57-2FE8884422FE}"><Property MultiValue="1" name="Comment" type="string"><![CDATA[Temporary directory we use to put everything together]]>
+          </Property>
         <Property MultiValue="0" name="DefaultValue" type="string">%FBPROJECTDIR%\output</Property>
         <Property name="IsMacro" type="Boolean">False</Property>
         <Property name="IsPersistent" type="Boolean">False</Property>
@@ -1361,7 +1506,8 @@ Comments=
         <Property MultiValue="0" name="Name" type="string">RequestedAction</Property>
         <Property name="VariableType" type="TFBVariableType">vtProject</Property>
         </Object>
-      <Object Class="TFBVariable" XMLID="{5CA11656-AB2A-4B67-B233-3B91822BE4C7}"><Property MultiValue="0" name="Comment" type="string">local variable used in folder iterator</Property>
+      <Object Class="TFBVariable" XMLID="{5CA11656-AB2A-4B67-B233-3B91822BE4C7}"><Property MultiValue="1" name="Comment" type="string"><![CDATA[local variable used in folder iterator]]>
+          </Property>
         <Property MultiValue="0" name="DefaultValue" type="string"></Property>
         <Property name="IsMacro" type="Boolean">False</Property>
         <Property name="IsPersistent" type="Boolean">False</Property>
@@ -1369,7 +1515,8 @@ Comments=
         <Property MultiValue="0" name="Name" type="string">CurrentFolder</Property>
         <Property name="VariableType" type="TFBVariableType">vtProject</Property>
         </Object>
-      <Object Class="TFBVariable" XMLID="{5849F139-8F00-4D7B-93A3-B831A67F731E}"><Property MultiValue="0" name="Comment" type="string">Shortcut to access where our localization po files are located (relative)</Property>
+      <Object Class="TFBVariable" XMLID="{5849F139-8F00-4D7B-93A3-B831A67F731E}"><Property MultiValue="1" name="Comment" type="string"><![CDATA[Shortcut to access where our localization po files are located (relative)]]>
+          </Property>
         <Property MultiValue="0" name="DefaultValue" type="string">%FBPROJECTDIR%\..\localization</Property>
         <Property name="IsMacro" type="Boolean">False</Property>
         <Property name="IsPersistent" type="Boolean">False</Property>
@@ -1377,7 +1524,8 @@ Comments=
         <Property MultiValue="0" name="Name" type="string">LocalizationDir</Property>
         <Property name="VariableType" type="TFBVariableType">vtProject</Property>
         </Object>
-      <Object Class="TFBVariable" XMLID="{5DF5999D-70CC-43F0-B2B3-E137F0C59284}"><Property MultiValue="0" name="Comment" type="string">We need dxgettext and it's command line tools to build.</Property>
+      <Object Class="TFBVariable" XMLID="{5DF5999D-70CC-43F0-B2B3-E137F0C59284}"><Property MultiValue="1" name="Comment" type="string"><![CDATA[We need dxgettext and it's command line tools to build.]]>
+          </Property>
         <Property MultiValue="0" name="DefaultValue" type="string">G:\Developing\Library\Delphi\dxgettext</Property>
         <Property name="IsMacro" type="Boolean">False</Property>
         <Property name="IsPersistent" type="Boolean">False</Property>
