@@ -1,6 +1,9 @@
 program patronus;
 
+{$R 'patronus.res' 'patronus.rc'}
+
 uses
+  ExceptionLog,
   gnugettext,
   Forms,
   Graphics,
@@ -16,8 +19,6 @@ uses
   OpenStoreFormUnit in 'OpenStoreFormUnit.pas' {OpenStoreForm},
   ApplicationSettings in 'ApplicationSettings.pas',
   VistaCompat in 'VistaCompat.pas';
-
-{$R *.res}
 
 begin
   // Exclude some stuff from translation
