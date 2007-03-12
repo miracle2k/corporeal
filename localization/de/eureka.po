@@ -1,0 +1,275 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: \n"
+"POT-Creation-Date: \n"
+"PO-Revision-Date: 2007-03-12 18:57+0100\n"
+"Last-Translator: Michael Elsdoerfer <michael@elsdoerfer.info>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=iso-8859-1\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#. mtInformationMsgCaption
+msgid "Information."
+msgstr "Information."
+
+#. mtQuestionMsgCaption
+msgid "Question."
+msgstr "Frage."
+
+#. mtErrorMsgCaption
+msgid "Error."
+msgstr "Fehler."
+
+#. mtDialog_Caption
+msgid "Error occurred"
+msgstr "Ein Fehler ist aufgetreten"
+
+#. mtDialog_ErrorMsgCaption
+msgid "Please read the following information for further details."
+msgstr "Die folgenden Informationen enthalten weitere Details."
+
+#. mtDialog_GeneralCaption
+msgid "General"
+msgstr "Allgemein"
+
+#. mtDialog_GeneralHeader
+msgid "General Information"
+msgstr "Allgemeine Informationen"
+
+#. mtDialog_CallStackCaption
+msgid "Call Stack"
+msgstr "Call Stack"
+
+#. mtDialog_CallStackHeader
+msgid "Call Stack Information"
+msgstr "Call Stack Informationen"
+
+#. mtDialog_ModulesCaption
+msgid "Modules"
+msgstr "Module"
+
+#. mtDialog_ModulesHeader
+msgid "Modules Information"
+msgstr "Modulinformationen"
+
+#. mtDialog_ProcessesCaption
+msgid "Processes"
+msgstr "Prozesse"
+
+#. mtDialog_ProcessesHeader
+msgid "Processes Information"
+msgstr "Prozessinformationen"
+
+#. mtDialog_AsmCaption
+msgid "Assembler"
+msgstr "Assembler"
+
+#. mtDialog_AsmHeader
+msgid "Assembler Information"
+msgstr "Assembler Informationen"
+
+#. mtDialog_CPUCaption
+msgid "CPU"
+msgstr "CPU"
+
+#. mtDialog_CPUHeader
+msgid "CPU Information"
+msgstr "CPU Informationen"
+
+#. mtDialog_OKButtonCaption
+msgid "&OK"
+msgstr "&OK"
+
+#. mtDialog_TerminateButtonCaption
+msgid "&Terminate"
+msgstr "&Beenden"
+
+#. mtDialog_RestartButtonCaption
+msgid "&Restart"
+msgstr "&Neu starten"
+
+#. mtDialog_DetailsButtonCaption
+msgid "&Details"
+msgstr "&Details"
+
+#. mtDialog_CustomButtonCaption
+msgid "&Help"
+msgstr "&Hilfe"
+
+#. mtDialog_SendMessage
+msgid "&Send this error via Internet"
+msgstr "&Diesen Fehler über das Internet senden"
+
+#. mtDialog_ScreenshotMessage
+msgid "&Attach a Screenshot image"
+msgstr "&Screenshot anhängen"
+
+#. mtDialog_CopyMessage
+msgid "&Copy to Clipboard"
+msgstr "&In die Zwischenablage kopieren"
+
+#. mtDialog_SupportMessage
+msgid "Go to the Support Page"
+msgstr "Zur Support Webseite"
+
+#. mtMSDialog_ErrorMsgCaption
+msgid "The application has encountered a problem. We are sorry for the inconvenience."
+msgstr "Diese Anwendung hat ein Problem aufgefunden. "
+
+#. mtMSDialog_RestartCaption
+msgid "Restart application."
+msgstr "Anwendung neustarten."
+
+#. mtMSDialog_TerminateCaption
+msgid "Terminate application."
+msgstr "Anwendung beenden."
+
+#. mtMSDialog_PleaseCaption
+msgid "Please tell us about this problem."
+msgstr "Bitte benachrichtige uns über dieses Problem."
+
+#. mtMSDialog_DescriptionCaption
+msgid "We have created an error report that you can send to us. We will treat this report as confidential and anonymous."
+msgstr "Ein Fehlerbericht wurde erzeugt, und kann an uns gesendet werden. Wir werden die Daten in diesem Report vertraulich und anonym behandeln."
+
+#. mtMSDialog_SeeDetailsCaption
+msgid "To see what data the error report contains,"
+msgstr "Um zu sehen welche Informationen der Bericht enthält, "
+
+#. mtMSDialog_SeeClickCaption
+msgid "click here."
+msgstr "klicke hier."
+
+#. mtMSDialog_HowToReproduceCaption
+msgid "What were you doing when the problem happended (optional)?"
+msgstr "Bei welcher Aktion ist das Problem aufgetreten (optional)?"
+
+#. mtMSDialog_EmailCaption
+msgid "Email address (optional):"
+msgstr "E-Mail Adresse (optional)"
+
+#. mtMSDialog_SendButtonCaption
+msgid "&Send Error Report"
+msgstr "&Fehlerbericht senden"
+
+#. mtMSDialog_NoSendButtonCaption
+msgid "&Don't Send"
+msgstr "&Nicht senden"
+
+#. mtSendDialog_Caption
+msgid "Send."
+msgstr "Senden."
+
+#. mtSendDialog_Message
+msgid "Message"
+msgstr "Nachricht"
+
+#. mtSendDialog_Resolving
+msgid "Resolving DNS..."
+msgstr "DNS auflösen..."
+
+#. mtSendDialog_Login
+msgid "Login..."
+msgstr "Login..."
+
+#. mtSendDialog_Connecting
+msgid "Connecting with server..."
+msgstr "Verbinde mit Server..."
+
+#. mtSendDialog_Connected
+msgid "Connected with server."
+msgstr "Verbunden mit Server."
+
+#. mtSendDialog_Sending
+msgid "Sending message..."
+msgstr "Sende Nachricht..."
+
+#. mtSendDialog_Sent
+msgid "Message sent."
+msgstr "Nachricht gesendet."
+
+#. mtSendDialog_SelectProject
+msgid "Select project..."
+msgstr "Projekt auswählen..."
+
+#. mtSendDialog_Searching
+msgid "Searching..."
+msgstr "Suche..."
+
+#. mtSendDialog_Modifying
+msgid "Modifying..."
+msgstr "Ändere..."
+
+#. mtSendDialog_Disconnecting
+msgid "Disconnecting..."
+msgstr "Verbindung trennen..."
+
+#. mtSendDialog_Disconnected
+msgid "Disconnected."
+msgstr "Verbindung getrennt."
+
+#. mtReproduceDialog_Caption
+msgid "Request"
+msgstr "Bitte"
+
+#. mtReproduceDialog_Request
+msgid "Please describe the steps to reproduce the error:"
+msgstr "Durch folgende Schritte lässt sich der Fehler reproduzieren:"
+
+#. mtSend_SuccessMsg
+msgid "The message was sent successfully."
+msgstr "Die Nachricht wurde erfolgreich versandt."
+
+#. mtSend_FailureMsg
+msgid "Sorry, sending the message didn't work."
+msgstr "Tut uns leid, die Nachricht konnte nicht gesendet werden."
+
+#. mtSend_BugClosedMsg
+msgid "Contact the program support to obtain an update."
+msgstr "Kontaktiere den Support um ein Update zu bekommen."
+
+#. mtSend_UnknownErrorMsg
+msgid "Unknown error."
+msgstr "Unbekannter Fehler."
+
+#. mtSend_InvalidLoginMsg
+msgid "Invalid login request."
+msgstr "Ungültiger Login."
+
+#. mtSend_InvalidSearchMsg
+msgid "Invalid search request."
+msgstr "Ungültige Suchanfrage."
+
+#. mtSend_InvalidSelectionMsg
+msgid "Invalid selection request."
+msgstr "Ungültige Auswahlanfrage."
+
+#. mtSend_InvalidInsertMsg
+msgid "Invalid insert request."
+msgstr "Ungültige Einfüge-Anfrage."
+
+#. mtSend_InvalidModifyMsg
+msgid "Invalid modify request."
+msgstr "Ungültige Änderungsanfrage."
+
+#. mtFileCrackedMsg
+msgid "The application will be closed."
+msgstr "Diese Anwendung wird beendet."
+
+#. mtException_LeakMultiFree
+msgid "Multi Free memory leak."
+msgstr "Multi Free memory leak."
+
+#. mtException_LeakMemoryOverrun
+msgid "Memory Overrun leak."
+msgstr "Memory Overrun leak."
+
+#. mtException_AntiFreeze
+msgid "The application seems to be frozen."
+msgstr "Diese Anwendung scheint nicht mehr zu reagieren."
+
+#. mtInvalidEmailMsg
+msgid "Invalid email."
+msgstr "Ungültige E-Mail Adresse."
+
