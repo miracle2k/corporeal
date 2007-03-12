@@ -3,7 +3,7 @@ program patronus;
 {$R 'patronus.res' 'patronus.rc'}
 
 uses
-  ExceptionLog,
+  ExceptionLog, ETypes,
   gnugettext,
   Forms,
   Graphics,
@@ -20,9 +20,24 @@ uses
   ApplicationSettings in 'ApplicationSettings.pas',
   VistaCompat in 'VistaCompat.pas';
 
+  // translate all messages from eurekalog
+  procedure TranslateEurekaLog;
+  var
+    I: Integer;
+  begin
+    for I := Integer(Low(TMessageType)) to Integer(High(TMessageType)) do
+    begin
+      with CurrentEurekaLogOptions do
+        CustomizedTexts[TMessageType(I)] :=
+          dgettext('eureka', CustomizedTexts[TMessageType(I)]);
+    end;
+  end;
+
 begin
   // Exclude some stuff from translation
   TP_GlobalIgnoreClass(TFont);
+  // Localize EurekaLog Messages
+  TranslateEurekaLog;
 
   Application.Initialize;
   Application.Title := AppShortName;
