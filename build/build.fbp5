@@ -538,7 +538,7 @@
             <Property name="SuppressStatusMessages" type="Boolean">False</Property>
             <Property name="UpdateDofFile" type="Boolean">False</Property>
             <Property name="UpdatePackageSource" type="Boolean">False</Property>
-            <Property name="UseEurekaLogCompiler" type="Boolean">False</Property>
+            <Property name="UseEurekaLogCompiler" type="Boolean">True</Property>
             <Property name="UseProjectSettings" type="TFBUseProjectSettings">[usPackages,usCompiler,usLinker,usVersionInfo]</Property>
             <Property name="UsePropertySet" type="Boolean">False</Property>
             <Property name="UseVersionFromDOF" type="Boolean">False</Property>
@@ -586,11 +586,11 @@ Comments=
               <Property name="IncludeRemoteSymbols" type="WordBool">False</Property>
               <Property name="IncludeTD32" type="WordBool">False</Property>
               <Property name="IOChecking" type="WordBool">True</Property>
-              <Property MultiValue="1" name="LibraryPath" type="WideString"><![CDATA[$(BDS)\lib;$(BDS)\Imports;$(BDS)\Lib\Indy10;G:\DEVELO~1\Library\Delphi\jcl\jcl\lib\d10;G:\DEVELO~1\Library\Delphi\jcl\jcl\source;G:\Developing\Library\Delphi\jvcl\lib\D10;G:\Developing\Library\Delphi\jvcl\common;G:\Developing\Library\Delphi\jvcl\Resources;G:\Developing\Library\Delphi\Virtual Treeview\Source;G:\developing\Library\Delphi\Mustangpeak\Common Library\Source;G:\developing\Library\Delphi\Mustangpeak\EasyListview\Source;G:\developing\Library\Delphi\Mustangpeak\EasyNSE\Source;G:\developing\Library\Delphi\Mustangpeak\EasyNSE\Include;G:\developing\Library\Delphi\Tnt Unicode Controls\Source;G:\developing\Library\Delphi\Mustangpeak\VirtualShellTools\Source;G:\developing\Library\Delphi\Toolbar2000\Source;G:\Developing\Library\Delphi\DragDrop\Components;c:\users\michael\documents\borland studio projects\bpl;G:\Developing\Library\Delphi\SpTBXLib\Source;G:\Developing\Library\Delphi\TBX;G:\Developing\Library\Delphi\PngComponents\Source;G:\Developing\Library\Delphi\TaskDialog;G:\Developing\Library\Delphi\xmlparser;G:\Developing\Library\Delphi\openxml\xdom4_1;G:\Developing\Library\Delphi\openxml\utils_2_0;G:\Developing\Library\Delphi\JCL\jcl\source\windows;G:\Developing\Library\Delphi\JCL\jcl\source\common;G:\developing\Library\Delphi\GraphicEx;G:\Developing\Library\Delphi\ScrollingCredits;G:\Developing\Library\Delphi\Dcpcrypt2\Ciphers;G:\Developing\Library\Delphi\Dcpcrypt2;G:\Developing\Library\Delphi\Dcpcrypt2\Hashes]]>
+              <Property MultiValue="1" name="LibraryPath" type="WideString"><![CDATA[G:\developing\Library\Delphi\EurekaLog\Delphi10;$(BDS)\lib;$(BDS)\Imports;$(BDS)\Lib\Indy10;G:\Developing\Library\Delphi\Virtual Treeview\Source;G:\developing\Library\Delphi\Tnt Unicode Controls\Source;G:\developing\Library\Delphi\Toolbar2000\Source;G:\Developing\Library\Delphi\DragDrop\Components;G:\Developing\Library\Delphi\SpTBXLib\Source;G:\Developing\Library\Delphi\TBX;G:\Developing\Library\Delphi\PngComponents\Source;G:\Developing\Library\Delphi\TaskDialog;G:\Developing\Library\Delphi\xmlparser;G:\Developing\Library\Delphi\openxml\xdom4_1;G:\Developing\Library\Delphi\openxml\utils_2_0;G:\Developing\Library\Delphi\JCL\source\windows;G:\Developing\Library\Delphi\JCL\source\common;G:\developing\Library\Delphi\GraphicEx;G:\Developing\Library\Delphi\Dcpcrypt2\Ciphers;G:\Developing\Library\Delphi\Dcpcrypt2;G:\Developing\Library\Delphi\Dcpcrypt2\Hashes;G:\developing\Library\Delphi\dxgettext\delphi5;G:\Developing\Library\Delphi\RegExpr\Source;G:\Developing\Library\Delphi\Hexedit\vcl;G:\Developing\Projects\personal\projects\delphi\form-validator\trunk\src;g:\developing\projects\personal\projects\delphi\scrolling-credits\trunk\src;c:\users\michael\documents\borland studio projects\bpl;G:\developing\Library\Delphi\madCollection\madBasic\DeXter;G:\developing\Library\Delphi\madCollection\madDisAsm\DeXter;G:\developing\Library\Delphi\madCollection\madExcept\DeXter;G:\developing\Library\Delphi\madCollection\madRemote\DeXter;G:\developing\Library\Delphi\madCollection\madKernel\DeXter;G:\developing\Library\Delphi\madCollection\madCodeHook\DeXter;G:\developing\Library\Delphi\madCollection\madSecurity\DeXter;G:\developing\Library\Delphi\madCollection\madShell\DeXter;G:\DEVELO~1\Library\Delphi\JCL\lib\d10;G:\DEVELO~1\Library\Delphi\JCL\source;G:\Developing\Library\Delphi\JVCL\lib\D10;G:\Developing\Library\Delphi\JVCL\common;G:\Developing\Library\Delphi\JVCL\Resources;G:\developing\Library\Delphi\Mustangpeak\Common Library\Source;G:\Developing\Library\Delphi\Mustangpeak\VirtualShellToolsVELVEx\Source;G:\Developing\Library\Delphi\Mustangpeak\EasyListview\Source;G:\Developing\Library\Delphi\Mustangpeak\VirtualShellTools\Source;G:\Developing\Library\Delphi\Mustangpeak\EasyNSE\Source;G:\Developing\Library\Delphi\Mustangpeak\EasyNSE\Include]]>
                 </Property>
               <Property name="LinkerOutput" type="Integer">0</Property>
               <Property name="LocalSymbols" type="WordBool">True</Property>
-              <Property name="Mapfile" type="Integer">0</Property>
+              <Property name="Mapfile" type="Integer">3</Property>
               <Property name="MaxStackSize" type="Cardinal">1048576</Property>
               <Property name="MinStackSize" type="Cardinal">16384</Property>
               <Property MultiValue="0" name="NamespacePrefixes" type="string"></Property>
@@ -598,7 +598,7 @@ Comments=
               <Property name="Optimisation" type="WordBool">True</Property>
               <Property MultiValue="0" name="OutputDir" type="WideString">%OutputDir%</Property>
               <Property name="OverflowChecking" type="WordBool">False</Property>
-              <Property MultiValue="0" name="Packages" type="WideString"></Property>
+              <Property MultiValue="0" name="Packages" type="WideString">rtl;vcl;vclx;dbrtl;vcldb;adortl;dbxcds;dbexpress;vclib;ibxpress;xmlrtl;vclactnband;inet;intrawebdb_80_100;intraweb_80_100;vclie;inetdbbde;inetdbxpress;indycore;indysystem;dclofficexp;vclsmp;soaprtl;dsnap;indyprotocols;bdertl;teeui;teedb;tee;vcldbx;dsnapcon;websnap;webdsnap;virtualtreesd10;tntunicodevcl;tb2k_d10;pngcomponentsd9;taskdialogpkgd2006;xmlcomponents_d6_d7;utilities_d2006;mphexeditor_d10;scrollingcredits;madbasic_;maddisasm_;jcl;jclvcl;jvcored10r;jvsystemd10r;jvstdctrlsd10r;jvappfrmd10r;jvbandsd10r;jvdbd10r;jvdlgsd10r;jvbded10r;jvcmpd10r;jvcryptd10r;jvctrlsd10r;jvcustomd10r;jvdockingd10r;jvdotnetctrlsd10r;jvedid10r;jvglobusd10r;jvhmid10r;jvinterpreterd10r;jvjansd10r;jvmanagedthreadsd10r;jvmmd10r;jvnetd10r;jvpagecompsd10r;jvplugind10r;jvprintpreviewd10r;jvruntimedesignd10r;jvtimeframeworkd10r;jvuibd10r;jvvalidatorsd10r;jvwizardd10r;jvxpctrlsd10r;virtualexplorerlistviewexd10;easylistviewd10;virtualshelltoolsd10;easynsed10</Property>
               <Property name="RangeChecking" type="WordBool">False</Property>
               <Property name="RecordFieldAlign" type="TFieldAlign">fa8</Property>
               <Property name="ReferenceInfo" type="WordBool">True</Property>
@@ -614,6 +614,29 @@ Comments=
               <Property name="UsePackages" type="WordBool">False</Property>
               <Property name="VarStringChecks" type="WordBool">True</Property>
               </Object>
+            </Object>
+          <Object Class="TDeleteFilesAction" XMLID="{811A4D0F-459F-4016-98D8-298F9AD0637D}"><Property MultiValue="0" name="ActionComment" type="string"></Property>
+            <Property MultiValue="1" name="ActionDescription" type="string"><![CDATA[Delete .map file]]>
+              </Property>
+            <Property name="ActionTextColor" type="Cardinal">0</Property>
+            <Property MultiValue="0" name="ActionTypeID" type="string"></Property>
+            <Property name="DeleteHidden" type="WordBool">False</Property>
+            <Property name="DeleteReadOnly" type="WordBool">False</Property>
+            <Property MultiValue="1" name="Description" type="string"><![CDATA[Delete .map file]]>
+              </Property>
+            <Property name="Enabled" type="WordBool">True</Property>
+            <Property name="ExpandActionLogTitle" type="Boolean">True</Property>
+            <Property name="FailIfNoFile" type="WordBool">False</Property>
+            <Property MultiValue="0" name="FileSpec" type="string">%OutputDir%\patronus.map</Property>
+            <Property name="IgnoreFailure" type="WordBool">False</Property>
+            <Property name="IsAction" type="Boolean">True</Property>
+            <Property name="IsBreakPoint" type="WordBool">False</Property>
+            <Property MultiValue="0" name="LogToVariable" type="string"></Property>
+            <Property name="MaxRetryAttempts" type="Cardinal">0</Property>
+            <Property name="NodeCollapsed" type="Boolean">False</Property>
+            <Property name="PauseInterval" type="Cardinal">0</Property>
+            <Property name="RetryPauseInterval" type="Cardinal">1000</Property>
+            <Property name="SuppressStatusMessages" type="Boolean">False</Property>
             </Object>
           <Object Class="TRunActionListAction" XMLID="{CF7A81FA-7B5A-42ED-AA62-53DF69CD28FF}"><Property MultiValue="0" name="ActionComment" type="string"></Property>
             <Property MultiValue="1" name="ActionDescription" type="string"><![CDATA[Run Action List [ CompileLocalizations ]]]>
