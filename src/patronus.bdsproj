@@ -176,7 +176,7 @@
 	<StarTeamNonRelativeFiles></StarTeamNonRelativeFiles>
 <!-- EurekaLog First Line
 [Exception Log]
-EurekaLog Version=600
+EurekaLog Version=601
 Activate=1
 Activate Handle=1
 Save Log File=0

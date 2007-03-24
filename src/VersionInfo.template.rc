@@ -1,0 +1,27 @@
+1 VERSIONINFO
+FILEVERSION %VersionMajor%, %VersionStrMinor%, 0, %VersionBuild%
+PRODUCTVERSION %VersionMajor%, %VersionStrMinor%, 0, %VersionBuild%
+FILEFLAGSMASK VS_FFI_FILEFLAGSMASK
+//FILEFLAGS VS_FF_DEBUG | VS_FF_PRERELEASE
+FILEOS VOS__WINDOWS32
+FILETYPE VFT_APP
+{
+ BLOCK "StringFileInfo"
+ {
+  BLOCK "040904E4"
+  {
+   VALUE "CompanyName", "Michael Elsdörfer\000"
+   VALUE "FileDescription", "Patronus Password Store\000"
+   VALUE "InternalName", "patronus.exe\000"
+   VALUE "OriginalFilename", "patronus.exe\000"  
+   VALUE "FileVersion", "%VersionStrFull%\000"
+   VALUE "LegalCopyright", "\251 2007 Michael Elsdörfer\000"
+   VALUE "ProductName", "Patronus\000"
+   VALUE "ProductVersion", "%VersionStrFull%\000"
+  }
+ }
+ BLOCK "VarFileInfo"
+ {
+  VALUE "Translation", 1033, 1252, 1031, 1252
+ }
+}

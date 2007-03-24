@@ -5,7 +5,7 @@ program patronus;
 uses
   ExceptionLog,
   GnuGetText,
-  EurekaLogGetText,  
+  EurekaLogGetText,
   Forms,
   Graphics,
   MainFormUnit in 'MainFormUnit.pas' {MainForm},
@@ -19,7 +19,8 @@ uses
   JvGradientProgressBarEx in 'JvGradientProgressBarEx.pas',
   OpenStoreFormUnit in 'OpenStoreFormUnit.pas' {OpenStoreForm},
   ApplicationSettings in 'ApplicationSettings.pas',
-  VistaCompat in 'VistaCompat.pas';
+  VistaCompat in 'VistaCompat.pas',
+  VersionInfo in 'VersionInfo.pas';
 
 begin
   // Exclude some stuff from translation

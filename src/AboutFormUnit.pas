@@ -27,7 +27,7 @@ var
 implementation
 
 uses
-  Core, VistaCompat;
+  Core, VistaCompat, VersionInfo;
 
 const
   CreditsText =
@@ -82,7 +82,7 @@ begin
 
   // init gui
   AppNameLabel.Caption := AppShortName;
-  VersionLabel.Caption := VersionStr;
+  VersionLabel.Caption := MakeVersionString(vsfFull);
   WebsiteLink.Caption := 'elsdoerfer.info/patronus';
   ScrollingCredits.Credits.Text := CreditsText;
   ScrollingCredits.Animate := True;
