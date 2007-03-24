@@ -49,7 +49,8 @@ type
     FormValidator: TFormValidator;
     FEditMode: Boolean;
     procedure SetEditMode(const Value: Boolean);
-    function ValidatePasswordMatchCallback(Value: string): Boolean;
+    function ValidatePasswordMatchCallback(Sender: TFormValidator;
+      Rule: TValidationRule; Value: string): Boolean;
   private
     procedure UpdateQualityIndicator;
   public
@@ -183,8 +184,8 @@ begin
   QualityLabel.Caption := Format(_('%s bits'), [IntToStr(EstimatedBits)]);  
 end;
 
-function TItemPropertiesForm.ValidatePasswordMatchCallback(
-  Value: string): Boolean;
+function TItemPropertiesForm.ValidatePasswordMatchCallback(Sender:
+  TFormValidator; Rule: TValidationRule; Value: string): Boolean;
 begin
   Result := PasswordEdit.Text = PasswordRepeatEdit.Text;
 end;
