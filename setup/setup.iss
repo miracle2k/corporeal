@@ -1,17 +1,32 @@
+; Needs the Inno Setup Preprocessor, and requires some variables (version stuff etc.)
+; to be defined via the command line. We could use some ifdef constructs to make it
+; compile without those from the IDE as well, but it's not really needed so far.
+;
+; Here are the variables that are expected:
+;   VersionStrShort   - e.g. 1.5 (major/minor)
+;   VersionStrLong    - e.g. 1.5-rc1 (major/minor/ident)
+;   VersionStrFull    - e.g. 1.5-rc1.3434 (major/minor/ident/build)
+
+
+; general constants
+#define AppName "Patronus"
+#define AppNameSystem "Patronus"       ; to be used in startmenu/directory names etc.
+#define AppURL "http://www.elsdoerfer.info/patronus"
+
+
 [Setup]
-AppName=Patronus
-; Don't use version for now, enable way to add this automatically via build process
-AppVerName=Patronus
+AppName={#AppName}
+AppVerName={#AppName} {#VersionStrLong}
 AppPublisher=Michael Elsdörfer
-AppPublisherURL=http://www.elsdoerfer.info/patronus
-AppSupportURL=http://www.elsdoerfer.info/patronus
-AppUpdatesURL=http://www.elsdoerfer.info/patronus
-DefaultDirName={pf}\Patronus
-DefaultGroupName=Patronus
+AppPublisherURL={#AppURL}
+AppSupportURL={#AppURL}
+AppUpdatesURL={#AppURL}
+DefaultDirName={pf}\{#AppNameSystem}
+DefaultGroupName={#AppNameSystem}
 ; We don't create a submenu, only an icon
 DisableProgramGroupPage=yes
 AllowNoIcons=yes
-OutputBaseFilename=patronus-setup
+OutputBaseFilename={#LowerCase(AppNameSystem)}-setup-{#VersionStrShort}
 ; relative to SourceDir
 OutputDir=..\
 Compression=lzma/max
@@ -35,9 +50,9 @@ Source: "*"; DestDir: "{app}"; Flags: ignoreversion recursesubdirs
 Root: HKCU; Subkey: "Software\Patronus"; Flags: uninsdeletekey
 
 [Icons]
-Name: "{commonprograms}\Patronus"; Filename: "{app}\Patronus.exe"
-Name: "{commondesktop}\Patronus"; Filename: "{app}\Patronus.exe"; Tasks: desktopicon
+Name: "{commonprograms}\{#AppNameSystem}"; Filename: "{app}\patronus.exe"
+Name: "{commondesktop}\{#AppNameSystem}"; Filename: "{app}\patronus.exe"; Tasks: desktopicon
 
 [Run]
-Filename: "{app}\Patronus.exe"; Description: "{cm:LaunchProgram,Patronus}"; Flags: nowait postinstall skipifsilent
+Filename: "{app}\patronus.exe"; Description: "{cm:LaunchProgram,{#AppName}}"; Flags: nowait postinstall skipifsilent
 
