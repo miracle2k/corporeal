@@ -1410,7 +1410,7 @@ Comments=
               <Property MultiValue="0" name="LogToVariable" type="string"></Property>
               <Property name="MaxRetryAttempts" type="Cardinal">0</Property>
               <Property name="NodeCollapsed" type="Boolean">False</Property>
-              <Property MultiValue="1" name="Params" type="WideString"><![CDATA[%FBPROJECTDIR%\..\setup\setup.iss /dVersionStrLong="%VersionStrLong%" /dVersionStrShort="%VersionStrShort%" /dVersionStrFull="%VersionStrFull%"]]>
+              <Property MultiValue="1" name="Params" type="WideString"><![CDATA[%FBPROJECTDIR%\..\setup\setup.iss /dVersionStrLong="%VersionStrLong%" /dVersionStrShort="%VersionStrShort%" /dVersionStrFull="%VersionStrFull%" /dOutputFilename="%DistribOutputFilenameSetup%"]]>
                 </Property>
               <Property name="PauseInterval" type="Cardinal">0</Property>
               <Property name="ProcessorAffinity" type="Cardinal">0</Property>

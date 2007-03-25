@@ -6,12 +6,19 @@
 ;   VersionStrShort   - e.g. 1.5 (major/minor)
 ;   VersionStrLong    - e.g. 1.5-rc1 (major/minor/ident)
 ;   VersionStrFull    - e.g. 1.5-rc1.3434 (major/minor/ident/build)
+;   OutputFilename    - full path to were to put stuff, e.g. G:\myapp\setup.exe
 
 
 ; general constants
 #define AppName "Patronus"
 #define AppNameSystem "Patronus"       ; to be used in startmenu/directory names etc.
 #define AppURL "http://www.elsdoerfer.info/patronus"
+
+; macro to remove the path and the extension from a filename, e.g. "G:\myapp\setup.exe" => "setup"
+#define ExtractBasename(str *S) \
+  Local[1] = Copy(OutputFilename,RPos('\',OutputFilename)), \
+  Local[1] = Copy(Local[1],1,RPos('.',Local[1])-1), \
+  Local[1]
 
 
 [Setup]
@@ -26,12 +33,13 @@ DefaultGroupName={#AppNameSystem}
 ; We don't create a submenu, only an icon
 DisableProgramGroupPage=yes
 AllowNoIcons=yes
-OutputBaseFilename={#LowerCase(AppNameSystem)}-setup-{#VersionStrShort}
 ; relative to SourceDir
 OutputDir=..\
 Compression=lzma/max
 SolidCompression=yes
 SourceDir=..\build\output\
+; this one is tough, we need to extract the base filename
+OutputBaseFilename={#ExtractBasename(OutputFilename)}
 
 [Languages]
 Name: "english"; MessagesFile: "compiler:Default.isl"
