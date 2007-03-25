@@ -109,21 +109,18 @@ type
   private
     FCurrentKey: string;
     FCurrentStoreFile: string;
+    FLastStoreFile: string;
     procedure SetCurrentKey(const Value: string);
     procedure SetCurrentStoreFile(const Value: string);
+    procedure SetLastStoreFile(const Value: string);    
   private
     PWItemStore: TPWItemStore;
-    Settings: TPatronusSettings;
     LastLoadErrorMsg: string;
-  private
-    FLastStoreFile: string;
-    procedure SetLastStoreFile(const Value: string);
-    // TODO: encrypt this in memory
-    property CurrentKey: string read FCurrentKey write SetCurrentKey;
   protected
     procedure CreateParams(var Params: TCreateParams); override;
     procedure WMSyscommand(var Message: TWmSysCommand); message WM_SYSCOMMAND;
     procedure WMActivate(var Message: TWMActivate); message WM_ACTIVATE;
+    procedure WndProc(var Message: TMessage); override;
   protected
     function IsPasswordColumnVisible: Boolean;
     procedure SetPasswordColumnVisibility(Show: Boolean);
@@ -144,6 +141,8 @@ type
   public
     property CurrentStoreFile: string read FCurrentStoreFile write SetCurrentStoreFile;
     property LastStoreFile: string read FLastStoreFile write SetLastStoreFile;
+    // TODO: encrypt this in memory    
+    property CurrentKey: string read FCurrentKey write SetCurrentKey;
   end;
 
 var
@@ -509,7 +508,6 @@ begin
     Options := Options - [coVisible];
 
   // init application settings
-  Settings := TPatronusSettings.Create;
   LoadAppSettings;
 
   // init some other stuff
@@ -525,7 +523,6 @@ end;
 procedure TMainForm.FormDestroy(Sender: TObject);
 begin
   PWItemStore.Free;
-  Settings.Free;
 end;
 
 procedure TMainForm.FormMouseDown(Sender: TObject; Button: TMouseButton;
@@ -753,6 +750,16 @@ const
 begin
   Result := False;
 
+  // If the open store form is already visible, we don't do anything, expect
+  // bring the window to the front; remember to return True do, as we are
+  // actually requesting a key
+  if OpenStoreForm <> nil then
+  begin
+    SetForegroundWindow(OpenStoreForm.Handle);
+    Result := True;
+    Exit;
+  end;
+
   // ask the user to open a store file / enter a key
   OpenStoreForm := TOpenStoreForm.Create(Self, osmLoad);
   with OpenStoreForm do
@@ -834,6 +841,7 @@ begin
     until False;
     // Free form
     Free;
+    OpenStoreForm := nil;
   end;
 end;
 
@@ -1106,6 +1114,26 @@ begin
   else
     inherited;
   end;
+end;
+
+procedure TMainForm.WndProc(var Message: TMessage);
+begin
+  // This will be sent to us by a second instance shortly before it shuts down
+  if Message.Msg = WM_INSTANCE_LIMIT_MESSAGE then
+  begin
+    // If a store is currently open, just focus our window
+    if CurrentStoreFile <> '' then
+      SetForegroundWindow(Self.Handle)
+    // else, if we are already in request key mode (OpenStoreForm object
+    // exists), then put this window in front.
+    else if OpenStoreForm <> nil then         
+      SetForegroundWindow(OpenStoreForm.Handle)
+    // otherwise, try to show by requesting a key
+    else
+      TryToShow;
+  end
+  else
+    inherited;
 end;
 
 end.

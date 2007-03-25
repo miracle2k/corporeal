@@ -1,3 +1,7 @@
+1.01
+
+	* Added option to limit to once instance maximum. This is enabled per default.
+
 1.0 (January 2007)
 
 	* Non-public release.
