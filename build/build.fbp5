@@ -1678,6 +1678,8 @@ Comments=
                 <Property name="MaxRetryAttempts" type="Cardinal">0</Property>
                 <Property name="NodeCollapsed" type="Boolean">False</Property>
                 <Property name="Parameters" type="TStrings"><![CDATA[DistributionsRemoteDirectory=patronus/snapshots
+ListOfFiles=%DistribOutputFilenameZip%
+%DistribOutputFilenameSetup%
 ]]>
                   </Property>
                 <Property name="PauseInterval" type="Cardinal">0</Property>
@@ -1873,7 +1875,7 @@ Comments=
                   <Property name="IsBreakPoint" type="WordBool">False</Property>
                   <Property MultiValue="0" name="LogToVariable" type="string"></Property>
                   <Property name="MaxRetryAttempts" type="Cardinal">0</Property>
-                  <Property name="NodeCollapsed" type="Boolean">False</Property>
+                  <Property name="NodeCollapsed" type="Boolean">True</Property>
                   <Property name="PauseInterval" type="Cardinal">0</Property>
                   <Property name="RetryPauseInterval" type="Cardinal">1000</Property>
                   <Property name="SuppressStatusMessages" type="Boolean">False</Property>
@@ -1897,7 +1899,7 @@ Comments=
                       </Property>
                     <Property MultiValue="0" name="LogToVariable" type="string"></Property>
                     <Property name="MaxRetryAttempts" type="Cardinal">0</Property>
-                    <Property name="NodeCollapsed" type="Boolean">False</Property>
+                    <Property name="NodeCollapsed" type="Boolean">True</Property>
                     <Property name="PauseInterval" type="Cardinal">0</Property>
                     <Property name="RetryPauseInterval" type="Cardinal">1000</Property>
                     <Property name="SkipBlankLines" type="Boolean">True</Property>
@@ -2171,7 +2173,7 @@ Comments=
                   <Property name="IsBreakPoint" type="WordBool">False</Property>
                   <Property MultiValue="0" name="LogToVariable" type="string"></Property>
                   <Property name="MaxRetryAttempts" type="Cardinal">0</Property>
-                  <Property name="NodeCollapsed" type="Boolean">False</Property>
+                  <Property name="NodeCollapsed" type="Boolean">True</Property>
                   <Property name="PauseInterval" type="Cardinal">0</Property>
                   <Property name="RetryPauseInterval" type="Cardinal">1000</Property>
                   <Property name="SuppressStatusMessages" type="Boolean">False</Property>
@@ -2262,6 +2264,9 @@ Click Yes to continue build, press No to cancel now.]]>
                     <Property name="MaxRetryAttempts" type="Cardinal">0</Property>
                     <Property name="NodeCollapsed" type="Boolean">False</Property>
                     <Property name="Parameters" type="TStrings"><![CDATA[DistributionsRemoteDirectory=patronus
+ListOfFiles=%DistribOutputFilenameZip%
+%DistribOutputFilenameSetup%
+%LocalizationDir%\default\default.po
 ]]>
                       </Property>
                     <Property name="PauseInterval" type="Cardinal">0</Property>
@@ -4366,8 +4371,58 @@ eureka
                 </Property>
               <Property name="ActionTextColor" type="Cardinal">0</Property>
               <Property MultiValue="0" name="ActionTypeID" type="string"></Property>
-              <Property name="BuildResult" type="Boolean">False</Property>
+              <Property name="BuildResult" type="Boolean">True</Property>
               <Property MultiValue="1" name="Description" type="string"><![CDATA[Stop Run: "DistributionsRemoteDirectory" parameter is missing]]>
+                </Property>
+              <Property name="Enabled" type="WordBool">True</Property>
+              <Property name="ExpandActionLogTitle" type="Boolean">False</Property>
+              <Property name="IgnoreFailure" type="WordBool">False</Property>
+              <Property name="IsAction" type="Boolean">True</Property>
+              <Property name="IsBreakPoint" type="WordBool">False</Property>
+              <Property MultiValue="0" name="LogToVariable" type="string"></Property>
+              <Property name="MaxRetryAttempts" type="Cardinal">0</Property>
+              <Property name="NodeCollapsed" type="Boolean">False</Property>
+              <Property name="PauseInterval" type="Cardinal">0</Property>
+              <Property name="RetryPauseInterval" type="Cardinal">1000</Property>
+              <Property name="SuppressStatusMessages" type="Boolean">False</Property>
+              </Object>
+            </Object>
+          <Object Class="TFBIfThenAction" XMLID="{F0ABAB3E-14AE-4849-997A-CE5C978FF0FA}"><Property MultiValue="0" name="ActionComment" type="string"></Property>
+            <Property MultiValue="1" name="ActionDescription" type="string"><![CDATA[Make sure a list of files was passed to upload (%ListOfFiles%)]]>
+              </Property>
+            <Property name="ActionTextColor" type="Cardinal">0</Property>
+            <Property MultiValue="0" name="ActionTypeID" type="string"></Property>
+            <Property MultiValue="1" name="Description" type="string"><![CDATA[Make sure a list of files was passed to upload (%ListOfFiles%)]]>
+              </Property>
+            <Property name="Enabled" type="WordBool">True</Property>
+            <Property name="ExpandActionLogTitle" type="Boolean">True</Property>
+            <Property name="IgnoreFailure" type="WordBool">False</Property>
+            <Property name="IsAction" type="Boolean">True</Property>
+            <Property name="IsBreakPoint" type="WordBool">False</Property>
+            <Property MultiValue="1" name="LHSStorageString" type="string"><![CDATA[%ListOfFiles%
+]]>
+              </Property>
+            <Property MultiValue="0" name="LogToVariable" type="string"></Property>
+            <Property name="MaxRetryAttempts" type="Cardinal">0</Property>
+            <Property name="NodeCollapsed" type="Boolean">False</Property>
+            <Property MultiValue="1" name="OperatorsStorageString" type="string"><![CDATA[=
+]]>
+              </Property>
+            <Property name="PauseInterval" type="Cardinal">0</Property>
+            <Property name="RetryPauseInterval" type="Cardinal">1000</Property>
+            <Property MultiValue="1" name="RHSStorageString" type="string"><![CDATA[
+]]>
+              </Property>
+            <Property name="ShortCircuitEvaluation" type="Boolean">True</Property>
+            <Property name="SuppressStatusMessages" type="Boolean">False</Property>
+            <Property name="TermJoiner" type="TFBIfTermJoiner">jwOr</Property>
+            <Object Class="TFBStopBuildAction" XMLID="{DC3C1F63-CCD1-461A-BAC2-290C6E5F18FE}"><Property MultiValue="0" name="ActionComment" type="string"></Property>
+              <Property MultiValue="1" name="ActionDescription" type="string"><![CDATA[Stop Run: "ListOfFiles" parameter is missing]]>
+                </Property>
+              <Property name="ActionTextColor" type="Cardinal">0</Property>
+              <Property MultiValue="0" name="ActionTypeID" type="string"></Property>
+              <Property name="BuildResult" type="Boolean">False</Property>
+              <Property MultiValue="1" name="Description" type="string"><![CDATA[Stop Run: "ListOfFiles" parameter is missing]]>
                 </Property>
               <Property name="Enabled" type="WordBool">True</Property>
               <Property name="ExpandActionLogTitle" type="Boolean">True</Property>
@@ -4452,12 +4507,12 @@ eureka
             <Property name="RetryPauseInterval" type="Cardinal">1000</Property>
             <Property name="SuppressStatusMessages" type="Boolean">False</Property>
             <Object Class="TFTPChangeDirAction" XMLID="{7CC654D0-2F08-4185-96CB-0C3ACF7CC326}"><Property MultiValue="0" name="ActionComment" type="string"></Property>
-              <Property MultiValue="1" name="ActionDescription" type="string"><![CDATA[FTP CD to Snapshots directory]]>
+              <Property MultiValue="1" name="ActionDescription" type="string"><![CDATA[FTP CD to target directory]]>
                 </Property>
               <Property name="ActionTextColor" type="Cardinal">0</Property>
               <Property MultiValue="0" name="ActionTypeID" type="string"></Property>
               <Property MultiValue="0" name="ConnectionName" type="string">PublishConnection</Property>
-              <Property MultiValue="1" name="Description" type="string"><![CDATA[FTP CD to Snapshots directory]]>
+              <Property MultiValue="1" name="Description" type="string"><![CDATA[FTP CD to target directory]]>
                 </Property>
               <Property name="DetailedLogging" type="Boolean">True</Property>
               <Property name="Enabled" type="WordBool">True</Property>
@@ -4474,11 +4529,11 @@ eureka
               <Property name="SuppressStatusMessages" type="Boolean">False</Property>
               </Object>
             <Object Class="TFBListIterator" XMLID="{84E133A7-C903-434C-A443-D9EFDFD84231}"><Property MultiValue="0" name="ActionComment" type="string"></Property>
-              <Property MultiValue="1" name="ActionDescription" type="string"><![CDATA[Foreach distribution do]]>
+              <Property MultiValue="1" name="ActionDescription" type="string"><![CDATA[Foreach distribution in "ListOfFiles"]]>
                 </Property>
               <Property name="ActionTextColor" type="Cardinal">0</Property>
               <Property MultiValue="0" name="ActionTypeID" type="string"></Property>
-              <Property MultiValue="1" name="Description" type="string"><![CDATA[Foreach distribution do]]>
+              <Property MultiValue="1" name="Description" type="string"><![CDATA[Foreach distribution in "ListOfFiles"]]>
                 </Property>
               <Property name="Enabled" type="WordBool">True</Property>
               <Property name="ExpandActionLogTitle" type="Boolean">True</Property>
@@ -4487,8 +4542,7 @@ eureka
               <Property name="IgnoreFailure" type="WordBool">False</Property>
               <Property name="IsAction" type="Boolean">True</Property>
               <Property name="IsBreakPoint" type="WordBool">False</Property>
-              <Property name="ListOfItems" type="TStrings"><![CDATA[%DistribOutputFilenameZip%
-%DistribOutputFilenameSetup%
+              <Property name="ListOfItems" type="TStrings"><![CDATA[%ListOfFiles%
 ]]>
                 </Property>
               <Property MultiValue="0" name="LogToVariable" type="string"></Property>
@@ -4518,12 +4572,12 @@ eureka
                 <Property name="SuppressStatusMessages" type="Boolean">False</Property>
                 </Object>
               <Object Class="TSetVariableAction" XMLID="{2F18D659-8527-4096-8C0F-44AE02D456A3}"><Property MultiValue="0" name="ActionComment" type="string"></Property>
-                <Property MultiValue="1" name="ActionDescription" type="string"><![CDATA[Extract base name of distrib filename]]>
+                <Property MultiValue="1" name="ActionDescription" type="string"><![CDATA[Extract basename of filename and store in "__Temp2"]]>
                   </Property>
                 <Property name="ActionTextColor" type="Cardinal">0</Property>
                 <Property MultiValue="0" name="ActionTypeID" type="string"></Property>
                 <Property name="ApplyToExisting" type="Boolean">False</Property>
-                <Property MultiValue="1" name="Description" type="string"><![CDATA[Extract base name of distrib filename]]>
+                <Property MultiValue="1" name="Description" type="string"><![CDATA[Extract basename of filename and store in "__Temp2"]]>
                   </Property>
                 <Property name="DoExpandExpression" type="Boolean">True</Property>
                 <Property name="Enabled" type="WordBool">True</Property>
@@ -4535,6 +4589,31 @@ eureka
                 <Property MultiValue="0" name="LogToVariable" type="string"></Property>
                 <Property name="MaxRetryAttempts" type="Cardinal">0</Property>
                 <Property name="Modifier" type="TFBSetVariableModifier">smExtractFileName</Property>
+                <Property MultiValue="0" name="NewValue" type="WideString">%__TempString%</Property>
+                <Property name="NodeCollapsed" type="Boolean">False</Property>
+                <Property name="PauseInterval" type="Cardinal">0</Property>
+                <Property name="RetryPauseInterval" type="Cardinal">1000</Property>
+                <Property name="SuppressStatusMessages" type="Boolean">False</Property>
+                <Property MultiValue="0" name="VariableName" type="WideString">__TempString2</Property>
+                </Object>
+              <Object Class="TSetVariableAction" XMLID="{9E431680-73FF-4574-B40D-4B91F0D7D783}"><Property MultiValue="0" name="ActionComment" type="string"></Property>
+                <Property MultiValue="1" name="ActionDescription" type="string"><![CDATA[Extract file path of filename and store in "__Temp1"]]>
+                  </Property>
+                <Property name="ActionTextColor" type="Cardinal">0</Property>
+                <Property MultiValue="0" name="ActionTypeID" type="string"></Property>
+                <Property name="ApplyToExisting" type="Boolean">False</Property>
+                <Property MultiValue="1" name="Description" type="string"><![CDATA[Extract file path of filename and store in "__Temp1"]]>
+                  </Property>
+                <Property name="DoExpandExpression" type="Boolean">True</Property>
+                <Property name="Enabled" type="WordBool">True</Property>
+                <Property name="ExpandActionLogTitle" type="Boolean">True</Property>
+                <Property name="ForceType" type="TFBSetVariableForceType">ftDefault</Property>
+                <Property name="IgnoreFailure" type="WordBool">False</Property>
+                <Property name="IsAction" type="Boolean">True</Property>
+                <Property name="IsBreakPoint" type="WordBool">False</Property>
+                <Property MultiValue="0" name="LogToVariable" type="string"></Property>
+                <Property name="MaxRetryAttempts" type="Cardinal">0</Property>
+                <Property name="Modifier" type="TFBSetVariableModifier">smExtractFilePath</Property>
                 <Property MultiValue="0" name="NewValue" type="WideString">%__TempString%</Property>
                 <Property name="NodeCollapsed" type="Boolean">False</Property>
                 <Property name="PauseInterval" type="Cardinal">0</Property>
@@ -4577,13 +4656,13 @@ eureka
                 <Property name="EnableTimeout" type="Boolean">False</Property>
                 <Property name="ExpandActionLogTitle" type="Boolean">True</Property>
                 <Property MultiValue="0" name="FileSetName" type="string"></Property>
-                <Property MultiValue="0" name="FileSpec" type="string">%__TempString%</Property>
+                <Property MultiValue="0" name="FileSpec" type="string">%__TempString2%</Property>
                 <Property name="ForceNextClockSkewUpdate" type="Boolean">True</Property>
                 <Property name="GapLength" type="Integer">5</Property>
                 <Property name="IgnoreFailure" type="WordBool">False</Property>
                 <Property name="IsAction" type="Boolean">True</Property>
                 <Property name="IsBreakPoint" type="WordBool">False</Property>
-                <Property MultiValue="0" name="LocalDir" type="string">%DistribOutputDirectory%</Property>
+                <Property MultiValue="0" name="LocalDir" type="string">%__TempString%</Property>
                 <Property MultiValue="0" name="LogToVariable" type="string"></Property>
                 <Property name="MaxRetryAttempts" type="Cardinal">0</Property>
                 <Property name="NodeCollapsed" type="Boolean">False</Property>
@@ -4658,6 +4737,10 @@ eureka
           </Object>
         <Object Class="TFBActionListParametersCollection" XMLID="{614D5476-2758-4A3A-BC95-BFADB25167BA}"><Object Class="TFBActionListParameter" XMLID="{59910C12-1495-4F8F-A6A4-DBAD61D81657}"><Property MultiValue="0" name="Name" type="string">DistributionsRemoteDirectory</Property>
             <Property MultiValue="0" name="ParameterID" type="string">{FC4E6AF7-2470-4181-9D85-25034B04C90B}</Property>
+            <Property name="ParamType" type="TFBActionListParamType">paString</Property>
+            </Object>
+          <Object Class="TFBActionListParameter" XMLID="{A55E6497-6315-4F60-BC14-9D10555940BD}"><Property MultiValue="0" name="Name" type="string">ListOfFiles</Property>
+            <Property MultiValue="0" name="ParameterID" type="string">{32B8CF75-DB01-423A-BBD8-746BD912C77E}</Property>
             <Property name="ParamType" type="TFBActionListParamType">paString</Property>
             </Object>
           </Object>
@@ -4876,6 +4959,22 @@ eureka
         <Property name="IsPersistent" type="Boolean">False</Property>
         <Property name="MakeEnv" type="Boolean">False</Property>
         <Property MultiValue="0" name="Name" type="string">BuildType</Property>
+        <Property name="VariableType" type="TFBVariableType">vtProject</Property>
+        </Object>
+      <Object Class="TFBVariable" XMLID="{5770B30E-D58F-4B67-96F7-8021FA3781D1}"><Property MultiValue="0" name="Comment" type="string"></Property>
+        <Property MultiValue="0" name="DefaultValue" type="string"></Property>
+        <Property name="IsMacro" type="Boolean">False</Property>
+        <Property name="IsPersistent" type="Boolean">False</Property>
+        <Property name="MakeEnv" type="Boolean">False</Property>
+        <Property MultiValue="0" name="Name" type="string">__TempString</Property>
+        <Property name="VariableType" type="TFBVariableType">vtProject</Property>
+        </Object>
+      <Object Class="TFBVariable" XMLID="{63D09E55-9DB6-4384-AE29-FD130F557E4B}"><Property MultiValue="0" name="Comment" type="string"></Property>
+        <Property MultiValue="0" name="DefaultValue" type="string"></Property>
+        <Property name="IsMacro" type="Boolean">False</Property>
+        <Property name="IsPersistent" type="Boolean">False</Property>
+        <Property name="MakeEnv" type="Boolean">False</Property>
+        <Property MultiValue="0" name="Name" type="string">__TempString2</Property>
         <Property name="VariableType" type="TFBVariableType">vtProject</Property>
         </Object>
       </Object>
