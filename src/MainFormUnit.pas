@@ -571,6 +571,9 @@ begin
   end;
   // most likely, we'll need to update the statusbar text too
   GUIUpdateStatusbar;
+  // As we do not apply the filter (we don't want to do that, as a newly added
+  // item should be visible - let's reset the filter edit's current value
+  QuickSearchEdit.Text := '';
 end;
 
 procedure TMainForm.GUIUpdateStatusbar;
