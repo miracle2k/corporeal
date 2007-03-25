@@ -3,7 +3,7 @@ unit ApplicationSettings;
 interface
 
 uses
-  Classes;
+  Classes, SysUtils, Forms;
 
 type
   TPatronusSettings = class(TPersistent)
@@ -12,12 +12,16 @@ type
     FAutoLockAfter: Integer;
     procedure SetDefaultStore(const Value: string);
     procedure SetAutoLockAfter(const Value: Integer);
+    function GetApplicationExePath: WideString;
+    procedure SetApplicationExePath(const Value: WideString);
   published
   public
     constructor Create; virtual;
   published
     property DefaultStore: string read FDefaultStore write SetDefaultStore;
     property AutoLockAfter: Integer read FAutoLockAfter write SetAutoLockAfter;
+    // This makes sure the path to the executable is automatically written to the registry
+    property ApplicationExePath: WideString read GetApplicationExePath write SetApplicationExePath;    
   end;
 
 implementation
@@ -28,6 +32,16 @@ constructor TPatronusSettings.Create;
 begin
   DefaultStore := '';
   FAutoLockAfter := 10;
+end;
+
+function TPatronusSettings.GetApplicationExePath: WideString;
+begin
+  Result := ExtractFilePath(Application.ExeName);
+end;
+
+procedure TPatronusSettings.SetApplicationExePath(const Value: WideString);
+begin
+  // do not accept any values for this
 end;
 
 procedure TPatronusSettings.SetAutoLockAfter(const Value: Integer);
