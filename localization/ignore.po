@@ -15,4 +15,7 @@ msgid "MainForm\"
 
 # Used for various labels / fields that have their 
 # caption determined at runtime.
+# (plus, one embarassing spelling mistake)
+msgid "%DYNAMICTEXT%"
+
 msgid "%DYMAMICTEXT%"
