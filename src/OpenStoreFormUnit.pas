@@ -255,8 +255,8 @@ end;
 procedure TOpenStoreForm.SetKey(const Value: string);
 begin
   // bug in JvEdit? if ProtectedPasswords=True, this doesn't function.
-  // try to work around it for now, but we need this fixed later
-  // TODO: our own ProtectPasswords/Secure Edit implementation?
+  // try to work around it for now, but maybe we should fix it later.
+  // TODO 1 -cworkaround : bug: check for update
   KeyEdit.ProtectPassword := False;
   KeyEdit.Text := Value;
   KeyEdit.ProtectPassword := True;  

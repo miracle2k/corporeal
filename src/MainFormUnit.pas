@@ -141,7 +141,6 @@ type
   public
     property CurrentStoreFile: string read FCurrentStoreFile write SetCurrentStoreFile;
     property LastStoreFile: string read FLastStoreFile write SetLastStoreFile;
-    // TODO: encrypt this in memory    
     property CurrentKey: string read FCurrentKey write SetCurrentKey;
   end;
 
@@ -229,7 +228,6 @@ begin
                 // at this point, we have added a new entry, so inc the counter
                 Inc(C);
                 // read the data of this entry
-                // TODO: maybe we should not add an item when data is not
                 // complete (like a title missing)
                 Title := ReadString(ChildNodes, 'title');
                 Username := ReadString(ChildNodes, 'username');
