@@ -1678,8 +1678,7 @@ Comments=
                 <Property name="MaxRetryAttempts" type="Cardinal">0</Property>
                 <Property name="NodeCollapsed" type="Boolean">False</Property>
                 <Property name="Parameters" type="TStrings"><![CDATA[DistributionsRemoteDirectory=patronus/snapshots
-ListOfFiles=%DistribOutputFilenameZip%
-%DistribOutputFilenameSetup%
+ListOfFiles=%DistribOutputFilenameZip%|%DistribOutputFilenameSetup%
 ]]>
                   </Property>
                 <Property name="PauseInterval" type="Cardinal">0</Property>
@@ -2264,9 +2263,7 @@ Click Yes to continue build, press No to cancel now.]]>
                     <Property name="MaxRetryAttempts" type="Cardinal">0</Property>
                     <Property name="NodeCollapsed" type="Boolean">False</Property>
                     <Property name="Parameters" type="TStrings"><![CDATA[DistributionsRemoteDirectory=patronus
-ListOfFiles=%DistribOutputFilenameZip%
-%DistribOutputFilenameSetup%
-%LocalizationDir%\default\default.po
+ListOfFiles=%DistribOutputFilenameZip%|%DistribOutputFilenameSetup%|%LocalizationDir%\default\default.po
 ]]>
                       </Property>
                     <Property name="PauseInterval" type="Cardinal">0</Property>
@@ -4678,6 +4675,24 @@ eureka
                 <Property name="TimeoutLength" type="Cardinal">10</Property>
                 <Property name="UpdateOnly" type="Boolean">False</Property>
                 <Property name="UseFileSpec" type="Boolean">True</Property>
+                </Object>
+              <Object Class="TBuildScript" XMLID="{FC6FFF4C-578B-474E-B924-6AF388D7EBFA}"><Property MultiValue="0" name="BreakPointsStore" type="string"></Property>
+                <Property MultiValue="0" name="Name" type="string">BeforeAction</Property>
+                <Property MultiValue="1" name="Script" type="string"><![CDATA[// the variable %ListOfFiles% is a string of filenames, separated by the "|" character.
+// we need to translate it into a list of filenames (separated by linebreaks) for the list
+// iterator.
+// note that we cannot pass a list directly, since final builder actionlist parameters do not
+// support linebreaks.
+
+arr = ListOfFiles.split("|");
+list = "";
+for(i=0;i&lt;arr.length;i++) {
+  list = list + arr[i] + "\r\n";
+}
+ListOfFiles = list
+]]>
+                  </Property>
+                <Property MultiValue="0" name="ScriptLanguage" type="string">JavaScript</Property>
                 </Object>
               </Object>
             </Object>
