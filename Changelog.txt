@@ -1,3 +1,7 @@
+1.02 (03-31-2007)
+
+	* First public release.
+
 1.01 (03-27-2007)
 
 	* Added option to limit to one instance. This is enabled per default.
