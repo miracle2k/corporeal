@@ -1626,7 +1626,7 @@ Comments=
                   <Property name="Quiet" type="Boolean">False</Property>
                   <Property name="RetryPauseInterval" type="Cardinal">1000</Property>
                   <Property MultiValue="0" name="Revision" type="string"></Property>
-                  <Property MultiValue="0" name="Source" type="string">svn://kaede.dpool.org/michael/personal/projects/desktop/patronus/trunk/src</Property>
+                  <Property MultiValue="0" name="Source" type="string">svn://kaede.dpool.org/michael/personal/projects/desktop/corporeal/trunk/src</Property>
                   <Property name="SuppressStatusMessages" type="Boolean">False</Property>
                   <Property name="TerminateOnTimeout" type="Boolean">True</Property>
                   <Property name="TimeoutLength" type="Cardinal">2</Property>
@@ -1988,7 +1988,7 @@ Comments=
                 <Property MultiValue="0" name="LogToVariable" type="string"></Property>
                 <Property name="MaxRetryAttempts" type="Cardinal">0</Property>
                 <Property name="NodeCollapsed" type="Boolean">False</Property>
-                <Property name="Parameters" type="TStrings"><![CDATA[DistributionsRemoteDirectory=patronus/snapshots
+                <Property name="Parameters" type="TStrings"><![CDATA[DistributionsRemoteDirectory=corporeal/snapshots
 ListOfFiles=%DistribOutputFilenameZip%|%DistribOutputFilenameSetup%|%DistribOutputFilenameSource%
 ]]>
                   </Property>
@@ -2148,7 +2148,7 @@ ListOfFiles=%DistribOutputFilenameZip%|%DistribOutputFilenameSetup%|%DistribOutp
                   <Property name="Quiet" type="Boolean">False</Property>
                   <Property name="RetryPauseInterval" type="Cardinal">1000</Property>
                   <Property MultiValue="0" name="Revision" type="string"></Property>
-                  <Property MultiValue="0" name="Source" type="string">svn://kaede.dpool.org/michael/personal/projects/web/elsdoerfer.info/htdocs/trunk/site/download/patronus</Property>
+                  <Property MultiValue="0" name="Source" type="string">svn://kaede.dpool.org/michael/personal/projects/web/elsdoerfer.info/htdocs/trunk/site/download/corporeal</Property>
                   <Property name="SuppressStatusMessages" type="Boolean">False</Property>
                   <Property name="TerminateOnTimeout" type="Boolean">True</Property>
                   <Property name="TimeoutLength" type="Cardinal">2</Property>
@@ -2646,7 +2646,7 @@ Click Yes to continue build, press No to cancel now.]]>
                     <Property MultiValue="0" name="LogToVariable" type="string"></Property>
                     <Property name="MaxRetryAttempts" type="Cardinal">0</Property>
                     <Property name="NodeCollapsed" type="Boolean">False</Property>
-                    <Property name="Parameters" type="TStrings"><![CDATA[DistributionsRemoteDirectory=patronus
+                    <Property name="Parameters" type="TStrings"><![CDATA[DistributionsRemoteDirectory=corporeal
 ListOfFiles=%DistribOutputFilenameZip%|%DistribOutputFilenameSetup%|%DistribOutputFilenameSource%|%LocalizationDir%\default\default.po
 ]]>
                       </Property>
