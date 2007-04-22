@@ -1078,6 +1078,7 @@ begin
       end;
     finally          
       Free;
+      OpenStoreForm := nil;
     end;
   end;
 end;
