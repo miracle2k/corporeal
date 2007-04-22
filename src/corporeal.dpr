@@ -1,4 +1,4 @@
-{-----------------------------------------------------------------------------
+﻿{-----------------------------------------------------------------------------
 The contents of this file are subject to the GNU General Public License
 Version 2.0 (the "License"); you may not use this file except in compliance
 with the License. You may obtain a copy of the License at
@@ -19,9 +19,9 @@ Website, located at http://www.elsdoerfer.info/corporeal
 Known Issues:
 -----------------------------------------------------------------------------}
 
-program patronus;
+program corporeal;
 
-{$R 'patronus.res' 'patronus.rc'}
+{$R 'corporeal.res' 'corporeal.rc'}
 
 uses
   ExceptionLog,
