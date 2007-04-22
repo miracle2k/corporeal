@@ -1,3 +1,13 @@
+1.1 (04-22-2007)
+
+	* Fixed a rare exception that occured after the "Change Master Key" functionality was used.
+	* Fixed a problem that caused some toolbar buttons to disappear if the window was made small enough.
+	* Fixed a bug where the main window position was reset when the workspace was locked.
+	* Fixed a bug which enabled password spy utilities to easily retrieve the preloaded contents of an edit field.
+	* Now compiled with Delphi 2007, improved Vista compatiblity.
+	* Improved TaskDialog emulation on Non-Vista systems.
+	* Renamed the program for legal reasons.
+
 1.02 (03-31-2007)
 
 	* First public release.
