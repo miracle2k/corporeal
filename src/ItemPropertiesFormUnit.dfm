@@ -16,6 +16,7 @@ object ItemPropertiesForm: TItemPropertiesForm
   ShowHint = True
   OnCreate = FormCreate
   OnDestroy = FormDestroy
+  OnShow = FormShow
   DesignSize = (
     348
     409)

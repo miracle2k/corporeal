@@ -33,7 +33,7 @@ uses
   PngSpeedButton, JvExControls, JvGradientProgressBarEx, JvComponentBase,
   JvBalloonHint, JvProgressBar, JvExStdCtrls, JvEdit;
 
-type
+type               
   TItemPropertiesForm = class(TForm)
     Label1: TLabel;
     Label2: TLabel;
@@ -65,6 +65,7 @@ type
     procedure FormCreate(Sender: TObject);
     procedure PasswordEditChange(Sender: TObject);
     procedure TogglePasswordCharButtonClick(Sender: TObject);
+    procedure FormShow(Sender: TObject);
   private
     QualityIndicatorBar: TJvGradientProgressBarEx;
     FormValidator: TFormValidator;
@@ -73,6 +74,7 @@ type
     function ValidatePasswordMatchCallback(Sender: TFormValidator;
       Rule: TValidationRule; Value: string): Boolean;
   private
+    FItemToLoadFrom: TPWItem; 
     procedure UpdateQualityIndicator;
   public
     procedure ApplyFromItem(AItem: TPWItem);
@@ -90,12 +92,8 @@ uses
 
 procedure TItemPropertiesForm.ApplyFromItem(AItem: TPWItem);
 begin
-  TitleEdit.Text := AItem.Title;
-  UsernameEdit.Text := AItem.Username;
-  PasswordEdit.Text := AItem.Password;
-  PasswordRepeatEdit.Text := AItem.Password;
-  URLEdit.Text := AItem.URL;
-  NotesMemo.Text := AItem.Notes;
+  // Delay applaying the actual values, see comment in FormOnShow().
+  FItemToLoadFrom := AItem;
 end;
 
 procedure TItemPropertiesForm.ApplyToItem(AItem: TPWItem);
@@ -148,6 +146,20 @@ end;
 procedure TItemPropertiesForm.FormDestroy(Sender: TObject);
 begin
   FormValidator.Free;
+end;
+
+procedure TItemPropertiesForm.FormShow(Sender: TObject);
+begin
+  // If we set the edit contents BEFORE the form is shown, the VCL will
+  // use their contents as edit captions; which is no good for us, at all -
+  // passwords will be easily readable. therefore, we do this only now,
+  // instead of in ApplyFromItem(). Kind of a hack, but works.
+  TitleEdit.Text := FItemToLoadFrom.Title;
+  UsernameEdit.Text := FItemToLoadFrom.Username;
+  PasswordEdit.Text := FItemToLoadFrom.Password;
+  PasswordRepeatEdit.Text := FItemToLoadFrom.Password;
+  URLEdit.Text := FItemToLoadFrom.URL;
+  NotesMemo.Text := FItemToLoadFrom.Notes;
 end;
 
 procedure TItemPropertiesForm.PasswordEditChange(Sender: TObject);
