@@ -2,7 +2,7 @@
 msgid "Tahoma"
 
 # App Name
-msgid "Patronus"
+msgid "Corporeal"
 
 # JVCL AppStorage/FormStorage
 msgid "TRUE, YES, Y"

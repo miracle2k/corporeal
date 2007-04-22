@@ -6,8 +6,8 @@
 #, fuzzy
 msgid ""
 msgstr "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2007-03-31 16:11\n"
-"PO-Revision-Date: 2007-03-31 16:11\n"
+"POT-Creation-Date: 2007-04-22 16:15\n"
+"PO-Revision-Date: 2007-04-22 16:15\n"
 "Last-Translator: Somebody <your.email@address.com>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -17,14 +17,14 @@ msgstr "Project-Id-Version: PACKAGE VERSION\n"
 #. AboutForm..Caption
 #: AboutFormUnit.dfm:5
 #. MainForm..TopDock..MainToolbar..ControlSubmenuItem..AboutItem..Caption
-#: MainFormUnit.dfm:122
+#: MainFormUnit.dfm:123
 msgid "About"
 msgstr ""
 
 #. AboutForm..BottomPanel..OKButton..Caption
-#: AboutFormUnit.dfm:64
+#: AboutFormUnit.dfm:62
 #. ItemPropertiesForm..Button1..Caption
-#: ItemPropertiesFormUnit.dfm:240
+#: ItemPropertiesFormUnit.dfm:249
 #. PasswordGeneratorForm..Button1..Caption
 #: PasswordGeneratorFormUnit.dfm:91
 msgid "OK"
@@ -33,7 +33,7 @@ msgstr ""
 #. ConfigForm..Caption
 #: ConfigFormUnit.dfm:5
 #. MainForm..TopDock..MainToolbar..ControlSubmenuItem..ConfigurationItem..Caption
-#: MainFormUnit.dfm:116
+#: MainFormUnit.dfm:117
 msgid "Configuration"
 msgstr ""
 
@@ -53,190 +53,190 @@ msgid "Item Properties"
 msgstr ""
 
 #. ItemPropertiesForm..Label1..Caption
-#: ItemPropertiesFormUnit.dfm:30
+#: ItemPropertiesFormUnit.dfm:32
 msgid "Title:"
 msgstr ""
 
 #. ItemPropertiesForm..Label2..Caption
-#: ItemPropertiesFormUnit.dfm:38
+#: ItemPropertiesFormUnit.dfm:41
 msgid "Username:"
 msgstr ""
 
 #. ItemPropertiesForm..Label4..Caption
-#: ItemPropertiesFormUnit.dfm:46
+#: ItemPropertiesFormUnit.dfm:50
 msgid "Password:"
 msgstr ""
 
 #. ItemPropertiesForm..Label6..Caption
-#: ItemPropertiesFormUnit.dfm:54
+#: ItemPropertiesFormUnit.dfm:59
 msgid "Repeat:"
 msgstr ""
 
 #. ItemPropertiesForm..Label3..Caption
-#: ItemPropertiesFormUnit.dfm:62
+#: ItemPropertiesFormUnit.dfm:68
 msgid "Notes:"
 msgstr ""
 
 #. ItemPropertiesForm..Label7..Caption
-#: ItemPropertiesFormUnit.dfm:89
+#: ItemPropertiesFormUnit.dfm:96
 msgid "URL:"
 msgstr ""
 
 #. ItemPropertiesForm..TogglePasswordCharButton..Hint
-#: ItemPropertiesFormUnit.dfm:96
+#: ItemPropertiesFormUnit.dfm:103
 #. Programmer's name for it: TogglePasswordCharHint
 #: Core.pas:48
 msgid "Toggle Hide/Show Passwords"
 msgstr ""
 
 #. ItemPropertiesForm..TntSpeedButton2..Hint
-#: ItemPropertiesFormUnit.dfm:136
+#: ItemPropertiesFormUnit.dfm:143
 msgid "Generate Password"
 msgstr ""
 
 #. ItemPropertiesForm..Label8..Caption
-#: ItemPropertiesFormUnit.dfm:179
+#: ItemPropertiesFormUnit.dfm:187
 msgid "Quality:"
 msgstr ""
 
 #. ItemPropertiesForm..Button2..Caption
-#: ItemPropertiesFormUnit.dfm:252
+#: ItemPropertiesFormUnit.dfm:261
 #. OpenStoreForm..CancelButton..Caption
-#: OpenStoreFormUnit.dfm:298
+#: OpenStoreFormUnit.dfm:303
 #. PasswordGeneratorForm..Button2..Caption
 #: PasswordGeneratorFormUnit.dfm:81
 msgid "Cancel"
 msgstr ""
 
 #. ItemPropertiesForm..Panel1..FormHeaderLabel..Caption
-#: ItemPropertiesFormUnit.dfm:353
-#: ItemPropertiesFormUnit.pas:163
+#: ItemPropertiesFormUnit.dfm:363
+#: ItemPropertiesFormUnit.pas:175
 msgid "Add New Item"
 msgstr ""
 
 #. MainForm..TopDock..MainToolbar..AddItem..Caption
-#: MainFormUnit.dfm:45
+#: MainFormUnit.dfm:46
 msgid "Add"
 msgstr ""
 
 #. MainForm..TopDock..MainToolbar..SpTBXItem4..Caption
-#: MainFormUnit.dfm:51
+#: MainFormUnit.dfm:52
 msgid "Edit"
 msgstr ""
 
 #. MainForm..TopDock..MainToolbar..DeleteItem..Caption
-#: MainFormUnit.dfm:55
+#: MainFormUnit.dfm:56
 #. MainForm..ActionList..DeleteItemAction..Caption
-#: MainFormUnit.dfm:1956
+#: MainFormUnit.dfm:1957
 #. MainForm..PasswordListPopup..SpTBXItem3..Caption
-#: MainFormUnit.dfm:1992
+#: MainFormUnit.dfm:1993
 msgid "Delete"
 msgstr ""
 
 #. MainForm..TopDock..MainToolbar..SearchLabelItem..Caption
-#: MainFormUnit.dfm:62
+#: MainFormUnit.dfm:63
 msgid "Search:"
 msgstr ""
 
 #. MainForm..TopDock..MainToolbar..ControlSubmenuItem..Caption
-#: MainFormUnit.dfm:71
+#: MainFormUnit.dfm:72
 msgid "Control"
 msgstr ""
 
 #. MainForm..TopDock..MainToolbar..ControlSubmenuItem..SpTBXItem6..Caption
-#: MainFormUnit.dfm:76
+#: MainFormUnit.dfm:77
 msgid "Lock Workspace"
 msgstr ""
 
 #. MainForm..TopDock..MainToolbar..ControlSubmenuItem..SyncItem..Caption
-#: MainFormUnit.dfm:84
+#: MainFormUnit.dfm:85
 msgid "Force Sync"
 msgstr ""
 
 #. MainForm..TopDock..MainToolbar..ControlSubmenuItem..SpTBXItem7..Caption
-#: MainFormUnit.dfm:92
+#: MainFormUnit.dfm:93
 #. Set caption
 #: OpenStoreFormUnit.pas:351
 msgid "Change Master Key"
 msgstr ""
 
 #. MainForm..TopDock..MainToolbar..ControlSubmenuItem..ShowPasswordsItem..Caption
-#: MainFormUnit.dfm:96
+#: MainFormUnit.dfm:97
 #. MainForm..ActionList..ShowPasswordsToggleAction..Caption
-#: MainFormUnit.dfm:1951
+#: MainFormUnit.dfm:1952
 msgid "Show Passwords"
 msgstr ""
 
 #. MainForm..TopDock..MainToolbar..ControlSubmenuItem..SpTBXSubmenuItem1..Caption
-#: MainFormUnit.dfm:103
+#: MainFormUnit.dfm:104
 msgid "KeePass Exchange"
 msgstr ""
 
 #. MainForm..TopDock..MainToolbar..ControlSubmenuItem..SpTBXSubmenuItem1..AddFromCSVItem..Caption
-#: MainFormUnit.dfm:105
+#: MainFormUnit.dfm:106
 msgid "Add from KeePass XML"
 msgstr ""
 
 #. MainForm..TopDock..MainToolbar..ControlSubmenuItem..SpTBXSubmenuItem1..SpTBXItem2..Caption
-#: MainFormUnit.dfm:109
+#: MainFormUnit.dfm:110
 msgid "Export to KeePass XML"
 msgstr ""
 
 #. MainForm..PasswordList......WideText
-#: MainFormUnit.dfm:166
+#: MainFormUnit.dfm:167
 msgid "Title"
 msgstr ""
 
 #. MainForm..PasswordList......WideText
-#: MainFormUnit.dfm:171
+#: MainFormUnit.dfm:172
 msgid "Username"
 msgstr ""
 
 #. MainForm..PasswordList......WideText
-#: MainFormUnit.dfm:176
+#: MainFormUnit.dfm:177
 msgid "Password"
 msgstr ""
 
 #. MainForm..PasswordList......WideText
-#: MainFormUnit.dfm:181
+#: MainFormUnit.dfm:182
 msgid "URL"
 msgstr ""
 
 #. MainForm..ActionList..EditPropertiesAction..Caption
-#: MainFormUnit.dfm:1963
+#: MainFormUnit.dfm:1964
 #. MainForm..PasswordListPopup..SpTBXItem1..Caption
-#: MainFormUnit.dfm:1988
+#: MainFormUnit.dfm:1989
 msgid "Edit Properties"
 msgstr ""
 
 #. MainForm..OpenXMLDialog..Title
-#: MainFormUnit.dfm:1971
+#: MainFormUnit.dfm:1972
 msgid "Select XML file to import"
 msgstr ""
 
 #. MainForm..PasswordListPopup..SpTBXItem5..Caption
-#: MainFormUnit.dfm:1980
+#: MainFormUnit.dfm:1981
 msgid "Copy Password"
 msgstr ""
 
 #. MainForm..SaveXMLDialog..Title
-#: MainFormUnit.dfm:2032
+#: MainFormUnit.dfm:2033
 msgid "Export to XML file"
 msgstr ""
 
 #. OpenStoreForm..CreateNewButton..Caption
-#: OpenStoreFormUnit.dfm:245
+#: OpenStoreFormUnit.dfm:250
 msgid "Create New"
 msgstr ""
 
 #. OpenStoreForm..ChangeButton..Caption
-#: OpenStoreFormUnit.dfm:255
+#: OpenStoreFormUnit.dfm:260
 #: OpenStoreFormUnit.pas:369
 msgid "Change"
 msgstr ""
 
 #. OpenStoreForm..MakeDefaultCheckBox..Caption
-#: OpenStoreFormUnit.dfm:279
+#: OpenStoreFormUnit.dfm:284
 msgid "Make this store the default"
 msgstr ""
 
@@ -310,109 +310,109 @@ msgstr ""
 msgid "All Files (*.*)"
 msgstr ""
 
-#. Programmer's name for it: PatronusFilter
+#. Programmer's name for it: CorporealFilter
 #: Core.pas:46
-msgid "Patronus Store Files (*.patronus)"
+msgid "Corporeal Store Files (*.corporeal)"
 msgstr ""
 
-#: ItemPropertiesFormUnit.pas:117
-#: MainFormUnit.pas:886
+#: ItemPropertiesFormUnit.pas:115
+#: MainFormUnit.pas:899
 #. otherwise, check if keys match, and if yes, return OK
 #: OpenStoreFormUnit.pas:216
 msgid "Error"
 msgstr ""
 
 #. initialize the form validator
-#: ItemPropertiesFormUnit.pas:143
+#: ItemPropertiesFormUnit.pas:141
 msgid "Please specify a title for this entry"
 msgstr ""
 
-#: ItemPropertiesFormUnit.pas:144
-#: ItemPropertiesFormUnit.pas:145
+#: ItemPropertiesFormUnit.pas:142
+#: ItemPropertiesFormUnit.pas:143
 msgid "The passwords do not match"
 msgstr ""
 
-#: ItemPropertiesFormUnit.pas:166
+#: ItemPropertiesFormUnit.pas:178
 msgid "Edit Item Properties"
 msgstr ""
 
-#: ItemPropertiesFormUnit.pas:205
+#: ItemPropertiesFormUnit.pas:217
 #: OpenStoreFormUnit.pas:393
 msgid "%s bits"
 msgstr ""
 
 #. check root node
-#: MainFormUnit.pas:240
+#: MainFormUnit.pas:241
 msgid "Doesn't seem to be a valid KeePass XML "
 "export."
 msgstr ""
 
 #. e.g. 2007-02-25T14:48:01
-#: MainFormUnit.pas:288
-#: MainFormUnit.pas:814
+#: MainFormUnit.pas:289
+#: MainFormUnit.pas:827
 msgid "Failed"
 msgstr ""
 
-#: MainFormUnit.pas:289
+#: MainFormUnit.pas:290
 msgid "An error occured while trying to import the XML "
 "file."
 msgstr ""
 
-#: MainFormUnit.pas:292
+#: MainFormUnit.pas:293
 msgid "The error message was: \"%s\".\n"
 "However, %d items were still sucessfully "
 "imported."
 msgstr ""
 
-#: MainFormUnit.pas:294
+#: MainFormUnit.pas:295
 msgid "The error message was: \"%s\". No new items were "
 "added."
 msgstr ""
 
-#: MainFormUnit.pas:422
+#: MainFormUnit.pas:425
 msgid "Confirmation required"
 msgstr ""
 
-#: MainFormUnit.pas:424
+#: MainFormUnit.pas:427
 msgid "Are you sure you want to delete the selected items? This operation "
 "cannot be undone."
 msgstr ""
 
-#: MainFormUnit.pas:428
+#: MainFormUnit.pas:431
 msgid "%s items will be deleted."
 msgstr ""
 
 #. Update item count info
-#: MainFormUnit.pas:605
+#: MainFormUnit.pas:618
 msgid "%s items in store"
 msgstr ""
 
-#: MainFormUnit.pas:816
+#: MainFormUnit.pas:829
 msgid "Failed to open database. Most likely, the key you entered was "
 "incorrect."
 msgstr ""
 
-#: MainFormUnit.pas:819
+#: MainFormUnit.pas:832
 msgid "It is also possible, however, that the file you tried to open is not "
-"a correct Patronus Store file, or the chosen store is "
+"a correct Corporeal Store file, or the chosen store is "
 "damaged."
 msgstr ""
 
-#: MainFormUnit.pas:820
-#: MainFormUnit.pas:891
+#: MainFormUnit.pas:833
+#: MainFormUnit.pas:904
 msgid "Error message was: \"%s\""
 msgstr ""
 
-#: MainFormUnit.pas:887
+#: MainFormUnit.pas:900
 msgid "An error occured while trying to save the password "
 "store."
 msgstr ""
 
-#: MainFormUnit.pas:890
+#: MainFormUnit.pas:903
 msgid "This is not good at all. Your last change likely has not been written "
 "to disk.\n"
 "\n"
-"If you're afraid of losing data, you probably should exit Patronus "
+"If you're afraid of losing data, you probably should exit Corporeal "
 "now and fix the problem before you continue using the current "
 "store."
 msgstr ""
