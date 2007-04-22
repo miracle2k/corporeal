@@ -47,6 +47,7 @@ object OpenStoreForm: TOpenStoreForm
     Top = 58
     Width = 93
     Height = 13
+    Margins.Bottom = 0
     Alignment = taRightJustify
     Caption = '%DYMAMICTEXT%'
   end
@@ -64,6 +65,7 @@ object OpenStoreForm: TOpenStoreForm
     Font.Style = [fsBold]
     Anchors = [akLeft, akTop, akRight]
     ParentFont = False
+    Transparent = True
     HotTrackFont.Charset = DEFAULT_CHARSET
     HotTrackFont.Color = clWindowText
     HotTrackFont.Height = -11
@@ -76,6 +78,7 @@ object OpenStoreForm: TOpenStoreForm
     Top = 93
     Width = 93
     Height = 13
+    Margins.Bottom = 0
     Alignment = taRightJustify
     Caption = '%DYMAMICTEXT%'
   end
@@ -84,6 +87,7 @@ object OpenStoreForm: TOpenStoreForm
     Top = 123
     Width = 93
     Height = 13
+    Margins.Bottom = 0
     Caption = '%DYMAMICTEXT%'
   end
   object TogglePasswordCharButton: TPngSpeedButton
@@ -141,6 +145,7 @@ object OpenStoreForm: TOpenStoreForm
       Top = 11
       Width = 148
       Height = 18
+      Margins.Bottom = 0
       Caption = '%DYMAMICTEXT%'
       Font.Charset = DEFAULT_CHARSET
       Font.Color = clWindowText

@@ -211,7 +211,7 @@ begin
       ModalResult := mrOk
     else
     begin
-      with TTaskDialog.Create(Self) do begin
+      with TAdvTaskDialog.Create(Self) do begin
         DialogPosition := dpScreenCenter;
         Title := _('Error');
         Instruction := _('Keys do not match.');

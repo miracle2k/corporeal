@@ -283,7 +283,7 @@ begin
     except
       on E: Exception do
       begin
-        with TTaskDialog.Create(Self) do begin
+        with TAdvTaskDialog.Create(Self) do begin
           DialogPosition := dpOwnerFormCenter;
           Title := _('Failed');
           Instruction := _('An error occured while trying to import the XML file.');
@@ -404,19 +404,21 @@ end;
 procedure TMainForm.CreateParams(var Params: TCreateParams);
 begin
   inherited CreateParams(Params);
-  // Vista "secret window" fixes  
+  {$IFDEF VISTA_FIXES}
+  // Vista "secret window" fixes
   Params.ExStyle := Params.ExStyle and not WS_EX_TOOLWINDOW or
     WS_EX_APPWINDOW;
+  {$ENDIF}
 end;
 
 procedure TMainForm.DeleteItemActionExecute(Sender: TObject);
 var
-  TaskDialog: TTaskDialog;
+  TaskDialog: TAdvTaskDialog;
   I: Integer;
   SelectedNodes: TNodeArray;
   NodeData: PPasswordListNode;
 begin
-  TaskDialog := TTaskDialog.Create(Self);
+  TaskDialog := TAdvTaskDialog.Create(Self);
   try
     TaskDialog.DialogPosition := dpOwnerFormCenter;
     TaskDialog.Title := _('Confirmation required');
@@ -499,11 +501,13 @@ end;
 procedure TMainForm.FormCreate(Sender: TObject);
 begin
   // Vista "Secret window" fixes
+  {$IFDEF VISTA_FIXES}
   ShowWindow(Application.Handle, SW_HIDE);
   SetWindowLong(Application.Handle, GWL_EXSTYLE,
     GetWindowLong(Application.Handle, GWL_EXSTYLE) and not WS_EX_APPWINDOW
       or WS_EX_TOOLWINDOW);
   ShowWindow(Application.Handle, SW_SHOW);
+  {$ENDIF}
 
   // use font setting of os (mainly intended for new vista font)
   SetDesktopIconFonts(Self.Font);
@@ -809,7 +813,7 @@ begin
           if not CanBreak then
           begin
             Inc(FailedCount);
-            with TTaskDialog.Create(OpenStoreForm) do begin
+            with TAdvTaskDialog.Create(OpenStoreForm) do begin
               DialogPosition := dpScreenCenter;
               Title := _('Failed');
               Instruction := _('Failed to open database. Most likely, the key '+
@@ -881,7 +885,7 @@ begin
     PWItemStore.SaveToFile(CurrentStoreFile, CurrentKey);
   except
     on E: Exception do
-      with TTaskDialog.Create(Self) do begin
+      with TAdvTaskDialog.Create(Self) do begin
         DialogPosition := dpOwnerFormCenter;
         Title := _('Error');
         Instruction := _('An error occured while trying to save the password store.');
@@ -1109,12 +1113,14 @@ end;
 procedure TMainForm.WMActivate(var Message: TWMActivate);
 begin
   // Vista secret window fix
+  {$IFDEF VISTA_FIXES}
   if (Message.Active = WA_ACTIVE) and not IsWindowEnabled(Handle) then
   begin
     SetActiveWindow(Application.Handle);
     Message.Result := 0;
   end else
     inherited;
+  {$ENDIF}
 end;
 
 procedure TMainForm.WMSyscommand(var Message: TWmSysCommand);

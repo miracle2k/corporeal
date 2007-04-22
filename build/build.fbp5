@@ -891,7 +891,7 @@ official-release
               </Property>
             <Property name="ActionTextColor" type="Cardinal">0</Property>
             <Property MultiValue="0" name="ActionTypeID" type="string"></Property>
-            <Property name="CompilerVersion" type="Integer">11</Property>
+            <Property name="CompilerVersion" type="Integer">12</Property>
             <Property name="Enabled" type="WordBool">True</Property>
             <Property name="EnableMBCS" type="WordBool">False</Property>
             <Property name="ExpandActionLogTitle" type="Boolean">True</Property>
@@ -915,7 +915,7 @@ official-release
               </Property>
             <Property name="ActionTextColor" type="Cardinal">0</Property>
             <Property MultiValue="0" name="ActionTypeID" type="string"></Property>
-            <Property name="CompilerVersion" type="Integer">11</Property>
+            <Property name="CompilerVersion" type="Integer">12</Property>
             <Property name="Enabled" type="WordBool">True</Property>
             <Property name="EnableMBCS" type="WordBool">False</Property>
             <Property name="ExpandActionLogTitle" type="Boolean">True</Property>
@@ -927,7 +927,7 @@ official-release
             <Property MultiValue="0" name="LogToVariable" type="string"></Property>
             <Property name="MaxRetryAttempts" type="Cardinal">0</Property>
             <Property name="NodeCollapsed" type="Boolean">False</Property>
-            <Property MultiValue="0" name="OutputFileName" type="WideString">%SourceDir%\patronusl.res</Property>
+            <Property MultiValue="0" name="OutputFileName" type="WideString">%SourceDir%\patronus.res</Property>
             <Property name="PauseInterval" type="Cardinal">0</Property>
             <Property name="RetryPauseInterval" type="Cardinal">1000</Property>
             <Property MultiValue="0" name="ScriptFile" type="WideString">%SourceDir%\patronus.rc</Property>
@@ -946,7 +946,8 @@ official-release
             <Property name="BuildAll" type="WordBool">True</Property>
             <Property name="BuildVersion" type="Integer">0</Property>
             <Property name="CodePage" type="Integer">1252</Property>
-            <Property name="CompilerVersion" type="Integer">11</Property>
+            <Property name="CompilerVersion" type="Integer">12</Property>
+            <Property MultiValue="0" name="ConfigName" type="string">Release</Property>
             <Property name="DebugVersionNumbers" type="Boolean">False</Property>
             <Property name="Enabled" type="WordBool">True</Property>
             <Property name="ExpandActionLogTitle" type="Boolean">True</Property>
@@ -967,7 +968,7 @@ official-release
             <Property name="LinkProductVersionToFileVersion" type="Boolean">False</Property>
             <Property name="Locale" type="Integer">3081</Property>
             <Property MultiValue="0" name="LogToVariable" type="string"></Property>
-            <Property name="MajorVersion" type="Integer">0</Property>
+            <Property name="MajorVersion" type="Integer">1</Property>
             <Property name="MaxRetryAttempts" type="Cardinal">0</Property>
             <Property name="MinorVersion" type="Integer">0</Property>
             <Property name="NodeCollapsed" type="Boolean">False</Property>
@@ -984,19 +985,10 @@ official-release
             <Property name="UpdateDofFile" type="Boolean">False</Property>
             <Property name="UpdatePackageSource" type="Boolean">False</Property>
             <Property name="UseEurekaLogCompiler" type="Boolean">True</Property>
-            <Property name="UseProjectSettings" type="TFBUseProjectSettings">[usPackages,usLinker,usVersionInfo]</Property>
+            <Property name="UseProjectSettings" type="TFBUseProjectSettings">[usPackages,usCompiler,usLinker,usVersionInfo]</Property>
             <Property name="UsePropertySet" type="Boolean">False</Property>
             <Property name="UseVersionFromDOF" type="Boolean">False</Property>
-            <Property MultiValue="1" name="VersionInfoKeys" type="WideString"><![CDATA[CompanyName=
-FileDescription=
-FileVersion=0.0.0.0
-InternalName=
-LegalCopyright=
-LegalTrademarks=
-OriginalFilename=
-ProductName=
-ProductVersion=0.0.0.0
-Comments=
+            <Property MultiValue="1" name="VersionInfoKeys" type="WideString"><![CDATA[FileVersion=1.0.0.0
 ]]>
               </Property>
             <Property MultiValue="0" name="VersionInfoPropertySetName" type="string"></Property>
@@ -1004,22 +996,19 @@ Comments=
             <Property name="WorkAroundD5Bug" type="WordBool">False</Property>
             <Object Class="TDelphiCompilerOptions" XMLID="{D445CEB2-7B45-4A60-A42B-F9F2B3F2C42A}"><Property name="AlwaysUseConditionalsFromDOF" type="WordBool">False</Property>
               <Property name="AlwaysUseDelphiLibraryPath" type="WordBool">True</Property>
-              <Property name="AlwaysUseDOFSearchPath" type="WordBool">True</Property>
+              <Property name="AlwaysUseDOFSearchPath" type="WordBool">False</Property>
               <Property name="Assertions" type="WordBool">True</Property>
               <Property name="AssignableConst" type="WordBool">False</Property>
               <Property name="BoolEval" type="WordBool">False</Property>
               <Property MultiValue="0" name="BPLOutputDir" type="WideString"></Property>
-              <Property name="CompilerWarnings" type="TStrings"><![CDATA[-w-UNSAFE_TYPE=0
--w-UNSAFE_CODE=0
--w-UNSAFE_CAST=0
-]]>
+              <Property name="CompilerWarnings" type="TStrings"><![CDATA[]]>
                 </Property>
-              <Property MultiValue="0" name="Conditionals" type="WideString">AUTOMATED_BUILD</Property>
+              <Property MultiValue="0" name="Conditionals" type="WideString">EUREKALOG;EUREKALOG_VER6;RELEASE;AUTOMATED_BUILD</Property>
               <Property name="ConsoleApp" type="WordBool">False</Property>
               <Property MultiValue="0" name="DCPOutputDir" type="WideString"></Property>
-              <Property name="DebugInfo" type="WordBool">True</Property>
+              <Property name="DebugInfo" type="WordBool">False</Property>
               <Property MultiValue="0" name="DefaultNamespace" type="string"></Property>
-              <Property name="DefinitionsOnly" type="WordBool">True</Property>
+              <Property name="DefinitionsOnly" type="WordBool">False</Property>
               <Property MultiValue="0" name="ExeDescription" type="WideString"></Property>
               <Property name="ExportAllSymbols" type="WordBool">False</Property>
               <Property name="ExtendedSyntax" type="WordBool">True</Property>
@@ -1031,10 +1020,10 @@ Comments=
               <Property name="IncludeRemoteSymbols" type="WordBool">False</Property>
               <Property name="IncludeTD32" type="WordBool">False</Property>
               <Property name="IOChecking" type="WordBool">True</Property>
-              <Property MultiValue="1" name="LibraryPath" type="WideString"><![CDATA[G:\developing\Library\Delphi\EurekaLog\Delphi10;$(BDS)\lib;$(BDS)\Imports;$(BDS)\Lib\Indy10;G:\Developing\Library\Delphi\Virtual Treeview\Source;G:\developing\Library\Delphi\Tnt Unicode Controls\Source;G:\developing\Library\Delphi\Toolbar2000\Source;G:\Developing\Library\Delphi\DragDrop\Components;G:\Developing\Library\Delphi\SpTBXLib\Source;G:\Developing\Library\Delphi\TBX;G:\Developing\Library\Delphi\PngComponents\Source;G:\Developing\Library\Delphi\TaskDialog;G:\Developing\Library\Delphi\xmlparser;G:\Developing\Library\Delphi\openxml\xdom4_1;G:\Developing\Library\Delphi\openxml\utils_2_0;G:\Developing\Library\Delphi\JCL\source\windows;G:\Developing\Library\Delphi\JCL\source\common;G:\developing\Library\Delphi\GraphicEx;G:\Developing\Library\Delphi\Dcpcrypt2\Ciphers;G:\Developing\Library\Delphi\Dcpcrypt2;G:\Developing\Library\Delphi\Dcpcrypt2\Hashes;G:\developing\Library\Delphi\dxgettext\delphi5;G:\Developing\Library\Delphi\RegExpr\Source;G:\Developing\Library\Delphi\Hexedit\vcl;G:\Developing\Projects\personal\projects\delphi\form-validator\trunk\src;g:\developing\projects\personal\projects\delphi\scrolling-credits\trunk\src;c:\users\michael\documents\borland studio projects\bpl;G:\developing\Library\Delphi\madCollection\madBasic\DeXter;G:\developing\Library\Delphi\madCollection\madDisAsm\DeXter;G:\developing\Library\Delphi\madCollection\madExcept\DeXter;G:\developing\Library\Delphi\madCollection\madRemote\DeXter;G:\developing\Library\Delphi\madCollection\madKernel\DeXter;G:\developing\Library\Delphi\madCollection\madCodeHook\DeXter;G:\developing\Library\Delphi\madCollection\madSecurity\DeXter;G:\developing\Library\Delphi\madCollection\madShell\DeXter;G:\DEVELO~1\Library\Delphi\JCL\lib\d10;G:\DEVELO~1\Library\Delphi\JCL\source;G:\Developing\Library\Delphi\JVCL\lib\D10;G:\Developing\Library\Delphi\JVCL\common;G:\Developing\Library\Delphi\JVCL\Resources;G:\developing\Library\Delphi\Mustangpeak\Common Library\Source;G:\Developing\Library\Delphi\Mustangpeak\VirtualShellToolsVELVEx\Source;G:\Developing\Library\Delphi\Mustangpeak\EasyListview\Source;G:\Developing\Library\Delphi\Mustangpeak\VirtualShellTools\Source;G:\Developing\Library\Delphi\Mustangpeak\EasyNSE\Source;G:\Developing\Library\Delphi\Mustangpeak\EasyNSE\Include]]>
+              <Property MultiValue="1" name="LibraryPath" type="WideString"><![CDATA[G:\developing\Library\Delphi\EurekaLog\Delphi11;$(BDS)\lib;$(BDS)\Imports;$(BDS)\Lib\Indy10;$(BDSCOMMONDIR)\Dcp;G:\Developing\Library\Delphi\RemObjects SDK\Dcu\D10;G:\Developing\Library\Delphi\AdvTaskDialog;G:\Developing\Library\Delphi\DISQLite3\Source;G:\Developing\Library\Delphi\DISQLite3\D10;G:\Developing\Library\Delphi\Virtual Treeview\Source;G:\developing\Library\Delphi\Tnt Unicode Controls\Source;G:\developing\Library\Delphi\Toolbar2000\Source;G:\Developing\Library\Delphi\DragDrop\Components;G:\Developing\Library\Delphi\SpTBXLib\Source;G:\Developing\Library\Delphi\TBX;G:\Developing\Library\Delphi\PngComponents\Source;G:\Developing\Library\Delphi\xmlparser;G:\Developing\Library\Delphi\openxml\xdom4_1;G:\Developing\Library\Delphi\openxml\utils_2_0;G:\Developing\Library\Delphi\JCL\source\windows;G:\Developing\Library\Delphi\JCL\source\common;G:\developing\Library\Delphi\GraphicEx;G:\Developing\Library\Delphi\Dcpcrypt2\Ciphers;G:\Developing\Library\Delphi\Dcpcrypt2;G:\Developing\Library\Delphi\Dcpcrypt2\Hashes;G:\developing\Library\Delphi\dxgettext\delphi5;G:\Developing\Library\Delphi\RegExpr\Source;G:\Developing\Library\Delphi\Hexedit\vcl;G:\Developing\Projects\personal\projects\delphi\form-validator\trunk\src;g:\developing\projects\personal\projects\delphi\scrolling-credits\trunk\src;c:\users\michael\documents\borland studio projects\bpl;G:\developing\Library\Delphi\madCollection\madBasic\DeXter;G:\developing\Library\Delphi\madCollection\madDisAsm\DeXter;G:\developing\Library\Delphi\madCollection\madExcept\DeXter;G:\developing\Library\Delphi\madCollection\madRemote\DeXter;G:\developing\Library\Delphi\madCollection\madKernel\DeXter;G:\developing\Library\Delphi\madCollection\madCodeHook\DeXter;G:\developing\Library\Delphi\madCollection\madSecurity\DeXter;G:\developing\Library\Delphi\madCollection\madShell\DeXter;G:\DEVELO~1\Library\Delphi\JCL\lib\d10;G:\DEVELO~1\Library\Delphi\JCL\source;G:\Developing\Library\Delphi\JVCL\lib\D10;G:\Developing\Library\Delphi\JVCL\common;G:\Developing\Library\Delphi\JVCL\Resources;G:\developing\Library\Delphi\Mustangpeak\Common Library\Source;G:\Developing\Library\Delphi\Mustangpeak\VirtualShellToolsVELVEx\Source;G:\Developing\Library\Delphi\Mustangpeak\EasyListview\Source;G:\Developing\Library\Delphi\Mustangpeak\VirtualShellTools\Source;G:\Developing\Library\Delphi\Mustangpeak\EasyNSE\Source;G:\Developing\Library\Delphi\Mustangpeak\EasyNSE\Include;G:\Developing\Library\Delphi\DelphiSci\Source;G:\Developing\Library\Delphi\JvTBXLib;G:\Developing\Library\Delphi\mbColor Lib;G:\Developing\Library\Delphi\mbTBXLib;G:\Developing\Library\Delphi\mbTBXLib\Customizable themes;G:\Developing\Library\Delphi\GDIPlus\pas;G:\Programme\SmartInspect\lib\delphi\delphi2006\;G:\Developing\Library\Delphi\UniSynEdit\Source;G:\Developing\Library\Delphi\Pascal Script\Dcu\D10;G:\Developing\Library\Delphi\Pascal Script\Source;G:\Developing\Projects\personal\development\delphi\eurekalog\gettext\src;G:\Developing\Library\Delphi\RegExprPCRE;G:\Developing\Library\Delphi\PvPlanit\source;G:\Developing\Projects\personal\projects\delphi\robots-txt-parser\trunk\src;G:\Programme\SmartInspect\source\delphi]]>
                 </Property>
               <Property name="LinkerOutput" type="Integer">0</Property>
-              <Property name="LocalSymbols" type="WordBool">True</Property>
+              <Property name="LocalSymbols" type="WordBool">False</Property>
               <Property name="Mapfile" type="Integer">3</Property>
               <Property name="MaxStackSize" type="Cardinal">1048576</Property>
               <Property name="MinStackSize" type="Cardinal">16384</Property>
@@ -1046,7 +1035,7 @@ Comments=
               <Property MultiValue="0" name="Packages" type="WideString"></Property>
               <Property name="RangeChecking" type="WordBool">False</Property>
               <Property name="RecordFieldAlign" type="TFieldAlign">fa8</Property>
-              <Property name="ReferenceInfo" type="WordBool">True</Property>
+              <Property name="ReferenceInfo" type="WordBool">False</Property>
               <Property name="SafeDivide" type="WordBool">False</Property>
               <Property MultiValue="0" name="SearchPath" type="WideString"></Property>
               <Property name="ShowHints" type="WordBool">True</Property>
@@ -1054,7 +1043,7 @@ Comments=
               <Property name="StackFrames" type="WordBool">True</Property>
               <Property name="TypedPointers" type="WordBool">False</Property>
               <Property MultiValue="0" name="UnitAliases" type="WideString">WinTypes=Windows;WinProcs=Windows;DbiTypes=BDE;DbiProcs=BDE;DbiErrs=BDE;</Property>
-              <Property MultiValue="0" name="UnitOutputDir" type="WideString">%FBPROJECTDIR%\..\dcu</Property>
+              <Property MultiValue="0" name="UnitOutputDir" type="WideString">..\dcu</Property>
               <Property name="UseDebugDCU" type="WordBool">False</Property>
               <Property name="UsePackages" type="WordBool">False</Property>
               <Property name="VarStringChecks" type="WordBool">True</Property>
@@ -3184,6 +3173,7 @@ ListOfFiles=%DistribOutputFilenameZip%|%DistribOutputFilenameSetup%|%DistribOutp
               <Property MultiValue="0" name="FBVariable" type="string">CurrentFolder</Property>
               <Property name="IgnoreFailure" type="WordBool">False</Property>
               <Property name="IncludeFolderPath" type="Boolean">False</Property>
+              <Property name="IncludeHiddenSystem" type="Boolean">False</Property>
               <Property name="IsAction" type="Boolean">True</Property>
               <Property name="IsBreakPoint" type="WordBool">False</Property>
               <Property MultiValue="0" name="LogToVariable" type="string"></Property>
@@ -3328,6 +3318,7 @@ ListOfFiles=%DistribOutputFilenameZip%|%DistribOutputFilenameSetup%|%DistribOutp
             <Property MultiValue="0" name="FBVariable" type="string">CurrentFolder</Property>
             <Property name="IgnoreFailure" type="WordBool">False</Property>
             <Property name="IncludeFolderPath" type="Boolean">False</Property>
+            <Property name="IncludeHiddenSystem" type="Boolean">False</Property>
             <Property name="IsAction" type="Boolean">True</Property>
             <Property name="IsBreakPoint" type="WordBool">False</Property>
             <Property MultiValue="0" name="LogToVariable" type="string"></Property>
