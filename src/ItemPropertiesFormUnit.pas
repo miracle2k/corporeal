@@ -135,6 +135,7 @@ begin
   TogglePasswordCharButtonClick(nil);
   UpdateQualityIndicator;
   EditMode := False;
+  FItemToLoadFrom := nil;
 
   // initialize the form validator
   FormValidator := TFormValidator.Create;
@@ -154,12 +155,15 @@ begin
   // use their contents as edit captions; which is no good for us, at all -
   // passwords will be easily readable. therefore, we do this only now,
   // instead of in ApplyFromItem(). Kind of a hack, but works.
-  TitleEdit.Text := FItemToLoadFrom.Title;
-  UsernameEdit.Text := FItemToLoadFrom.Username;
-  PasswordEdit.Text := FItemToLoadFrom.Password;
-  PasswordRepeatEdit.Text := FItemToLoadFrom.Password;
-  URLEdit.Text := FItemToLoadFrom.URL;
-  NotesMemo.Text := FItemToLoadFrom.Notes;
+  if (FItemToLoadFrom <> nil) and (EditMode) then
+  begin
+    TitleEdit.Text := FItemToLoadFrom.Title;
+    UsernameEdit.Text := FItemToLoadFrom.Username;
+    PasswordEdit.Text := FItemToLoadFrom.Password;
+    PasswordRepeatEdit.Text := FItemToLoadFrom.Password;
+    URLEdit.Text := FItemToLoadFrom.URL;
+    NotesMemo.Text := FItemToLoadFrom.Notes;
+  end;
 end;
 
 procedure TItemPropertiesForm.PasswordEditChange(Sender: TObject);
