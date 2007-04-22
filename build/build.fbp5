@@ -985,7 +985,7 @@ official-release
             <Property name="UpdateDofFile" type="Boolean">False</Property>
             <Property name="UpdatePackageSource" type="Boolean">False</Property>
             <Property name="UseEurekaLogCompiler" type="Boolean">True</Property>
-            <Property name="UseProjectSettings" type="TFBUseProjectSettings">[usPackages,usCompiler,usLinker,usVersionInfo]</Property>
+            <Property name="UseProjectSettings" type="TFBUseProjectSettings">[usPackages,usCompiler,usLinker]</Property>
             <Property name="UsePropertySet" type="Boolean">False</Property>
             <Property name="UseVersionFromDOF" type="Boolean">False</Property>
             <Property MultiValue="1" name="VersionInfoKeys" type="WideString"><![CDATA[CompanyName=
