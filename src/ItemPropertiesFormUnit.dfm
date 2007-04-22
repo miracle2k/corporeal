@@ -26,6 +26,7 @@ object ItemPropertiesForm: TItemPropertiesForm
     Top = 61
     Width = 24
     Height = 13
+    Margins.Bottom = 0
     Alignment = taRightJustify
     Caption = 'Title:'
   end
@@ -34,6 +35,7 @@ object ItemPropertiesForm: TItemPropertiesForm
     Top = 88
     Width = 52
     Height = 13
+    Margins.Bottom = 0
     Alignment = taRightJustify
     Caption = 'Username:'
   end
@@ -42,6 +44,7 @@ object ItemPropertiesForm: TItemPropertiesForm
     Top = 115
     Width = 50
     Height = 13
+    Margins.Bottom = 0
     Alignment = taRightJustify
     Caption = 'Password:'
   end
@@ -50,6 +53,7 @@ object ItemPropertiesForm: TItemPropertiesForm
     Top = 142
     Width = 39
     Height = 13
+    Margins.Bottom = 0
     Alignment = taRightJustify
     Caption = 'Repeat:'
   end
@@ -58,6 +62,7 @@ object ItemPropertiesForm: TItemPropertiesForm
     Top = 221
     Width = 32
     Height = 13
+    Margins.Bottom = 0
     Alignment = taRightJustify
     Caption = 'Notes:'
   end
@@ -85,6 +90,7 @@ object ItemPropertiesForm: TItemPropertiesForm
     Top = 196
     Width = 23
     Height = 13
+    Margins.Bottom = 0
     Alignment = taRightJustify
     Caption = 'URL:'
   end
@@ -175,6 +181,7 @@ object ItemPropertiesForm: TItemPropertiesForm
     Top = 169
     Width = 38
     Height = 13
+    Margins.Bottom = 0
     Alignment = taRightJustify
     Caption = 'Quality:'
   end
@@ -183,6 +190,7 @@ object ItemPropertiesForm: TItemPropertiesForm
     Top = 175
     Width = 3
     Height = 13
+    Margins.Bottom = 0
     Alignment = taRightJustify
   end
   object TitleEdit: TTntEdit
@@ -244,7 +252,7 @@ object ItemPropertiesForm: TItemPropertiesForm
   end
   object Button2: TButton
     Left = 255
-    Top = 376
+    Top = 377
     Width = 75
     Height = 25
     Anchors = [akRight, akBottom]
@@ -350,6 +358,7 @@ object ItemPropertiesForm: TItemPropertiesForm
       Top = 11
       Width = 105
       Height = 18
+      Margins.Bottom = 0
       Caption = 'Add New Item'
       Font.Charset = DEFAULT_CHARSET
       Font.Color = clWindowText
