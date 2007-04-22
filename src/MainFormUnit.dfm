@@ -6,7 +6,7 @@ object MainForm: TMainForm
   ClientWidth = 494
   Color = clBtnFace
   Constraints.MinHeight = 480
-  Constraints.MinWidth = 440
+  Constraints.MinWidth = 480
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
   Font.Height = -11
@@ -18,6 +18,7 @@ object MainForm: TMainForm
   OnClose = FormClose
   OnCreate = FormCreate
   OnDestroy = FormDestroy
+  OnHide = FormHide
   OnMouseDown = FormMouseDown
   OnMouseMove = FormMouseMove
   PixelsPerInch = 96

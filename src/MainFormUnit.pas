@@ -127,6 +127,7 @@ type
       Shift: TShiftState; X, Y: Integer);
     procedure SpTBXItem2Click(Sender: TObject);
     procedure SpTBXItem7Click(Sender: TObject);
+    procedure FormHide(Sender: TObject);
   private
     FCurrentKey: string;
     FCurrentStoreFile: string;
@@ -546,6 +547,14 @@ end;
 procedure TMainForm.FormDestroy(Sender: TObject);
 begin
   PWItemStore.Free;
+end;
+
+procedure TMainForm.FormHide(Sender: TObject);
+begin
+  // JVCL Bug: Form position is not stored in onHide, but (re-)loaded in
+  // onShow.
+  // TODO 1 -cworkaround : bug: check for update   
+  FormStorage.SaveFormPlacement;
 end;
 
 procedure TMainForm.FormMouseDown(Sender: TObject; Button: TMouseButton;
