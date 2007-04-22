@@ -42,12 +42,8 @@
       <MainSource>MainSource</MainSource>
     </DelphiCompile>
     <RcCompile Include="corporeal.rc">
-      <ModuleName>corporeal.rc</ModuleName>
       <Form>corporeal.res</Form>
-    </RcCompile>
-    <RcCompile Include="patronus.rc">
-      <Form>corporeal.res</Form>
-    </RcCompile>
+    </RcCompile>    
     <DCCReference Include="AboutFormUnit.pas">
       <Form>AboutForm</Form>
     </DCCReference>
