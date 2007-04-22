@@ -6,7 +6,7 @@
 	* Fixed a bug which enabled password spy utilities to easily retrieve the preloaded contents of an edit field.
 	* Now compiled with Delphi 2007, improved Vista compatiblity.
 	* Improved TaskDialog emulation on Non-Vista systems.
-	* Renamed the program for legal reasons.
+	* Renamed the program for legal reasons from Patronus to Corporeal.
 
 1.02 (03-31-2007)
 
