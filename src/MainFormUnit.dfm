@@ -1,7 +1,7 @@
 object MainForm: TMainForm
   Left = 0
   Top = 0
-  Caption = 'Patronus'
+  Caption = 'Corporeal'
   ClientHeight = 466
   ClientWidth = 494
   Color = clBtnFace

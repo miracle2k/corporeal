@@ -13,8 +13,8 @@ All Rights Reserved.
 
 $Id$
 
-You may retrieve the latest version of this file at the Patronus
-Website, located at http://www.elsdoerfer.info/patronus
+You may retrieve the latest version of this file at the Corporeal
+Website, located at http://www.elsdoerfer.info/corporeal
 
 Known Issues:
 -----------------------------------------------------------------------------}
@@ -521,7 +521,7 @@ begin
   TranslateComponent(Self);
 
   // initialize storage
-  AppStorage.Root := 'Software\Patronus';
+  AppStorage.Root := 'Software\Corporeal';
   FormStorage.AppStoragePath := 'MainForm';
 
   // init Password list
@@ -828,7 +828,7 @@ begin
               Instruction := _('Failed to open database. Most likely, the key '+
                 'you entered was incorrect.');
               Content := _('It is also possible, however, that '+
-                'the file you tried to open is not a correct Patronus Store '+
+                'the file you tried to open is not a correct Corporeal Store '+
                 'file, or the chosen store is damaged.');
               ExpandedText := Format(_('Error message was: "%s"'), [LastLoadErrorMsg]);
               Icon := tiError;
@@ -900,7 +900,7 @@ begin
         Instruction := _('An error occured while trying to save the password store.');
           Content := _('This is not good at all. Your last change likely has not been '+
           'written to disk.'#13#10#13#10'If you''re afraid of losing data, you probably should '+
-          'exit Patronus now and fix the problem before you continue using the current store.');
+          'exit Corporeal now and fix the problem before you continue using the current store.');
         ExpandedText := Format(_('Error message was: "%s"'), [E.Message]);
         Icon := tiError;
         Execute;
@@ -938,7 +938,7 @@ procedure TMainForm.SetCurrentStoreFile(const Value: string);
 var
   CaptionFilename: string;
 const
-  DefaultExt = '.patronus';
+  DefaultExt = '.corporeal';
 begin
   // Always remember the previous value
   if Value <> FCurrentStoreFile then
@@ -1027,7 +1027,7 @@ begin
         NewElem := TDomElement.Create(Document, 'pwentry');
         Document.FindFirstChildElement.AppendChild(NewElem);
 
-        AddNode(NewElem, 'group', 'Patronus');
+        AddNode(NewElem, 'group', 'Corporeal');
         AddNode(NewElem, 'title', PWItemStore.Items[I].Title);
         AddNode(NewElem, 'username', PWItemStore.Items[I].Username);
         AddNode(NewElem, 'password', PWItemStore.Items[I].Password);
@@ -1172,3 +1172,5 @@ begin
 end;
 
 end.
+
+

@@ -13,8 +13,8 @@ All Rights Reserved.
 
 $Id$
 
-You may retrieve the latest version of this file at the Patronus
-Website, located at http://www.elsdoerfer.info/patronus
+You may retrieve the latest version of this file at the Corporeal
+Website, located at http://www.elsdoerfer.info/corporeal
 
 Known Issues:
 -----------------------------------------------------------------------------}
@@ -27,7 +27,7 @@ uses
   Classes, SysUtils, Forms;
 
 type
-  TPatronusSettings = class(TPersistent)
+  TCorporealSettings = class(TPersistent)
   private
     FDefaultStore: string;
     FAutoLockAfter: Integer;
@@ -48,50 +48,50 @@ type
     property LimitToOneInstance: Boolean read FLimitToOneInstance write SetLimitToOneInstance;
   end;
 
-function Settings: TPatronusSettings;
+function Settings: TCorporealSettings;
 
 implementation
 
 var
-  InternalSettingsObj: TPatronusSettings = nil;
+  InternalSettingsObj: TCorporealSettings = nil;
 
-function Settings: TPatronusSettings;
+function Settings: TCorporealSettings;
 begin
   if InternalSettingsObj = nil then
-    InternalSettingsObj := TPatronusSettings.Create;
+    InternalSettingsObj := TCorporealSettings.Create;
   Result := InternalSettingsObj;
 end;
 
-{ TPatronusSettings }
+{ TCorporealSettings }
 
-constructor TPatronusSettings.Create;
+constructor TCorporealSettings.Create;
 begin
   FDefaultStore := '';
   FAutoLockAfter := 10;
   FLimitToOneInstance := True;
 end;
 
-function TPatronusSettings.GetApplicationExePath: WideString;
+function TCorporealSettings.GetApplicationExePath: WideString;
 begin
   Result := ExtractFilePath(Application.ExeName);
 end;
 
-procedure TPatronusSettings.SetApplicationExePath(const Value: WideString);
+procedure TCorporealSettings.SetApplicationExePath(const Value: WideString);
 begin
   // do not accept any values for this
 end;
 
-procedure TPatronusSettings.SetAutoLockAfter(const Value: Integer);
+procedure TCorporealSettings.SetAutoLockAfter(const Value: Integer);
 begin
   FAutoLockAfter := Value;
 end;
 
-procedure TPatronusSettings.SetDefaultStore(const Value: string);
+procedure TCorporealSettings.SetDefaultStore(const Value: string);
 begin
   FDefaultStore := Value;
 end;
 
-procedure TPatronusSettings.SetLimitToOneInstance(const Value: Boolean);
+procedure TCorporealSettings.SetLimitToOneInstance(const Value: Boolean);
 begin
   FLimitToOneInstance := Value;
 end;

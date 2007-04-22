@@ -13,8 +13,8 @@ All Rights Reserved.
 
 $Id$
 
-You may retrieve the latest version of this file at the Patronus
-Website, located at http://www.elsdoerfer.info/patronus
+You may retrieve the latest version of this file at the Corporeal
+Website, located at http://www.elsdoerfer.info/corporeal
 
 Known Issues:
 -----------------------------------------------------------------------------}

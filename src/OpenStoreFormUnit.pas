@@ -13,8 +13,8 @@ All Rights Reserved.
 
 $Id$
 
-You may retrieve the latest version of this file at the Patronus
-Website, located at http://www.elsdoerfer.info/patronus
+You may retrieve the latest version of this file at the Corporeal
+Website, located at http://www.elsdoerfer.info/corporeal
 
 Known Issues:
 -----------------------------------------------------------------------------}
@@ -161,8 +161,8 @@ begin
   QualityIndicatorBar.Parent := Self;
 
   // init dialogs
-  SelectStoreDialog.Filter := _(PatronusFilter)+'|*.patronus|'+_(AllFilesFilter)+'|*.*';
-  SelectStoreDialog.DefaultExt := 'patronus';
+  SelectStoreDialog.Filter := _(CorporealFilter)+'|*.corporeal|'+_(AllFilesFilter)+'|*.*';
+  SelectStoreDialog.DefaultExt := 'corporeal';
   CreateStoreDialog.Filter := SelectStoreDialog.Filter;
   CreateStoreDialog.DefaultExt := SelectStoreDialog.DefaultExt;
 

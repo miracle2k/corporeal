@@ -10,9 +10,9 @@
 
 
 ; general constants
-#define AppName "Patronus"
-#define AppNameSystem "Patronus"       ; to be used in startmenu/directory names etc.
-#define AppURL "http://www.elsdoerfer.info/patronus"
+#define AppName "Corporeal"
+#define AppNameSystem "Corporeal"       ; to be used in startmenu/directory names etc.
+#define AppURL "http://www.elsdoerfer.info/corporeal"
 
 ; macro to remove the path and the extension from a filename, e.g. "G:\myapp\setup.exe" => "setup"
 #define ExtractBasename(str *S) \
@@ -58,9 +58,9 @@ Source: "*"; DestDir: "{app}"; Flags: ignoreversion recursesubdirs
 Root: HKCU; Subkey: "Software\Patronus"; Flags: uninsdeletekey
 
 [Icons]
-Name: "{commonprograms}\{#AppNameSystem}"; Filename: "{app}\patronus.exe"
-Name: "{commondesktop}\{#AppNameSystem}"; Filename: "{app}\patronus.exe"; Tasks: desktopicon
+Name: "{commonprograms}\{#AppNameSystem}"; Filename: "{app}\corporeal.exe"
+Name: "{commondesktop}\{#AppNameSystem}"; Filename: "{app}\corporeal.exe"; Tasks: desktopicon
 
 [Run]
-Filename: "{app}\patronus.exe"; Description: "{cm:LaunchProgram,{#AppName}}"; Flags: nowait postinstall skipifsilent
+Filename: "{app}\corporeal.exe"; Description: "{cm:LaunchProgram,{#AppName}}"; Flags: nowait postinstall skipifsilent
 

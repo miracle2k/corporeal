@@ -8,13 +8,13 @@ Software distributed under the License is distributed on an "AS IS" basis,
 WITHOUT WARRANTY OF ANY KIND, either expressed or implied. See the License for
 the specific language governing rights and limitations under the License.
 
-The Initial Developer of the Original Code is Michael Elsd�rfer.
+The Initial Developer of the Original Code is Michael ElsdÃ¶rfer.
 All Rights Reserved.
 
 $Id$
 
-You may retrieve the latest version of this file at the Patronus
-Website, located at http://www.elsdoerfer.info/patronus
+You may retrieve the latest version of this file at the Corporeal
+Website, located at http://www.elsdoerfer.info/corporeal
 
 Known Issues:
 -----------------------------------------------------------------------------}
@@ -73,3 +73,5 @@ begin
   // Go!
   Application.Run;
 end.
+
+

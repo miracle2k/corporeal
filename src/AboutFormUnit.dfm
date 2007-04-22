@@ -50,8 +50,6 @@ object AboutForm: TAboutForm
     Align = alBottom
     BevelOuter = bvNone
     TabOrder = 0
-    ExplicitTop = 224
-    ExplicitWidth = 297
     DesignSize = (
       298
       35)
@@ -65,7 +63,6 @@ object AboutForm: TAboutForm
       Default = True
       ModalResult = 1
       TabOrder = 0
-      ExplicitWidth = 75
     end
   end
   object Panel1: TPanel
@@ -82,6 +79,7 @@ object AboutForm: TAboutForm
       Width = 105
       Height = 13
       Cursor = crHandPoint
+      Margins.Bottom = 0
       Alignment = taRightJustify
       Caption = '%DYNAMICTEXT%'
       Font.Charset = DEFAULT_CHARSET
@@ -99,6 +97,7 @@ object AboutForm: TAboutForm
       Top = 12
       Width = 92
       Height = 13
+      Margins.Bottom = 0
       Alignment = taRightJustify
       Caption = '%DYNAMICTEXT%'
     end

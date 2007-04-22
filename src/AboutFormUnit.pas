@@ -13,8 +13,8 @@ All Rights Reserved.
 
 $Id$
 
-You may retrieve the latest version of this file at the Patronus
-Website, located at http://www.elsdoerfer.info/patronus
+You may retrieve the latest version of this file at the Corporeal
+Website, located at http://www.elsdoerfer.info/corporeal
 
 Known Issues:
 -----------------------------------------------------------------------------}
@@ -52,7 +52,7 @@ uses
 
 const
   CreditsString =
-'&b&uPatronus Password Store'#13#10+
+'&b&uCorporeal Password Store'#13#10+
 'Version %VERSION%'#13#10+
 ''#13#10+
 '2007 by Michael Elsd'#246'rfer'#13#10+
@@ -111,7 +111,7 @@ const
 '&ipngdelphi.sourceforge.net'#13#10+
 ''#13#10+
 '&bOpenXML'#13#10+
-'By Dieter K�hler'#13#10+
+'By Dieter KÃ¶hler'#13#10+
 'Licensed under MPL'#13#10+
 '&iphilo.de'#13#10+
 ''#13#10+
@@ -174,7 +174,7 @@ begin
   // init gui
   Self.Caption := Format(_('About %s'), [AppShortName]);
   VersionLabel.Caption := Format(_('Version %s'), [MakeVersionString(vsfFull)]);
-  WebsiteLink.Caption := 'elsdoerfer.info/patronus';
+  WebsiteLink.Caption := 'elsdoerfer.info/corporeal';
 
   // Prepare credits string (replace version number etc)
   C := CreditsString;
@@ -199,3 +199,5 @@ begin
 end;
 
 end.
+
+

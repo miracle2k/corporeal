@@ -11,12 +11,12 @@ FILETYPE VFT_APP
   BLOCK "040904E4"
   {
    VALUE "CompanyName", "Michael Elsdörfer\000"
-   VALUE "FileDescription", "Patronus Password Store\000"
-   VALUE "InternalName", "patronus.exe\000"
-   VALUE "OriginalFilename", "patronus.exe\000"  
+   VALUE "FileDescription", "Corporeal Password Store\000"
+   VALUE "InternalName", "corporeal.exe\000"
+   VALUE "OriginalFilename", "corporeal.exe\000"  
    VALUE "FileVersion", "%VersionStrFull%\000"
    VALUE "LegalCopyright", "\251 2007 Michael Elsdörfer\000"
-   VALUE "ProductName", "Patronus\000"
+   VALUE "ProductName", "Corporeal\000"
    VALUE "ProductVersion", "%VersionStrFull%\000"
   }
  }

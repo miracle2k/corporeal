@@ -13,8 +13,8 @@ All Rights Reserved.
 
 $Id$
 
-You may retrieve the latest version of this file at the Patronus
-Website, located at http://www.elsdoerfer.info/patronus
+You may retrieve the latest version of this file at the Corporeal
+Website, located at http://www.elsdoerfer.info/corporeal
 
 Known Issues:
 -----------------------------------------------------------------------------}
@@ -28,8 +28,8 @@ uses
   VersionInfo;
 
 const
-  AppShortName = 'Patronus';
-  AppWebsiteUrl = 'http://www.elsdoerfer.info/patronus';
+  AppShortName = 'Corporeal';
+  AppWebsiteUrl = 'http://www.elsdoerfer.info/corporeal';
   function AppnameWithVersion: string;
   function AppVersion: string;
 
@@ -43,7 +43,7 @@ var
 resourcestring
    XMLFilter = 'XML Files (*.xml)';
    AllFilesFilter = 'All Files (*.*)';
-   PatronusFilter = 'Patronus Store Files (*.patronus)';
+   CorporealFilter = 'Corporeal Store Files (*.corporeal)';
 
    TogglePasswordCharHint = 'Toggle Hide/Show Passwords';
 
