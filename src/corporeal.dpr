@@ -1,4 +1,4 @@
-{-----------------------------------------------------------------------------
+﻿{-----------------------------------------------------------------------------
 The contents of this file are subject to the GNU General Public License
 Version 2.0 (the "License"); you may not use this file except in compliance
 with the License. You may obtain a copy of the License at
@@ -44,6 +44,9 @@ uses
   VistaCompat in 'VistaCompat.pas',
   VersionInfo in 'VersionInfo.pas';
 
+// Define this on compilers < delphi 2007 to make the app run smoothly on vista
+//{$DEFINE VISTA_FIXES}
+
 begin
   // Exclude some stuff from translation
   TP_GlobalIgnoreClass(TFont);
@@ -63,6 +66,9 @@ begin
 
   // Boot up application
   Application.Initialize;
+  {$IFNDEF VISTA_FIXES}
+  Application.MainFormOnTaskBar := True;
+  {$ENDIF}
   Application.Title := AppShortName;
   Application.CreateForm(TMainForm, MainForm);
 
