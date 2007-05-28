@@ -1,6 +1,7 @@
 object MainForm: TMainForm
   Left = 0
   Top = 0
+  ActiveControl = QuickSearchEdit
   Caption = 'Corporeal'
   ClientHeight = 466
   ClientWidth = 494
@@ -21,6 +22,7 @@ object MainForm: TMainForm
   OnHide = FormHide
   OnMouseDown = FormMouseDown
   OnMouseMove = FormMouseMove
+  OnShow = FormShow
   PixelsPerInch = 96
   TextHeight = 13
   object TopDock: TSpTBXDock
@@ -1244,6 +1246,7 @@ object MainForm: TMainForm
       end>
     Left = 16
     Top = 96
+    Bitmap = {}
   end
   object SmallImages: TPngImageList
     Height = 24
@@ -1940,6 +1943,7 @@ object MainForm: TMainForm
       end>
     Left = 48
     Top = 96
+    Bitmap = {}
   end
   object XPManifest: TXPManifest
     Left = 48

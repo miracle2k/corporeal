@@ -128,6 +128,7 @@ type
     procedure SpTBXItem2Click(Sender: TObject);
     procedure SpTBXItem7Click(Sender: TObject);
     procedure FormHide(Sender: TObject);
+    procedure FormShow(Sender: TObject);
   private
     FCurrentKey: string;
     FCurrentStoreFile: string;
@@ -571,6 +572,11 @@ procedure TMainForm.FormMouseMove(Sender: TObject; Shift: TShiftState; X,
 begin
   // We are active
   ResetAutoLockTimer;
+end;
+
+procedure TMainForm.FormShow(Sender: TObject);
+begin
+  QuickSearchEdit.SetFocus;
 end;
 
 procedure TMainForm.GUIUpdatePasswordList(SelectItem: TPWItem = nil);
