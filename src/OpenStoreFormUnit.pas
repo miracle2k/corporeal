@@ -161,7 +161,7 @@ begin
   QualityIndicatorBar.Parent := Self;
 
   // init dialogs
-  SelectStoreDialog.Filter := _(CorporealFilter)+'|*.corporeal|'+_(AllFilesFilter)+'|*.*';
+  SelectStoreDialog.Filter := _(CorporealFilter)+'|*.corporeal;*.patronus|'+_(AllFilesFilter)+'|*.*';
   SelectStoreDialog.DefaultExt := 'corporeal';
   CreateStoreDialog.Filter := SelectStoreDialog.Filter;
   CreateStoreDialog.DefaultExt := SelectStoreDialog.DefaultExt;

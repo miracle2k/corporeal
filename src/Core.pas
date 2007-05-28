@@ -43,7 +43,7 @@ var
 resourcestring
    XMLFilter = 'XML Files (*.xml)';
    AllFilesFilter = 'All Files (*.*)';
-   CorporealFilter = 'Corporeal Store Files (*.corporeal)';
+   CorporealFilter = 'Corporeal Store Files (*.corporeal;*.patronus)';
 
    TogglePasswordCharHint = 'Toggle Hide/Show Passwords';
 
