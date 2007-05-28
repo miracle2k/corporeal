@@ -1,3 +1,7 @@
+1.11 (unreleased)
+
+	* Fixed: Search edit field is now again automatically focused.
+
 1.1 (04-22-2007)
 
 	* Fixed a rare exception that occured after the "Change Master Key" functionality was used.
