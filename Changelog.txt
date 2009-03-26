@@ -1,6 +1,7 @@
-1.11 (unreleased)
+1.11 (03-26-2009)
 
-	* Fixed: Search edit field is now again automatically focused.
+	* Fixed: Search edit field is now again automatically focused on start.
+	* Fixed: KeePass export now works on Vista as well.
 
 1.1 (04-22-2007)
 
