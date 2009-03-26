@@ -1,0 +1,3 @@
+It would be a good idea to natively support the KeePass database format. In fact, KeePass 2 has a KeePass Library written in .NET, so we could port the project to Delphi.NET and simply use this library.
+
+The other option of course would be to simply phase out Corporeal and add the changes we want (easier search, no categories) directly to KeePass (unfortuantely, there appears to be no KeePass source control for now, which would make maintenance harder). Some things might also be possible as KeePass plugins.
