@@ -1626,7 +1626,7 @@ Comments=
                   <Property name="Quiet" type="Boolean">False</Property>
                   <Property name="RetryPauseInterval" type="Cardinal">1000</Property>
                   <Property MultiValue="0" name="Revision" type="string"></Property>
-                  <Property MultiValue="0" name="Source" type="string">svn://kaede.dpool.org/michael/personal/projects/desktop/corporeal/trunk/src</Property>
+                  <Property MultiValue="0" name="Source" type="string">svn://svn.s.dpool.org/michael/personal/projects/desktop/corporeal/trunk/src</Property>
                   <Property name="SuppressStatusMessages" type="Boolean">False</Property>
                   <Property name="TerminateOnTimeout" type="Boolean">True</Property>
                   <Property name="TimeoutLength" type="Cardinal">2</Property>
@@ -2556,7 +2556,7 @@ ListOfFiles=%DistribOutputFilenameZip%|%DistribOutputFilenameSetup%|%DistribOutp
                   <Property name="IsBreakPoint" type="WordBool">False</Property>
                   <Property MultiValue="0" name="LogToVariable" type="string"></Property>
                   <Property name="MaxRetryAttempts" type="Cardinal">0</Property>
-                  <Property name="NodeCollapsed" type="Boolean">True</Property>
+                  <Property name="NodeCollapsed" type="Boolean">False</Property>
                   <Property name="PauseInterval" type="Cardinal">0</Property>
                   <Property name="RetryPauseInterval" type="Cardinal">1000</Property>
                   <Property name="SuppressStatusMessages" type="Boolean">False</Property>
