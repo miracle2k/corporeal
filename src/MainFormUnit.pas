@@ -174,6 +174,7 @@ const
   // The index of the password column in the list
   PasswordColumnIndex = 2;
 
+
 implementation
 
 uses
@@ -1054,7 +1055,7 @@ begin
       XMLWriter.Free;
       DomImplementation.Free;
     end;
-  end;
+  end
 end;
 
 procedure TMainForm.SpTBXItem5Click(Sender: TObject);
@@ -1177,6 +1178,10 @@ begin
     inherited;
 end;
 
+initialization
+  // otherwise, TntSaveDialog.Execute will always return False with
+  // D2007/Vista, see the note here:
+  // http://www.yunqa.de/delphi/doku.php/products/tntunicodecontrols/index
+  Dialogs.UseLatestCommonDialogs := False;
+
 end.
-
-
