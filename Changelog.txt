@@ -3,7 +3,7 @@
 	* Fixed: Search edit field is now again automatically focused on start.
 	* Fixed: KeePass export now works on Vista as well.
 
-1.1 (04-22-2007)
+1.10 (04-22-2007)
 
 	* Fixed a rare exception that occured after the "Change Master Key" functionality was used.
 	* Fixed a problem that caused some toolbar buttons to disappear if the window was made small enough.
