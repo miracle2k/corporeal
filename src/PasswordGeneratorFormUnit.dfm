@@ -67,7 +67,7 @@ object PasswordGeneratorForm: TPasswordGeneratorForm
     ButtonKind = bkStandard
     MaxValue = 99.000000000000000000
     MinValue = 1.000000000000000000
-    Value = 6.000000000000000000
+    Value = 15.000000000000000000
     Anchors = [akLeft, akRight, akBottom]
     TabOrder = 1
   end
