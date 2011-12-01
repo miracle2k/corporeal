@@ -19,7 +19,7 @@ object PasswordGeneratorForm: TPasswordGeneratorForm
     212)
   PixelsPerInch = 96
   TextHeight = 13
-  object TntLabel1: TTntLabel
+  object TntLabel1: TLabel
     Left = 8
     Top = 144
     Width = 108
@@ -38,7 +38,7 @@ object PasswordGeneratorForm: TPasswordGeneratorForm
     ExplicitTop = 255
     ExplicitWidth = 348
   end
-  object CharSpacesList: TTntCheckListBox
+  object CharSpacesList: TCheckListBox
     Left = 8
     Top = 8
     Width = 260

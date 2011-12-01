@@ -33,29 +33,29 @@ type
   TPWItem = class
   private
     FID: Cardinal;
-    FNotes: WideString;
-    FTitle: WideString;
-    FPassword: WideString;
-    FURL: WideString;
-    FUsername: WideString;
+    FNotes: AnsiString;
+    FTitle: AnsiString;
+    FPassword: AnsiString;
+    FURL: AnsiString;
+    FUsername: AnsiString;
     FCreationTime: TDateTime;
     function GetID: Cardinal;
-    procedure SetNotes(const Value: WideString);
-    procedure SetPassword(const Value: WideString);
-    procedure SetTitle(const Value: WideString);
-    procedure SetURL(const Value: WideString);
-    procedure SetUsername(const Value: WideString);
+    procedure SetNotes(const Value: AnsiString);
+    procedure SetPassword(const Value: AnsiString);
+    procedure SetTitle(const Value: AnsiString);
+    procedure SetURL(const Value: AnsiString);
+    procedure SetUsername(const Value: AnsiString);
     procedure SetCreationTime(const Value: TDateTime);
   public
     constructor Create(ItemID: Cardinal); virtual;
     destructor Destroy; override;
   public
     property ID: Cardinal read GetID;
-    property Title: WideString read FTitle write SetTitle;
-    property Username: WideString read FUsername write SetUsername;
-    property Password: WideString read FPassword write SetPassword;
-    property URL: WideString read FURL write SetURL;
-    property Notes: WideString read FNotes write SetNotes;
+    property Title: AnsiString read FTitle write SetTitle;
+    property Username: AnsiString read FUsername write SetUsername;
+    property Password: AnsiString read FPassword write SetPassword;
+    property URL: AnsiString read FURL write SetURL;
+    property Notes: AnsiString read FNotes write SetNotes;
     property CreationTime: TDateTime read FCreationTime write SetCreationTime;
   end;
 
@@ -100,8 +100,8 @@ type
     procedure Close;
     function Add: TPWItem;
     function Remove(Item: TPWItem): Integer;
-    procedure SaveToFile(AFilename, APassword: string);
-    procedure LoadFromFile(AFilename, APassword: string);
+    procedure SaveToFile(AFilename, APassword: AnsiString);
+    procedure LoadFromFile(AFilename, APassword: AnsiString);
   public
     property Count: Integer read GetCount;
     property Items[Index: Integer]: TPWItem read GetItems write SetItems;
@@ -110,7 +110,7 @@ type
 implementation
 
 const
-  PWDB_HEADER = 'PWDB';
+  PWDB_HEADER = AnsiString('PWDB');
 var
   PWDB_VERSION: Integer = 1;
 
@@ -137,27 +137,27 @@ begin
   FCreationTime := Value;
 end;
 
-procedure TPWItem.SetNotes(const Value: WideString);
+procedure TPWItem.SetNotes(const Value: AnsiString);
 begin
   FNotes := Value;
 end;
 
-procedure TPWItem.SetPassword(const Value: WideString);
+procedure TPWItem.SetPassword(const Value: AnsiString);
 begin
   FPassword := Value;
 end;
 
-procedure TPWItem.SetTitle(const Value: WideString);
+procedure TPWItem.SetTitle(const Value: AnsiString);
 begin
   FTitle := Value;
 end;
 
-procedure TPWItem.SetURL(const Value: WideString);
+procedure TPWItem.SetURL(const Value: AnsiString);
 begin
   FURL := Value;
 end;
 
-procedure TPWItem.SetUsername(const Value: WideString);
+procedure TPWItem.SetUsername(const Value: AnsiString);
 begin
   FUsername := Value;
 end;
@@ -229,13 +229,14 @@ begin
   Result := FItems[Index];
 end;
 
-procedure TPWItemStore.LoadFromFile(AFilename, APassword: string);
+procedure TPWItemStore.LoadFromFile(AFilename, APassword: AnsiString);
 var
   MemoryStream: TMemoryStream;
   AESCipher: TDCP_rijndael;
   I, NumItems: Integer;
+  TestStream: TFileStream;
 
-  function ReadString(const Length: Integer = 0): string;
+  function ReadString(const Length: Integer = 0): AnsiString;
   var
     Lng: Integer;
   begin
@@ -261,7 +262,7 @@ var
 begin
   // clear all the current items
   Clear;
-  
+
   // open the file and decrypt to memory stream
   CloseOpenFilestream;
   try
@@ -322,13 +323,13 @@ begin
   if Result >= 0 then Item.Free;
 end;
 
-procedure TPWItemStore.SaveToFile(AFilename, APassword: string);
+procedure TPWItemStore.SaveToFile(AFilename, APassword: AnsiString);
 var
   MemoryStream: TMemoryStream;
   AESCipher: TDCP_rijndael;
   I: Integer;
 
-  procedure WriteString(AStr: string);
+  procedure WriteString(AStr: AnsiString);
   var
     Lng: Integer;
   begin

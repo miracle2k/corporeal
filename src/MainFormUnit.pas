@@ -30,8 +30,8 @@ uses
   gnugettext,
 
   Windows, Messages, SysUtils, Variants, Classes, Graphics, Controls, Forms,
-  Dialogs, TB2Dock, TB2Toolbar, TBX, SpTBXItem, TB2ExtItems, SpTBXEditors,
-  TB2Item, VirtualTrees, ImgList, PngImageList, XPMan, ActnList, TntDialogs,
+  Dialogs, TB2Dock, TB2Toolbar, SpTBXItem, TB2ExtItems, SpTBXEditors,
+  TB2Item, VirtualTrees, ImgList, PngImageList, XPMan, ActnList,
   Menus, ExtCtrls, Clipbrd, JvComponentBase, JvTrayIcon, JvAppStorage, ComObj,
   JvAppRegistryStorage, ApplicationSettings, AppEvnts, JvFormPlacement,
   StdCtrls;
@@ -69,7 +69,7 @@ type
     SpTBXSeparatorItem1: TSpTBXSeparatorItem;
     AddFromCSVItem: TSpTBXItem;
     SpTBXItem2: TSpTBXItem;
-    OpenXMLDialog: TTntOpenDialog;
+    OpenXMLDialog: TOpenDialog;
     SpTBXSubmenuItem1: TSpTBXSubmenuItem;
     PasswordListPopup: TSpTBXPopupMenu;
     SpTBXItem1: TSpTBXItem;
@@ -87,7 +87,7 @@ type
     QuickSearchEdit: TSpTBXEdit;
     QuickSearchEditItem: TTBControlItem;
     AutoLockTimer: TTimer;
-    SaveXMLDialog: TTntSaveDialog;
+    SaveXMLDialog: TSaveDialog;
     SpTBXItem7: TSpTBXItem;
     procedure PasswordListCompareNodes(Sender: TBaseVirtualTree; Node1,
       Node2: PVirtualNode; Column: TColumnIndex; var Result: Integer);
@@ -104,8 +104,6 @@ type
     procedure DeleteItemActionUpdate(Sender: TObject);
     procedure ShowPasswordsToggleActionExecute(Sender: TObject);
     procedure ShowPasswordsToggleActionUpdate(Sender: TObject);
-    procedure PasswordListGetText(Sender: TBaseVirtualTree; Node: PVirtualNode;
-      Column: TColumnIndex; TextType: TVSTTextType; var CellText: WideString);
     procedure FormDestroy(Sender: TObject);
     procedure FormCreate(Sender: TObject);
     procedure ClipboardClearTimerTimer(Sender: TObject);
@@ -129,6 +127,8 @@ type
     procedure SpTBXItem7Click(Sender: TObject);
     procedure FormHide(Sender: TObject);
     procedure FormShow(Sender: TObject);
+    procedure PasswordListGetText(Sender: TBaseVirtualTree; Node: PVirtualNode;
+      Column: TColumnIndex; TextType: TVSTTextType; var CellText: string);
   private
     FCurrentKey: string;
     FCurrentStoreFile: string;
@@ -178,7 +178,7 @@ const
 implementation
 
 uses
-  Xdom_4_1, JclFileUtils, DateUtils,
+  dkAdomCore, JclFileUtils, DateUtils,
   TaskDialog,
   AboutFormUnit, ConfigFormUnit, ItemPropertiesFormUnit, OpenStoreFormUnit,
   VistaCompat, Utilities;
@@ -333,7 +333,7 @@ var
   CurNode: PVirtualNode;
   NodeData: PPasswordListNode;
 begin
-  LookFor := WideLowerCase(QuickSearchEdit.Text);
+  LookFor := LowerCase(QuickSearchEdit.Text);
   PasswordList.BeginUpdate;
   try
     CurNode:= PasswordList.RootNode.FirstChild;
@@ -343,11 +343,11 @@ begin
       with NodeData.PWItem do
         PasswordList.IsVisible[CurNode] :=
           (LookFor = '') or  // no filter, show everything
-          (Pos(LookFor, WideLowerCase(Title))>0) or
-          (Pos(LookFor, WideLowerCase(Username))>0) or
-          (Pos(LookFor, WideLowerCase(URL))>0) or
-          (Pos(LookFor, WideLowerCase(Notes))>0) or
-          ((Pos(LookFor, WideLowerCase(Password))>0) and IsPasswordColumnVisible);
+          (Pos(LookFor, Title)>0) or
+          (Pos(LookFor, Username)>0) or
+          (Pos(LookFor, URL)>0) or
+          (Pos(LookFor, Notes)>0) or
+          ((Pos(LookFor, LowerCase(Password))>0) and IsPasswordColumnVisible);
       CurNode := PasswordList.GetNext(CurNode);
     end;
   finally
@@ -717,7 +717,7 @@ end;
 
 procedure TMainForm.PasswordListGetText(Sender: TBaseVirtualTree;
   Node: PVirtualNode; Column: TColumnIndex; TextType: TVSTTextType;
-  var CellText: WideString);
+  var CellText: string);
 var
   NodeData: PPasswordListNode;
 begin

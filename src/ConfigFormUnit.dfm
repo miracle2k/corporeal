@@ -24,7 +24,6 @@ object ConfigForm: TConfigForm
     Caption = 'Enable Online Synchronization'
     TabOrder = 0
     Checkable = True
-    Checked = True
     PropagateEnable = True
     DesignSize = (
       397
@@ -43,7 +42,7 @@ object ConfigForm: TConfigForm
       Height = 32
       AutoSize = True
     end
-    object TntLabel1: TTntLabel
+    object TntLabel1: TLabel
       Left = 64
       Top = 24
       Width = 313

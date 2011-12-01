@@ -25,7 +25,7 @@ interface
 
 uses
   Windows, Messages, SysUtils, Variants, Classes, Graphics, Controls, Forms,
-  Dialogs, StdCtrls, JvExStdCtrls, JvGroupBox, TntStdCtrls, pngimage, ExtCtrls,
+  Dialogs, StdCtrls, JvExStdCtrls, JvGroupBox, pngimage, ExtCtrls,
   gnugettext;
 
 type
@@ -34,7 +34,7 @@ type
     Label1: TLabel;
     Edit1: TEdit;
     Image1: TImage;
-    TntLabel1: TTntLabel;
+    TntLabel1: TLabel;
     procedure FormCreate(Sender: TObject);
   end;
 

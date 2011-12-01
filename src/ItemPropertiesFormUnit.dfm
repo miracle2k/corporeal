@@ -194,7 +194,7 @@ object ItemPropertiesForm: TItemPropertiesForm
     Margins.Bottom = 0
     Alignment = taRightJustify
   end
-  object TitleEdit: TTntEdit
+  object TitleEdit: TEdit
     Left = 90
     Top = 58
     Width = 240
@@ -202,7 +202,7 @@ object ItemPropertiesForm: TItemPropertiesForm
     Anchors = [akLeft, akTop, akRight]
     TabOrder = 0
   end
-  object UsernameEdit: TTntEdit
+  object UsernameEdit: TEdit
     Left = 90
     Top = 85
     Width = 240
@@ -216,7 +216,6 @@ object ItemPropertiesForm: TItemPropertiesForm
     Width = 215
     Height = 21
     ProtectPassword = True
-    Modified = False
     ThemedPassword = True
     Anchors = [akLeft, akTop, akRight]
     TabOrder = 2
@@ -228,12 +227,11 @@ object ItemPropertiesForm: TItemPropertiesForm
     Width = 215
     Height = 21
     ProtectPassword = True
-    Modified = False
     ThemedPassword = True
     Anchors = [akLeft, akTop, akRight]
     TabOrder = 3
   end
-  object NotesMemo: TTntMemo
+  object NotesMemo: TMemo
     Left = 90
     Top = 221
     Width = 240
@@ -369,7 +367,7 @@ object ItemPropertiesForm: TItemPropertiesForm
       ParentFont = False
     end
   end
-  object URLEdit: TTntEdit
+  object URLEdit: TEdit
     Left = 90
     Top = 194
     Width = 240

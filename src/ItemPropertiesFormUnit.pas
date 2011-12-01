@@ -29,22 +29,22 @@ uses
   gnugettext,
 
   Windows, Messages, SysUtils, Variants, Classes, Graphics, Controls, Forms,
-  Dialogs, StdCtrls, TntStdCtrls, ExtCtrls, pngimage, Buttons, TntButtons,
+  Dialogs, StdCtrls, ExtCtrls, pngimage, Buttons,
   PngSpeedButton, JvExControls, JvGradientProgressBarEx, JvComponentBase,
-  JvBalloonHint, JvProgressBar, JvExStdCtrls, JvEdit;
+  JvBalloonHint, JvProgressBar, JvExStdCtrls, JvEdit, PngFunctions;
 
 type               
   TItemPropertiesForm = class(TForm)
     Label1: TLabel;
     Label2: TLabel;
     Label4: TLabel;
-    TitleEdit: TTntEdit;
-    UsernameEdit: TTntEdit;
+    TitleEdit: TEdit;
+    UsernameEdit: TEdit;
     PasswordEdit: TJvEdit;
     Label6: TLabel;
     PasswordRepeatEdit: TJvEdit;
     Label3: TLabel;
-    NotesMemo: TTntMemo;
+    NotesMemo: TMemo;
     Button1: TButton;
     Button2: TButton;
     Bevel1: TBevel;
@@ -53,7 +53,7 @@ type
     FormHeaderLabel: TLabel;
     Bevel2: TBevel;
     Label7: TLabel;
-    URLEdit: TTntEdit;
+    URLEdit: TEdit;
     TogglePasswordCharButton: TPngSpeedButton;
     TntSpeedButton2: TPngSpeedButton;
     Label8: TLabel;

@@ -25,14 +25,14 @@ interface
 
 uses
   Windows, Messages, SysUtils, Variants, Classes, Graphics, Controls, Forms,
-  Dialogs, StdCtrls, CheckLst, TntCheckLst, Mask, JvExMask, JvSpin, TntStdCtrls,
+  Dialogs, StdCtrls, CheckLst, Mask, JvExMask, JvSpin,
   ExtCtrls, JvComponentBase, JvBalloonHint, gnugettext;
 
 type
   TPasswordGeneratorForm = class(TForm)
-    CharSpacesList: TTntCheckListBox;
+    CharSpacesList: TCheckListBox;
     PasswordLengthEdit: TJvSpinEdit;
-    TntLabel1: TTntLabel;
+    TntLabel1: TLabel;
     Bevel1: TBevel;
     Button2: TButton;
     Button1: TButton;
