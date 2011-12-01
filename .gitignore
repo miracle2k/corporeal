@@ -1,0 +1,7 @@
+/bin/
+/dcu/
+*.res
+*.identcache
+*.drc
+/src/__history/
+/build/*.fbl5
