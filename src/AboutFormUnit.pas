@@ -55,8 +55,8 @@ const
 '&b&uCorporeal Password Store'#13#10+
 'Version %VERSION%'#13#10+
 ''#13#10+
-'2007 by Michael Elsd'#246'rfer'#13#10+
-'<michael@elsdoerfer.info>'#13#10+
+'2007-2011 by Michael Elsd'#246'rfer'#13#10+
+'<michael@elsdoerfer.com>'#13#10+
 ''#13#10+
 ''#13#10+
 ''#13#10+
@@ -72,22 +72,10 @@ const
 'By Jordan Russell'#13#10+
 '&ijrsoftware.org'#13#10+
 ''#13#10+
-'&bTBX'#13#10+
-'By Alex A. Denisov'#13#10+
-'&ig32.org/tbx'#13#10+
-''#13#10+
 '&bSpTBX'#13#10+
 'By Robert Lee'#13#10+
 'Licensed under MPL'#13#10+
 '&iclub.telepolis.com/silverpointdev'#13#10+
-''#13#10+
-'&bmbTBX'#13#10+
-'By Marco Binic'#13#10+
-'&imxs.bergsoft.net'#13#10+
-''#13#10+
-'&bTntWare Unicode Controls'#13#10+
-'By Troy Wolbrink'#13#10+
-'&itntware.com'#13#10+
 ''#13#10+
 '&bVirtualTreeView'#13#10+
 'By Mike Lischke and contributors'#13#10+
@@ -106,12 +94,8 @@ const
 'By Martijn Saly'#13#10+
 '&ithany.org'#13#10+
 ''#13#10+
-'&bpngdelphi'#13#10+
-'By Gustavo Daud'#13#10+
-'&ipngdelphi.sourceforge.net'#13#10+
-''#13#10+
 '&bOpenXML'#13#10+
-'By Dieter KÃ¶hler'#13#10+
+'By Dieter K�hler'#13#10+
 'Licensed under MPL'#13#10+
 '&iphilo.de'#13#10+
 ''#13#10+
@@ -174,7 +158,7 @@ begin
   // init gui
   Self.Caption := Format(_('About %s'), [AppShortName]);
   VersionLabel.Caption := Format(_('Version %s'), [MakeVersionString(vsfFull)]);
-  WebsiteLink.Caption := 'elsdoerfer.info/corporeal';
+  WebsiteLink.Caption := 'elsdoerfer.com/corporeal';
 
   // Prepare credits string (replace version number etc)
   C := CreditsString;
