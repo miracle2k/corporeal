@@ -34,10 +34,10 @@ DefaultGroupName={#AppNameSystem}
 DisableProgramGroupPage=yes
 AllowNoIcons=yes
 ; relative to SourceDir
-OutputDir=..\
+OutputDir=..\..\bin
 Compression=lzma/max
 SolidCompression=yes
-SourceDir=..\build\output\
+SourceDir=output\
 ; this one is tough, we need to extract the base filename
 OutputBaseFilename={#ExtractBasename(OutputFilename)}
 

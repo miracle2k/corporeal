@@ -4,4 +4,6 @@
 *.identcache
 *.drc
 /src/__history/
-/build/*.fbl5
+/build/*.fbl7
+/build/*.fb7lck
+/build/*.fbpInf

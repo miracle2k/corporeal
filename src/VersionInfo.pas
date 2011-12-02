@@ -103,7 +103,7 @@ begin
   end;
 
   // Add build number
-  if (APP_VERSION_BUILD<>-1) then
+  if (APP_VERSION_BUILD>0) then
     Result := Result+'.'+IntToStr(APP_VERSION_BUILD);
 end;
 {$WARNINGS on}
