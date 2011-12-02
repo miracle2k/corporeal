@@ -59,7 +59,7 @@ begin
   if GetLastError = ERROR_ALREADY_EXISTS then
   begin
     // we notify it to activate itself
-    SendMessage(HWND_BROADCAST, WM_INSTANCE_LIMIT_MESSAGE, 0, 0);
+    PostMessage(HWND_BROADCAST, WM_INSTANCE_LIMIT_MESSAGE, 0, 0);
     // we shut down
     Halt(0);
   end;
