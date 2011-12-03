@@ -234,7 +234,6 @@ var
   MemoryStream: TMemoryStream;
   AESCipher: TDCP_rijndael;
   I, NumItems: Integer;
-  TestStream: TFileStream;
 
   function ReadString(const Length: Integer = 0): AnsiString;
   var
