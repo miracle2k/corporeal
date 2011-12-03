@@ -1,4 +1,4 @@
-1.16 (12-04-2011)
+1.16 (12-03-2011)
 
 	* Fixed: Search feature was broken in 1.15.
 
