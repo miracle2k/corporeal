@@ -1,3 +1,9 @@
+1.15 (12-03-2011)
+
+	* Fixed issue with hanging processes, existing Corporeal instance sometimes not coming back from tray if triggered via a new process.
+	* Password generator: Increase default length to 15.
+	* Now compiled with Delphi 2009, various third party upgrades.
+
 1.11 (03-26-2009)
 
 	* Fixed: Search edit field is now again automatically focused on start.
