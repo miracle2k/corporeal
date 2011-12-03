@@ -343,10 +343,10 @@ begin
       with NodeData.PWItem do
         PasswordList.IsVisible[CurNode] :=
           (LookFor = '') or  // no filter, show everything
-          (Pos(LookFor, Title)>0) or
-          (Pos(LookFor, Username)>0) or
-          (Pos(LookFor, URL)>0) or
-          (Pos(LookFor, Notes)>0) or
+          (Pos(LookFor, LowerCase(Title))>0) or
+          (Pos(LookFor, LowerCase(Username))>0) or
+          (Pos(LookFor, LowerCase(URL))>0) or
+          (Pos(LookFor, LowerCase(Notes))>0) or
           ((Pos(LookFor, LowerCase(Password))>0) and IsPasswordColumnVisible);
       CurNode := PasswordList.GetNext(CurNode);
     end;
