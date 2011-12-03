@@ -3,7 +3,10 @@
 *.res
 *.identcache
 *.drc
+*.dproj.local
 /src/__history/
 /build/*.fbl7
 /build/*.fb7lck
 /build/*.fbpInf
+/src/VersionInfoBuild.inc
+/src/VersionInfo.rc
