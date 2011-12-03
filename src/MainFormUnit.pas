@@ -1004,7 +1004,7 @@ var
   begin
     Result := Lowercase(CreateClassID);
     for I := Length(Result) downto 1 do
-      if not (Result[I] in ['a'..'z','0'..'9']) then
+      if not CharInSet(Result[I], ['a'..'z','0'..'9']) then
         Delete(Result, I, 1);
   end;
 

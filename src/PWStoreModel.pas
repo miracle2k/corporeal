@@ -33,29 +33,29 @@ type
   TPWItem = class
   private
     FID: Cardinal;
-    FNotes: AnsiString;
-    FTitle: AnsiString;
-    FPassword: AnsiString;
-    FURL: AnsiString;
-    FUsername: AnsiString;
+    FNotes: string;
+    FTitle: string;
+    FPassword: string;
+    FURL: string;
+    FUsername: string;
     FCreationTime: TDateTime;
     function GetID: Cardinal;
-    procedure SetNotes(const Value: AnsiString);
-    procedure SetPassword(const Value: AnsiString);
-    procedure SetTitle(const Value: AnsiString);
-    procedure SetURL(const Value: AnsiString);
-    procedure SetUsername(const Value: AnsiString);
+    procedure SetNotes(const Value: string);
+    procedure SetPassword(const Value: string);
+    procedure SetTitle(const Value: string);
+    procedure SetURL(const Value: string);
+    procedure SetUsername(const Value: string);
     procedure SetCreationTime(const Value: TDateTime);
   public
     constructor Create(ItemID: Cardinal); virtual;
     destructor Destroy; override;
   public
     property ID: Cardinal read GetID;
-    property Title: AnsiString read FTitle write SetTitle;
-    property Username: AnsiString read FUsername write SetUsername;
-    property Password: AnsiString read FPassword write SetPassword;
-    property URL: AnsiString read FURL write SetURL;
-    property Notes: AnsiString read FNotes write SetNotes;
+    property Title: string read FTitle write SetTitle;
+    property Username: string read FUsername write SetUsername;
+    property Password: string read FPassword write SetPassword;
+    property URL: string read FURL write SetURL;
+    property Notes: string read FNotes write SetNotes;
     property CreationTime: TDateTime read FCreationTime write SetCreationTime;
   end;
 
@@ -100,8 +100,8 @@ type
     procedure Close;
     function Add: TPWItem;
     function Remove(Item: TPWItem): Integer;
-    procedure SaveToFile(AFilename, APassword: AnsiString);
-    procedure LoadFromFile(AFilename, APassword: AnsiString);
+    procedure SaveToFile(AFilename, APassword: string);
+    procedure LoadFromFile(AFilename, APassword: string);
   public
     property Count: Integer read GetCount;
     property Items[Index: Integer]: TPWItem read GetItems write SetItems;
@@ -137,27 +137,27 @@ begin
   FCreationTime := Value;
 end;
 
-procedure TPWItem.SetNotes(const Value: AnsiString);
+procedure TPWItem.SetNotes(const Value: string);
 begin
   FNotes := Value;
 end;
 
-procedure TPWItem.SetPassword(const Value: AnsiString);
+procedure TPWItem.SetPassword(const Value: string);
 begin
   FPassword := Value;
 end;
 
-procedure TPWItem.SetTitle(const Value: AnsiString);
+procedure TPWItem.SetTitle(const Value: string);
 begin
   FTitle := Value;
 end;
 
-procedure TPWItem.SetURL(const Value: AnsiString);
+procedure TPWItem.SetURL(const Value: string);
 begin
   FURL := Value;
 end;
 
-procedure TPWItem.SetUsername(const Value: AnsiString);
+procedure TPWItem.SetUsername(const Value: string);
 begin
   FUsername := Value;
 end;
@@ -229,7 +229,7 @@ begin
   Result := FItems[Index];
 end;
 
-procedure TPWItemStore.LoadFromFile(AFilename, APassword: AnsiString);
+procedure TPWItemStore.LoadFromFile(AFilename, APassword: string);
 var
   MemoryStream: TMemoryStream;
   AESCipher: TDCP_rijndael;
@@ -269,7 +269,9 @@ begin
     MemoryStream := TMemoryStream.Create;
     AESCipher := TDCP_rijndael.Create(nil);
     try
-      AESCipher.InitStr(APassword, TDCP_sha512);
+      // XXX: Traditionally, the password was an AnsiString; we need to
+      // keep it that way to continue to decrypt existing stores.
+      AESCipher.InitStr(AnsiString(APassword), TDCP_sha512);
       AESCipher.DecryptStream(FStoreFileStream, MemoryStream, FStoreFileStream.Size);
 
       MemoryStream.Position := 0;
@@ -285,11 +287,12 @@ begin
       for I := 0 to NumItems - 1 do
         with Add do
         begin
-          Title := ReadString;
-          Username := ReadString;
-          Password := ReadString;
-          URL := ReadString;
-          Notes := ReadString;
+          // TODO: Historically, we wrote AnsiStrings; Upgrade to unicode.
+          Title := string(ReadString);
+          Username := string(ReadString);
+          Password := string(ReadString);
+          URL := string(ReadString);
+          Notes := string(ReadString);
           CreationTime := ReadFloat;
         end;
 
@@ -322,7 +325,7 @@ begin
   if Result >= 0 then Item.Free;
 end;
 
-procedure TPWItemStore.SaveToFile(AFilename, APassword: AnsiString);
+procedure TPWItemStore.SaveToFile(AFilename, APassword: string);
 var
   MemoryStream: TMemoryStream;
   AESCipher: TDCP_rijndael;
@@ -358,11 +361,11 @@ begin
     WriteInteger(Count);
     for I := 0 to Count - 1 do
     begin
-      WriteString(Items[I].Title);
-      WriteString(Items[I].Username);
-      WriteString(Items[I].Password);
-      WriteString(Items[I].URL);
-      WriteString(Items[I].Notes);
+      WriteString(AnsiString(Items[I].Title));
+      WriteString(AnsiString(Items[I].Username));
+      WriteString(AnsiString(Items[I].Password));
+      WriteString(AnsiString(Items[I].URL));
+      WriteString(AnsiString(Items[I].Notes));
       WriteFloat(Double(Items[I].CreationTime));
     end;
 
@@ -380,7 +383,7 @@ begin
     
     try
       MemoryStream.Position := 0;
-      AESCipher.InitStr(APassword, TDCP_sha512);
+      AESCipher.InitStr(AnsiString(APassword), TDCP_sha512);
       AESCipher.EncryptStream(MemoryStream, FStoreFileStream, MemoryStream.Size)
     finally
       AESCipher.Free;
