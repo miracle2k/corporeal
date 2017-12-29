@@ -3,6 +3,9 @@
 *.res
 *.identcache
 *.drc
+*.ppu
+*.o
+*.dSYM/
 *.dproj.local
 /src/__history/
 /build/*.fbl7
